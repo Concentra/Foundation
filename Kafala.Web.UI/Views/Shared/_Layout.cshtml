@@ -1,0 +1,74 @@
+﻿@using Foundation.Web
+@using Foundation.Web.Extensions
+
+<!DOCTYPE html>
+<html>
+<head>
+      <title>@Html.PageTitle()</title>
+@Html.CssInclude("~/Content/bootstrap-responsive.css")
+@Html.CssInclude("~/Content/bootstrap.css")
+    <!--[if lt IE 9]>
+        @Html.CssInclude("ietweaks.css")
+    <![endif]-->
+    @RenderSection("Css", required: false)
+    
+</head>
+
+<body>
+<div class="navbar  navbar-fixed-top">
+<div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="#" title="change in _bootstrapLayout.basic.cshtml">Kafel</a>
+                        <ul class="nav" role="navigation">
+                            <li class="active"><a href="Donor">Donors</a></li>
+                            <li><a href="Case">Cases</a></li>
+                            <li  class="dropdown">
+                              <a class="dropdown-toggle" href="#" id="dropPayment" data-toggle="dropdown" role="button"  >Payments
+                                       <b class="caret"></b>
+                              </a>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropPayment" >
+                                 <li><a href="Payment/Search">Find</a></li>
+                                <li><a href="Payment/Register">Register</a></li>
+                                <li><a href="Payment/Edit">Edit</a></li>
+                                </ul>
+                             
+                            </li>
+                            <li class="dropdown"><a 
+                             class="dropdown-toggle" href="#" id="dropReports" data-toggle="dropdown" role="button"
+                            >Reports<b class="caret"></b></a>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropReports" >
+                                 <li><a href="Reports/UnpaidCommitments">Unpaid Commitments</a></li>
+                                <li><a href="Reports/CollectedVolume">Collected Volume</a></li>
+                             
+                                </ul>
+                            </li>
+                            <li><a href="Reminders">Reminders</a></li>
+                            <li class="dropdown">
+                           <a 
+                             class="dropdown-toggle" href="#" id="dropAdmin" data-toggle="dropdown" role="button"
+                            >Administration<b class="caret"></b></a>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropAdmin">
+                                 <li><a href="Users">Manage Users</a></li>
+                                <li><a href="System">System Settings</a></li>
+                             
+                                </ul>
+                            </li>
+                     </ul>
+                  
+                </div>
+            </div>
+</div>
+<div class="row">
+    <div class="span3">
+        Menu
+    </div>
+    <div class="span9">
+        @RenderBody()
+    </div>
+</div>
+     @Html.ScriptInclude("ThirdParty/jquery-1.9.1.min.js")
+     @Html.ScriptInclude("ThirdParty/modernizr-1.7.js")
+     @Html.ScriptInclude("bootstrap.js")
+ 
+</body>
+</html>
