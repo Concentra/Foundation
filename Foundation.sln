@@ -30,8 +30,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Web", "Foundatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Query", "Kafala.Query\Kafala.Query.csproj", "{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootStrap", "BootStrap\BootStrap.csproj", "{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}"
-EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi
@@ -158,16 +156,6 @@ Global
 		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Release|x86.ActiveCfg = Release|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{EFEB690B-D123-4F47-B25D-B404D1D1CCCD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
