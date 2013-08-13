@@ -44,13 +44,21 @@ namespace Foundation.Web
                                        .Use(x =>
                                                 {
                                                     TempDataDictionary tempData;
-                                                    var controllerContext = x.GetInstance
-                                                        <Func<ControllerContext>>()();
-                                                    tempData =
-                                                        controllerContext.Controller.TempData;
+                                                    var controllerContext = controllerBase == null ? null : controllerBase.ControllerContext;
+                                                    if (controllerContext != null)
+                                                    {
+                                                        tempData =
+                                                            controllerContext.Controller.TempData;
+                                                       
+                                                    }
+                                                    else
+                                                    {
+                                                        tempData = new TempDataDictionary();
+                                                    }
+
                                                     var flashMessenger =
-                                                        new WebFlashMessenger(
-                                                            "Kafala.Web.UI.Resources.KafalaFlashMessages");
+                                                           new WebFlashMessenger(
+                                                               "Kafala.Web.UI.Resources.KafalaFlashMessages");
                                                     tempData["FlashMessenger"] =
                                                         flashMessenger;
                                                     return flashMessenger;

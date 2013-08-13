@@ -13,13 +13,13 @@ namespace Kafala.Web.UI.Controllers
 {
     public class HomeController : BaseController
     {
-        protected readonly IBusinessManagerContainer businessManagerContainer;
+        private readonly IBusinessManagerContainer businessManagerContainer;
 
-        protected readonly IQueryContainer queryContainer;
+        private readonly IQueryContainer queryContainer;
 
-        protected readonly IFlashMessenger flashMessenger;
+        private readonly IFlashMessenger flashMessenger;
 
-        protected readonly IFormAuthenticationService formAuthenticationService;
+        private readonly IFormAuthenticationService formAuthenticationService;
 
         public HomeController(IBusinessManagerContainer businessManagerContainer,
             IQueryContainer queryContainer, 
