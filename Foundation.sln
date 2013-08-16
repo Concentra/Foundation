@@ -1,10 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Infrastructure", "Foundation.Infrastructure\Foundation.Infrastructure.csproj", "{0735DE5D-9FF2-4913-B894-F3B5D36A6CA5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Persistence", "Foundation.Persistence\Foundation.Persistence.csproj", "{C684E3B8-D828-4ECE-B427-AFC06F25977F}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1BB6C094-333A-4320-AB00-849A011DEEA5}"
 	ProjectSection(SolutionItems) = preProject
 		Foundation.vsmdi = Foundation.vsmdi
@@ -12,13 +8,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4A88B3D-0276-4E77-B4DB-8DC4D43A2945}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Infrastructure", "Foundation.Infrastructure\Foundation.Infrastructure.csproj", "{0735DE5D-9FF2-4913-B894-F3B5D36A6CA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Persistence", "Foundation.Persistence\Foundation.Persistence.csproj", "{C684E3B8-D828-4ECE-B427-AFC06F25977F}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Testing", "Foundation.Testing\Foundation.Testing.csproj", "{9CE62612-D884-40E0-AD46-805A637D90C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Entities", "Kafala.Entities\Kafala.Entities.csproj", "{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Console", "Kafala.Console\Kafala.Console.csproj", "{DC53EF77-8E48-49AA-B108-BC8E85E72A2A}"
 EndProject
-Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "Kafala.Database", "Kafala.Database\Kafala.Database.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Kafala.Database", "Kafala.Database\Kafala.Database.sqlproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.BusinessManagers", "Kafala.BusinessManagers\Kafala.BusinessManagers.csproj", "{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}"
 EndProject
