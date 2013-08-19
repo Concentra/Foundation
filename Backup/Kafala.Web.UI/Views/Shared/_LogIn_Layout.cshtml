@@ -1,0 +1,30 @@
+﻿@using Foundation.Web
+@using Foundation.Web.Extensions
+
+
+<!DOCTYPE html>
+<html>
+<head>
+      <title>@Html.PageTitle()</title>
+@Html.CssInclude("~/Content/bootstrap-responsive.css")
+@Html.CssInclude("~/Content/bootstrap.css")
+@Html.CssInclude("~/Content/SignIn.css")
+    <!--[if lt IE 9]>
+        @Html.CssInclude("ietweaks.css")
+    <![endif]-->
+    @RenderSection("Css", required: false)
+    
+</head>
+
+<body>
+    
+    <div class="container">
+        @Html.RenderFlashMessages();
+        @RenderBody()
+    </div>
+     @Html.ScriptInclude("ThirdParty/jquery-1.9.1.min.js")
+     @Html.ScriptInclude("ThirdParty/modernizr-1.7.js")
+     @Html.ScriptInclude("bootstrap.js")
+ 
+</body>
+</html>

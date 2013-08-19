@@ -1,0 +1,27 @@
+﻿@model Kafala.Web.ViewModels.Home.LogOnViewModel
+@{
+    Layout = "~/Views/Shared/_LogIn_Layout.cshtml";
+}
+@using (Html.BeginForm("LogOn", "Home", FormMethod.Post, new { @class = "form-signin" }))
+{
+<h2 class="form-signin-heading">Please sign in</h2>
+    @Html.ValidationSummary(true)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+            <input type="submit" value="Save" />
+    
+}
