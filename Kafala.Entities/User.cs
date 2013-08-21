@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Foundation.Persistence;
 
 namespace Kafala.Entities
 {
-    public class User
+    public class User : IAuthenticatableUser
     {
         public virtual Guid Id { get; set; }
 

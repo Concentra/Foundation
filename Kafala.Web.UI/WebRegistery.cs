@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using System.Web.Mvc;
-using Kafala.BusinessManagers.Security;
 using StructureMap;
 using Foundation.Web;
 using Kafala.Web.UI.Resources;
+using Kafala.Query.Security;
 using Foundation.Web.Security;
 using StructureMap.Configuration.DSL;
 
@@ -16,7 +16,10 @@ namespace Kafala.Web.UI
         {
             this.For<IControllerFactory>().Use<CustomControllerFactory>();
             
-            this.For<IFormAuthenticationService>().Use<KafalaFormAuthentication>();
+            this.For<IFormAuthenticationService>().Use<DefaultFormAuthenticationService>();
+            this.For<IPasswordEncoder>().Use<Base64Encoder>();
+            this.For<IPasswordHelper>().Use<PasswordHelper>();
+            this.For<IUserAuthenticationFacade>().Use<UserAuthenticationFacade>();
 
             this.Scan(x =>
             {
