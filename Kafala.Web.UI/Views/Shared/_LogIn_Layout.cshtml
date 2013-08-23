@@ -6,8 +6,9 @@
 <html>
 <head>
       <title>@Html.PageTitle()</title>
-@Html.CssInclude("~/Content/bootstrap-responsive.css")
-@Html.CssInclude("~/Content/bootstrap.css")
+@Html.CssInclude("~/Content/bootstrap/bootstrap-theme.css")
+@Html.CssInclude("~/Content/bootstrap/bootstrap-responsive.css")
+@Html.CssInclude("~/Content/bootstrap/bootstrap.css")
 @Html.CssInclude("~/Content/SignIn.css")
     <!--[if lt IE 9]>
         @Html.CssInclude("ietweaks.css")
@@ -22,9 +23,9 @@
         @Html.RenderFlashMessages();
         @RenderBody()
     </div>
-     @Html.ScriptInclude("ThirdParty/jquery-1.9.1.min.js")
-     @Html.ScriptInclude("ThirdParty/modernizr-1.7.js")
-     @Html.ScriptInclude("bootstrap.js")
+     @Html.ScriptIncludeThirdParty("jquery-2.0.3.min.js")
+     @Html.ScriptIncludeThirdParty("modernizr-2.6.2.js")
+     @Html.ScriptIncludeThirdParty("bootstrap.js")
  
 </body>
 </html>

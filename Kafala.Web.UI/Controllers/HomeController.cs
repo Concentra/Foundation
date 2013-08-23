@@ -7,6 +7,7 @@ using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Web;
 using Foundation.Web.Security;
+using Kafala.BusinessManagers;
 using Kafala.Web.ViewModels.Home;
 
 namespace Kafala.Web.UI.Controllers
@@ -56,8 +57,15 @@ namespace Kafala.Web.UI.Controllers
             else
             {
                 this.flashMessenger.AddMessage("Wrong Login", FlashMessageType.Failure);
-                return View("Logon", model);
+                return View("LogOn", model);
             }
+        }
+
+        public ActionResult ForgotPassword()
+        {
+            var notManager = new AccountNotificationManager();
+            notManager.SendPasswordReminderEmail("timur.ozuns@concentra.co.uk");
+            return RedirectToAction("LogOn");
         }
     }
 }

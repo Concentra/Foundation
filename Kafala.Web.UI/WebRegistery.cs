@@ -7,6 +7,7 @@ using Kafala.Web.UI.Resources;
 using Kafala.Query.Security;
 using Foundation.Web.Security;
 using StructureMap.Configuration.DSL;
+using Foundation.Infrastructure.Notifications;
 
 namespace Kafala.Web.UI
 {
@@ -20,6 +21,7 @@ namespace Kafala.Web.UI
             this.For<IPasswordEncoder>().Use<Base64Encoder>();
             this.For<IPasswordHelper>().Use<PasswordHelper>();
             this.For<IUserAuthenticationFacade>().Use<UserAuthenticationFacade>();
+            this.For<IEmailService>().Use<EmailService>();
 
             this.Scan(x =>
             {

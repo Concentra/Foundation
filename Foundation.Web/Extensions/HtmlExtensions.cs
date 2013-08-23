@@ -69,6 +69,20 @@ namespace Foundation.Web.Extensions
             return MvcHtmlString.Create(string.Format("<script type=\"text/javascript\" src=\"{0}\"></script>", url.ToLower()));
         }
 
+        public static MvcHtmlString ScriptIncludeThirdParty(this HtmlHelper htmlHelper, string filename)
+        {
+            // read a subfolder from config, or empty
+            var thirdPartyScriptsFolder = ConfigurationManager.AppSettings["Foundation_WebPageTitlesResource"] ?? string.Empty;
+            var filepath = "~/Scripts/";
+            // filepath += htmlHelper.ViewContext.HttpContext.IsDebuggingEnabled ? "Debug" : "Release" + "/";
+            filepath += thirdPartyScriptsFolder + filename;
+
+            var helper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
+            var url = helper.Content(filepath);
+
+            return MvcHtmlString.Create(string.Format("<script type=\"text/javascript\" src=\"{0}\"></script>", url.ToLower()));
+        }
+
         public static MvcHtmlString Image(
             this HtmlHelper htmlHelper,
             string filename,
