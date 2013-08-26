@@ -33,7 +33,14 @@ namespace Kafala.Web.UI.Controllers
         {
             var container = this.queryContainer.Get<DonorListModelPopulator>();
             var model = container.Execute(null);
-            return View(model);
+            return View("Index", model);
+        }
+
+        public ActionResult Create()
+        {
+            var container = this.queryContainer.Get<DonorCreateModelPopulator>();
+            var model = container.Execute(null);
+            return View("Create", model);
         }
 
     }

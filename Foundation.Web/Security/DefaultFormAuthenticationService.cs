@@ -13,7 +13,6 @@ namespace Foundation.Web.Security
 {
     public class DefaultFormAuthenticationService : IFormAuthenticationService
     {
-        private readonly ISession session;
         private readonly IPasswordHelper passwordHelper;
         private readonly IUserAuthenticationFacade userAuthenticationFacade;
         readonly int maximumPasswordAttemptsLimit;

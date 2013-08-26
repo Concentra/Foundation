@@ -99,6 +99,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DonorCreateModelPopulator.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -260,7 +261,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Donor\DonorIndex.cshtml" />
+    <Content Include="Views\Donor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\appSettings.config" />
@@ -271,6 +272,7 @@
     <None Include="Scripts\Debug\ThirdParty\jquery-1.9.1.min.map" />
     <Content Include="Views\Home\LogOn.cshtml" />
     <Content Include="Views\Shared\_LogIn_Layout.cshtml" />
+    <Content Include="Views\Donor\Create.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Commitment.cs" />
     <Compile Include="DonationCase.cs" />
+    <Compile Include="Donor\DonorCreateViewModel.cs" />
     <Compile Include="Donor\DonorIndexViewModel.cs" />
     <Compile Include="Donor\DonorListViewModel.cs" />
     <Compile Include="Donor\DonorViewModel.cs" />
