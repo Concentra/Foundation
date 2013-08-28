@@ -321,15 +321,7 @@ namespace VortexSoft.Bootstrap
         {
             DateTime? dateTimeValue =  Convert.ToDateTime(value);
 
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required,custom[date]]");
-            }
-            else
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[custom[date]]");
-            }
-
+           
             var datePicker = helper.JQueryUI().Datepicker(property.Name, dateTimeValue.Value).ChangeYear(true).ChangeMonth(true);
             
             writer.Write(datePicker.ToHtmlString());

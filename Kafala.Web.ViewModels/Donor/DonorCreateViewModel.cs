@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Kafala.Entities.Enums;
 
 
 namespace Kafala.Web.ViewModels.Donor
@@ -24,14 +25,17 @@ namespace Kafala.Web.ViewModels.Donor
         [DataType(DataType.Text)]
         public string Telephone { get; set; }
 
-        [Display(Name = "Date Joined")]
-        [DataType(DataType.Date)]
-        public DateTime JoinDate { get; set; }
+        [Display(Name = "Status")]
+        public DonorStatus DonorStatus { get; set; }
 
         public Guid ReferralId { get; set; }
 
         [Display(Name = "Mobile Number")]
         [DataType(DataType.Text)]
         public string Mobile { get; set; }
+
+        [Display(Name = "Date Joined")]
+        [DataType(DataType.Date)]
+        public DateTime JoinDate { get; set; }
     }
 }
