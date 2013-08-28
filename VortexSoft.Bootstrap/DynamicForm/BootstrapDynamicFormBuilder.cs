@@ -319,11 +319,7 @@ namespace VortexSoft.Bootstrap
 
         protected virtual void RenderDateTime(HtmlTextWriter writer, PropertyInfo property, object value, bool isRequired)
         {
-            if (value != null && value != DBNull.Value)
-            {
-                var dt = Convert.ToDateTime(value);
-                writer.AddAttribute(HtmlTextWriterAttribute.Value, dt.ToString("yyyy-MM-dd"));
-            }
+            DateTime? dateTimeValue =  Convert.ToDateTime(value);
 
             if (isRequired)
             {
@@ -334,8 +330,8 @@ namespace VortexSoft.Bootstrap
                 writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[custom[date]]");
             }
 
-            var dateTimeValue = Convert.ToDateTime(value);
-            var datePicker = helper.JQueryUI().Datepicker(property.Name, dateTimeValue).ChangeYear(true).ChangeMonth(true);
+            var datePicker = helper.JQueryUI().Datepicker(property.Name, dateTimeValue.Value).ChangeYear(true).ChangeMonth(true);
+            
             writer.Write(datePicker.ToHtmlString());
         }
 

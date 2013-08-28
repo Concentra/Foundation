@@ -49,10 +49,11 @@ namespace Kafala.Web.UI.Controllers
             return RedirectToAction("View", donor.Id);
         }
 
-        public ActionResult View(Guid guid)
+        public ActionResult View()
         {
-            var container = this.queryContainer.Get<DonorViewModelPopulator>();
-            var model = container.Execute(guid);
+            //var container = this.queryContainer.Get<DonorViewModelPopulator>();
+            //var model = container.Execute(guid);
+            var model = new ViewDonorViewModel();
             return View("View", model);
         }
     }

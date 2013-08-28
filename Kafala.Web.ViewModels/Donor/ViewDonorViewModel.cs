@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -7,16 +8,28 @@ namespace Kafala.Web.ViewModels.Donor
 {
     public class ViewDonorViewModel
     {
-        public virtual Guid Id { get; set; }
+        [Key]
+        public Guid? Id { get; set; }
 
-        public virtual string Name { get; set; }
+        [Display(Name = "Donor Name")]
+        [Required]
+        [DataType(DataType.Text)]
+        public string Name { get; set; }
 
-        public virtual string Email { get; set; }
+        [Display(Name = "Email", Prompt = "Email Address..")]
+        [Required]
+        [StringLength(128)]
+        public string Email { get; set; }
 
-        public virtual string Telephone { get; set; }
+        [Display(Name = "Telephone")]
+        [DataType(DataType.Text)]
+        public string Telephone { get; set; }
 
-        public virtual DateTime JoinDate { get; set; }
+        [Display(Name = "Date Joined")]
+        public DateTime JoinDate { get; set; }
 
-        public virtual DonorViewModel Referral { get; set; }
+        public Guid ReferralId { get; set; }
+
+        public string Mobile { get; set; }
     }
 }

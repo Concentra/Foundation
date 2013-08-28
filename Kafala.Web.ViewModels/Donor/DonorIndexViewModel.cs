@@ -5,6 +5,6 @@ namespace Kafala.Web.ViewModels.Donor
 {
     public class DonorIndexViewModel
     {
-        public virtual IList<DonorViewModel> Donors { get; set; }
+        public virtual List<ViewDonorViewModel> Donors { get; set; }
     }
 }

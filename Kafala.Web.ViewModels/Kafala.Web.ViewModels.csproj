@@ -48,8 +48,6 @@
     <Compile Include="Donor\DonorUpdateViewModel.cs" />
     <Compile Include="Donor\DonorCreateViewModel.cs" />
     <Compile Include="Donor\DonorIndexViewModel.cs" />
-    <Compile Include="Donor\DonorListViewModel.cs" />
-    <Compile Include="Donor\DonorViewModel.cs" />
     <Compile Include="Donor\ViewDonorViewModel.cs" />
     <Compile Include="Home\LogonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

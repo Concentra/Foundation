@@ -64,6 +64,8 @@
     <Compile Include="Collections\Generic\PairCollection.cs" />
     <Compile Include="Collections\Generic\PowerCollections\Pair.cs" />
     <Compile Include="Collections\Generic\PowerCollections\Strings.cs" />
+    <Compile Include="DynamicView\BootstrapDynamicViewBuilder.cs" />
+    <Compile Include="DynamicView\IDynamicViewBuilder.cs" />
     <Compile Include="GlyphIcons.cs" />
     <Compile Include="DynamicForm\BootstrapDynamicFormBuilder.cs" />
     <Compile Include="Form\ControlsSection.cs" />

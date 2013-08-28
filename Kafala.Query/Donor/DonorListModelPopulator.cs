@@ -26,7 +26,7 @@ namespace Kafala.Query.Donor
             var model = new DonorIndexViewModel
                             {
                                 Donors = this.session.Query<Entities.Donor>()
-                                    .Select(x => new DonorViewModel()
+                                    .Select(x => new ViewDonorViewModel()
                                                      {
                                                          Id = x.Id,
                                                          Name = x.Name,

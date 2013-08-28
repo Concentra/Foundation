@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Kafala.Web.ViewModels.Donor
 {
+    
     public class DonorCreateViewModel
     {
         [KeyAttribute]
@@ -16,7 +17,7 @@ namespace Kafala.Web.ViewModels.Donor
 
         [Display(Name = "Email", Prompt = "Email Address..")]
         [Required]
-        [StringLength(128)]
+        [DataType(DataType.Text)]
         public string Email { get; set; }
 
         [Display(Name = "Telephone")]
@@ -24,10 +25,13 @@ namespace Kafala.Web.ViewModels.Donor
         public string Telephone { get; set; }
 
         [Display(Name = "Date Joined")]
+        [DataType(DataType.Date)]
         public DateTime JoinDate { get; set; }
 
         public Guid ReferralId { get; set; }
 
+        [Display(Name = "Mobile Number")]
+        [DataType(DataType.Text)]
         public string Mobile { get; set; }
     }
 }

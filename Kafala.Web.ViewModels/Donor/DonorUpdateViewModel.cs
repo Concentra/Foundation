@@ -17,6 +17,6 @@ namespace Kafala.Web.ViewModels.Donor
 
         public virtual DateTime JoinDate { get; set; }
 
-        public virtual DonorViewModel Referral { get; set; }
+        public virtual ViewDonorViewModel Referral { get; set; }
     }
 }

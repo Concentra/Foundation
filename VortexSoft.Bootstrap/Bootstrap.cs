@@ -233,6 +233,31 @@ namespace VortexSoft.Bootstrap
         #endregion CodeBlock
 
         #region Forms
+        #region DynamicView
+
+        private static BootstrapDynamicViewBuilder<TModel> defaultDynamicViewBuilder;
+
+        private static BootstrapDynamicViewBuilder<TModel> DefaultDynamicViewBuilder(HtmlHelper<TModel> helper)
+        {
+            if (defaultDynamicViewBuilder == null)
+            {
+                defaultDynamicViewBuilder = new BootstrapDynamicViewBuilder<TModel>(helper);
+            }
+            return defaultDynamicViewBuilder;
+        }
+
+        public MvcHtmlString DynamicView()
+        {
+            return DynamicView(DefaultDynamicViewBuilder(helper));
+        }
+
+        public MvcHtmlString DynamicView(IDynamicViewBuilder<TModel> builder)
+        {
+            return builder.Build(helper.ViewData.Model);
+        }
+
+        #endregion DynamicView
+
 
         #region DynamicForm
 
