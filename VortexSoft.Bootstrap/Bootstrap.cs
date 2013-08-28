@@ -247,14 +247,14 @@ namespace VortexSoft.Bootstrap
             return defaultDynamicFormBuilder;
         }
 
-        public MvcHtmlString DynamicForm()
+        public MvcHtmlString DynamicForm(BootstrapFormType horizontal)
         {
-            return DynamicForm(DefaultDynamicFormBuilder(helper));
+            return DynamicForm(DefaultDynamicFormBuilder(helper), BootstrapFormType.Horizontal);
         }
 
-        public MvcHtmlString DynamicForm(IDynamicFormBuilder<TModel> builder)
+        public MvcHtmlString DynamicForm(IDynamicFormBuilder<TModel> builder, BootstrapFormType formType)
         {
-            return builder.Build(helper.ViewData.Model);
+            return builder.Build(helper.ViewData.Model, formType);
         }
 
         #endregion DynamicForm

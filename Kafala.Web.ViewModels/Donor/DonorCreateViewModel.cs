@@ -6,10 +6,12 @@ namespace Kafala.Web.ViewModels.Donor
 {
     public class DonorCreateViewModel
     {
+        [KeyAttribute]
         public Guid? Id { get; set; }
 
         [Display(Name = "Donor Name")]
         [Required]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
 
         [Display(Name = "Email", Prompt = "Email Address..")]
@@ -18,6 +20,7 @@ namespace Kafala.Web.ViewModels.Donor
         public string Email { get; set; }
 
         [Display(Name = "Telephone")]
+        [DataType(DataType.Text)]
         public string Telephone { get; set; }
 
         [Display(Name = "Date Joined")]

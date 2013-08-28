@@ -9,6 +9,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using JQueryUIHelpers;
 using VortexSoft.Bootstrap.Collections.Generic;
 using VortexSoft.Bootstrap.Extensions;
 
@@ -23,7 +24,7 @@ namespace VortexSoft.Bootstrap
             this.helper = helper;
         }
 
-        public virtual MvcHtmlString Build(TModel model)
+        public virtual MvcHtmlString Build(TModel model, BootstrapFormType formType)
         {
             var sb = new StringBuilder(2000);
 
@@ -50,7 +51,8 @@ namespace VortexSoft.Bootstrap
                     textWriter.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
                     textWriter.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
                     textWriter.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
-                    textWriter.AddAttribute(HtmlTextWriterAttribute.Value, property.GetValue(model, null).ToString());
+                    var hiddenValue = (property.GetValue(model, null) == null) ? string.Empty :property.GetValue(model, null).ToString();
+                    textWriter.AddAttribute(HtmlTextWriterAttribute.Value, hiddenValue);
                     textWriter.RenderBeginTag(HtmlTextWriterTag.Input);
                     textWriter.RenderEndTag();
                 }
@@ -140,11 +142,18 @@ namespace VortexSoft.Bootstrap
                         #endregion DisplayAttribute
 
                         // Control-Group
-                        textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "control-group");
+                        textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "form-group");
                         textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
 
                         // Label
-                        textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "control-label");
+                        if (formType == BootstrapFormType.Horizontal)
+                        {
+                            textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "col-lg-2 control-label");
+                        }
+                        else
+                        {
+                            textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "control-label");
+                        }
                         textWriter.AddAttribute(HtmlTextWriterAttribute.For, property.Name);
                         textWriter.RenderBeginTag(HtmlTextWriterTag.Label);
                         textWriter.Write(displayName);
@@ -324,12 +333,10 @@ namespace VortexSoft.Bootstrap
             {
                 writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[custom[date]]");
             }
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-            writer.AddAttribute(HtmlTextWriterAttribute.Maxlength, "10");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // input
+
+            var dateTimeValue = Convert.ToDateTime(value);
+            var datePicker = helper.JQueryUI().Datepicker(property.Name, dateTimeValue).ChangeYear(true).ChangeMonth(true);
+            writer.Write(datePicker.ToHtmlString());
         }
 
         protected virtual void RenderWholeNumber(HtmlTextWriter writer, PropertyInfo property, object value, bool isRequired)

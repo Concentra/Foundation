@@ -6,7 +6,6 @@
 <head>
       <title>@Html.PageTitle()</title>
     @HtmlExtensions.CssInclude(Html, "~/Content/bootstrap/bootstrap-theme.css")
-    @HtmlExtensions.CssInclude(Html, "~/Content/bootstrap/bootstrap-responsive.css")
     @HtmlExtensions.CssInclude(Html, "~/Content/bootstrap/bootstrap.css")
     <!--[if lt IE 9]>
         @HtmlExtensions.CssInclude(Html, "ietweaks.css")
@@ -16,58 +15,63 @@
 </head>
 
 <body>
-<div class="navbar  navbar-fixed-top">
-<div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" href="#" title="change in _bootstrapLayout.basic.cshtml">Kafel</a>
-                        <ul class="nav nav-pills" role="navigation">
-                            <li class="active"><a href="Donor">Donors</a></li>
-                            <li><a href="Case">Cases</a></li>
-                            <li  class="dropdown">
-                              <a class="dropdown-toggle" href="#" id="dropPayment" data-toggle="dropdown" role="button"  >Payments
-                                       <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropPayment" >
-                                 <li><a href="Payment/Search">Find</a></li>
-                                <li><a href="Payment/Register">Register</a></li>
-                                <li><a href="Payment/Edit">Edit</a></li>
-                                </ul>
+<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" title="change in _bootstrapLayout.basic.cshtml">Kafel</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            
+            <ul class="nav navbar-nav" role="navigation">
+                <li class="active"><a href="Donor">Donors</a></li>
+                <li><a href="Case">Cases</a></li>
+                <li  class="dropdown">
+                    <a class="dropdown-toggle" href="#" id="dropPayment" data-toggle="dropdown" role="button"  >Payments
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropPayment" >
+                        <li><a href="Payment/Search">Find</a></li>
+                        <li><a href="Payment/Register">Register</a></li>
+                        <li><a href="Payment/Edit">Edit</a></li>
+                    </ul>
                              
-                            </li>
-                            <li class="dropdown"><a 
-                             class="dropdown-toggle" href="#" id="dropReports" data-toggle="dropdown" role="button"
-                            >Reports<b class="caret"></b></a>
-                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropReports" >
-                                 <li><a href="Reports/UnpaidCommitments">Unpaid Commitments</a></li>
-                                <li><a href="Reports/CollectedVolume">Collected Volume</a></li>
+                </li>
+                <li class="dropdown"><a 
+                                         class="dropdown-toggle" href="#" id="dropReports" data-toggle="dropdown" role="button"
+                                         >Reports<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropReports" >
+                        <li><a href="Reports/UnpaidCommitments">Unpaid Commitments</a></li>
+                        <li><a href="Reports/CollectedVolume">Collected Volume</a></li>
                              
-                                </ul>
-                            </li>
-                            <li><a href="Reminders">Reminders</a></li>
-                            <li class="dropdown">
-                           <a 
-                             class="dropdown-toggle" href="#" id="dropAdmin" data-toggle="dropdown" role="button"
-                            >Administration<b class="caret"></b></a>
-                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropAdmin">
-                                 <li><a href="Users">Manage Users</a></li>
-                                <li><a href="System">System Settings</a></li>
+                    </ul>
+                </li>
+                <li><a href="Reminders">Reminders</a></li>
+                <li class="dropdown">
+                    <a 
+                        class="dropdown-toggle" href="#" id="dropAdmin" data-toggle="dropdown" role="button"
+                        >Administration<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropAdmin">
+                        <li><a href="Users">Manage Users</a></li>
+                        <li><a href="System">System Settings</a></li>
                              
-                                </ul>
-                            </li>
-                     </ul>
+                    </ul>
+                </li>
+            </ul>
                   
-                </div>
-            </div>
-</div>
-<div class="row">
-    <div class="span3">
-        Menu
+        </div>
     </div>
-    <div class="span9">
+</div>
+<div class="container">
+<div class="row">
+    
+    <div class="col-lg-9">
         @RenderBody()
     </div>
 </div>
+    </div>
      @Html.ScriptIncludeThirdParty("jquery-2.0.3.min.js")
+    @Html.ScriptIncludeThirdParty("jquery-ui-1.10.3.min.js")
+    @Html.ScriptIncludeThirdParty("jquery.validate.unobtrusive.min.js")
      @Html.ScriptIncludeThirdParty("modernizr-2.6.2.js")
      @Html.ScriptIncludeThirdParty("bootstrap.js")
  
