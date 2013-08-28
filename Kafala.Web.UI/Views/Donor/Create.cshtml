@@ -1,4 +1,8 @@
 ﻿@model Kafala.Web.ViewModels.Donor.DonorCreateViewModel
 
-<h2>title</h2>
-@Html.Bootstrap().DynamicForm()
+
+@using (var form = Html.Bootstrap().BeginForm(new { @class = "well", id = "autoForm" }))
+{
+    @Html.Bootstrap().DynamicForm();
+}
+

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kafala.Web.ViewModels.Commitment;
+using System.Linq;
+using System.Text;
 
 namespace Kafala.Web.ViewModels.Donor
 {
-    public class DonorViewModel
+    public class DonorUpdateViewModel
     {
         public virtual Guid Id { get; set; }
 
@@ -17,7 +18,5 @@ namespace Kafala.Web.ViewModels.Donor
         public virtual DateTime JoinDate { get; set; }
 
         public virtual DonorViewModel Referral { get; set; }
-
-        public virtual IList<CommitmentItemViewModel> Commitments { get; set; }
     }
 }

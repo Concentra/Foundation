@@ -24,9 +24,6 @@ namespace Kafala.Query.Donor
         public DonorCreateViewModel Execute(string parameters)
         {
             var model = new DonorCreateViewModel();
-                            {
-                             
-                            };
             return model;
         }
     }

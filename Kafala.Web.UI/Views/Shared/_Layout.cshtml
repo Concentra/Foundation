@@ -5,11 +5,11 @@
 <html>
 <head>
       <title>@Html.PageTitle()</title>
-@Html.CssInclude("~/Content/bootstrap/bootstrap-theme.css")
-@Html.CssInclude("~/Content/bootstrap/bootstrap-responsive.css")
-@Html.CssInclude("~/Content/bootstrap/bootstrap.css")
+    @HtmlExtensions.CssInclude(Html, "~/Content/bootstrap/bootstrap-theme.css")
+    @HtmlExtensions.CssInclude(Html, "~/Content/bootstrap/bootstrap-responsive.css")
+    @HtmlExtensions.CssInclude(Html, "~/Content/bootstrap/bootstrap.css")
     <!--[if lt IE 9]>
-        @Html.CssInclude("ietweaks.css")
+        @HtmlExtensions.CssInclude(Html, "ietweaks.css")
     <![endif]-->
     @RenderSection("Css", required: false)
     
@@ -20,7 +20,7 @@
 <div class="navbar-inner">
                 <div class="container">
                     <a class="brand" href="#" title="change in _bootstrapLayout.basic.cshtml">Kafel</a>
-                        <ul class="nav" role="navigation">
+                        <ul class="nav nav-pills" role="navigation">
                             <li class="active"><a href="Donor">Donors</a></li>
                             <li><a href="Case">Cases</a></li>
                             <li  class="dropdown">

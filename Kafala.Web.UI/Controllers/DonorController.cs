@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Foundation.Infrastructure.BL;
-using Foundation.Infrastructure.Notifications;
 using Foundation.Infrastructure.Query;
 using Foundation.Web;
-using Kafala.BusinessManagers;
+using Kafala.BusinessManagers.Donor;
 using Kafala.Query.Donor;
 using Kafala.Web.ViewModels.Donor;
 
@@ -15,11 +11,11 @@ namespace Kafala.Web.UI.Controllers
 {
     public class DonorController : BaseController
     {
-        protected readonly IBusinessManagerContainer businessManagerContainer;
+        private readonly IBusinessManagerContainer businessManagerContainer;
 
-        protected readonly IQueryContainer queryContainer;
+        private readonly IQueryContainer queryContainer;
 
-        protected readonly IFlashMessenger flashMessenger;
+        private readonly IFlashMessenger flashMessenger;
         
         //
         // GET: /Donor/
@@ -45,5 +41,19 @@ namespace Kafala.Web.UI.Controllers
             return View("Create", model);
         }
 
+        [HttpPost]
+        public ActionResult Create(DonorCreateViewModel model)
+        {
+            var manager = businessManagerContainer.Get<DonorBusinessManager>();
+            var donor = manager.AddDonor(model.Name, model.Mobile, model.JoinDate, model.ReferralId);
+            return RedirectToAction("View", donor.Id);
+        }
+
+        public ActionResult View(Guid guid)
+        {
+            var container = this.queryContainer.Get<DonorViewModelPopulator>();
+            var model = container.Execute(guid);
+            return View("View", model);
+        }
     }
 }

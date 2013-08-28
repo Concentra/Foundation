@@ -32,8 +32,8 @@ namespace VortexSoft.Bootstrap
             {
                 var properties = model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
+                // Find the properties marked with "KeyAttribute" and convert them to hidden fields.
                 #region Hidden Fields
-
                 var hiddenFields = new List<PropertyInfo>();
 
                 foreach (var property in properties)
@@ -57,6 +57,7 @@ namespace VortexSoft.Bootstrap
 
                 #endregion Hidden Fields
 
+                // Get all the elements with [DisplayAttribute(GroupName= vale )] and add them to a list.
                 var groupedProperties = new PairCollection<string, PropertyInfo>();
                 foreach (var property in properties)
                 {
@@ -68,7 +69,9 @@ namespace VortexSoft.Bootstrap
                     }
                 }
 
+                // if at least one group name is there , then use legend (field container)
                 bool useLegend = (groupedProperties.Select(x => x.First).Distinct().Count() > 1);
+                
                 foreach (var groupedProperty in groupedProperties.OrderBy(x => x.First).GroupBy(x => x.First))
                 {
                     textWriter.RenderBeginTag(HtmlTextWriterTag.Fieldset);
@@ -89,9 +92,11 @@ namespace VortexSoft.Bootstrap
                         }
                     }
 
+                    // read the Order value from the group attribute.
                     var orderedProperties = new PairCollection<int, PropertyInfo>();
                     foreach (var property in groupedProperty)
                     {
+                        // skip hidden value .. already rendered..
                         if (hiddenFields.Contains(property.Second))
                         {
                             continue;
@@ -109,8 +114,10 @@ namespace VortexSoft.Bootstrap
                         }
                     }
 
+                    // loop over the attributes (ordered)..
                     foreach (var property in orderedProperties.OrderBy(x => x.First).Select(x => x.Second))
                     {
+                        // skip those hidden .. 
                         if (hiddenFields.Contains(property))
                         {
                             continue;
@@ -118,6 +125,7 @@ namespace VortexSoft.Bootstrap
 
                         #region DisplayAttribute
 
+                        // if there is a Name specified in the DisplayAttribute use it , other wise use the property name 
                         string displayName = property.Name;
                         var displayAttribute = property.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() as DisplayAttribute;
 

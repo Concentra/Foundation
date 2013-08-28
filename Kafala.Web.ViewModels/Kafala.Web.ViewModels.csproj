@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -43,16 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commitment.cs" />
-    <Compile Include="DonationCase.cs" />
+    <Compile Include="Commitment\CommitmentItemViewModel.cs" />
+    <Compile Include="Donor\DonorUpdateViewModel.cs" />
     <Compile Include="Donor\DonorCreateViewModel.cs" />
     <Compile Include="Donor\DonorIndexViewModel.cs" />
     <Compile Include="Donor\DonorListViewModel.cs" />
     <Compile Include="Donor\DonorViewModel.cs" />
+    <Compile Include="Donor\ViewDonorViewModel.cs" />
     <Compile Include="Home\LogonViewModel.cs" />
-    <Compile Include="Payment.cs" />
-    <Compile Include="PaymentPeriod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Donor\Partial\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

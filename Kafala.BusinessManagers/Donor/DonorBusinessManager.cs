@@ -18,10 +18,19 @@ namespace Kafala.BusinessManagers.Donor
            this.session = session;
        }
 
-       public virtual Entities.Donor AddDonor(string donorName, string donorMobile)
+       public virtual Entities.Donor AddDonor(string name, string Mobile, DateTime joinDate, Guid refferedId)
        {
-           Console.Write("AddDonor" + donorName + " " + donorMobile);
-           return null;
+           var donor = new Entities.Donor()
+           {
+               Id = new Guid(),
+               JoinDate = joinDate,
+               Referral = session.Get<Entities.Donor>(refferedId),
+               Name = name,
+               Telephone = Mobile
+           };
+
+           session.Save(donor);
+           return donor;
        }
 
        public virtual Entities.Donor UpdateDonor(string donorName, string donorMobile)

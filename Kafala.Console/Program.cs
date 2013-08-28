@@ -24,7 +24,7 @@ namespace Kafala.Console
 
             var donorBusinessManager = businessManagerContainer.Get<DonorBusinessManager>();
 
-            donorBusinessManager.AddDonor("Abdo", "1234");
+            //donorBusinessManager.AddDonor("Abdo", "1234");
         }
 
         private static IContainer ConfigureDependencies()

@@ -28,20 +28,26 @@ namespace Kafala.Query.Security
         public void RegisterFailedLoginAttempt(IAuthenticatableUser iuser, int maximumLoginAttempts)
         {
             var user = session.Query<User>().FirstOrDefault(x => x.EmailAddress == iuser.EmailAddress);
-            ++user.FailedLoginAttempts;
-
-            if (user.FailedLoginAttempts >= maximumLoginAttempts)
+            if (user != null)
             {
-                user.AccountLocked = true;
-                session.Save(user);
+                ++user.FailedLoginAttempts;
+
+                if (user.FailedLoginAttempts >= maximumLoginAttempts)
+                {
+                    user.AccountLocked = true;
+                    session.Save(user);
+                }
             }
         }
 
         public void ResetFailedLoginAttempts(IAuthenticatableUser iuser)
         {
             var user = session.Query<User>().FirstOrDefault(x => x.EmailAddress == iuser.EmailAddress);
-            user.FailedLoginAttempts = 0;
-            session.Save(user);
+            if (user != null)
+            {
+                user.FailedLoginAttempts = 0;
+                session.Save(user);
+            }
         }
     }
 }
