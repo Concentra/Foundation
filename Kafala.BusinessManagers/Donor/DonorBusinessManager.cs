@@ -18,13 +18,14 @@ namespace Kafala.BusinessManagers.Donor
            this.session = session;
        }
 
-       public virtual Entities.Donor AddDonor(string name, string Mobile, DateTime joinDate, Guid refferedId)
+       public virtual Entities.Donor AddDonor(string name, string Mobile, DateTime? joinDate, Guid? refferedId)
        {
+           var referral = refferedId.HasValue ? session.Get<Entities.Donor>(refferedId) : null;
            var donor = new Entities.Donor()
            {
                Id = new Guid(),
-               JoinDate = joinDate,
-               Referral = session.Get<Entities.Donor>(refferedId),
+               JoinDate = joinDate.HasValue ? joinDate.Value : default(DateTime) ,
+               Referral = referral,
                Name = name,
                Telephone = Mobile
            };

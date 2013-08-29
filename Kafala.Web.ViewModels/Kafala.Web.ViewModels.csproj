@@ -60,6 +60,10 @@
       <Project>{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}</Project>
       <Name>Kafala.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VortexSoft.Bootstrap\VortexSoft.Bootstrap.csproj">
+      <Project>{371babec-5a00-464d-8ebb-09c32ca4c326}</Project>
+      <Name>VortexSoft.Bootstrap</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

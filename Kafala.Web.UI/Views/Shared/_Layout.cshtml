@@ -4,34 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-      <title>@Html.PageTitle()</title>
-   <!-- @Html.CssInclude("~/Content/bootstrap/bootstrap.css")
-    @Html.CssInclude("~/Content/bootstrap/bootstrap-theme.css")
-    @Html.CssInclude("~/Content/bootstrap/bootstrap-responsive.min.css")
-    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-
-    @Html.CssInclude("~/Content/themes/base/jquery.ui.datepicker.css")
-    <!--[if lt IE 9]>
-        @Html.CssInclude("ietweaks.css")
-    <![endif]--
-    @RenderSection("Css", required: false)
-    @Html.ScriptIncludeThirdParty("jquery-2.0.3.min.js")
-    @Html.ScriptIncludeThirdParty("jquery-ui-1.10.3.min.js")
-    @Html.ScriptIncludeThirdParty("jquery.validate.unobtrusive.min.js")
-     @Html.ScriptIncludeThirdParty("modernizr-2.6.2.js")
-     @Html.ScriptIncludeThirdParty("bootstrap.js")
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>-->
+     <title>@Html.PageTitle()</title>
+    @Html.CssInclude("~/Content/bootstrap/bootstrap.min.css")
     
-    @Html.CssInclude("~/Content/bootstrap/bootstrap.css")
-    @Html.CssInclude("~/Content/bootstrap/bootstrap-theme.css")
-    @Html.CssInclude("~/Content/bootstrap/bootstrap-responsive.min.css")
-    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-
-        <script type="text/javascript" src="~/Scripts/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/jquery-ui.unobtrusive-1.0.1.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/prettify.js"></script>
+    @RenderSection("Css", required: false)
+    
+    
         
 </head>
 
@@ -90,6 +68,8 @@
     </div>
 </div>
     </div>
-     
+        <script src="~/Scripts/jquery-2.0.3.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        
 </body>
 </html>

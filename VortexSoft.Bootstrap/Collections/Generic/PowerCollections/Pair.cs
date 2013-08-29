@@ -16,7 +16,7 @@ namespace VortexSoft.Bootstrap.Collections.Generic
     /// T of a collection, or as the TKey or TValue of a dictionary.
     /// </summary>
     [Serializable]
-    internal struct Pair<TFirst, TSecond> : IComparable, IComparable<Pair<TFirst, TSecond>>
+    public struct Pair<TFirst, TSecond> : IComparable, IComparable<Pair<TFirst, TSecond>>
     {
         /// <summary>
         /// Comparers for the first and second type that are used to compare

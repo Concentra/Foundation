@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Kafala.Entities.Enums;
+using VortexSoft.Bootstrap.CustomAttribute;
 
 
 namespace Kafala.Web.ViewModels.Donor
@@ -8,34 +9,29 @@ namespace Kafala.Web.ViewModels.Donor
     
     public class DonorCreateViewModel
     {
-        [KeyAttribute]
+        [DynamicControl(Control = ControlType.Hidden)]
         public Guid? Id { get; set; }
 
-        [Display(Name = "Donor Name")]
+        [DynamicControl(GroupName = "Personal Info", Order = 10,Control = ControlType.StaticText, Label = "Donor Name", PromptText = "The full donor name")]
         [Required]
-        [DataType(DataType.Text)]
         public string Name { get; set; }
 
-        [Display(Name = "Email", Prompt = "Email Address..")]
+        [DynamicControl(GroupName = "Contact Info", Control = ControlType.TextBox, Label = "Email", PromptText = "Enter email address")]
         [Required]
-        [DataType(DataType.Text)]
         public string Email { get; set; }
 
-        [Display(Name = "Telephone")]
-        [DataType(DataType.Text)]
+        [DynamicControl(GroupName = "Contact Info", Control = ControlType.TextBox, Label = "Telephone", PromptText = "Enter Telephone Number")]
         public string Telephone { get; set; }
 
-        [Display(Name = "Status")]
+        [DynamicControl(GroupName = "Contact Info", Control = ControlType.Enum, PromptText = "Enter Telephone Number")]
         public DonorStatus DonorStatus { get; set; }
 
         public Guid ReferralId { get; set; }
 
-        [Display(Name = "Mobile Number")]
-        [DataType(DataType.Text)]
+        [DynamicControl(GroupName = "Contact Info", Control = ControlType.TextBox)]
         public string Mobile { get; set; }
 
-        [Display(Name = "Date Joined")]
-        [DataType(DataType.Date)]
+        [DynamicControl(Label = "Date Joined", Control = ControlType.DateTime, Order = 1)]
         public DateTime JoinDate { get; set; }
     }
 }

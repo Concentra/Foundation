@@ -11,6 +11,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JQueryUIHelpers;
 using VortexSoft.Bootstrap.Collections.Generic;
+using VortexSoft.Bootstrap.CustomAttribute;
 using VortexSoft.Bootstrap.Extensions;
 
 namespace VortexSoft.Bootstrap
@@ -18,10 +19,12 @@ namespace VortexSoft.Bootstrap
     public class BootstrapDynamicFormBuilder<TModel> : IDynamicFormBuilder<TModel>
     {
         protected readonly HtmlHelper<TModel> helper;
+        private readonly FormControlGenerator<TModel> formControlGenerator;
 
         public BootstrapDynamicFormBuilder(HtmlHelper<TModel> helper)
         {
             this.helper = helper;
+            formControlGenerator = new FormControlGenerator<TModel>(helper);
         }
 
         public virtual MvcHtmlString Build(TModel model, BootstrapFormType formType)
@@ -29,61 +32,43 @@ namespace VortexSoft.Bootstrap
             var sb = new StringBuilder(2000);
 
             using (var stringWriter = new StringWriter(sb))
-            using (var textWriter = new HtmlTextWriter(stringWriter))
+            using (var textWriter = new NavHtmlTextWritter(stringWriter))
             {
-                var properties = model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                var formElements = ExtractElementsToRender(model);
 
                 // Find the properties marked with "KeyAttribute" and convert them to hidden fields.
+
                 #region Hidden Fields
-                var hiddenFields = new List<PropertyInfo>();
 
-                foreach (var property in properties)
+                var hiddenFields = new List<FormElement>();
+
+                foreach (var formElement in formElements)
                 {
-                    var keyAttribute = property.GetCustomAttributes(typeof(KeyAttribute), false).FirstOrDefault() as KeyAttribute;
-                    if (keyAttribute != null)
+                    var hiddenAttribute = formElement.ControlSpecs;
+
+                    if (hiddenAttribute != null && hiddenAttribute.Control == ControlType.Hidden)
                     {
-                        hiddenFields.Add(property);
+                        RenderDynamicControl(textWriter, model, formElement);
                     }
-                }
-
-                foreach (var property in hiddenFields)
-                {
-                    textWriter.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-                    textWriter.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-                    textWriter.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
-                    var hiddenValue = (property.GetValue(model, null) == null) ? string.Empty :property.GetValue(model, null).ToString();
-                    textWriter.AddAttribute(HtmlTextWriterAttribute.Value, hiddenValue);
-                    textWriter.RenderBeginTag(HtmlTextWriterTag.Input);
-                    textWriter.RenderEndTag();
                 }
 
                 #endregion Hidden Fields
 
-                // Get all the elements with [DisplayAttribute(GroupName= vale )] and add them to a list.
-                var groupedProperties = new PairCollection<string, PropertyInfo>();
-                foreach (var property in properties)
-                {
-                    var displayAttribute = property.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() as DisplayAttribute;
-
-                    if (displayAttribute != null)
-                    {
-                        groupedProperties.Add(displayAttribute.GroupName, property);
-                    }
-                }
-
                 // if at least one group name is there , then use legend (field container)
-                bool useLegend = (groupedProperties.Select(x => x.First).Distinct().Count() > 1);
-                
-                foreach (var groupedProperty in groupedProperties.OrderBy(x => x.First).GroupBy(x => x.First))
+                bool useLegend = (formElements.Select(x => x.ControlSpecs.GroupName).Distinct().Count() > 1);
+
+                foreach (
+                    var groupedElements in
+                        formElements.OrderBy(x => x.ControlSpecs.GroupName).GroupBy(x => x.ControlSpecs.GroupName))
                 {
                     textWriter.RenderBeginTag(HtmlTextWriterTag.Fieldset);
 
                     if (useLegend)
                     {
-                        if (!string.IsNullOrEmpty(groupedProperty.Key))
+                        if (!string.IsNullOrEmpty(groupedElements.Key))
                         {
                             textWriter.RenderBeginTag(HtmlTextWriterTag.Legend);
-                            textWriter.Write(groupedProperty.Key);
+                            textWriter.Write(groupedElements.Key);
                             textWriter.RenderEndTag(); // legend
                         }
                         else
@@ -94,52 +79,22 @@ namespace VortexSoft.Bootstrap
                         }
                     }
 
-                    // read the Order value from the group attribute.
-                    var orderedProperties = new PairCollection<int, PropertyInfo>();
-                    foreach (var property in groupedProperty)
-                    {
-                        // skip hidden value .. already rendered..
-                        if (hiddenFields.Contains(property.Second))
-                        {
-                            continue;
-                        }
-
-                        var displayAttribute = property.Second.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() as DisplayAttribute;
-
-                        if (displayAttribute == null)
-                        {
-                            orderedProperties.Add(0, property.Second);
-                        }
-                        else
-                        {
-                            orderedProperties.Add(displayAttribute.GetOrder() ?? 0, property.Second);
-                        }
-                    }
-
                     // loop over the attributes (ordered)..
-                    foreach (var property in orderedProperties.OrderBy(x => x.First).Select(x => x.Second))
+                    foreach (var formElement in groupedElements.OrderBy(x => x.ControlSpecs.Order))
                     {
                         // skip those hidden .. 
-                        if (hiddenFields.Contains(property))
+                        if (formElement.ControlSpecs.Control == ControlType.Hidden)
                         {
                             continue;
                         }
 
-                        #region DisplayAttribute
-
                         // if there is a Name specified in the DisplayAttribute use it , other wise use the property name 
-                        string displayName = property.Name;
-                        var displayAttribute = property.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() as DisplayAttribute;
+                        var displayName = formElement.PropertyInfo.Name.SpacePascal();
 
-                        if (displayAttribute != null)
+                        if (!string.IsNullOrEmpty(formElement.ControlSpecs.Label))
                         {
-                            if (!string.IsNullOrEmpty(displayAttribute.Name))
-                            {
-                                displayName = displayAttribute.Name;
-                            }
+                            displayName = formElement.ControlSpecs.Label;
                         }
-
-                        #endregion DisplayAttribute
 
                         // Control-Group
                         textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "form-group");
@@ -154,18 +109,18 @@ namespace VortexSoft.Bootstrap
                         {
                             textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "control-label");
                         }
-                        textWriter.AddAttribute(HtmlTextWriterAttribute.For, property.Name);
+                        textWriter.AddAttribute(HtmlTextWriterAttribute.For, formElement.PropertyInfo.Name);
                         textWriter.RenderBeginTag(HtmlTextWriterTag.Label);
                         textWriter.Write(displayName);
                         textWriter.RenderEndTag(); // label
 
                         // Controls Div
-                        textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "controls");
+                        textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "controls col-lg-10");
                         textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
 
                         // Control
-                        RenderDynamicControl(textWriter, model, property);
-
+                        RenderDynamicControl(textWriter, model, formElement);
+                        
                         textWriter.RenderEndTag(); // div (Controls Div)
                         textWriter.RenderEndTag(); // div (Control-Group)
                     }
@@ -174,7 +129,7 @@ namespace VortexSoft.Bootstrap
                 }
 
                 // Buttons Control-Group
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "control-group");
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "form-group");
                 textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
 
                 // Controls Div
@@ -183,7 +138,7 @@ namespace VortexSoft.Bootstrap
 
                 // Submit Button
                 textWriter.AddAttribute(HtmlTextWriterAttribute.Type, "submit");
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "btn btn-primary");
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "btn btn-default btn-primary");
                 textWriter.AddAttribute(HtmlTextWriterAttribute.Value, "Submit");
                 textWriter.RenderBeginTag(HtmlTextWriterTag.Input);
                 textWriter.RenderEndTag(); //</input>
@@ -192,9 +147,10 @@ namespace VortexSoft.Bootstrap
 
                 // Cancel Button
                 textWriter.AddAttribute(HtmlTextWriterAttribute.Type, "button");
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "btn");
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "btn btn-default");
                 textWriter.AddAttribute(HtmlTextWriterAttribute.Value, "Cancel");
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Onclick, "window.location = '" + helper.ViewContext.HttpContext.Request.UrlReferrer + "'");
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Onclick,
+                                        "window.location = '" + helper.ViewContext.HttpContext.Request.UrlReferrer + "'");
                 textWriter.RenderBeginTag(HtmlTextWriterTag.Input);
                 textWriter.RenderEndTag(); //</input>
 
@@ -206,289 +162,81 @@ namespace VortexSoft.Bootstrap
             }
         }
 
-        protected void RenderDynamicControl(HtmlTextWriter writer, TModel model, PropertyInfo property)
+        protected virtual List<FormElement> ExtractElementsToRender(TModel model)
         {
-            //TODO: Use standard data annotations first to determine control type.
-            // Example: DataTypeAttribute
-            //Also TODO: implement standard validation stuff (like Html.ValidationMessageFor())..
-            // even though we don't use that, a lot of people do and this is going open-source soon
-            // so need to implement it.
+            var formElements = model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                                    .Select(p =>
+                                            new FormElement
+                                                {
+                                                    PropertyInfo = p,
+                                                    ControlSpecs =
+                                                        p.GetCustomAttributes(typeof (DynamicControl), false)
+                                                         .Cast<DynamicControl>()
+                                                         .FirstOrDefault()
+                                                })
+                                    .Where(p => p.ControlSpecs != null)
+                                    .ToList();
+            return formElements;
+        }
+
+        protected void RenderDynamicControl(NavHtmlTextWritter writer, TModel model, FormElement formElement)
+        {
+            PropertyInfo property = formElement.PropertyInfo;
 
             bool isRequired = false;
 
-            var requiredAttribute = property.GetCustomAttributes(typeof(RequiredAttribute), false).FirstOrDefault() as RequiredAttribute;
+            var requiredAttribute =
+                property.GetCustomAttributes(typeof (RequiredAttribute), false).FirstOrDefault() as RequiredAttribute;
             if (requiredAttribute != null)
             {
                 isRequired = true;
             }
 
             var value = property.GetValue(model, null);
-
-            #region Boolean
-
-            if (property.PropertyType.In(typeof(bool), typeof(bool?)))
-            {
-                RenderBoolean(writer, property, value);
-            }
-
-            #endregion Boolean
-
-            #region DateTime
-
-            else if (property.PropertyType.In(typeof(DateTime), typeof(DateTime?)))
-            {
-                RenderDateTime(writer, property, value, isRequired);
-            }
-
-            #endregion DateTime
-
-            #region Byte, SByte, Int16, Int32, Int64, UInt16, UInt32, UInt64
-
-            else if (property.PropertyType.In(
-                typeof(byte), typeof(short), typeof(int), typeof(long), typeof(sbyte), typeof(ushort), typeof(uint), typeof(ulong),
-                typeof(byte?), typeof(short?), typeof(int?), typeof(long?), typeof(sbyte?), typeof(ushort?), typeof(uint?), typeof(ulong?)))
-            {
-                RenderWholeNumber(writer, property, value, isRequired);
-            }
-
-            #endregion Byte, SByte, Int16, Int32, Int64, UInt16, UInt32, UInt64
-
-            #region Decimal, Double, Single
-
-            else if (property.PropertyType.In(
-                typeof(decimal), typeof(double), typeof(float),
-                typeof(decimal?), typeof(double?), typeof(float?)))
-            {
-                RenderFloatingPointNumber(writer, property, value, isRequired);
-            }
-
-            #endregion Decimal, Double, Single
-
-            #region Enum
-
-            else if (property.PropertyType.IsEnum)
-            {
-                RenderEnum(writer, property, value, isRequired);
-            }
-
-            #endregion Enum
-
-            #region Collection
-
-            //else if (property.PropertyType.IsCollection())
-            //{
-            //}
-
-            #endregion Collection
-
-            #region Strings
-
-            else if (property.PropertyType == typeof(string))
-            {
-                RenderString(writer, property, value, isRequired);
-            }
-
-            else
-            {
-                CheckForOtherTypes(writer, property);
-            }
-
-            #endregion Strings
-        }
-
-        protected virtual void RenderBoolean(HtmlTextWriter writer, PropertyInfo property, object value)
-        {
-            if (Convert.ToBoolean(value))
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Checked, "checked");
-            }
-
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "checkbox");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, "true");
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // input
-
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, "false");
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // input
-        }
-
-        protected virtual void RenderDateTime(HtmlTextWriter writer, PropertyInfo property, object value, bool isRequired)
-        {
-            DateTime? dateTimeValue =  Convert.ToDateTime(value);
-
-           
-            var datePicker = helper.JQueryUI().Datepicker(property.Name, dateTimeValue.Value).ChangeYear(true).ChangeMonth(true);
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "form-control");
             
-            writer.Write(datePicker.ToHtmlString());
-        }
-
-        protected virtual void RenderWholeNumber(HtmlTextWriter writer, PropertyInfo property, object value, bool isRequired)
-        {
-            if (isRequired)
+            switch (formElement.ControlSpecs.Control)
             {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required,custom[integer]]");
+                case ControlType.TextBox:
+                    formControlGenerator.RenderTextBox(writer, formElement, value, isRequired);
+                    break;
+                case ControlType.Hidden:
+                    formControlGenerator.RenderHidden(writer, formElement, value, isRequired);
+                    break;
+                case ControlType.TextArea:
+                    formControlGenerator.RenderTextArea(writer, formElement, value, isRequired);
+                    break;
+                case ControlType.Password:
+                    formControlGenerator.RenderPassword(writer, formElement, value, isRequired);
+                    break;
+                case ControlType.DateTime:
+                    formControlGenerator.RenderDateTime(writer, property, value, isRequired);
+                    break;
+                case ControlType.FloatingPointNumber:
+                    formControlGenerator.RenderFloatingPointNumber(writer, property, value, isRequired);
+                    break;
+                case ControlType.WholeNumber:
+                    formControlGenerator.RenderWholeNumber(writer, property, value, isRequired);
+                    break;
+                case ControlType.Time:
+                    formControlGenerator.RenderDateTime(writer, property, value, isRequired);
+                    break;
+                case ControlType.CheckBox:
+                    formControlGenerator.RenderBoolean(writer, property, value);
+                    break;
+                case ControlType.Enum:
+                    formControlGenerator.RenderEnum(writer, property, value, isRequired);
+                    break;
+                case ControlType.DropDownList:
+                    break;
+                case ControlType.ListBox:
+                    break;
+                case ControlType.StaticText:
+                    formControlGenerator.RenderStaticText(writer, property, value, isRequired);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-            else
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[custom[integer]]");
-            }
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // input
-        }
-
-        protected virtual void RenderFloatingPointNumber(HtmlTextWriter writer, PropertyInfo property, object value, bool isRequired)
-        {
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required,custom[number]]");
-            }
-            else
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[custom[number]]");
-            }
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // input
-        }
-
-        protected virtual void RenderEnum(HtmlTextWriter writer, PropertyInfo property, object value, bool isRequired)
-        {
-            var dropDownList = new DropDownList();
-            dropDownList.ID = property.Name;
-
-            foreach (var fieldInfo in property.PropertyType.GetFields(BindingFlags.Public | BindingFlags.Static).OrderBy(x => x.Name))
-            {
-                var item = new ListItem(fieldInfo.Name.SpacePascal(), fieldInfo.GetRawConstantValue().ToString());
-                dropDownList.Items.Add(item);
-            }
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
-
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            dropDownList.RenderControl(writer);
-        }
-
-        protected virtual void RenderString(HtmlTextWriter writer, PropertyInfo property, object value, bool isRequired)
-        {
-            // first check if there is a DataType attribute. If not, then use StringLenght to detemine if TextBox or TextArea..
-
-            var dataTypeAttribute = property.GetCustomAttributes(typeof(DataTypeAttribute), false).FirstOrDefault() as DataTypeAttribute;
-            var stringLengthAttribute = property.GetCustomAttributes(typeof(StringLengthAttribute), false).FirstOrDefault() as StringLengthAttribute;
-
-            if (dataTypeAttribute != null)
-            {
-                if (dataTypeAttribute.DataType == DataType.Password)
-                {
-                    if (isRequired)
-                    {
-                        writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-                    }
-                    writer.AddAttribute(HtmlTextWriterAttribute.Type, "password");
-                    if (stringLengthAttribute != null)
-                    {
-                        writer.AddAttribute(HtmlTextWriterAttribute.Maxlength, stringLengthAttribute.MaximumLength.ToString(CultureInfo.InvariantCulture));
-                    }
-                    writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-                    writer.RenderBeginTag(HtmlTextWriterTag.Input);
-                    writer.RenderEndTag(); // </input>
-                }
-                else if (dataTypeAttribute.DataType == DataType.Text)
-                {
-                    if (isRequired)
-                    {
-                        writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-                    }
-                    writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
-                    writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-                    if (stringLengthAttribute != null)
-                    {
-                        writer.AddAttribute(HtmlTextWriterAttribute.Maxlength, stringLengthAttribute.MaximumLength.ToString(CultureInfo.InvariantCulture));
-                    }
-                    writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-                    writer.RenderBeginTag(HtmlTextWriterTag.Input);
-                    writer.RenderEndTag(); // </input>
-                }
-
-                // TODO: Implement Email input type, etc?
-                else // Treat as Multi Line
-                {
-                    if (isRequired)
-                    {
-                        writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-                    }
-
-                    writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Cols, "60");
-                    writer.AddAttribute(HtmlTextWriterAttribute.Rows, "6");
-                    writer.RenderBeginTag(HtmlTextWriterTag.Textarea);
-                    writer.Write(value);
-                    writer.RenderEndTag(); // </textarea>
-                }
-            }
-            else
-            {
-                // Have no extra info about data type, so need to guess..
-                // First, check if StringLengthAttribute exists.. if yes, then that's a good indication that it is a normal textbox
-                // If there is no StringLengthAttribute, we will default to using a text area.
-                if (stringLengthAttribute != null)
-                {
-                    if (isRequired)
-                    {
-                        writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-                    }
-                    writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
-                    writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-                    writer.AddAttribute(HtmlTextWriterAttribute.Maxlength, stringLengthAttribute.MaximumLength.ToString(CultureInfo.InvariantCulture));
-                    writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-                    writer.RenderBeginTag(HtmlTextWriterTag.Input);
-                    writer.RenderEndTag(); // </input>
-                }
-                else
-                {
-                    if (isRequired)
-                    {
-                        writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-                    }
-
-                    writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Cols, "60");
-                    writer.AddAttribute(HtmlTextWriterAttribute.Rows, "6");
-                    writer.RenderBeginTag(HtmlTextWriterTag.Textarea);
-                    writer.Write(value);
-                    writer.RenderEndTag(); // </textarea>
-                }
-            }
-        }
-
-        /// <summary>
-        /// Override in child class to check for custom types
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="model"></param>
-        /// <param name="property"></param>
-        protected virtual void CheckForOtherTypes(HtmlTextWriter writer, PropertyInfo property)
-        {
-            // Default: Do Nothing..
         }
     }
 }
