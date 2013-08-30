@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Foundation.Infrastructure.BL;
 using StructureMap.Configuration.DSL;
 
@@ -9,10 +10,11 @@ namespace Foundation.Infrastructure
         public BusinessManagerRegistery()
         {
             this.For<IBusinessManagerContainer>().Use<BusinessManagerContainer>();
+            var dir = AppDomain.CurrentDomain.BaseDirectory;
 
             this.Scan(x =>
             {
-                x.Assembly(Assembly.GetExecutingAssembly().GetName().Name);
+                x.AssembliesFromPath(dir);
                 x.With(new BusinessManagerRegisterationConventrion());
                 x.ConnectImplementationsToTypesClosing(typeof(BusinessManagerInterceptor<>));
             });

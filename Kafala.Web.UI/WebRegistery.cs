@@ -28,6 +28,8 @@ namespace Kafala.Web.UI
                 x.Assembly(Assembly.GetExecutingAssembly().GetName().Name);
                 x.With(new ControllerRegistrationConvention());
             });
+
+            
         }
     }
 }

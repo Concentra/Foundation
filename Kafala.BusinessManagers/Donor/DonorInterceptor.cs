@@ -14,16 +14,14 @@ namespace Kafala.BusinessManagers.Donor
     {
        private readonly ISession session;
 
-       public DonorInterceptor(ISession session, IBusinessManagerInvocationLogger businessManagerInvocationLogger) : base(businessManagerInvocationLogger)
+       public DonorInterceptor(ISession session, IBusinessManagerInvocationLogger businessManagerInvocationLogger) : base(businessManagerInvocationLogger,session)
        {
            this.session = session;
        }
 
        public override void Intercept(IInvocation invocation)
        {
-           LogStartOfInvocation(invocation);
-           invocation.Proceed();
-           LogStartOfInvocation(invocation);
+          invocation.Proceed();
        }
     }
 }

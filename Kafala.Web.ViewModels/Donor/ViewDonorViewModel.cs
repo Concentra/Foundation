@@ -26,7 +26,7 @@ namespace Kafala.Web.ViewModels.Donor
         public string Telephone { get; set; }
 
         [Display(Name = "Date Joined")]
-        public DateTime JoinDate { get; set; }
+        public DateTime? JoinDate { get; set; }
 
         public Guid ReferralId { get; set; }
 

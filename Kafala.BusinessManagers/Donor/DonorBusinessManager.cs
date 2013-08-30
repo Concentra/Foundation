@@ -24,7 +24,7 @@ namespace Kafala.BusinessManagers.Donor
            var donor = new Entities.Donor()
            {
                Id = new Guid(),
-               JoinDate = joinDate.HasValue ? joinDate.Value : default(DateTime) ,
+               JoinDate = joinDate ,
                Referral = referral,
                Name = name,
                Telephone = Mobile

@@ -38,8 +38,9 @@ namespace Foundation.Infrastructure.BL
                 constructorArguments.AddRange(constructorParameters.Select(parameterInfo => nestedContainer.GetInstance(parameterInfo.ParameterType)));
             }
 
-            var interceptors = nestedContainer.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi);
-            var objectToReturn = proxyGenerator.CreateClassProxy(typeof(T), constructorArguments.ToArray(), interceptors.ToArray());
+            var specificInterceptor = nestedContainer.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi);
+            var commonInterceptor = nestedContainer.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi);
+            var objectToReturn = proxyGenerator.CreateClassProxy(typeof(T), constructorArguments.ToArray(), specificInterceptor.ToArray());
             return (T)objectToReturn;
         }
 

@@ -10,7 +10,7 @@ namespace Foundation.Infrastructure.Notifications
 {
     public class NotificationHelper
     {
-        private IEmailService emailService;
+        private readonly IEmailService emailService;
         private static readonly Dictionary<string, string> GlobalVariables =
             ConfigurationManager.AppSettings.AllKeys
                 .Where(x => x.StartsWith("Email_"))
@@ -34,7 +34,7 @@ namespace Foundation.Infrastructure.Notifications
 
         public void SendEmailWithTemplatePath(string to, string cc, string from, string subject, string templatePath, object templateValues)
         {
-            string templateContents = string.Empty;
+            string templateContents;
             using (var stream = new StreamReader(templatePath))
             {
                 templateContents = stream.ReadToEnd();

@@ -14,7 +14,7 @@ namespace Kafala.Entities
 
         public virtual string Telephone { get; set; }
 
-        public virtual DateTime JoinDate { get; set; }
+        public virtual DateTime? JoinDate { get; set; }
 
         public virtual Donor Referral { get; set; }
 
