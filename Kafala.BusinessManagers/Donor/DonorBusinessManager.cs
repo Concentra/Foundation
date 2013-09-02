@@ -18,7 +18,7 @@ namespace Kafala.BusinessManagers.Donor
            this.session = session;
        }
 
-       public virtual Entities.Donor AddDonor(string name, string Mobile, DateTime? joinDate, Guid? refferedId)
+       public virtual Guid AddDonor(string name, string Mobile, DateTime? joinDate, Guid? refferedId)
        {
            var referral = refferedId.HasValue ? session.Get<Entities.Donor>(refferedId) : null;
            var donor = new Entities.Donor()
@@ -31,7 +31,7 @@ namespace Kafala.BusinessManagers.Donor
            };
 
            session.Save(donor);
-           return donor;
+           return donor.Id;
        }
 
        public virtual Entities.Donor UpdateDonor(string donorName, string donorMobile)

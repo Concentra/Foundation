@@ -4,6 +4,8 @@
        Telephone NVARCHAR(255) null,
        JoinDate DATETIME null,
        DonorStatus NVARCHAR(255) null,
+       Mobile NVARCHAR(255) null,
+       Email NVARCHAR(255) null,
        Referral_id UNIQUEIDENTIFIER null,
        primary key (Id)
     )

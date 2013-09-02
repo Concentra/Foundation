@@ -21,5 +21,9 @@ namespace Kafala.Entities
         public virtual DonorStatus DonorStatus { get; set; }
 
         public virtual IList<Commitment> Commitments { get; set; }
+
+        public virtual string Mobile { get; set; }
+
+        public virtual string Email { get; set; }
     }
 }

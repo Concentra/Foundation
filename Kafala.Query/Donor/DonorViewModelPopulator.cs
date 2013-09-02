@@ -22,11 +22,10 @@ namespace Kafala.Query.Donor
         public ViewDonorViewModel Execute(Guid donorId)
         {
             var donor = this.session.Get<Entities.Donor>(donorId);
-            var model = new ViewDonorViewModel();
-        
+
             Mapper.CreateMap<Entities.Donor, ViewDonorViewModel>();
 
-            model = Mapper.Map<ViewDonorViewModel>(donor);
+            var model = Mapper.Map<ViewDonorViewModel>(donor);
             return model;
         }
     }

@@ -27,7 +27,6 @@ namespace Foundation.Infrastructure.BL
            var methodName = invocation.Method.Name;
            var arguments = invocation.Arguments;
            var jsonArguments = JsonConvert.SerializeObject(managerType);
-           session.Transaction.Begin();
             return callGuide;
            
         }
@@ -35,7 +34,6 @@ namespace Foundation.Infrastructure.BL
         public Guid LogEndOfInvocation(Guid invocationId, IInvocation invocation)
         {
             var endTime = DateTime.UtcNow;
-            session.Transaction.Commit();
             return invocationId;
         }
 

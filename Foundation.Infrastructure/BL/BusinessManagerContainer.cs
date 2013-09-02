@@ -28,7 +28,7 @@ namespace Foundation.Infrastructure.BL
         {
             var proxyGenerator = new ProxyGenerator();
             
-            var proxyGenerationOptions = new ProxyGenerationOptions {Hook = new BusinessManagerContainerHook()};
+            new ProxyGenerationOptions {Hook = new BusinessManagerContainerHook()};
 
             var constructorArguments = new List<object>();
             var constructor = typeof(T).GetConstructors().FirstOrDefault();
@@ -38,9 +38,10 @@ namespace Foundation.Infrastructure.BL
                 constructorArguments.AddRange(constructorParameters.Select(parameterInfo => nestedContainer.GetInstance(parameterInfo.ParameterType)));
             }
 
-            var specificInterceptor = nestedContainer.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi);
-            var commonInterceptor = nestedContainer.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi);
-            var objectToReturn = proxyGenerator.CreateClassProxy(typeof(T), constructorArguments.ToArray(), specificInterceptor.ToArray());
+            var interceptors = nestedContainer.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi).ToList();
+            var transactionInterceptor =nestedContainer.GetInstance<TransactionInterceptor<T>>() as IInterceptor;
+            interceptors.Add(transactionInterceptor);
+            var objectToReturn = proxyGenerator.CreateClassProxy(typeof(T), constructorArguments.ToArray(), interceptors.ToArray());
             return (T)objectToReturn;
         }
 

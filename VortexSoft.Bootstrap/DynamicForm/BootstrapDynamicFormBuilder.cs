@@ -36,48 +36,13 @@ namespace VortexSoft.Bootstrap
             {
                 var formElements = ExtractElementsToRender(model);
 
-                // Find the properties marked with "KeyAttribute" and convert them to hidden fields.
+                RenderHiddenFields(model, formElements, textWriter);
 
-                #region Hidden Fields
+                var groupsofElements = formElements.OrderBy(x => x.ControlSpecs.GroupName).GroupBy(x => x.ControlSpecs.GroupName);
 
-                var hiddenFields = new List<FormElement>();
-
-                foreach (var formElement in formElements)
+                foreach (var groupedElements in groupsofElements)
                 {
-                    var hiddenAttribute = formElement.ControlSpecs;
-
-                    if (hiddenAttribute != null && hiddenAttribute.Control == ControlType.Hidden)
-                    {
-                        RenderDynamicControl(textWriter, model, formElement);
-                    }
-                }
-
-                #endregion Hidden Fields
-
-                // if at least one group name is there , then use legend (field container)
-                bool useLegend = (formElements.Select(x => x.ControlSpecs.GroupName).Distinct().Count() > 1);
-
-                foreach (
-                    var groupedElements in
-                        formElements.OrderBy(x => x.ControlSpecs.GroupName).GroupBy(x => x.ControlSpecs.GroupName))
-                {
-                    textWriter.RenderBeginTag(HtmlTextWriterTag.Fieldset);
-
-                    if (useLegend)
-                    {
-                        if (!string.IsNullOrEmpty(groupedElements.Key))
-                        {
-                            textWriter.RenderBeginTag(HtmlTextWriterTag.Legend);
-                            textWriter.Write(groupedElements.Key);
-                            textWriter.RenderEndTag(); // legend
-                        }
-                        else
-                        {
-                            textWriter.RenderBeginTag(HtmlTextWriterTag.Legend);
-                            textWriter.Write("General");
-                            textWriter.RenderEndTag(); // legend
-                        }
-                    }
+                    RenderGroupLegend(textWriter, formElements, groupedElements);
 
                     // loop over the attributes (ordered)..
                     foreach (var formElement in groupedElements.OrderBy(x => x.ControlSpecs.Order))
@@ -88,78 +53,118 @@ namespace VortexSoft.Bootstrap
                             continue;
                         }
 
-                        // if there is a Name specified in the DisplayAttribute use it , other wise use the property name 
-                        var displayName = formElement.PropertyInfo.Name.SpacePascal();
-
-                        if (!string.IsNullOrEmpty(formElement.ControlSpecs.Label))
-                        {
-                            displayName = formElement.ControlSpecs.Label;
-                        }
-
                         // Control-Group
                         textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "form-group");
-                        textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
 
-                        // Label
-                        if (formType == BootstrapFormType.Horizontal)
-                        {
-                            textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "col-lg-2 control-label");
-                        }
-                        else
-                        {
-                            textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "control-label");
-                        }
-                        textWriter.AddAttribute(HtmlTextWriterAttribute.For, formElement.PropertyInfo.Name);
-                        textWriter.RenderBeginTag(HtmlTextWriterTag.Label);
-                        textWriter.Write(displayName);
-                        textWriter.RenderEndTag(); // label
+                        textWriter.RenderBeginTag(HtmlTextWriterTag.Div); // div (Control-Group)
+
+                        RenderLabel(formType, formElement, textWriter);
 
                         // Controls Div
                         textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "controls col-lg-10");
-                        textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
+                            textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
 
-                        // Control
-                        RenderDynamicControl(textWriter, model, formElement);
+                            // Control
+                                RenderDynamicControl(textWriter, model, formElement);
                         
-                        textWriter.RenderEndTag(); // div (Controls Div)
+                            textWriter.RenderEndTag(); // div (Controls Div)
                         textWriter.RenderEndTag(); // div (Control-Group)
                     }
 
                     textWriter.RenderEndTag(); // fieldset
                 }
 
-                // Buttons Control-Group
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "form-group");
-                textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
-
-                // Controls Div
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "controls");
-                textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
-
-                // Submit Button
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Type, "submit");
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "btn btn-default btn-primary");
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Value, "Submit");
-                textWriter.RenderBeginTag(HtmlTextWriterTag.Input);
-                textWriter.RenderEndTag(); //</input>
-
-                textWriter.Write("&nbsp;&nbsp;");
-
-                // Cancel Button
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Type, "button");
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "btn btn-default");
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Value, "Cancel");
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Onclick,
-                                        "window.location = '" + helper.ViewContext.HttpContext.Request.UrlReferrer + "'");
-                textWriter.RenderBeginTag(HtmlTextWriterTag.Input);
-                textWriter.RenderEndTag(); //</input>
-
-                textWriter.RenderEndTag(); // div (Controls Div)
-
-                textWriter.RenderEndTag(); // div (Buttons Control-Group)
+                RenderButtons(textWriter);
 
                 return new MvcHtmlString(sb.ToString());
             }
+        }
+
+        private static void RenderGroupLegend(NavHtmlTextWritter textWriter, List<FormElement> formElements, IGrouping<string, FormElement> groupedElements)
+        {
+            textWriter.RenderBeginTag(HtmlTextWriterTag.Fieldset);
+
+            // if at least one group name is there , then use legend (field container)
+            bool useLegend = (formElements.Select(x => x.ControlSpecs.GroupName).Distinct().Count() > 1);
+
+            var groupName = (!string.IsNullOrEmpty(groupedElements.Key)) ? groupedElements.Key : "General";
+            if (useLegend)
+            {
+                textWriter.RenderBeginTag(HtmlTextWriterTag.Legend); // start legend tag
+                textWriter.Write(groupName);
+                textWriter.RenderEndTag(); // legend
+            }
+        }
+
+        private void RenderHiddenFields(TModel model, IEnumerable<FormElement> formElements, NavHtmlTextWritter textWriter)
+        {
+            foreach (var formElement in formElements)
+            {
+                var hiddenAttribute = formElement.ControlSpecs;
+
+                if (hiddenAttribute != null && hiddenAttribute.Control == ControlType.Hidden)
+                {
+                    RenderDynamicControl(textWriter, model, formElement);
+                }
+            }
+        }
+
+        private static void RenderLabel(BootstrapFormType formType, FormElement formElement, NavHtmlTextWritter textWriter)
+        {
+            // if there is a Name specified in the DisplayAttribute use it , other wise use the property name 
+            var displayName = formElement.PropertyInfo.Name.SpacePascal();
+
+            if (!string.IsNullOrEmpty(formElement.ControlSpecs.Label))
+            {
+                displayName = formElement.ControlSpecs.Label;
+            }
+
+            // Label
+            if (formType == BootstrapFormType.Horizontal)
+            {
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "col-lg-2 control-label");
+            }
+            else
+            {
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "control-label");
+            }
+            textWriter.AddAttribute(HtmlTextWriterAttribute.For, formElement.PropertyInfo.Name);
+            textWriter.RenderBeginTag(HtmlTextWriterTag.Label);
+            textWriter.Write(displayName);
+            textWriter.RenderEndTag(); // label
+        }
+
+        private void RenderButtons(NavHtmlTextWritter textWriter)
+        {
+            // Buttons Control-Group
+            textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "form-group");
+            textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
+
+            // Controls Div
+            textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "controls");
+            textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
+
+            // Submit Button
+            textWriter.AddAttribute(HtmlTextWriterAttribute.Type, "submit");
+            textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "btn btn-default btn-primary");
+            textWriter.AddAttribute(HtmlTextWriterAttribute.Value, "Submit");
+            textWriter.RenderBeginTag(HtmlTextWriterTag.Input);
+            textWriter.RenderEndTag(); //</input>
+
+            textWriter.Write("&nbsp;&nbsp;");
+
+            // Cancel Button
+            textWriter.AddAttribute(HtmlTextWriterAttribute.Type, "button");
+            textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "btn btn-default");
+            textWriter.AddAttribute(HtmlTextWriterAttribute.Value, "Cancel");
+            textWriter.AddAttribute(HtmlTextWriterAttribute.Onclick,
+                "window.location = '" + helper.ViewContext.HttpContext.Request.UrlReferrer + "'");
+            textWriter.RenderBeginTag(HtmlTextWriterTag.Input);
+            textWriter.RenderEndTag(); //</input>
+
+            textWriter.RenderEndTag(); // div (Controls Div)
+
+            textWriter.RenderEndTag(); // div (Buttons Control-Group)
         }
 
         protected virtual List<FormElement> ExtractElementsToRender(TModel model)

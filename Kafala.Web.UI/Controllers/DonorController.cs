@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Web;
@@ -45,15 +46,14 @@ namespace Kafala.Web.UI.Controllers
         public ActionResult Create(DonorCreateViewModel model)
         {
             var manager = businessManagerContainer.Get<DonorBusinessManager>();
-            var donor = manager.AddDonor(model.Name, model.Mobile, model.JoinDate, model.ReferralId);
-            return RedirectToAction("View", donor.Id);
+            var donorId = manager.AddDonor(model.Name, model.Mobile, model.JoinDate, model.ReferralId);
+            return RedirectToAction("Details", new { id = donorId });
         }
 
-        public ActionResult View()
+        public ActionResult Details(Guid id)
         {
-            //var container = this.queryContainer.Get<DonorViewModelPopulator>();
-            //var model = container.Execute(guid);
-            var model = new ViewDonorViewModel();
+            var modelPopulator = this.queryContainer.Get<DonorViewModelPopulator>();
+            var model = modelPopulator.Execute(id);
             return View("View", model);
         }
     }

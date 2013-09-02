@@ -195,11 +195,6 @@ namespace Foundation.Web.Extensions
             MvcPanel.EndPanel(htmlHelper);
         }
 
-        public static void EndOrderPanel(this HtmlHelper htmlHelper)
-        {
-            MvcPanel.EndPanel(htmlHelper);
-        }
-
         public static void EndTabbedPanel(this HtmlHelper htmlHelper)
         {
             MvcPanel.EndPanel(htmlHelper);
@@ -227,86 +222,11 @@ namespace Foundation.Web.Extensions
             return MvcHtmlString.Create(title ?? DefaultPageTitle);
         }
 
+     
+
         public static MvcHtmlString YesNo(this HtmlHelper htmlHelper, bool? value)
         {
             return MvcHtmlString.Create((value ?? false) ? "Yes" : "No");
-        }
-
-        public static MvcHtmlString ToNhsDate(this HtmlHelper htmlHelper, DateTime? value)
-        {
-            string result = string.Empty;
-            result = value.HasValue ? value.Value.ToString("dd-MMM-yyyy") : "unknown";
-
-            return MvcHtmlString.Create(result);
-        }
-
-        public static MvcHtmlString ToNhsNumber(this HtmlHelper htmlHelper, string value)
-        {
-            string result = "UNKNOWN";
-            if (!string.IsNullOrWhiteSpace(value) && value.Length <= 10)
-            {
-                while (value.Length < 10)
-                {
-                    value = "0" + value;
-                }
-
-                result = value.Insert(3, " ").Insert(7, " ");
-            }
-
-            return MvcHtmlString.Create(result);
-        }
-
-        public static MvcHtmlString ToNhsTime(this HtmlHelper htmlHelper, DateTime? value)
-        {
-            string result = string.Empty;
-            if (value.HasValue)
-            {
-                result = value.Value.ToString("HH:mm");
-            }
-
-            return MvcHtmlString.Create(result);
-        }
-
-        public static MvcHtmlString ToNhsDateTime(this HtmlHelper htmlHelper, DateTime? value)
-        {
-            string result = string.Empty;
-            if (value.HasValue)
-            {
-                result = value.Value.ToString("dd-MMM-yyyy HH:mm");
-            }
-
-            return MvcHtmlString.Create(result);
-        }
-
-        public static MvcHtmlString ToNhsPhone(this HtmlHelper htmlHelper, string value)
-        {
-            string result = string.Empty;
-            if (!string.IsNullOrEmpty(value))
-            {
-                if (value.StartsWith("+44"))
-                {
-                    result = value.Remove(0, 3);
-                }
-                else if (value.StartsWith("0044"))
-                {
-                    result = value.Remove(0, 4);
-                }
-                else if (value.StartsWith("00"))
-                {
-                    result = value.Replace("00", "+");
-                }
-                else
-                {
-                    result = value;
-                }
-            }
-
-            return MvcHtmlString.Create(result);
-        }
-
-        public static MvcHtmlString FormattedNHSNumber(this HtmlHelper htmlHelper, string value)
-        {
-            return MvcHtmlString.Create((!string.IsNullOrEmpty(value) && value.Length == 10) ? value.Substring(0, 3) + "-" + value.Substring(3, 3) + "-" + value.Substring(6, 4) : value);
         }
 
         public static MvcHtmlString YesNo(this HtmlHelper htmlHelper, bool? value, string nullValueText)
@@ -318,96 +238,6 @@ namespace Foundation.Web.Extensions
             }
 
             return MvcHtmlString.Create(result);
-        }
-
-        public static MvcHtmlString RequiredIndicator(this HtmlHelper htmlHelper)
-        {
-            return MvcHtmlString.Create("<span class=\"RequiredIndicator\">*</span>");
-        }
-
-        public static MvcHtmlString Button(
-            this HtmlHelper htmlHelper,
-            string text,
-            string id = null,
-            string name = null,
-            string @class = null,
-            string icon = null,
-            string href = null,
-            string value = null,
-            string title = null,
-            bool disabled = false,
-            bool isSubmit = false,
-            object htmlAttributes = null)
-        {
-            var tagBuilder = new TagBuilder("button");
-            tagBuilder.Attributes.Add("type", isSubmit ? "submit" : "button");
-
-            if (!string.IsNullOrWhiteSpace(id))
-            {
-                tagBuilder.Attributes.Add("id", id);
-            }
-
-            if (!string.IsNullOrWhiteSpace(name))
-            {
-                tagBuilder.Attributes.Add("name", name);
-            }
-
-            IDictionary<string, object> attributes = new RouteValueDictionary(htmlAttributes);
-            foreach (var attr in attributes)
-            {
-                tagBuilder.Attributes.Add(attr.Key, attr.Value.ToString());
-            }
-
-            if (!string.IsNullOrWhiteSpace(@class))
-            {
-                foreach (var className in @class.Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)))
-                {
-                    tagBuilder.AddCssClass(className);
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(href))
-            {
-                tagBuilder.Attributes.Add("href", href);
-            }
-
-            if (!string.IsNullOrWhiteSpace(title))
-            {
-                tagBuilder.Attributes.Add("title", title);
-            }
-
-            tagBuilder.Attributes.Add("value", string.IsNullOrWhiteSpace(value) ? text : value);
-
-            if (!string.IsNullOrWhiteSpace(icon))
-            {
-                tagBuilder.InnerHtml += Image(htmlHelper, icon) + "&nbsp;";
-            }
-
-            tagBuilder.InnerHtml += text;
-
-            if (disabled)
-            {
-                tagBuilder.Attributes.Add("disabled", "disabled");
-            }
-
-            return MvcHtmlString.Create(tagBuilder.ToString());
-        }
-
-        public static MvcHtmlString SubmitButton(
-            this HtmlHelper htmlHelper,
-            string text = "Save",
-            string id = null,
-            string name = null,
-            string @class = null,
-            string value = null,
-            bool disabled = false)
-        {
-            return Button(htmlHelper, text, id, name, @class, value: value, disabled: disabled, isSubmit: true);
-        }
-
-        public static MvcHtmlString PrintButton(this HtmlHelper htmlHelper, string text = "Print")
-        {
-            return Button(htmlHelper, text, @class: "print", icon: "print-icon.gif");
         }
 
         public static MvcHtmlString HelpText(this HtmlHelper htmlHelper, string text)
@@ -531,6 +361,11 @@ namespace Foundation.Web.Extensions
             }
 
             return MvcHtmlString.Create(result);
+        }
+
+        private static string RenderDate(DateTime date, string dateFormat)
+        {
+            return date.ToString(dateFormat);
         }
 
         /// <summary>
@@ -844,48 +679,6 @@ namespace Foundation.Web.Extensions
         }
 
         
-        public static MvcHtmlString ReportNotOrderedTableBox(this HtmlHelper htmlHelper, string disciplineName)
-        {
-            var sb = new StringBuilder();
-
-            // sb.AppendLine("<div class='reportNotOrdered'>");
-            sb.AppendLine("<table class='resultBoxTable'><tr><td>");
-            sb.AppendLine("<b>" + disciplineName + "</b>");
-            sb.AppendLine("</td><tr><td style='width:100%'>");
-            sb.AppendLine("<img src='../../Content/Images/icons/inactivereport.png' width='20' height='20' alt='Not ordered' /><br/>");
-            
-            // sb.AppendLine("<span class='reportDescription inactive'>Not Ordered</span>");
-            sb.AppendLine("</td></tr></table>");
-            return new MvcHtmlString(sb.ToString());
-        }
-
-        public static MvcHtmlString ReportNotOrderedTdBox(this HtmlHelper htmlHelper)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine("<td class='reportItemClass'>");
-            sb.AppendLine("<img src='../../Content/Images/icons/inactivereport.png' width='16' height='16' alt='Not ordered' /><br/>");
-            
-            // sb.AppendLine("<span class='reportDescription inactive'>Not Ordered</span>");
-            sb.AppendLine("</td>");
-            return new MvcHtmlString(sb.ToString());
-        }
-
-        private static StringBuilder GenerateDownloadLinks(HtmlHelper htmlHelper, StringBuilder sb, string fileId)
-        {
-            var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
-            var url = urlHelper.Action("Download", "File", new { id = fileId });
-
-            sb.AppendLine("<a href='" + url + "'>");
-            sb.AppendLine("<img src='../../Content/Images/icons/pdf.png' width='20' height='20' alt='Download' /><br/>");
-            sb.AppendLine("</a>");
-
-            sb.AppendLine("<a href='" + url + "'>Download</a>");
-            return sb;
-        }
-
-        private static string RenderDate(DateTime date, string dateFormat)
-        {
-            return date.ToString(dateFormat);
-        }
+        
     }
 }

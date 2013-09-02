@@ -3,33 +3,40 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using Kafala.Entities.Enums;
+using VortexSoft.Bootstrap.CustomAttribute;
 
 namespace Kafala.Web.ViewModels.Donor
 {
     public class ViewDonorViewModel
     {
-        [Key]
+        [DynamicControl(Control = ControlType.Hidden)]
         public Guid? Id { get; set; }
 
-        [Display(Name = "Donor Name")]
+        [DynamicControl(GroupName = "Personal Info", Order = 10, Control = ControlType.StaticText, Label = "Donor Name", PromptText = "The full donor name")]
         [Required]
-        [DataType(DataType.Text)]
         public string Name { get; set; }
 
-        [Display(Name = "Email", Prompt = "Email Address..")]
+        [DynamicControl(GroupName = "Contact Info", Control = ControlType.TextBox, Label = "Email", PromptText = "Enter email address")]
         [Required]
-        [StringLength(128)]
         public string Email { get; set; }
 
-        [Display(Name = "Telephone")]
-        [DataType(DataType.Text)]
+        [DynamicControl(GroupName = "Contact Info", Control = ControlType.TextBox, Label = "Telephone", PromptText = "Enter Telephone Number")]
         public string Telephone { get; set; }
 
-        [Display(Name = "Date Joined")]
-        public DateTime? JoinDate { get; set; }
+        [DynamicControl(GroupName = "Contact Info", Control = ControlType.Enum, PromptText = "Enter Telephone Number")]
+        public DonorStatus DonorStatus { get; set; }
 
+        [DynamicControl(Control = ControlType.Hidden)]
         public Guid ReferralId { get; set; }
 
+        [DynamicControl(GroupName = "Contact Info", Order = 10, Control = ControlType.StaticText, Label = "Refferer Name", PromptText = "The full donor name")]
+        public Guid ReferralName { get; set; }
+
+        [DynamicControl(GroupName = "Contact Info", Control = ControlType.TextBox)]
         public string Mobile { get; set; }
+
+        [DynamicControl(Label = "Date Joined", Control = ControlType.DateTime, Order = 1)]
+        public DateTime? JoinDate { get; set; }
     }
 }

@@ -65,11 +65,13 @@
     <Compile Include="Collections\Generic\PowerCollections\Pair.cs" />
     <Compile Include="Collections\Generic\PowerCollections\Strings.cs" />
     <Compile Include="CustomAttribute\ControlType.cs" />
+    <Compile Include="DynamicForm\ViewDetailElementGenerator.cs" />
     <Compile Include="DynamicForm\FormControlGenerator.cs" />
     <Compile Include="DynamicForm\FormElement.cs" />
     <Compile Include="DynamicForm\NavHtmlTextWritter.cs" />
     <Compile Include="DynamicView\BootstrapDynamicViewBuilder.cs" />
     <Compile Include="DynamicView\IDynamicViewBuilder.cs" />
+    <Compile Include="Form\BootstrapFormMode.cs" />
     <Compile Include="GlyphIcons.cs" />
     <Compile Include="DynamicForm\BootstrapDynamicFormBuilder.cs" />
     <Compile Include="Form\ControlsSection.cs" />
@@ -177,6 +179,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
+      <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
+      <Name>Foundation.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

@@ -32,6 +32,6 @@ namespace Kafala.Web.ViewModels.Donor
         public string Mobile { get; set; }
 
         [DynamicControl(Label = "Date Joined", Control = ControlType.DateTime, Order = 1)]
-        public DateTime JoinDate { get; set; }
+        public DateTime? JoinDate { get; set; }
     }
 }

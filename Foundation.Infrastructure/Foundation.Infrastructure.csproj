@@ -62,7 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\GenericInterceptor.cs" />
+    <Compile Include="BL\TransactionInterceptor.cs" />
     <Compile Include="BusinessManagerRegistery.cs" />
     <Compile Include="BL\BusinessManagerContainer.cs" />
     <Compile Include="BL\BusinessManagerInterceptor.cs" />
