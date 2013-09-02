@@ -20,11 +20,15 @@ namespace VortexSoft.Bootstrap
     {
         protected readonly HtmlHelper<TModel> helper;
         private readonly FormControlGenerator<TModel> formControlGenerator;
+        private readonly Dictionary<string, PropertyInfo> properties;
 
         public BootstrapDynamicFormBuilder(HtmlHelper<TModel> helper)
         {
             this.helper = helper;
             formControlGenerator = new FormControlGenerator<TModel>(helper);
+            var test = typeof(TModel).GetProperties(BindingFlags.Public | BindingFlags.Instance).ToList();
+            properties = typeof(TModel).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .ToDictionary(p => p.Name , p => p);
         }
 
         public virtual MvcHtmlString Build(TModel model, BootstrapFormType formType)
@@ -169,15 +173,17 @@ namespace VortexSoft.Bootstrap
 
         protected virtual List<FormElement> ExtractElementsToRender(TModel model)
         {
-            var formElements = model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                                    .Select(p =>
+            var formElements = properties.Select(p =>
                                             new FormElement
                                                 {
-                                                    PropertyInfo = p,
+                                                    PropertyInfo = p.Value,
                                                     ControlSpecs =
-                                                        p.GetCustomAttributes(typeof (DynamicControl), false)
+                                                        p.Value.GetCustomAttributes(typeof (DynamicControl), false)
                                                          .Cast<DynamicControl>()
-                                                         .FirstOrDefault()
+                                                         .FirstOrDefault(),
+                                                    CollectionInfo = p.Value.GetCustomAttributes(typeof(CollectionInfo), false)
+                                                         .Cast<CollectionInfo>()
+                                                         .FirstOrDefault(),
                                                 })
                                     .Where(p => p.ControlSpecs != null)
                                     .ToList();
@@ -215,29 +221,32 @@ namespace VortexSoft.Bootstrap
                     formControlGenerator.RenderPassword(writer, formElement, value, isRequired);
                     break;
                 case ControlType.DateTime:
-                    formControlGenerator.RenderDateTime(writer, property, value, isRequired);
+                    formControlGenerator.RenderDateTime(writer, formElement, value, isRequired);
                     break;
                 case ControlType.FloatingPointNumber:
-                    formControlGenerator.RenderFloatingPointNumber(writer, property, value, isRequired);
+                    formControlGenerator.RenderFloatingPointNumber(writer, formElement, value, isRequired);
                     break;
                 case ControlType.WholeNumber:
-                    formControlGenerator.RenderWholeNumber(writer, property, value, isRequired);
+                    formControlGenerator.RenderWholeNumber(writer, formElement, value, isRequired);
                     break;
                 case ControlType.Time:
-                    formControlGenerator.RenderDateTime(writer, property, value, isRequired);
+                    formControlGenerator.RenderDateTime(writer, formElement, value, isRequired);
                     break;
                 case ControlType.CheckBox:
-                    formControlGenerator.RenderBoolean(writer, property, value);
+                    formControlGenerator.RenderBoolean(writer, formElement, value);
                     break;
                 case ControlType.Enum:
-                    formControlGenerator.RenderEnum(writer, property, value, isRequired);
+                    formControlGenerator.RenderEnum(writer, formElement, value, isRequired);
                     break;
                 case ControlType.DropDownList:
+                    var collectionObject = properties[formElement.CollectionInfo.ListSourceMember]
+                        .GetValue(model, null) as IEnumerable<SelectListItem>;
+                    formControlGenerator.RenderDropDownList(writer, formElement, value, isRequired, collectionObject);
                     break;
                 case ControlType.ListBox:
                     break;
                 case ControlType.StaticText:
-                    formControlGenerator.RenderStaticText(writer, property, value, isRequired);
+                    formControlGenerator.RenderStaticText(writer, formElement, value, isRequired);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

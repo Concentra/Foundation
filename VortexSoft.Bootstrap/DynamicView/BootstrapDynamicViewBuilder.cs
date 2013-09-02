@@ -18,10 +18,12 @@ namespace VortexSoft.Bootstrap
     public class BootstrapDynamicViewBuilder<TModel> : IDynamicViewBuilder<TModel>
     {
         protected readonly HtmlHelper<TModel> helper;
+        private readonly PropertyInfo[] properties;
 
         public BootstrapDynamicViewBuilder(HtmlHelper<TModel> helper)
         {
             this.helper = helper;
+            properties = helper.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
         }
 
         public virtual MvcHtmlString Build(TModel model)
@@ -31,8 +33,6 @@ namespace VortexSoft.Bootstrap
             using (var stringWriter = new StringWriter(sb))
             using (var textWriter = new HtmlTextWriter(stringWriter))
             {
-                var properties = model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
                 // Find the properties marked with "KeyAttribute" and convert them to hidden fields.
                 #region Hidden Fields
                 var hiddenFields = new List<PropertyInfo>();

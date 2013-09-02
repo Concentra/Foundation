@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using Kafala.Entities.Enums;
 using VortexSoft.Bootstrap.CustomAttribute;
+using System.Web;
 
 
 namespace Kafala.Web.ViewModels.Donor
@@ -27,6 +30,12 @@ namespace Kafala.Web.ViewModels.Donor
         public DonorStatus DonorStatus { get; set; }
 
         public Guid ReferralId { get; set; }
+
+        [DynamicControl(GroupName = "Contact Info", Control = ControlType.DropDownList, PromptText = "Enter Telephone Number")]
+        [CollectionInfo(ListSourceMember = "ListProperty")]
+        public DonorStatus SelectedItem { get; set; }
+
+        public IEnumerable<SelectListItem> ListProperty { get; set; }
 
         [DynamicControl(GroupName = "Contact Info", Control = ControlType.TextBox)]
         public string Mobile { get; set; }
