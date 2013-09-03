@@ -39,8 +39,8 @@ namespace Foundation.Infrastructure.BL
             }
 
             var interceptors = nestedContainer.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi).ToList();
-            var transactionInterceptor =nestedContainer.GetInstance<TransactionInterceptor<T>>() as IInterceptor;
-            interceptors.Add(transactionInterceptor);
+            //var transactionInterceptor =nestedContainer.GetInstance<TransactionInterceptor<T>>() as IInterceptor;
+            //interceptors.Add(transactionInterceptor);
             var objectToReturn = proxyGenerator.CreateClassProxy(typeof(T), constructorArguments.ToArray(), interceptors.ToArray());
             return (T)objectToReturn;
         }

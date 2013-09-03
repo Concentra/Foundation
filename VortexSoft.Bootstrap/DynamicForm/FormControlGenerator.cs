@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -19,7 +20,7 @@ namespace VortexSoft.Bootstrap
             this.htmlHelper = htmlHelper;
         }
 
-        public virtual void RenderBoolean(NavHtmlTextWritter writer, PropertyInfo property, object value)
+        public virtual void RenderBoolean(NavHtmlTextWritter writer, FormElement formElement, object value)
         {
             if (Convert.ToBoolean(value))
             {
@@ -27,28 +28,28 @@ namespace VortexSoft.Bootstrap
             }
 
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "checkbox");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Value, "true");
             writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag(); // input
 
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Value, "false");
             writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag(); // input
         }
 
-        public virtual void RenderDateTime(NavHtmlTextWritter writer, PropertyInfo property, object value, bool isRequired)
+        public virtual void RenderDateTime(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
         {
             DateTime? dateTimeValue =  Convert.ToDateTime(value);
-            var datePicker = htmlHelper.JQueryUI().Datepicker(property.Name, dateTimeValue.Value).ChangeYear(true).ChangeMonth(true);
+            var datePicker = htmlHelper.JQueryUI().Datepicker(formElement.PropertyInfo.Name, dateTimeValue.Value).ChangeYear(true).ChangeMonth(true);
             writer.ClearAttributes();
             writer.Write(datePicker.ToHtmlString());
         }
 
-        public virtual void RenderWholeNumber(NavHtmlTextWritter writer, PropertyInfo property, object value, bool isRequired)
+        public virtual void RenderWholeNumber(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
         {
             if (isRequired)
             {
@@ -60,8 +61,8 @@ namespace VortexSoft.Bootstrap
             }
             writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag(); // input
         }
@@ -131,7 +132,7 @@ namespace VortexSoft.Bootstrap
             writer.RenderEndTag(); // </textarea>
         }
 
-        public virtual void RenderFloatingPointNumber(NavHtmlTextWritter writer, PropertyInfo property, object value, bool isRequired)
+        public virtual void RenderFloatingPointNumber(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
         {
             if (isRequired)
             {
@@ -143,14 +144,15 @@ namespace VortexSoft.Bootstrap
             }
             writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag(); // input
         }
 
-        public virtual void RenderEnum(NavHtmlTextWritter writer, PropertyInfo property, object value, bool isRequired)
+        public virtual void RenderEnum(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
         {
+            var property = formElement.PropertyInfo;
             var dropDownList = new DropDownList();
             dropDownList.ID = property.Name;
 
@@ -169,8 +171,43 @@ namespace VortexSoft.Bootstrap
             dropDownList.RenderControl(writer);
         }
 
-        public virtual void RenderStaticText(NavHtmlTextWritter writer, PropertyInfo property, object value, bool isRequired)
+        public virtual void RenderDropDownList(NavHtmlTextWritter writer, FormElement formElement, object value,
+                                               bool isRequired, IEnumerable<SelectListItem> itemsList)
         {
+            var property = formElement.PropertyInfo;
+
+            if (isRequired)
+            {
+                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
+            }
+
+            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
+            writer.RenderBeginTag(HtmlTextWriterTag.Select);
+            
+            if (itemsList != null)
+            {
+                foreach (var selectListItem in itemsList)
+                {
+                    writer.AddAttribute(HtmlTextWriterAttribute.Value, selectListItem.Value);
+
+                    if (value != null && selectListItem.Value == value.ToString())
+                    {
+                        writer.AddAttribute(HtmlTextWriterAttribute.Selected, null);
+                    }
+
+                    writer.RenderBeginTag(HtmlTextWriterTag.Option);
+                    writer.Write(selectListItem.Value);
+                    writer.RenderEndTag();
+                }
+            }
+
+            writer.RenderEndTag();
+        }
+
+        public virtual void RenderStaticText(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        {
+            var property = formElement.PropertyInfo;
             writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "form-control-static");

@@ -9,5 +9,7 @@ namespace VortexSoft.Bootstrap
     {
         public PropertyInfo PropertyInfo;
         public DynamicControl ControlSpecs;
+        public CollectionInfo CollectionInfo;
+
     }
 }
