@@ -65,13 +65,12 @@
     <Compile Include="Collections\Generic\PowerCollections\Pair.cs" />
     <Compile Include="Collections\Generic\PowerCollections\Strings.cs" />
     <Compile Include="CustomAttribute\ControlType.cs" />
-    <Compile Include="DynamicForm\ViewDetailElementGenerator.cs" />
+    <Compile Include="CustomAttribute\CollectionInfo.cs" />
     <Compile Include="DynamicForm\FormControlGenerator.cs" />
     <Compile Include="DynamicForm\FormElement.cs" />
     <Compile Include="DynamicForm\NavHtmlTextWritter.cs" />
     <Compile Include="DynamicView\BootstrapDynamicViewBuilder.cs" />
     <Compile Include="DynamicView\IDynamicViewBuilder.cs" />
-    <Compile Include="Form\BootstrapFormMode.cs" />
     <Compile Include="GlyphIcons.cs" />
     <Compile Include="DynamicForm\BootstrapDynamicFormBuilder.cs" />
     <Compile Include="Form\ControlsSection.cs" />

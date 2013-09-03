@@ -96,6 +96,7 @@
     <Compile Include="ControllerRegistrationConvention.cs" />
     <Compile Include="CustomControllerFactory.cs" />
     <Compile Include="Extensions\CssMediaType.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\MvcPanel.cs" />
     <Compile Include="Extensions\MvcPanelTab.cs" />
