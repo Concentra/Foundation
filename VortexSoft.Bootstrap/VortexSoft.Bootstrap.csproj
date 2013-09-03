@@ -64,15 +64,7 @@
     <Compile Include="Collections\Generic\PairCollection.cs" />
     <Compile Include="Collections\Generic\PowerCollections\Pair.cs" />
     <Compile Include="Collections\Generic\PowerCollections\Strings.cs" />
-    <Compile Include="CustomAttribute\ControlType.cs" />
-    <Compile Include="CustomAttribute\CollectionInfo.cs" />
-    <Compile Include="DynamicForm\FormControlGenerator.cs" />
-    <Compile Include="DynamicForm\FormElement.cs" />
-    <Compile Include="DynamicForm\NavHtmlTextWritter.cs" />
-    <Compile Include="DynamicView\BootstrapDynamicViewBuilder.cs" />
-    <Compile Include="DynamicView\IDynamicViewBuilder.cs" />
     <Compile Include="GlyphIcons.cs" />
-    <Compile Include="DynamicForm\BootstrapDynamicFormBuilder.cs" />
     <Compile Include="Form\ControlsSection.cs" />
     <Compile Include="Form\ControlGroup.cs" />
     <Compile Include="Form\BootstrapForm.cs" />
@@ -81,7 +73,6 @@
     <Compile Include="HeroUnit\HeroUnit.cs" />
     <Compile Include="HeroUnit\HeroUnitBuilder.cs" />
     <Compile Include="BootstrapListItem.cs" />
-    <Compile Include="DynamicForm\IDynamicFormBuilder.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Tabs\TabPosition.cs" />

@@ -6,6 +6,7 @@
 <head>
      <title>@Html.PageTitle()</title>
     @Html.CssInclude("~/Content/bootstrap/bootstrap.min.css")
+    @Html.CssInclude("~/Content/themes/base/jquery.ui.all.css")
     
     @RenderSection("Css", required: false)
     
@@ -70,6 +71,7 @@
     </div>
         <script src="~/Scripts/jquery-2.0.3.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>
-        
+        <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
+        <script src="~/Scripts/jquery-ui.unobtrusive-1.0.1.js"></script>
 </body>
 </html>

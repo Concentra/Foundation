@@ -233,69 +233,7 @@ namespace VortexSoft.Bootstrap
         #endregion CodeBlock
 
         #region Forms
-        #region DynamicView
-
-        private static BootstrapDynamicViewBuilder<TModel> defaultDynamicViewBuilder;
-
-        private static BootstrapDynamicViewBuilder<TModel> DefaultDynamicViewBuilder(HtmlHelper<TModel> helper)
-        {
-            if (defaultDynamicViewBuilder == null)
-            {
-                defaultDynamicViewBuilder = new BootstrapDynamicViewBuilder<TModel>(helper);
-            }
-            return defaultDynamicViewBuilder;
-        }
-
-        public MvcHtmlString DynamicView()
-        {
-            return DynamicView(DefaultDynamicViewBuilder(helper));
-        }
-
-        public MvcHtmlString DynamicView(IDynamicViewBuilder<TModel> builder)
-        {
-            return builder.Build(helper.ViewData.Model);
-        }
-
-        #endregion DynamicView
-
-
-        #region DynamicForm
-
-        private static BootstrapDynamicFormBuilder<TModel> defaultDynamicFormBuilder;
-
-        private static BootstrapDynamicFormBuilder<TModel> DefaultDynamicFormBuilder(HtmlHelper<TModel> helper)
-        {
-            if (defaultDynamicFormBuilder == null)
-            {
-                defaultDynamicFormBuilder = new BootstrapDynamicFormBuilder<TModel>(helper);
-            }
-            return defaultDynamicFormBuilder;
-        }
-
-        public MvcHtmlString DynamicForm(BootstrapFormType horizontal)
-        {
-            return DynamicForm(DefaultDynamicFormBuilder(helper), BootstrapFormType.Horizontal);
-        }
-
-        public MvcHtmlString DynamicForm(IDynamicFormBuilder<TModel> builder, BootstrapFormType formType)
-        {
-            return builder.Build(helper.ViewData.Model, formType);
-        }
-
-        #endregion DynamicForm
-
-        public BootstrapFormBuilder<TModel> BeginForm()
-        {
-            return BeginForm(BootstrapFormType.Horizontal);
-        }
-
-        public BootstrapFormBuilder<TModel> BeginForm(object htmlAttributes)
-        {
-            string rawUrl = this.helper.ViewContext.HttpContext.Request.RawUrl;
-            return new BootstrapFormBuilder<TModel>(
-                this.helper, new BootstrapForm(BootstrapFormType.Horizontal, rawUrl, FormMethod.Post, new RouteValueDictionary(htmlAttributes)));
-        }
-
+       
         public BootstrapFormBuilder<TModel> BeginForm(IDictionary<string, object> htmlAttributes)
         {
             string rawUrl = this.helper.ViewContext.HttpContext.Request.RawUrl;

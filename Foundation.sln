@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Query", "Kafala.Quer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexSoft.Bootstrap", "VortexSoft.Bootstrap\VortexSoft.Bootstrap.csproj", "{371BABEC-5A00-464D-8EBB-09C32CA4C326}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.FormBuilder", "Foundation.FormBuilder\Foundation.FormBuilder.csproj", "{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi
@@ -175,6 +177,16 @@ Global
 		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|x86.ActiveCfg = Release|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
