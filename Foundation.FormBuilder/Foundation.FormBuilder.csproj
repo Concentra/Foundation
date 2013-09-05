@@ -45,9 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DynamicForm\ControlGroup.cs" />
-    <Compile Include="DynamicForm\ControlContainer.cs" />
-    <Compile Include="DynamicForm\ElementGroup.cs" />
+    <Compile Include="Blocks\ControlContainer.cs" />
+    <Compile Include="Blocks\ControlGroup.cs" />
+    <Compile Include="Blocks\ElementGroup.cs" />
     <Compile Include="FormBuilder.cs" />
     <Compile Include="CustomAttribute\CollectionInfo.cs" />
     <Compile Include="CustomAttribute\ControlType.cs" />
@@ -69,6 +69,7 @@
       <Name>Foundation.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
