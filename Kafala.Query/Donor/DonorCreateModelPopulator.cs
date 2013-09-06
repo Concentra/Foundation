@@ -28,7 +28,7 @@ namespace Kafala.Query.Donor
             var model = new DonorCreateViewModel()
                 {
                     Name = "Abdo",
-                    //ListProperty = typeof(DonorStatus).ToSelectListWithNames(),
+                    ListProperty = typeof(DonorStatus).ToSelectListWithNames(),
                     DonorStatus = DonorStatus.Suspended,
                     SelectedItem = DonorStatus.Suspended
                 };

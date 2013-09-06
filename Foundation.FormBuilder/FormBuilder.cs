@@ -16,62 +16,57 @@ namespace Foundation.FormBuilder
             this.helper = helper;
         }
 
-       
 
-        #region Forms
-        #region DynamicView
 
-        static BootstrapDynamicViewBuilder<TModel> defaultDynamicViewBuilder;
+        #region view
 
-        private static BootstrapDynamicViewBuilder<TModel> DefaultDynamicViewBuilder(HtmlHelper<TModel> helper)
+
+        private static IDynamicUiBuilder<TModel> viewBuilder;
+
+        private static IDynamicUiBuilder<TModel> GetViewBuilder(HtmlHelper<TModel> helper)
         {
-            if (defaultDynamicViewBuilder == null)
+            if (viewBuilder == null)
             {
-                defaultDynamicViewBuilder = new BootstrapDynamicViewBuilder<TModel>(helper);
+                viewBuilder = new BootStrapViewBuilder<TModel>();
             }
-            return defaultDynamicViewBuilder;
+            return viewBuilder;
         }
 
-        public MvcHtmlString DynamicView(BootstrapFormType formType)
+        public MvcHtmlString DynamicView(BootstrapFormType formType = BootstrapFormType.Horizontal)
         {
-            return DynamicView(DefaultDynamicViewBuilder(helper), BootstrapFormType.Horizontal);
+            return RenderUI(GetViewBuilder(helper), formType);
         }
 
-        public MvcHtmlString DynamicView(IDynamicViewBuilder<TModel> builder, BootstrapFormType formType)
+        #endregion
+
+
+        #region form
+
+        private static IDynamicUiBuilder<TModel> formBuilder;
+
+        private static IDynamicUiBuilder<TModel> GetFormBuilder(HtmlHelper<TModel> helper)
+        {
+            if (formBuilder == null)
+            {
+                formBuilder = new BootStrapFormBuilder<TModel>();
+            }
+            return formBuilder;
+        }
+
+        public MvcHtmlString DynamicForm(BootstrapFormType formType = BootstrapFormType.Horizontal)
+        {
+            return RenderUI(GetFormBuilder(helper), formType);
+        }
+
+        #endregion
+
+
+        public MvcHtmlString RenderUI(IDynamicUiBuilder<TModel> builder, BootstrapFormType formType)
         {
             return builder.Build(helper.ViewData.Model, formType);
         }
 
-        #endregion DynamicView
-
-
-        #region DynamicForm
-
-        private static BootstrapDynamicFormBuilder<TModel> defaultDynamicFormBuilder;
-
-        private static BootstrapDynamicFormBuilder<TModel> DefaultDynamicFormBuilder(HtmlHelper<TModel> helper)
-        {
-            if (defaultDynamicFormBuilder == null)
-            {
-                defaultDynamicFormBuilder = new BootstrapDynamicFormBuilder<TModel>(helper);
-            }
-            return defaultDynamicFormBuilder;
-        }
-
-        public MvcHtmlString DynamicForm()
-        {
-            return DynamicForm(DefaultDynamicFormBuilder(helper), BootstrapFormType.Horizontal);
-        }
-
-        public MvcHtmlString DynamicForm(IDynamicFormBuilder<TModel> builder, BootstrapFormType formType)
-        {
-            return builder.Build(helper.ViewData.Model, formType);
-        }
-
-        #endregion DynamicForm
-
        
-        #endregion Forms
 
       
     }
