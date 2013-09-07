@@ -63,9 +63,9 @@ namespace Foundation.FormBuilder
             return DynamicForm(DefaultDynamicFormBuilder(helper), BootstrapFormType.Horizontal);
         }
 
-        public MvcHtmlString DynamicForm(IDynamicFormBuilder<TModel> builder, BootstrapFormType formType)
+        public MvcHtmlString DynamicForm(IDynamicFormBuilder<TModel> builder, BootstrapFormType formType, bool renderButton = true)
         {
-            return builder.Build(helper.ViewData.Model, formType);
+            return builder.Build(helper.ViewData.Model, formType, renderButton);
         }
 
         #endregion DynamicForm

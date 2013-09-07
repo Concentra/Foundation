@@ -33,7 +33,7 @@ namespace Foundation.FormBuilder.DynamicForm
             var groupsofElements = formElements.OrderBy(x => x.ControlSpecs.GroupName).GroupBy(x => x.ControlSpecs.GroupName);
             bool useLegend = (formElements.Select(x => x.ControlSpecs.GroupName).Distinct().Count() > 1);
 
-            var stringWriter = new StringWriter(sb);
+            var stringWriter = new StringWriter(sb); 
 
             using (var textWriter = new NavHtmlTextWritter(stringWriter))
             {
