@@ -1,26 +1,79 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using JQueryUIHelpers;
+using Foundation.FormBuilder.CustomAttribute;
+using Foundation.FormBuilder.DynamicForm;
 
-namespace Foundation.FormBuilder.DynamicForm
+namespace Foundation.FormBuilder.ElementGenerators
 {
-    public class FormControlGenerator<TModel>
+    public class ViewElementGenerator : IElementGenerator
     {
-        private readonly HtmlHelper<TModel> htmlHelper;
-
-        public FormControlGenerator(HtmlHelper<TModel> htmlHelper)
+        
+        public string RenderElement(FormElement formElement)
         {
-            this.htmlHelper = htmlHelper;
+            var elementBlock = new StringWriter();
+            var writer = new NavHtmlTextWritter(elementBlock);
+            
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "form-control");
+            this.RenderStaticText(writer, formElement);
+
+            #region 
+            /*
+            switch (formElement.ControlSpecs.Control)
+            {
+                case ControlType.TextBox:
+                    this.RenderTextBox(writer, formElement);
+                    break;
+                case ControlType.Hidden:
+                    this.RenderHidden(writer, formElement);
+                    break;
+                case ControlType.TextArea:
+                    this.RenderTextArea(writer, formElement);
+                    break;
+                case ControlType.Password:
+                    this.RenderPassword(writer, formElement);
+                    break;
+                case ControlType.DateTime:
+                    this.RenderDateTime(writer, formElement);
+                    break;
+                case ControlType.FloatingPointNumber:
+                    this.RenderFloatingPointNumber(writer, formElement);
+                    break;
+                case ControlType.WholeNumber:
+                    this.RenderWholeNumber(writer, formElement);
+                    break;
+                case ControlType.Time:
+                    this.RenderDateTime(writer, formElement);
+                    break;
+                case ControlType.CheckBox:
+                    this.RenderBoolean(writer, formElement);
+                    break;
+                case ControlType.Enum:
+                    this.RenderEnum(writer, formElement);
+                    break;
+                case ControlType.DropDownList:
+                    this.RenderDropDownList(writer, formElement);
+                    break;
+                case ControlType.ListBox:
+                    break;
+                case ControlType.StaticText:
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            */
+            #endregion
+
+            return elementBlock.ToString();
         }
-
-        public virtual void RenderBoolean(NavHtmlTextWritter writer, FormElement formElement, object value)
+        public virtual void RenderBoolean(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
             if (Convert.ToBoolean(value))
             {
                 writer.AddAttribute(HtmlTextWriterAttribute.Checked, "checked");
@@ -30,18 +83,20 @@ namespace Foundation.FormBuilder.DynamicForm
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Value, "true");
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Input);
+            writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag(); // input
 
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Value, "false");
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Input);
+            writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag(); // input
         }
 
-        public virtual void RenderDateTime(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        private void RenderDateTime(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
+            
             DateTime? dateTimeValue;
             if (value != null)
             {
@@ -51,14 +106,18 @@ namespace Foundation.FormBuilder.DynamicForm
             {
                 dateTimeValue = null;
             }
-            
-            var datePicker = htmlHelper.JQueryUI().Datepicker(formElement.PropertyInfo.Name, dateTimeValue).ChangeYear(true).ChangeMonth(true);
+
+            var datePicker = string.Empty;
+            //htmlHelper.JQueryUI().Datepicker(formElement.PropertyInfo.Name, dateTimeValue).ChangeYear(true).ChangeMonth(true);
             writer.ClearAttributes();
-            writer.Write(datePicker.ToHtmlString());
+            writer.Write(datePicker);
         }
 
-        public virtual void RenderWholeNumber(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        private void RenderWholeNumber(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
+            var isRequired = formElement.ValidationInfo.Required;
+
             if (isRequired)
             {
                 writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required,custom[integer]]");
@@ -71,12 +130,15 @@ namespace Foundation.FormBuilder.DynamicForm
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Input);
+            writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag(); // input
         }
 
-        public virtual void RenderPassword(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        private void RenderPassword(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
+            var isRequired = formElement.ValidationInfo.Required;
+            
             if (isRequired)
             {
                 writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
@@ -92,8 +154,11 @@ namespace Foundation.FormBuilder.DynamicForm
             writer.RenderEndTag(); // </input>
         }
 
-        public virtual void RenderTextBox(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        private void RenderTextBox(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
+            var isRequired = formElement.ValidationInfo.Required;
+
             if (isRequired)
             {
                 writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
@@ -109,23 +174,29 @@ namespace Foundation.FormBuilder.DynamicForm
 
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Input);
+            writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag(); // </input>
         }
 
-        public virtual void RenderHidden(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        private void RenderHidden(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
+            var isRequired = formElement.ValidationInfo.Required;
+
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
             var hiddenValue = (value == null) ? String.Empty : value.ToString();
             writer.AddAttribute(HtmlTextWriterAttribute.Value, hiddenValue);
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Input);
+            writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag();
         }
 
-        public virtual void RenderTextArea(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        private void RenderTextArea(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
+            var isRequired = formElement.ValidationInfo.Required;
+
             if (isRequired)
             {
                 writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
@@ -135,13 +206,16 @@ namespace Foundation.FormBuilder.DynamicForm
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Cols, formElement.ControlSpecs.Cols.ToString(CultureInfo.InvariantCulture));
             writer.AddAttribute(HtmlTextWriterAttribute.Rows, formElement.ControlSpecs.Rows.ToString(CultureInfo.InvariantCulture));
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Textarea);
+            writer.RenderBeginTag(HtmlTextWriterTag.Textarea);
             writer.Write(value);
             writer.RenderEndTag(); // </textarea>
         }
 
-        public virtual void RenderFloatingPointNumber(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        private void RenderFloatingPointNumber(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
+            var isRequired = formElement.ValidationInfo.Required;
+
             if (isRequired)
             {
                 writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required,custom[number]]");
@@ -154,12 +228,15 @@ namespace Foundation.FormBuilder.DynamicForm
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Input);
+            writer.RenderBeginTag(HtmlTextWriterTag.Input);
             writer.RenderEndTag(); // input
         }
 
-        public virtual void RenderEnum(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        private void RenderEnum(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
+            var isRequired = formElement.ValidationInfo.Required;
+
             var property = formElement.PropertyInfo;
             var dropDownList = new DropDownList();
             dropDownList.ID = property.Name;
@@ -179,10 +256,12 @@ namespace Foundation.FormBuilder.DynamicForm
             dropDownList.RenderControl(writer);
         }
 
-        public virtual void RenderDropDownList(NavHtmlTextWritter writer, FormElement formElement, object value,
-                                               bool isRequired, IEnumerable<SelectListItem> itemsList)
+        private void RenderDropDownList(NavHtmlTextWritter writer, FormElement formElement)
         {
-            var property = formElement.PropertyInfo;
+            var value = formElement.FieldValue;
+            var isRequired = formElement.ValidationInfo.Required;
+            
+            var itemsList = formElement.CollectionInfo.CollectionObject;
 
             if (isRequired)
             {
@@ -191,7 +270,7 @@ namespace Foundation.FormBuilder.DynamicForm
 
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Select);
+            writer.RenderBeginTag(HtmlTextWriterTag.Select);
             
             if (itemsList != null)
             {
@@ -213,29 +292,17 @@ namespace Foundation.FormBuilder.DynamicForm
             writer.RenderEndTag();
         }
 
-        public virtual void RenderStaticText(NavHtmlTextWritter writer, FormElement formElement, object value, bool isRequired)
+        private void RenderStaticText(NavHtmlTextWritter writer, FormElement formElement)
         {
+            var value = formElement.FieldValue;
+            var isRequired = formElement.ValidationInfo != null && formElement.ValidationInfo.Required;
             var property = formElement.PropertyInfo;
             writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "form-control-static");
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.P);
+            writer.RenderBeginTag(HtmlTextWriterTag.P);
             writer.Write(Convert.ToString(value));
             writer.RenderEndTag(); // input
-        }
-
-        public static void RenderGroupLegend(NavHtmlTextWritter textWriter, string groupName, bool useLegend)
-        {
-            textWriter.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Fieldset);
-
-            // if at least one group name is there , then use legend (field container)
-         
-            if (useLegend)
-            {
-                textWriter.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Legend); // start legend tag
-                textWriter.Write(groupName);
-                textWriter.RenderEndTag(); // legend
-            }
         }
     }
 }
