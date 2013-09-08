@@ -1,8 +1,10 @@
+using Microsoft.SqlServer.Server;
+
 namespace Foundation.FormBuilder.CustomAttribute
 {
     [System.AttributeUsage(System.AttributeTargets.Property)
 ]
-    public class DynamicControl : System.Attribute
+    public class EditControl : System.Attribute
     {
         public string Label;
         public int Order = int.MaxValue;
@@ -10,15 +12,15 @@ namespace Foundation.FormBuilder.CustomAttribute
         public int Cols = 60;
         public int Rows = 6;
         public int MaxLength;
-        public ControlType Control;
+        public ElementType ElementType;
         public bool ReadOnly;
         public string GroupName;
         public string PromptText;
     }
 
-    public enum ControlType
+    public enum ElementType
     {
-        TextBox,
+        Text,
         Hidden,
         TextArea,
         Password,
@@ -28,8 +30,9 @@ namespace Foundation.FormBuilder.CustomAttribute
         Time,
         CheckBox,
         Enum,
-        DropDownList,
+        List,
         ListBox,
-        StaticText
+        StaticText,
+        Guid
     }
 }

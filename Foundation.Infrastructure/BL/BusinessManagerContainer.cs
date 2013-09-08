@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Castle.DynamicProxy;
+using Foundation.Persistence;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 
@@ -10,12 +11,11 @@ namespace Foundation.Infrastructure.BL
 {
     public class BusinessManagerContainer : IBusinessManagerContainer
     {
-        private IContainer nestedContainer;
+        private IContainer container;
 
-        public BusinessManagerContainer(IContainer container, IBusinessManagerRegistery businessManagerRegistery )
+        public BusinessManagerContainer(IContainer container )
         {
-            this.nestedContainer = container.GetNestedContainer();
-            this.nestedContainer.Configure(x => x.AddRegistry((Registry) businessManagerRegistery));
+            this.container = container;
         }
         
         public void Dispose()
@@ -35,12 +35,12 @@ namespace Foundation.Infrastructure.BL
             if (constructor != null)
             {
                 var constructorParameters = constructor.GetParameters();
-                constructorArguments.AddRange(constructorParameters.Select(parameterInfo => nestedContainer.GetInstance(parameterInfo.ParameterType)));
+                constructorArguments.AddRange(constructorParameters.Select(parameterInfo => container.GetInstance(parameterInfo.ParameterType)));
             }
 
-            var interceptors = nestedContainer.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi).ToList();
-            //var transactionInterceptor =nestedContainer.GetInstance<TransactionInterceptor<T>>() as IInterceptor;
-            //interceptors.Add(transactionInterceptor);
+            var interceptors = container.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi).ToList();
+            var transactionInterceptor =container.GetInstance<TransactionInterceptor<T>>() as IInterceptor;
+            interceptors.Add(transactionInterceptor);
             var objectToReturn = proxyGenerator.CreateClassProxy(typeof(T), constructorArguments.ToArray(), interceptors.ToArray());
             return (T)objectToReturn;
         }
@@ -49,10 +49,10 @@ namespace Foundation.Infrastructure.BL
         {
             if (disposing)
             {
-                if (this.nestedContainer != null)
+                if (this.container != null)
                 {
-                    this.nestedContainer.Dispose();
-                    this.nestedContainer = null;
+                    this.container.Dispose();
+                    this.container = null;
                 }
             }
         }

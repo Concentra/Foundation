@@ -22,7 +22,7 @@ namespace Foundation.FormBuilder.DynamicForm
 
                 using (new ElementGroup(textWriter, groupName, useLegend))
                 {
-                    var elementsToRender = groupedElements.Where(x => x.ControlSpecs.Control != ControlType.Hidden)
+                    var elementsToRender = groupedElements.Where(x => x.ControlSpecs.ElementType != ElementType.Hidden)
                                                           .OrderBy(x => x.ControlSpecs.Order);
 
                     // loop over the attributes (ordered)..
@@ -34,7 +34,7 @@ namespace Foundation.FormBuilder.DynamicForm
 
                             using (new ControlContainer(textWriter))
                             {
-                                // Control
+                                // ElementType
                                 var elementBlock = ElementGenerator.RenderElement(formElement);
                                 textWriter.Write(elementBlock);
                             }

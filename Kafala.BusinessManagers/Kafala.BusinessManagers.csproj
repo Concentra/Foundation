@@ -65,6 +65,7 @@
     <Compile Include="AccountNotificationManager.cs" />
     <Compile Include="Donor\DonorInterceptor.cs" />
     <Compile Include="Donor\DonorBusinessManager.cs" />
+    <Compile Include="Donor\IDonorContract.cs" />
     <Compile Include="Enums\DonorStatus.cs" />
     <Compile Include="SqlProcBusinessManagerInvocationLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

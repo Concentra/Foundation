@@ -30,7 +30,8 @@ namespace Kafala.Query.Donor
                                                      {
                                                          Id = x.Id,
                                                          Name = x.Name,
-                                                         JoinDate = x.JoinDate
+                                                         JoinDate = x.JoinDate,
+                                                         DonorStatus = x.DonorStatus
                                                      }).ToList()
                             };
             return model;

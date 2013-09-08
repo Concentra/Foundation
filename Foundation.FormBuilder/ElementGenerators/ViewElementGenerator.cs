@@ -23,44 +23,44 @@ namespace Foundation.FormBuilder.ElementGenerators
 
             #region 
             /*
-            switch (formElement.ControlSpecs.Control)
+            switch (formElement.ControlSpecs.ElementType)
             {
-                case ControlType.TextBox:
+                case ElementType.TextBox:
                     this.RenderTextBox(writer, formElement);
                     break;
-                case ControlType.Hidden:
+                case ElementType.Hidden:
                     this.RenderHidden(writer, formElement);
                     break;
-                case ControlType.TextArea:
+                case ElementType.TextArea:
                     this.RenderTextArea(writer, formElement);
                     break;
-                case ControlType.Password:
+                case ElementType.Password:
                     this.RenderPassword(writer, formElement);
                     break;
-                case ControlType.DateTime:
+                case ElementType.DateTime:
                     this.RenderDateTime(writer, formElement);
                     break;
-                case ControlType.FloatingPointNumber:
+                case ElementType.FloatingPointNumber:
                     this.RenderFloatingPointNumber(writer, formElement);
                     break;
-                case ControlType.WholeNumber:
+                case ElementType.WholeNumber:
                     this.RenderWholeNumber(writer, formElement);
                     break;
-                case ControlType.Time:
+                case ElementType.Time:
                     this.RenderDateTime(writer, formElement);
                     break;
-                case ControlType.CheckBox:
+                case ElementType.CheckBox:
                     this.RenderBoolean(writer, formElement);
                     break;
-                case ControlType.Enum:
+                case ElementType.Enum:
                     this.RenderEnum(writer, formElement);
                     break;
-                case ControlType.DropDownList:
+                case ElementType.DropDownList:
                     this.RenderDropDownList(writer, formElement);
                     break;
-                case ControlType.ListBox:
+                case ElementType.ListBox:
                     break;
-                case ControlType.StaticText:
+                case ElementType.StaticText:
 
                     break;
                 default:

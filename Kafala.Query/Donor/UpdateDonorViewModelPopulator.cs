@@ -10,22 +10,22 @@ using NHibernate.Linq;
 
 namespace Kafala.Query.Donor
 {
-    public class DonorViewModelPopulator : IQuery<Guid, ViewDonorViewModel>
+    public class UpdateDonorViewModelPopulator : IQuery<Guid, DonorUpdateViewModel>
     {
          private readonly ISession session;
 
-         public DonorViewModelPopulator(ISession session)
+         public UpdateDonorViewModelPopulator(ISession session)
         {
             this.session = session;
         }
 
-        public ViewDonorViewModel Execute(Guid donorId)
+         public DonorUpdateViewModel Execute(Guid donorId)
         {
             var donor = this.session.Get<Entities.Donor>(donorId);
 
-            Mapper.CreateMap<Entities.Donor, ViewDonorViewModel>();
+            Mapper.CreateMap<Entities.Donor, DonorUpdateViewModel>();
 
-            var model = Mapper.Map<ViewDonorViewModel>(donor);
+            var model = Mapper.Map<DonorUpdateViewModel>(donor);
             return model;
         }
     }

@@ -2,6 +2,5 @@
 <h2>Donor Details</h2>
 @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
 {
-    @Html.FormBuilder().DynamicView()
-    ;
+    @Html.FormBuilder().DynamicForm()
 }

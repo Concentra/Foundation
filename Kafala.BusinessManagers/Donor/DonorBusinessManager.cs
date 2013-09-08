@@ -18,25 +18,36 @@ namespace Kafala.BusinessManagers.Donor
            this.session = session;
        }
 
-       public virtual Guid AddDonor(string name, string Mobile, DateTime? joinDate, Guid? refferedId)
+       public virtual Guid Add(IDonorContract donor)
        {
-           var referral = refferedId.HasValue ? session.Get<Entities.Donor>(refferedId) : null;
-           var donor = new Entities.Donor()
+           var referral = donor.ReferralId != null ? session.Get<Entities.Donor>(donor.ReferralId) : null;
+           var donorObject = new Entities.Donor()
            {
                Id = new Guid(),
                JoinDate = joinDate ,
                Referral = referral,
                Name = name,
-               Telephone = Mobile
+               Telephone = Mobile,
+               
            };
 
            session.Save(donor);
            return donor.Id;
        }
 
-       public virtual Entities.Donor UpdateDonor(string donorName, string donorMobile)
+       public virtual Guid Update(Guid id, string name, string Mobile, DateTime? joinDate, Guid? refferedId)
        {
-           return null;
+           var donor = session.Get<Entities.Donor>(id);
+           var referral = refferedId.HasValue ? session.Get<Entities.Donor>(refferedId) : null;
+           if (donor != null)
+           {
+               donor.JoinDate = joinDate;
+               donor.Referral = referral;
+               donor.Name = name;
+               donor.Telephone = Mobile;
+               session.Save(donor);
+           }
+           return id;
        }
     }
 }

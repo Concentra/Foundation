@@ -19,7 +19,7 @@ namespace Foundation.FormBuilder.Blocks
 
         public void Dispose()
         {
-            textWriter.RenderEndTag(); // div (Control-Group)
+            textWriter.RenderEndTag(); // div (ElementType-Group)
         }
     }
 }

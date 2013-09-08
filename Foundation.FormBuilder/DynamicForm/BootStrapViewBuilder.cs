@@ -97,8 +97,8 @@ namespace Foundation.FormBuilder.DynamicForm
                                                 {
                                                     PropertyInfo = p.Value,
                                                     ControlSpecs =
-                                                        p.Value.GetCustomAttributes(typeof (DynamicControl), false)
-                                                         .Cast<DynamicControl>()
+                                                        p.Value.GetCustomAttributes(typeof (EditControl), false)
+                                                         .Cast<EditControl>()
                                                          .FirstOrDefault(),
                                                     CollectionInfo = p.Value.GetCustomAttributes(typeof(CollectionInfo), false)
                                                          .Cast<CollectionInfo>()

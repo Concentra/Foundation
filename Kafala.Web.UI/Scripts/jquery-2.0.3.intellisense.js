@@ -272,7 +272,7 @@ intellisense.annotate(jQuery, {
   },
   'noConflict': function() {
     /// <signature>
-    ///   <summary>Relinquish jQuery's control of the $ variable.</summary>
+    ///   <summary>Relinquish jQuery's Element of the $ variable.</summary>
     ///   <param name="removeAll" type="Boolean">A Boolean indicating whether to remove all jQuery variables from the global scope (including jQuery itself).</param>
     ///   <returns type="Object" />
     /// </signature>

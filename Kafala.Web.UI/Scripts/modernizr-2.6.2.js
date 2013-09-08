@@ -11,7 +11,7 @@
  * the current UA and makes the results available to you in two ways:
  * as properties on a global Modernizr object, and as classes on the
  * <html> element. This information allows you to progressively enhance
- * your pages with a granular level of control over the experience.
+ * your pages with a granular level of Element over the experience.
  *
  * Modernizr has an optional (not included) conditional resource loader
  * called Modernizr.load(), based on Yepnope.js (yepnopejs.com).

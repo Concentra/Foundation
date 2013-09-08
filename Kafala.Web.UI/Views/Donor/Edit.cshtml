@@ -1,10 +1,7 @@
-﻿@using Foundation.FormBuilder;
-@model Kafala.Web.ViewModels.Donor.CreateDonorViewModel
+﻿@model Kafala.Web.ViewModels.Donor.DonorUpdateViewModel
 
-
-<h2>Register a new donor</h2>
+<h2>Update Donor Details</h2>
 @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
 {
     @Html.FormBuilder().DynamicForm();
 }
-

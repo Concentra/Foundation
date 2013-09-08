@@ -43,18 +43,34 @@ namespace Kafala.Web.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(DonorCreateViewModel model)
+        public ActionResult Create(CreateDonorViewModel model)
         {
             var manager = businessManagerContainer.Get<DonorBusinessManager>();
-            var donorId = manager.AddDonor(model.Name, model.Mobile, model.JoinDate, model.ReferralId);
+            var donorId = manager.Add(model.Name, model.Mobile, model.JoinDate, model.ReferralId);
             return RedirectToAction("Details", new { id = donorId });
         }
 
+      
         public ActionResult Details(Guid id)
         {
             var modelPopulator = this.queryContainer.Get<DonorViewModelPopulator>();
             var model = modelPopulator.Execute(id);
             return View("View", model);
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            var modelPopulator = this.queryContainer.Get<UpdateDonorViewModelPopulator>();
+            var model = modelPopulator.Execute(id);
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(DonorUpdateViewModel model)
+        {
+            var manager = businessManagerContainer.Get<DonorBusinessManager>();
+            var donorId = manager.Update(model.Id, model.Name, model.Mobile, model.JoinDate, model.ReferralId);
+            return RedirectToAction("Details", new { id = donorId });
         }
     }
 }

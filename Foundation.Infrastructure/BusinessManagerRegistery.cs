@@ -14,7 +14,7 @@ namespace Foundation.Infrastructure
 
             this.Scan(x =>
             {
-                x.AssembliesFromPath(dir);
+                x.AssembliesFromPath(dir+ "bin");
                 x.With(new BusinessManagerRegisterationConventrion());
                 x.ConnectImplementationsToTypesClosing(typeof(BusinessManagerInterceptor<>));
             });

@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Donor\UpdateDonorViewModelPopulator.cs" />
     <Compile Include="Donor\DonorCreateModelPopulator.cs" />
     <Compile Include="Donor\DonorListModelPopulator.cs" />
     <Compile Include="Donor\DonorViewModelPopulator.cs" />
@@ -76,6 +77,10 @@
     <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
       <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
       <Name>Foundation.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kafala.BusinessManagers\Kafala.BusinessManagers.csproj">
+      <Project>{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}</Project>
+      <Name>Kafala.BusinessManagers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kafala.Entities\Kafala.Entities.csproj">
       <Project>{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}</Project>

@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
-using Foundation.FormBuilder.Blocks;
 using Foundation.FormBuilder.CustomAttribute;
+using Kafala.BusinessManagers.Donor;
 using Kafala.Entities.Enums;
 
 namespace Kafala.Web.ViewModels.Donor
 {
-    public class ViewDonorViewModel
+    
+    public class CreateDonorViewModel : IDonorContract
     {
         [EditControl(ElementType = ElementType.Hidden)]
         public Guid? Id { get; set; }
 
-        [EditControl(GroupName = "Personal Info", Order = 10, ElementType = ElementType.StaticText, Label = "Donor Name", PromptText = "The full donor name")]
+        [EditControl(GroupName = "Personal Info", Order = 10,ElementType = ElementType.StaticText, Label = "Donor Name", PromptText = "The full donor name")]
         [Required]
         public string Name { get; set; }
 

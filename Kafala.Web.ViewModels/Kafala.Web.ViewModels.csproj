@@ -49,8 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commitment\CommitmentItemViewModel.cs" />
+    <Compile Include="Donor\CreateDonorViewModel.cs" />
     <Compile Include="Donor\DonorUpdateViewModel.cs" />
-    <Compile Include="Donor\DonorCreateViewModel.cs" />
     <Compile Include="Donor\DonorIndexViewModel.cs" />
     <Compile Include="Donor\ViewDonorViewModel.cs" />
     <Compile Include="Home\LogonViewModel.cs" />
@@ -63,6 +63,10 @@
     <ProjectReference Include="..\Foundation.FormBuilder\Foundation.FormBuilder.csproj">
       <Project>{c5fa847f-2fb5-403d-ad02-3e9332bf60c7}</Project>
       <Name>Foundation.FormBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kafala.BusinessManagers\Kafala.BusinessManagers.csproj">
+      <Project>{a5d4402e-ce60-420e-b14c-4dcc6f8815e7}</Project>
+      <Name>Kafala.BusinessManagers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kafala.Entities\Kafala.Entities.csproj">
       <Project>{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}</Project>

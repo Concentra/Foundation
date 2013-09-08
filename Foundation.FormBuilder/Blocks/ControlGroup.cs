@@ -15,13 +15,13 @@ namespace Foundation.FormBuilder.Blocks
             
             textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "form-group");
 
-            textWriter.RenderBeginTag(HtmlTextWriterTag.Div); // div (Control-Group)
+            textWriter.RenderBeginTag(HtmlTextWriterTag.Div); // div (ElementType-Group)
         }
 
 
         public void Dispose()
         {
-            textWriter.RenderEndTag(); // div (Control-Group)
+            textWriter.RenderEndTag(); // div (ElementType-Group)
         }
 
         public static void RenderLabel(BootstrapFormType formType, FormElement formElement, NavHtmlTextWritter textWriter)

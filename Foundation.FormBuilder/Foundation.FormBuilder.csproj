@@ -48,6 +48,7 @@
     <Compile Include="Blocks\ControlContainer.cs" />
     <Compile Include="Blocks\ControlGroup.cs" />
     <Compile Include="Blocks\ElementGroup.cs" />
+    <Compile Include="CustomAttribute\Contents.cs" />
     <Compile Include="CustomAttribute\ValidationInfo.cs" />
     <Compile Include="DynamicForm\BootStrapViewBuilder.cs" />
     <Compile Include="DynamicForm\UiBuilderBase.cs" />
@@ -56,7 +57,7 @@
     <Compile Include="ElementGenerators\ViewElementGenerator.cs" />
     <Compile Include="FormBuilder.cs" />
     <Compile Include="CustomAttribute\CollectionInfo.cs" />
-    <Compile Include="CustomAttribute\ControlType.cs" />
+    <Compile Include="CustomAttribute\ElementType.cs" />
     <Compile Include="DynamicForm\BootStrapFormBuilder.cs" />
     <Compile Include="DynamicForm\BootstrapFormType.cs" />
     <Compile Include="CustomAttribute\FormElement.cs" />

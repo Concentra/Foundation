@@ -6142,7 +6142,7 @@ $.widget( "ui.accordion", {
 			.removeClass( "ui-accordion-header ui-accordion-header-active ui-helper-reset ui-state-default ui-corner-all ui-state-active ui-state-disabled ui-corner-top" )
 			.removeAttr( "role" )
 			.removeAttr( "aria-selected" )
-			.removeAttr( "aria-controls" )
+			.removeAttr( "aria-Elements" )
 			.removeAttr( "tabIndex" )
 			.each(function() {
 				if ( /^ui-accordion/.test( this.id ) ) {
@@ -6323,7 +6323,7 @@ $.widget( "ui.accordion", {
 					panelId = accordionId + "-panel-" + i;
 					panel.attr( "id", panelId );
 				}
-				header.attr( "aria-controls", panelId );
+				header.attr( "aria-Elements", panelId );
 				panel.attr( "aria-labelledby", headerId );
 			})
 			.next()
@@ -7931,7 +7931,7 @@ $.extend(Datepicker.prototype, {
 		return this;
 	},
 
-	/* Detach a datepicker from its control.
+	/* Detach a datepicker from its Element.
 	 * @param  target	element - the target input field or division or span
 	 */
 	_destroyDatepicker: function(target) {
@@ -8031,7 +8031,7 @@ $.extend(Datepicker.prototype, {
 		return false;
 	},
 
-	/* Retrieve the instance data for the target control.
+	/* Retrieve the instance data for the target Element.
 	 * @param  target  element - the target input field or division or span
 	 * @return  object - the associated instance data
 	 * @throws  error if a jQuery problem getting data
@@ -13877,7 +13877,7 @@ $.widget( "ui.tabs", {
 			// check the fragment identifier in the URL
 			if ( locationHash ) {
 				this.tabs.each(function( i, tab ) {
-					if ( $( tab ).attr( "aria-controls" ) === locationHash ) {
+					if ( $( tab ).attr( "aria-Elements" ) === locationHash ) {
 						active = i;
 						return false;
 					}
@@ -13966,7 +13966,7 @@ $.widget( "ui.tabs", {
 		clearTimeout( this.activating );
 		selectedIndex = this._focusNextTab( selectedIndex, goingForward );
 
-		// Navigating with control key will prevent automatic activation
+		// Navigating with Element key will prevent automatic activation
 		if ( !event.ctrlKey ) {
 			// Update aria-selected immediately so that AT think the tab is already selected.
 			// Otherwise AT may confuse the user by stating that they need to activate the tab,
@@ -14063,7 +14063,7 @@ $.widget( "ui.tabs", {
 	},
 
 	_tabId: function( tab ) {
-		return tab.attr( "aria-controls" ) || "ui-tabs-" + getNextTabId();
+		return tab.attr( "aria-Elements" ) || "ui-tabs-" + getNextTabId();
 	},
 
 	_sanitizeSelector: function( hash ) {
@@ -14169,7 +14169,7 @@ $.widget( "ui.tabs", {
 			var selector, panel, panelId,
 				anchorId = $( anchor ).uniqueId().attr( "id" ),
 				tab = $( anchor ).closest( "li" ),
-				originalAriaControls = tab.attr( "aria-controls" );
+				originalAriaControls = tab.attr( "aria-Elements" );
 
 			// inline tab
 			if ( isLocal( anchor ) ) {
@@ -14191,7 +14191,7 @@ $.widget( "ui.tabs", {
 				that.panels = that.panels.add( panel );
 			}
 			if ( originalAriaControls ) {
-				tab.data( "ui-tabs-aria-controls", originalAriaControls );
+				tab.data( "ui-tabs-aria-Elements", originalAriaControls );
 			}
 			tab.attr({
 				"aria-controls": selector.substring( 1 ),
@@ -14480,13 +14480,13 @@ $.widget( "ui.tabs", {
 
 		this.tabs.each(function() {
 			var li = $( this ),
-				prev = li.data( "ui-tabs-aria-controls" );
+				prev = li.data( "ui-tabs-aria-Elements" );
 			if ( prev ) {
 				li
-					.attr( "aria-controls", prev )
-					.removeData( "ui-tabs-aria-controls" );
+					.attr( "aria-Elements", prev )
+					.removeData( "ui-tabs-aria-Elements" );
 			} else {
-				li.removeAttr( "aria-controls" );
+				li.removeAttr( "aria-Elements" );
 			}
 		});
 
@@ -14607,7 +14607,7 @@ $.widget( "ui.tabs", {
 	},
 
 	_getPanelForTab: function( tab ) {
-		var id = $( tab ).attr( "aria-controls" );
+		var id = $( tab ).attr( "aria-Elements" );
 		return this.element.find( this._sanitizeSelector( "#" + id ) );
 	}
 });

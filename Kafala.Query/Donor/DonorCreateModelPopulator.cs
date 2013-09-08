@@ -14,7 +14,7 @@ using Foundation.Web.Extensions;
 
 namespace Kafala.Query.Donor
 {
-    public class DonorCreateModelPopulator : IQuery<string, DonorCreateViewModel>
+    public class DonorCreateModelPopulator : IQuery<string, CreateDonorViewModel>
     {
         private readonly ISession session;
 
@@ -23,9 +23,9 @@ namespace Kafala.Query.Donor
             this.session = session;
         }
 
-        public DonorCreateViewModel Execute(string parameters)
+        public CreateDonorViewModel Execute(string parameters)
         {
-            var model = new DonorCreateViewModel()
+            var model = new CreateDonorViewModel()
                 {
                     Name = "Abdo",
                     ListProperty = typeof(DonorStatus).ToSelectListWithNames(),
