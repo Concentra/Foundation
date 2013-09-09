@@ -104,6 +104,7 @@
     <Compile Include="Extensions\MvcPanel.cs" />
     <Compile Include="Extensions\MvcPanelTab.cs" />
     <Compile Include="Extensions\TBExtensions.cs" />
+    <Compile Include="IResourcesLocator.cs" />
     <Compile Include="Security\Base64Encoder.cs" />
     <Compile Include="Security\DefaultFormAuthenticationService.cs" />
     <Compile Include="Security\IPasswordHelper.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Security\IPasswordEncoder.cs" />
     <Compile Include="Security\PasswordInfo.cs" />
     <Compile Include="Security\SignInResult.cs" />
+    <Compile Include="StructureMapDependencyResolver.cs" />
     <Compile Include="WebFlashMessenger.cs" />
     <Compile Include="ICurrentAuthenticateUser.cs" />
     <Compile Include="IFlashMessenger.cs" />

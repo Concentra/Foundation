@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Foundation.Infrastructure.BL;
+using Foundation.Web;
 using Kafala.Entities;
 using Foundation.Infrastructure;
 using NHibernate;
@@ -11,43 +12,72 @@ namespace Kafala.BusinessManagers.Donor
 {
    public class DonorBusinessManager : IBusinessManager
     {
+       public IFlashMessenger FlashMessenger { get; set; }
        private readonly ISession session;
 
-       public DonorBusinessManager(ISession session)
+       public DonorBusinessManager(ISession session, IFlashMessenger flashMessenger)
        {
+           FlashMessenger = flashMessenger;
            this.session = session;
        }
 
        public virtual Guid Add(IDonorContract donor)
        {
-           var referral = donor.ReferralId != null ? session.Get<Entities.Donor>(donor.ReferralId) : null;
+           var referral = session.Get<Entities.Donor>(donor.ReferralId);
            var donorObject = new Entities.Donor()
            {
                Id = new Guid(),
-               JoinDate = joinDate ,
-               Referral = referral,
-               Name = name,
-               Telephone = Mobile,
-               
+               JoinDate = donor.JoinDate ,
+               DonorStatus = donor.DonorStatus,
+               Name = donor.Name,
+               Email = donor.Email,
+               Mobile = donor.Mobile,
+               Telephone = donor.Telephone,
+               Referral = referral
            };
 
-           session.Save(donor);
-           return donor.Id;
+           session.Save(donorObject);
+           this.FlashMessenger.AddMessageByKey("CreateDonorSuccess" , FlashMessageType.Success);
+           return donorObject.Id;
        }
 
-       public virtual Guid Update(Guid id, string name, string Mobile, DateTime? joinDate, Guid? refferedId)
+       public virtual Guid Update(Guid id, IDonorContract donorValue)
        {
            var donor = session.Get<Entities.Donor>(id);
-           var referral = refferedId.HasValue ? session.Get<Entities.Donor>(refferedId) : null;
+           var referral = session.Get<Entities.Donor>(donorValue.ReferralId);
            if (donor != null)
            {
-               donor.JoinDate = joinDate;
+               donor.JoinDate = donorValue.JoinDate;
+               donor.DonorStatus = donorValue.DonorStatus;
+               donor.Name = donorValue.Name;
+               donor.Email = donorValue.Email;
+               donor.Mobile = donorValue.Mobile;
+               donor.Telephone = donorValue.Telephone;
                donor.Referral = referral;
-               donor.Name = name;
-               donor.Telephone = Mobile;
-               session.Save(donor);
            }
+           
+           session.Save(donor);
            return id;
+       }
+
+       public bool Delete(Guid donorId)
+       {
+           
+           var donor = session.Get<Entities.Donor>(donorId);
+           if (CanDelete(donor))
+           {
+               session.Delete(donor);
+               return true;
+           }
+           else
+           {
+               return false;
+           }
+       }
+
+       private bool CanDelete(Entities.Donor donor)
+       {
+           return true;
        }
     }
 }

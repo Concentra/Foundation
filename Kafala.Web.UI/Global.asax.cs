@@ -8,6 +8,7 @@ using Foundation.Infrastructure;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Persistence;
+using Foundation.Web;
 using Kafala.BusinessManagers;
 using Kafala.Entities.DoNotMap;
 using StructureMap;
@@ -45,7 +46,8 @@ namespace Kafala.Web.UI
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            ControllerBuilder.Current.SetControllerFactory(ObjectFactory.Container.GetInstance<IControllerFactory>());
+            ControllerBuilder.Current.SetControllerFactory(new CustomControllerFactory(ObjectFactory.Container));
+            DependencyResolver.SetResolver(new StructureMapDependencyResolver(ObjectFactory.Container));
         }
 
         private static void ConfigureDependencies(ConfigurationExpression cfg)

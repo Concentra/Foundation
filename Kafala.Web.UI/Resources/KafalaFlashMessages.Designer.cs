@@ -59,5 +59,14 @@ namespace Kafala.Web.UI.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donor was created successfully.
+        /// </summary>
+        internal static string CreateDonorSuccess {
+            get {
+                return ResourceManager.GetString("CreateDonorSuccess", resourceCulture);
+            }
+        }
     }
 }

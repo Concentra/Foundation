@@ -15,14 +15,12 @@ namespace Kafala.Web.UI
     {
         public WebRegistery()
         {
-            this.For<IControllerFactory>().Use<CustomControllerFactory>();
-            
             this.For<IFormAuthenticationService>().Use<DefaultFormAuthenticationService>();
             this.For<IPasswordEncoder>().Use<Base64Encoder>();
             this.For<IPasswordHelper>().Use<PasswordHelper>();
             this.For<IUserAuthenticationFacade>().Use<UserAuthenticationFacade>();
             this.For<IEmailService>().Use<EmailService>();
-
+            this.For<IResourcesLocator>().Use<Kafala.Web.UI.ResourcesLocator>();
             this.Scan(x =>
             {
                 x.Assembly(Assembly.GetExecutingAssembly().GetName().Name);

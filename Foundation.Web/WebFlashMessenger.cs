@@ -14,9 +14,9 @@ namespace Foundation.Web
         private readonly ResourceManager resourceManager;
         private readonly Dictionary<FlashMessageType, Queue<string>> messages;
 
-        public WebFlashMessenger(string flashMessagesResourceName)
+        public WebFlashMessenger(IResourcesLocator resourcesLocator)
         {
-            this.resourceManager = new ResourceManager(flashMessagesResourceName, Assembly.GetExecutingAssembly());
+            this.resourceManager = resourcesLocator.FlashMessagesResourceManager;
 
             this.messages = new Dictionary<FlashMessageType, Queue<string>>();
 

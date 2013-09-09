@@ -9,7 +9,7 @@ using StructureMap;
 
 namespace Foundation.Web
 {
-    public class CustomControllerFactory : IControllerFactory
+    public class CustomControllerFactory : DefaultControllerFactory
     {
         private readonly IContainer container;
 
@@ -17,11 +17,16 @@ namespace Foundation.Web
        
         public CustomControllerFactory(IContainer container)
         {
+            if (container == null)
+            {
+                throw new ArgumentNullException("container");
+            }
+
             this.container = container;
 
         }
 
-        public IController CreateController(RequestContext requestContext, string controllerName)
+        public override IController CreateController(RequestContext requestContext, string controllerName)
         {
             var nestedContainer = this.container.GetNestedContainer();
 
@@ -30,43 +35,31 @@ namespace Foundation.Web
             ControllerBase controllerBase = null;
 
             Func<ControllerContext> ctxtCtor = () => controllerBase == null ? null : controllerBase.ControllerContext;
+                //controllerBase == null ? null : controllerBase.ControllerContext;
 
             nestedContainer
                 .Configure(cfg =>
                                {
                                    cfg.For<RequestContext>().Use(requestContext);
-                                   cfg.For<HttpContextBase>().Use(
-                                       requestContext.HttpContext);
+                                   cfg.For<HttpContextBase>().Use(requestContext.HttpContext);
                                    cfg.For<Func<ControllerContext>>().Use(ctxtCtor);
-              
                                    cfg.For<IFlashMessenger>()
                                        .HybridHttpOrThreadLocalScoped()
                                        .Use(x =>
-                                                {
-                                                    TempDataDictionary tempData;
-                                                    var controllerContext = controllerBase == null ? null : controllerBase.ControllerContext;
-                                                    if (controllerContext != null)
-                                                    {
-                                                        tempData =
-                                                            controllerContext.Controller.TempData;
-                                                       
-                                                    }
-                                                    else
-                                                    {
-                                                        tempData = new TempDataDictionary();
-                                                    }
-
-                                                    var flashMessenger =
-                                                           new WebFlashMessenger(
-                                                               "Kafala.Web.UI.Resources.KafalaFlashMessages");
-                                                    tempData["FlashMessenger"] =
-                                                        flashMessenger;
+                                           {
+                                               /*var controllerContext = ctxtCtor();
+                                               var controllerFromContext = controllerContext.Controller;
+                                               var tempData = controllerFromContext.TempData;*/
+                                                    var flashMessenger = new WebFlashMessenger(container.GetInstance<IResourcesLocator>());
+                                                    //tempData["FlashMessenger"] = flashMessenger;
                                                     return flashMessenger;
                                                 });
                                });
 
             var controller = nestedContainer.TryGetInstance<IController>(controllerName);
-            
+
+            controllerBase = controller as ControllerBase;
+
             if (controller == null)
             {
                 throw new HttpException(
@@ -84,7 +77,7 @@ namespace Foundation.Web
             return SessionStateBehavior.Default;
         }
 
-        public void ReleaseController(IController controller)
+        public override void ReleaseController(IController controller)
         {
             var controllerBase = controller as Controller;
 
@@ -99,6 +92,8 @@ namespace Foundation.Web
                     nestedContainer.Dispose();
                 }
             }
+
+            base.ReleaseController(controller);
         }
     }
 }

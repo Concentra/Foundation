@@ -46,7 +46,7 @@ namespace Kafala.Web.UI.Controllers
         public ActionResult Create(CreateDonorViewModel model)
         {
             var manager = businessManagerContainer.Get<DonorBusinessManager>();
-            var donorId = manager.Add(model.Name, model.Mobile, model.JoinDate, model.ReferralId);
+            var donorId = manager.Add(model);
             return RedirectToAction("Details", new { id = donorId });
         }
 
@@ -69,8 +69,16 @@ namespace Kafala.Web.UI.Controllers
         public ActionResult Edit(DonorUpdateViewModel model)
         {
             var manager = businessManagerContainer.Get<DonorBusinessManager>();
-            var donorId = manager.Update(model.Id, model.Name, model.Mobile, model.JoinDate, model.ReferralId);
+            var donorId = manager.Update(model.Id, model);
             return RedirectToAction("Details", new { id = donorId });
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Guid donorId)
+        {
+            var manager = businessManagerContainer.Get<DonorBusinessManager>();
+            var result = manager.Delete(donorId);
+            return RedirectToAction("Index");
         }
     }
 }
