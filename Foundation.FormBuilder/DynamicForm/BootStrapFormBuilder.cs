@@ -29,7 +29,7 @@ namespace Foundation.FormBuilder.DynamicForm
         {
             var formElements = ExtractElementsToRender(model);
             
-            var sb = new StringBuilder(2000);
+            var sb = new StringBuilder();
             sb.Append(RenderHiddenFields(formElements));
             var stringWriter = new StringWriter(sb);
             using (var textWriter = new NavHtmlTextWritter(stringWriter))

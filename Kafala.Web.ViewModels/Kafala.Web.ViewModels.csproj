@@ -48,7 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commitment\CommitmentItemViewModel.cs" />
+    <Compile Include="Commitment\CommitmentIndexViewModel.cs" />
+    <Compile Include="Commitment\ViewCommitmentViewModel.cs" />
+    <Compile Include="Commitment\EditCommitmentViewModel.cs" />
+    <Compile Include="Commitment\CreateCommitmentViewModel.cs" />
+    <Compile Include="Commitment\PaymentsViewModel.cs" />
     <Compile Include="Donor\CreateDonorViewModel.cs" />
     <Compile Include="Donor\DonorUpdateViewModel.cs" />
     <Compile Include="Donor\DonorIndexViewModel.cs" />

@@ -17,7 +17,7 @@ namespace Foundation.Web
         public WebFlashMessenger(IResourcesLocator resourcesLocator)
         {
             this.resourceManager = resourcesLocator.FlashMessagesResourceManager;
-
+            
             this.messages = new Dictionary<FlashMessageType, Queue<string>>();
 
             foreach (FlashMessageType flashMessageType in Enum.GetValues(typeof(FlashMessageType)))
@@ -45,7 +45,7 @@ namespace Foundation.Web
             this.messages[messageType].Enqueue(message);
         }
 
-        public string RenderFlashMessages()
+        public MvcHtmlString RenderFlashMessages()
         {
             var sb = new StringBuilder();
 
@@ -62,7 +62,7 @@ namespace Foundation.Web
                 }
             }
 
-            return sb.ToString();
+            return new MvcHtmlString(sb.ToString());
         }
 
         public MvcHtmlString RenderFlashMessagesForType(FlashMessageType messageType)
@@ -72,8 +72,7 @@ namespace Foundation.Web
                 if (messagesToRender.Any())
                 {
                     var builder = new TagBuilder("div");
-                    builder.AddCssClass("message");
-                    builder.AddCssClass(messageType.ToString().ToLower());
+                    builder.AddCssClass("alert alert-" + messageType.ToString().ToLower());
                     builder.InnerHtml = string.Join(".", messagesToRender);
                     return MvcHtmlString.Create(builder.ToString(TagRenderMode.Normal));
                 }

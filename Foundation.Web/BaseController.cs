@@ -18,6 +18,13 @@ namespace Foundation.Web
         
         public ICurrentAuthenticateUser CurrentAuthenticateUser { get; set; }
         
+        public  BaseController()
+        {
+            var flashMessenger = new WebFlashMessenger(ObjectFactory.GetInstance<IResourcesLocator>());
+            TempData["FlashMessenger"] = flashMessenger;
+            this.FlashMessenger = flashMessenger;
+        }
+
         protected ActionResult PageNotFound()
         {
             return this.View("NotFound");

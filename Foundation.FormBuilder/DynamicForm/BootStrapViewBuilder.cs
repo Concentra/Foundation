@@ -29,7 +29,7 @@ namespace Foundation.FormBuilder.DynamicForm
         {
             var formElements = ExtractElementsToRender(model);
             
-            var sb = new StringBuilder(2000);
+            var sb = new StringBuilder();
             var stringWriter = new StringWriter(sb);
             using (var textWriter = new NavHtmlTextWritter(stringWriter))
             {
@@ -103,7 +103,7 @@ namespace Foundation.FormBuilder.DynamicForm
                                                     CollectionInfo = p.Value.GetCustomAttributes(typeof(CollectionInfo), false)
                                                          .Cast<CollectionInfo>()
                                                          .FirstOrDefault(),
-                                                    //FieldValue = p.Value.GetValue(model, null),
+                                                    FieldValue = p.Value.GetValue(model, null),
                                                     ValidationInfo = null
                                                 })
                                     .Where(p => p.ControlSpecs != null)

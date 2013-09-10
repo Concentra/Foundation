@@ -16,15 +16,12 @@ namespace Kafala.Web.UI.Controllers
 
         private readonly IQueryContainer queryContainer;
 
-        private readonly IFlashMessenger flashMessenger;
-        
         //
         // GET: /Donor/
-        public DonorController(IBusinessManagerContainer businessManagerContainer, IQueryContainer queryContainer, IFlashMessenger flashMessenger)
+        public DonorController(IBusinessManagerContainer businessManagerContainer, IQueryContainer queryContainer)
         {
             this.businessManagerContainer = businessManagerContainer;
             this.queryContainer = queryContainer;
-            this.flashMessenger = flashMessenger;
         }
 
 

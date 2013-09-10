@@ -8,7 +8,7 @@ namespace Foundation.Web
 
         void AddMessage(string message, FlashMessageType messageType);
 
-        string RenderFlashMessages();
+        MvcHtmlString RenderFlashMessages();
 
         MvcHtmlString RenderFlashMessagesForType(FlashMessageType messageType);
 

@@ -21,6 +21,7 @@ namespace Kafala.Web.UI
             this.For<IUserAuthenticationFacade>().Use<UserAuthenticationFacade>();
             this.For<IEmailService>().Use<EmailService>();
             this.For<IResourcesLocator>().Use<Kafala.Web.UI.ResourcesLocator>();
+            this.For<IFlashMessenger>().Use<WebFlashMessenger>();
             this.Scan(x =>
             {
                 x.Assembly(Assembly.GetExecutingAssembly().GetName().Name);

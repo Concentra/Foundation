@@ -49,4 +49,23 @@
     </tr>
 }
 
+     @using (var modal = Html.Bootstrap().Begin(new Modal(new { id = "confirmDelete" })))
+    {
+        using (var header = modal.BeginHeader())
+        {
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Are you sure you want to delete this Donor from the system</h3>
+        }
+        using (var body = modal.BeginBody())
+        {
+            <p>All commitments related to this donor will be removed.</p>
+        }
+        using (var footer = modal.BeginFooter())
+        {
+            @Html.Bootstrap().Button("Close", BootstrapNamedColor.Default, null, new { data_dismiss = "modal" })
+            @Html.Bootstrap().Button("Save Changes", BootstrapNamedColor.Primary, null)
+        }
+    }
+
+    
 </table>

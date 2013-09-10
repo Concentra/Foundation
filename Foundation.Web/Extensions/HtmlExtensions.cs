@@ -34,7 +34,7 @@ namespace Foundation.Web.Extensions
         }
 
 
-        public static string RenderFlashMessages(this HtmlHelper htmlHelper)
+        public static MvcHtmlString RenderFlashMessages(this HtmlHelper htmlHelper)
         {
             var flashMessenger = htmlHelper.ViewContext.TempData["FlashMessenger"] as WebFlashMessenger;
 

@@ -47,11 +47,9 @@ namespace Foundation.Web
                                        .HybridHttpOrThreadLocalScoped()
                                        .Use(x =>
                                            {
-                                               /*var controllerContext = ctxtCtor();
-                                               var controllerFromContext = controllerContext.Controller;
-                                               var tempData = controllerFromContext.TempData;*/
-                                                    var flashMessenger = new WebFlashMessenger(container.GetInstance<IResourcesLocator>());
-                                                    //tempData["FlashMessenger"] = flashMessenger;
+                                               //var tempData = x.GetInstance<Func<ControllerContext>>()().Controller.TempData;
+                                               var flashMessenger = new WebFlashMessenger(container.GetInstance<IResourcesLocator>(), x.GetInstance<Func<ControllerContext>>());
+                                                 //   tempData["FlashMessenger"] = flashMessenger;
                                                     return flashMessenger;
                                                 });
                                });

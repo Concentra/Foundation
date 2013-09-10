@@ -97,7 +97,6 @@
   <ItemGroup>
     <Compile Include="BaseController.cs" />
     <Compile Include="ControllerRegistrationConvention.cs" />
-    <Compile Include="CustomControllerFactory.cs" />
     <Compile Include="Extensions\CssMediaType.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
@@ -114,6 +113,7 @@
     <Compile Include="Security\IPasswordEncoder.cs" />
     <Compile Include="Security\PasswordInfo.cs" />
     <Compile Include="Security\SignInResult.cs" />
+    <Compile Include="StructureMapControllerFactory.cs" />
     <Compile Include="StructureMapDependencyResolver.cs" />
     <Compile Include="WebFlashMessenger.cs" />
     <Compile Include="ICurrentAuthenticateUser.cs" />

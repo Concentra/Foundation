@@ -16,8 +16,6 @@ namespace Foundation.FormBuilder
             this.helper = helper;
         }
 
-
-
         #region view
 
 
@@ -34,7 +32,7 @@ namespace Foundation.FormBuilder
 
         public MvcHtmlString DynamicView(BootstrapFormType formType = BootstrapFormType.Horizontal)
         {
-            return RenderUI(GetViewBuilder(helper), formType);
+            return RenderUI(GetViewBuilder(helper), formType, false);
         }
 
         #endregion
@@ -61,9 +59,9 @@ namespace Foundation.FormBuilder
         #endregion
 
 
-        public MvcHtmlString RenderUI(IDynamicUiBuilder<TModel> builder, BootstrapFormType formType)
+        public MvcHtmlString RenderUI(IDynamicUiBuilder<TModel> builder, BootstrapFormType formType, bool renderButtons = true)
         {
-            return builder.Build(helper.ViewData.Model, formType);
+            return builder.Build(helper.ViewData.Model, formType, renderButtons);
         }
 
        
