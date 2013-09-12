@@ -63,10 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountNotificationManager.cs" />
+    <Compile Include="Commitment\CommitmentBusinessManager.cs" />
+    <Compile Include="Commitment\ICommitmentContract.cs" />
     <Compile Include="Donor\DonorInterceptor.cs" />
     <Compile Include="Donor\DonorBusinessManager.cs" />
     <Compile Include="Donor\IDonorContract.cs" />
     <Compile Include="Enums\DonorStatus.cs" />
+    <Compile Include="Payment\PaymentBusinessManager.cs" />
+    <Compile Include="Payment\IPaymentContract.cs" />
     <Compile Include="SqlProcBusinessManagerInvocationLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

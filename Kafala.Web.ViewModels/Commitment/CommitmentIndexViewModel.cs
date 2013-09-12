@@ -5,6 +5,6 @@ namespace Kafala.Web.ViewModels.Commitment
 {
     public class CommitmentIndexViewModel
     {
-        public virtual List<ViewCommitmentViewModel> Donors { get; set; }
+        public virtual List<ViewCommitmentViewModel> Commitments { get; set; }
     }
 }

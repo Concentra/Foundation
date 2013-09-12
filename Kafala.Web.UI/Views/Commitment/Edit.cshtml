@@ -1,0 +1,7 @@
+﻿@model Kafala.Web.ViewModels.Commitment.EditCommitmentViewModel
+
+<h2>Edit Commmitment Information</h2>
+@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
+{
+    @Html.FormBuilder().DynamicForm();
+}

@@ -1,6 +1,29 @@
 ﻿@model Kafala.Web.ViewModels.Donor.ViewDonorViewModel
-<h2>Donor Details</h2>
-@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
-{
-    @Html.FormBuilder().DynamicView()
-}
+
+<div class="page-header">
+    <h1>Name @Model.Name</h1>
+</div>
+<div class="row">
+            <div class="btn-group">
+                @Html.Bootstrap().ActionButton("Edit" , BootstrapNamedColor.Default, "Edit" , "Donor", new  {id = Model.Id})
+                @Html.Bootstrap().ActionButton("Delete" , BootstrapNamedColor.Warning, "Delete" , "Donor", new  {id = Model.Id})
+            </div>
+        </div>
+<div class="row">
+    <div class="col-md-5">
+        <div class="row">
+              @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new { @class = "well  well-sm", id = "autoForm" }))
+              {
+                  @Html.FormBuilder().DynamicView()
+              }
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="row">
+            @Html.Partial("Partial/DonorCommitments", Model.DonorCommitments, new ViewDataDictionary()) 
+
+        </div>
+
+    </div>
+    </div>
+

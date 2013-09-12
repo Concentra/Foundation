@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Kafala.Web.ViewModels.Commitment.ViewCommitmentViewModel>
+
+<h3>Associated Commitments  <span class="badge pull-right">
+                                                               @if (Model == null)
+                                                               {
+                                                                   Html.Raw("0");
+                                                               }
+                                                               else
+                                                               {
+
+                                                                   Html.Raw(Model.Count());
+                                                               }
+
+                            </span></h3>
+
+ @if (Model != null)
+ {
+     <table class="table-striped table-bordered table">
+         <tr>
+             <th>Case Name</th>
+             <th>Start Date</th>
+             <th>End Date</th>
+         </tr>
+  
+         @foreach (var item in Model)
+         {
+             <tr>
+                 <td>@item.DonationCaseName</td>
+                 <td>@item.StartDate</td>
+                 <td>@item.EndDate</td>
+                 <td>
+                     @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                     @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                     @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                 </td>
+             </tr>
+         }
+
+     </table>
+ }
+else
+{
+<div class="alert-info alert">
+    No Commitments are associated with this donor.<br/>
+    Click @Html.ActionLink("here", "Create", "Commitment", new {@class = "alert-link"}) to link him/her to cases.
+     
+</div>
+}

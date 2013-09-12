@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CommitmentController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -232,8 +233,19 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Donor\View.cshtml" />
     <Content Include="Views\Donor\Edit.cshtml" />
+    <Content Include="Views\Commitment\Create.cshtml" />
+    <Content Include="Views\Commitment\Edit.cshtml" />
+    <Content Include="Views\Commitment\View.cshtml" />
+    <Content Include="Views\Commitment\Index.cshtml" />
+    <Content Include="Views\Payment\Create.cshtml" />
+    <Content Include="Views\Payment\View.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Donor\Partial\DonorCommitments.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Commitment\Partial\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>

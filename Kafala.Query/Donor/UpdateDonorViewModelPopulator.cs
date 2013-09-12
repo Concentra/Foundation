@@ -19,9 +19,9 @@ namespace Kafala.Query.Donor
             this.session = session;
         }
 
-         public DonorUpdateViewModel Execute(Guid donorId)
+         public DonorUpdateViewModel Execute(Guid id)
         {
-            var donor = this.session.Get<Entities.Donor>(donorId);
+            var donor = this.session.Get<Entities.Donor>(id);
 
             Mapper.CreateMap<Entities.Donor, DonorUpdateViewModel>();
 

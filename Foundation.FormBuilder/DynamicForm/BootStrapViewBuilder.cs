@@ -103,7 +103,7 @@ namespace Foundation.FormBuilder.DynamicForm
                                                     CollectionInfo = p.Value.GetCustomAttributes(typeof(CollectionInfo), false)
                                                          .Cast<CollectionInfo>()
                                                          .FirstOrDefault(),
-                                                    FieldValue = p.Value.GetValue(model, null),
+                                                    FieldValue = FieldValue(model, p),
                                                     ValidationInfo = null
                                                 })
                                     .Where(p => p.ControlSpecs != null)
@@ -117,6 +117,18 @@ namespace Foundation.FormBuilder.DynamicForm
             }
 
             return formElements;
+        }
+
+        private static object FieldValue(TModel model, KeyValuePair<string, PropertyInfo> p)
+        {
+            if (model != null)
+            {
+                return p.Value.GetValue(model, null);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

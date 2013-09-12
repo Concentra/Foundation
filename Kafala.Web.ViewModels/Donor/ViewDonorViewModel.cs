@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Foundation.FormBuilder.Blocks;
 using Foundation.FormBuilder.CustomAttribute;
 using Kafala.Entities.Enums;
+using Kafala.Web.ViewModels.Commitment;
 
 namespace Kafala.Web.ViewModels.Donor
 {
@@ -42,5 +43,7 @@ namespace Kafala.Web.ViewModels.Donor
 
         [EditControl(Label = "Date Joined", ElementType = ElementType.DateTime, Order = 1)]
         public DateTime? JoinDate { get; set; }
+
+        public IEnumerable<ViewCommitmentViewModel> DonorCommitments { get; set; }
     }
 }

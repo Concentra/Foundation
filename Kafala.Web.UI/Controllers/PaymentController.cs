@@ -4,62 +4,62 @@ using System.Web.Mvc;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Web;
-using Kafala.BusinessManagers.Commitment;
-using Kafala.Query.Commitment;
-using Kafala.Web.ViewModels.Commitment;
+using Kafala.BusinessManagers.Payment;
+using Kafala.Query.Payment;
+using Kafala.Web.ViewModels.Payment;
 
 namespace Kafala.Web.UI.Controllers
 {
-    public class CommitmentController : BaseController
+    public class PaymentController : BaseController
     {
         private readonly IQueryContainer queryContainer;
 
-        private readonly CommitmentBusinessManager businessManager;
+        private readonly PaymentBusinessManager businessManager;
 
-        public CommitmentController(IBusinessManagerContainer businessManagerContainer, IQueryContainer queryContainer)
+        public PaymentController(IBusinessManagerContainer businessManagerContainer, IQueryContainer queryContainer)
         {
-            this.businessManager = businessManagerContainer.Get<CommitmentBusinessManager>();
+            this.businessManager = businessManagerContainer.Get<PaymentBusinessManager>();
             this.queryContainer = queryContainer;
         }
 
         public ActionResult Index()
         {
-            var container = this.queryContainer.Get<CommitmentListModelPopulator>();
+            var container = this.queryContainer.Get<PaymentListModelPopulator>();
             var model = container.Execute(null);
             return View("Index", model);
         }
 
         public ActionResult Create()
         {
-            var container = this.queryContainer.Get<CommitmentCreateModelPopulator>();
+            var container = this.queryContainer.Get<PaymentCreateModelPopulator>();
             var model = container.Execute(null);
             return View("Create", model);
         }
 
         [HttpPost]
-        public ActionResult Create(CreateCommitmentViewModel model)
+        public ActionResult Create(CreatePaymentViewModel model)
         {
-            var id = businessManager.Add(model);
+            var id = businessManager.Register(model);
             return RedirectToAction("Details", new {id });
         }
 
 
         public ActionResult Details(Guid id)
         {
-            var modelPopulator = this.queryContainer.Get<CommitmentViewModelPopulator>();
+            var modelPopulator = this.queryContainer.Get<PaymentViewModelPopulator>();
             var model = modelPopulator.Execute(id);
             return View("View", model);
         }
 
         public ActionResult Edit(Guid id)
         {
-            var modelPopulator = this.queryContainer.Get<UpdateCommitmentViewModelPopulator>();
+            var modelPopulator = this.queryContainer.Get<UpdatePaymentViewModelPopulator>();
             var model = modelPopulator.Execute(id);
             return View("Edit", model);
         }
 
         [HttpPost]
-        public ActionResult Edit(EditCommitmentViewModel model)
+        public ActionResult Edit(EditPaymentViewModel model)
         {
             var id = businessManager.Update(model.Id, model);
             return RedirectToAction("Details", new {id });

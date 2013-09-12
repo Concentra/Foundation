@@ -11,9 +11,11 @@ namespace Kafala.Entities
 
         public virtual string Comments { get; set; }
 
-        public virtual DateTime PaymentDate { get; set; }
+        public virtual DateTime? PaymentDate { get; set; }
 
         public virtual PaymentPeriod PaymentPeriod { get; set; }
+
+        public virtual Commitment Commitment { get; set; }
 
         public virtual Decimal Amount { get; set; }
     }

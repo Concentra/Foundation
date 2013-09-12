@@ -53,6 +53,10 @@
     <Compile Include="Commitment\EditCommitmentViewModel.cs" />
     <Compile Include="Commitment\CreateCommitmentViewModel.cs" />
     <Compile Include="Commitment\PaymentsViewModel.cs" />
+    <Compile Include="Payment\CommitmentIndexViewModel.cs" />
+    <Compile Include="Payment\CreatePaymentViewModel.cs" />
+    <Compile Include="Payment\EditPaymentViewModel.cs" />
+    <Compile Include="Payment\ViewPaymentViewModel.cs" />
     <Compile Include="Donor\CreateDonorViewModel.cs" />
     <Compile Include="Donor\DonorUpdateViewModel.cs" />
     <Compile Include="Donor\DonorIndexViewModel.cs" />

@@ -21,7 +21,7 @@ namespace Kafala.Query.Donor
             this.session = session;
         }
 
-        public DonorIndexViewModel Execute(string parameters)
+        public DonorIndexViewModel Execute(string id)
         {
             var model = new DonorIndexViewModel
                             {

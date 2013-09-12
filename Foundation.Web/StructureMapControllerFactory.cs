@@ -57,15 +57,7 @@ namespace Foundation.Web
                 cfg.For<RequestContext>().Use(requestContext);
                 cfg.For<HttpContextBase>().Use(requestContext.HttpContext);
                 cfg.For<Func<ControllerContext>>().Use(ctxtCtor);
-                cfg.For<IFlashMessenger>()
-                    .HybridHttpOrThreadLocalScoped()
-                    .Use(x =>
-                    {
-                        var tempData = x.GetInstance<Func<ControllerContext>>()().Controller.TempData;
-                        var flashMessenger = new WebFlashMessenger(container.GetInstance<IResourcesLocator>());
-                        tempData["FlashMessenger"] = flashMessenger;
-                        return flashMessenger;
-                    });
+                cfg.For<IFlashMessenger>().Use<WebFlashMessenger>();
             });
 
             var controller = nestedContainer.TryGetInstance<IController>(controllerName);

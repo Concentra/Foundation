@@ -1,0 +1,23 @@
+﻿@model Kafala.Web.ViewModels.Commitment.CommitmentIndexViewModel
+
+<h2>List Commitments</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+        <tr>
+            <th>Test</th>
+        </tr>
+    
+    @foreach (var item in Model.Commitments) {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+    
+    </table>

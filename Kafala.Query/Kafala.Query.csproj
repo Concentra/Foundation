@@ -58,6 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commitment\CommitmentCreateModelPopulator.cs" />
+    <Compile Include="Commitment\CommitmentListModelPopulator.cs" />
+    <Compile Include="Commitment\CommitmentViewModelPopulator.cs" />
+    <Compile Include="Commitment\UpdateCommitmentViewModelPopulator.cs" />
+    <Compile Include="Payment\PaymentCreateModelPopulator.cs" />
+    <Compile Include="Payment\PaymentListModelPopulator.cs" />
+    <Compile Include="Payment\PaymentViewModelPopulator.cs" />
+    <Compile Include="Payment\UpdatePaymentViewModelPopulator.cs" />
     <Compile Include="Donor\UpdateDonorViewModelPopulator.cs" />
     <Compile Include="Donor\DonorCreateModelPopulator.cs" />
     <Compile Include="Donor\DonorListModelPopulator.cs" />
@@ -94,6 +102,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

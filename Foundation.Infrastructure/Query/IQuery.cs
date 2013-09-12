@@ -7,6 +7,6 @@
     
     public interface IQuery<in TParameters, out TResult> : IQuery
     {
-        TResult Execute(TParameters parameters);
+        TResult Execute(TParameters id);
     }
 }
