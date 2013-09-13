@@ -37,14 +37,14 @@ namespace Foundation.FormBuilder.Blocks
             // Label
             if (formType == BootstrapFormType.Horizontal)
             {
-                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "col-lg-2 control-label");
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "col-lg-3 control-label");
             }
             else
             {
                 textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "control-label");
             }
             textWriter.AddAttribute(HtmlTextWriterAttribute.For, formElement.PropertyInfo.Name);
-            textWriter.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Label);
+            textWriter.RenderBeginTag(HtmlTextWriterTag.Label);
             textWriter.Write(displayName);
             textWriter.RenderEndTag(); // label
         }

@@ -18,7 +18,7 @@ namespace Foundation.FormBuilder.ElementGenerators
             var elementBlock = new StringWriter();
             var writer = new NavHtmlTextWritter(elementBlock);
             
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "form-control");
+            //writer.AddAttribute(HtmlTextWriterAttribute.Class, "form-control");
             this.RenderStaticText(writer, formElement);
 
             #region 

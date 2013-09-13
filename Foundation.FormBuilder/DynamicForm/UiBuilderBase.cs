@@ -32,7 +32,7 @@ namespace Foundation.FormBuilder.DynamicForm
                         {
                             ControlGroup.RenderLabel(formType, formElement, textWriter);
 
-                            using (new ControlContainer(textWriter))
+                            using (new ControlContainer(textWriter, formType))
                             {
                                 // ElementType
                                 var elementBlock = ElementGenerator.RenderElement(formElement);

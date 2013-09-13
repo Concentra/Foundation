@@ -1,25 +1,34 @@
 using System;
 using System.Web.UI;
+using Foundation.FormBuilder.DynamicForm;
 
 namespace Foundation.FormBuilder.Blocks
 {
     class ControlContainer : IDisposable
     {
         private readonly HtmlTextWriter textWriter;
+        private readonly BootstrapFormType formType;
 
-        public ControlContainer(HtmlTextWriter htmlTextWriter)
+        public ControlContainer(HtmlTextWriter htmlTextWriter, BootstrapFormType formType = BootstrapFormType.Horizontal)
         {
             this.textWriter = htmlTextWriter;
-
-            // Controls Div
-            textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "controls col-lg-10");
+            if (formType == BootstrapFormType.Horizontal)
+            {
+                // Controls Div
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "col-lg-9");
+            }
+            
             textWriter.RenderBeginTag(HtmlTextWriterTag.Div);
+            
         }
 
 
         public void Dispose()
         {
-            textWriter.RenderEndTag(); // div (ElementType-Group)
+            if (formType == BootstrapFormType.Horizontal)
+            {
+                textWriter.RenderEndTag(); // div (ElementType-Group)
+            }
         }
     }
 }

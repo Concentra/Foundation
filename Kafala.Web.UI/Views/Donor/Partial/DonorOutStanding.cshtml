@@ -1,0 +1,39 @@
+﻿@model Kafala.Web.ViewModels.Donor.DonorDashBoard
+
+<h4>Over Dure Payments</h4>
+
+ @if (Model.OutStanding != null && Model.OutStanding.Any())
+ {
+     <table class="table-striped table-bordered table">
+         <tr>
+             <th>Case Name</th>
+             <th>For the Period</th>
+             <th>Due Date</th>
+             <th>Amount</th>
+             <th></th>
+         </tr>
+  
+         @foreach (var item in Model.OutStanding)
+         {
+             <tr>
+                 <td>@item.DonationCaseName</td>
+                 <td>@item.PaymentPeriod</td>
+                 <td>@item.DueDate</td>
+                 <td>@item.PaymentPeriod</td>
+                 <td>@item.Amount</td>
+                 <td>
+                     @Html.ActionLink("Pay", "Create", "Payment" , new {id = item.DonationCaseId} , null) |
+                     
+                 </td>
+             </tr>
+         }
+
+     </table>
+ }
+else
+{
+<div class="alert-success alert">
+    No Over due payment are found for this donor.<br/>
+     
+</div>
+}

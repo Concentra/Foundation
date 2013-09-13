@@ -14,7 +14,7 @@ namespace Kafala.Web.ViewModels.Donor
     public class ViewDonorViewModel
     {
         [EditControl(ElementType = ElementType.Hidden)]
-        public Guid? Id { get; set; }
+        public Guid Id { get; set; }
 
         [EditControl(GroupName = "Personal Info", Order = 10, ElementType = ElementType.StaticText, Label = "Donor Name", PromptText = "The full donor name")]
         [Required]
@@ -44,6 +44,6 @@ namespace Kafala.Web.ViewModels.Donor
         [EditControl(Label = "Date Joined", ElementType = ElementType.DateTime, Order = 1)]
         public DateTime? JoinDate { get; set; }
 
-        public IEnumerable<ViewCommitmentViewModel> DonorCommitments { get; set; }
+        public DonorDashBoard DonorDashBoard  { get; set; }
     }
 }

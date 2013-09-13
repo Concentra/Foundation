@@ -69,7 +69,7 @@ namespace VortexSoft.Bootstrap
             return ActionButton(text, color, actionName, controllerName, routeValues, null);
         }
 
-        public MvcHtmlString ActionButton(string text, BootstrapNamedColor color, string actionName, string controllerName, object routeValues, object htmlAttributes)
+        public MvcHtmlString ActionButton(string text, BootstrapNamedColor color, string actionName, string controllerName, object routeValues, object htmlAttributes, string glyphIcons = "")
         {
             var builder = new TagBuilder("a");
             builder.SetInnerText(text);
@@ -90,8 +90,14 @@ namespace VortexSoft.Bootstrap
 
             var urlHelper = new UrlHelper(helper.ViewContext.RequestContext);
             builder.MergeAttribute("href", urlHelper.Action(actionName, controllerName, routeValues));
+            if (!string.IsNullOrEmpty(glyphIcons))
+            {
+                var glyphiconBuilder = new TagBuilder("span");
+                glyphiconBuilder.AddCssClass("glyphicon glyph" + glyphIcons);
+                builder.InnerHtml = glyphiconBuilder.ToString() + " " + builder.InnerHtml;
+            }
 
-            return MvcHtmlString.Create(builder.ToString());
+           return MvcHtmlString.Create(builder.ToString());
         }
 
         //public MvcHtmlString ActionButton(string text, BootstrapNamedColor color, string actionName, string controllerName, object routeValues, object htmlAttributes)

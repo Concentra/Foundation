@@ -1,22 +1,22 @@
 ﻿@model Kafala.Web.ViewModels.Donor.DonorDashBoard
 
-<h4>Assigned Cases </h4>
+<h4>Payment History</h4>
 
- @if (Model.Commitments != null && Model.Commitments.Any())
+ @if (Model.Payments != null && Model.Payments.Any())
  {
      <table class="table-striped table-bordered table">
          <tr>
              <th>Case Name</th>
-             <th>Start Date</th>
-             <th>End Date</th>
+             <th>For the Period</th>
+             <th>Collected On</th>
          </tr>
   
-         @foreach (var item in Model.Commitments)
+         @foreach (var item in Model.Payments)
          {
              <tr>
                  <td>@item.DonationCaseName</td>
-                 <td>@item.StartDate</td>
-                 <td>@item.EndDate</td>
+                 <td>@item.PaymentPeriod</td>
+                 <td>@item.PaymentDate</td>
                  <td>
                      @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
                      @Html.ActionLink("Details", "Details", new {id = item.Id}) |
@@ -30,8 +30,8 @@
 else
 {
 <div class="alert-info alert">
-    No Commitments are associated with this donor.<br/>
-    Click @Html.ActionLink("here", "Create", "Commitment", new {donorId = Model.DonorId}, new {@class = "alert-link"}) to link him/her to cases.
+    No Payments are registered for this donor.<br/>
+    Click @Html.ActionLink("here", "Create", "Payment", new {donorId = Model.DonorId}, new {@class = "alert-link"}) to register a payment.
      
 </div>
 }

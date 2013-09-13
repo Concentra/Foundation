@@ -242,6 +242,8 @@
     <Content Include="Views\Payment\Edit.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Donor\Partial\DonorCommitments.cshtml" />
+    <Content Include="Views\Donor\Partial\DonorPayments.cshtml" />
+    <Content Include="Views\Donor\Partial\DonorOutStanding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Commitment\Partial\" />

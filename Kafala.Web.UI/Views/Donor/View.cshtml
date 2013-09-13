@@ -4,26 +4,48 @@
     <h1>Name @Model.Name</h1>
 </div>
 <div class="row">
-            <div class="btn-group">
-                @Html.Bootstrap().ActionButton("Edit" , BootstrapNamedColor.Default, "Edit" , "Donor", new  {id = Model.Id})
-                @Html.Bootstrap().ActionButton("Delete" , BootstrapNamedColor.Warning, "Delete" , "Donor", new  {id = Model.Id})
-            </div>
+    <div class="btn-group  btn-group-justified ">
+        @Html.Bootstrap().ActionButton("Edit" , BootstrapNamedColor.Default, "Edit" , "Donor", new  {id = Model.Id}, new { @class="btn-default "}, GlyphIcons.Edit)
+        @Html.Bootstrap().ActionButton("Assign Case" , BootstrapNamedColor.Default, "Create" , "Commitment", new  {donorId = Model.Id}, new { @class="btn-default"}, "icon-link")
+        @Html.Bootstrap().ActionButton("Register Payment" , BootstrapNamedColor.Default, "Create" , "Payment", new  {donorId = Model.Id}, new { @class="btn-default"}, "icon-euro")
+        
+        @Html.Bootstrap().ActionButton("Send Reminder" , BootstrapNamedColor.Default, "Remind" , "Reminder", new  {donorId = Model.Id}, new { @class="btn-default"},GlyphIcons.Envelope)
+                
+        @Html.Bootstrap().ActionButton("Delete" , BootstrapNamedColor.Warning, "Delete" , "Donor", new  {id = Model.Id},new { @class="btn-default"}, GlyphIcons.Trash)
+    </div>
+    <br/>
         </div>
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-lg-3">
         <div class="row">
-              @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new { @class = "well  well-sm", id = "autoForm" }))
+              @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Vertical, new { @class = "well  well-sm", id = "autoForm" }))
               {
-                  @Html.FormBuilder().DynamicView()
+                  @Html.FormBuilder().DynamicView(Foundation.FormBuilder.DynamicForm.BootstrapFormType.Vertical)
               }
         </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-lg-8 col-lg-offset-1">
         <div class="row">
-            @Html.Partial("Partial/DonorCommitments", Model.DonorCommitments, new ViewDataDictionary()) 
-
+            
+            @if (Model.DonorDashBoard != null)
+            {
+                @Html.Partial("Partial/DonorOutStanding", Model.DonorDashBoard, new ViewDataDictionary())
+            }
         </div>
-
+         <div class="row">
+            
+            @if (Model.DonorDashBoard != null)
+            {
+                @Html.Partial("Partial/DonorCommitments", Model.DonorDashBoard, new ViewDataDictionary())
+            }
+        </div>
+        <div class="row">
+            
+            @if (Model.DonorDashBoard != null)
+            {
+                @Html.Partial("Partial/DonorPayments", Model.DonorDashBoard, new ViewDataDictionary())
+            }
+        </div>
     </div>
     </div>
 

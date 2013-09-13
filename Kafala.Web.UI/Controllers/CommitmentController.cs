@@ -25,7 +25,7 @@ namespace Kafala.Web.UI.Controllers
         public ActionResult Index()
         {
             var container = this.queryContainer.Get<CommitmentListModelPopulator>();
-            var model = container.Execute(null);
+            var model = container.Execute(new CommitmentsListParameters(null));
             return View("Index", model);
         }
 
