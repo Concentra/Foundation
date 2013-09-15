@@ -36,6 +36,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
@@ -65,10 +71,13 @@
     <Compile Include="AccountNotificationManager.cs" />
     <Compile Include="Commitment\CommitmentBusinessManager.cs" />
     <Compile Include="Commitment\ICommitmentContract.cs" />
+    <Compile Include="DonationCase\DonationCaseBusinessManager.cs" />
+    <Compile Include="DonationCase\IDonationCaseContract.cs" />
+    <Compile Include="Enums\DonationCaseStatus.cs" />
+    <Compile Include="PaymentPeriod\PaymentBusinessManager.cs" />
     <Compile Include="Donor\DonorInterceptor.cs" />
     <Compile Include="Donor\DonorBusinessManager.cs" />
     <Compile Include="Donor\IDonorContract.cs" />
-    <Compile Include="Enums\DonorStatus.cs" />
     <Compile Include="Payment\PaymentBusinessManager.cs" />
     <Compile Include="Payment\IPaymentContract.cs" />
     <Compile Include="SqlProcBusinessManagerInvocationLogger.cs" />

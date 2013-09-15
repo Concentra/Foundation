@@ -113,7 +113,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DonationCaseController.cs" />
     <Compile Include="Controllers\CommitmentController.cs" />
+    <Compile Include="Controllers\PaymentPeriodController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
@@ -244,6 +246,10 @@
     <Content Include="Views\Donor\Partial\DonorCommitments.cshtml" />
     <Content Include="Views\Donor\Partial\DonorPayments.cshtml" />
     <Content Include="Views\Donor\Partial\DonorOutStanding.cshtml" />
+    <Content Include="Views\PaymentPeriod\Create.cshtml" />
+    <Content Include="Views\PaymentPeriod\Edit.cshtml" />
+    <Content Include="Views\PaymentPeriod\Index.cshtml" />
+    <Content Include="Views\PaymentPeriod\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Commitment\Partial\" />

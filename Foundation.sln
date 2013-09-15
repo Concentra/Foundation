@@ -41,6 +41,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexSoft.Bootstrap", "Vor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.FormBuilder", "Foundation.FormBuilder\Foundation.FormBuilder.csproj", "{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Snippet", "Snippet", "{A474D667-CAFF-4F0D-9587-DCB53C2927A9}"
+	ProjectSection(SolutionItems) = preProject
+		Snippets\Controller.snippet = Snippets\Controller.snippet
+		Snippets\ModelPopulator.snippet = Snippets\ModelPopulator.snippet
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi

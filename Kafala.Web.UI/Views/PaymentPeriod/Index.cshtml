@@ -1,0 +1,40 @@
+﻿@model Kafala.Web.ViewModels.PaymentPeriod.ListPaymentPeriodViewModel
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+               Year
+            </th>
+            <th>
+                Month
+            </th>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model.PaymentPeriods) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+

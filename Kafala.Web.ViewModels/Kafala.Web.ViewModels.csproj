@@ -53,6 +53,14 @@
     <Compile Include="Commitment\EditCommitmentViewModel.cs" />
     <Compile Include="Commitment\CreateCommitmentViewModel.cs" />
     <Compile Include="Commitment\PaymentsViewModel.cs" />
+    <Compile Include="DonationCase\CreateDonationCaseViewModel.cs" />
+    <Compile Include="DonationCase\EditDonationCaseViewModel.cs" />
+    <Compile Include="DonationCase\ListDonationCaseViewModel.cs" />
+    <Compile Include="DonationCase\ViewDonationCaseViewModel.cs" />
+    <Compile Include="PaymentPeriod\ListPaymentPeriodViewModel.cs" />
+    <Compile Include="PaymentPeriod\CreatePaymentPeriodViewModel.cs" />
+    <Compile Include="PaymentPeriod\EditPaymentPeriodViewModel.cs" />
+    <Compile Include="PaymentPeriod\ViewPaymentPeriodViewModel.cs" />
     <Compile Include="Donor\DonorDashBoard.cs" />
     <Compile Include="Payment\CommitmentIndexViewModel.cs" />
     <Compile Include="Payment\OverDuePaymentViewModel.cs" />

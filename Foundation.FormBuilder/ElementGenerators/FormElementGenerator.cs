@@ -278,7 +278,7 @@ namespace Foundation.FormBuilder.ElementGenerators
                     }
 
                     writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Option);
-                    writer.Write(selectListItem.Value);
+                    writer.Write(selectListItem.Text);
                     writer.RenderEndTag();
                 }
             }

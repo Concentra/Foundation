@@ -62,6 +62,14 @@
     <Compile Include="Commitment\CommitmentListModelPopulator.cs" />
     <Compile Include="Commitment\CommitmentViewModelPopulator.cs" />
     <Compile Include="Commitment\UpdateCommitmentViewModelPopulator.cs" />
+    <Compile Include="DonationCase\EditDonationCaseViewModelPopulator.cs" />
+    <Compile Include="DonationCase\ViewDonationCaseViewModelPopulator.cs" />
+    <Compile Include="DonationCase\CreateDonationCaseViewModelPopulator.cs" />
+    <Compile Include="DonationCase\ListDonationCaseViewModelPopulator.cs" />
+    <Compile Include="PaymentPeriod\PaymentPeriodCreateModelPopulator.cs" />
+    <Compile Include="PaymentPeriod\ListPaymentPeriodViewModelPopulator.cs" />
+    <Compile Include="PaymentPeriod\PaymentPeriodViewModelPopulator.cs" />
+    <Compile Include="PaymentPeriod\UpdatePaymentPeriodViewModelPopulator.cs" />
     <Compile Include="Payment\PaymentCreateModelPopulator.cs" />
     <Compile Include="Payment\PaymentListModelPopulator.cs" />
     <Compile Include="Payment\PaymentViewModelPopulator.cs" />

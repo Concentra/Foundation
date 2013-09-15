@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>SnippetFile2</Title>
+      <Author>Abdo</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>
+      </Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ControllerEntityName</ID>
+          <ToolTip>Contorller/Entity Name</ToolTip>
+          <Default>EntityName</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[  //
+        // GET: /$ControllerEntityName$/
+        public $ControllerEntityName$Controller(IBusinessManagerContainer businessManagerContainer, IQueryContainer queryContainer)
+        {
+            this.businessManagerContainer = businessManagerContainer;
+            this.queryContainer = queryContainer;
+        }
+
+
+        public ActionResult Index()
+        {
+            var container = this.queryContainer.Get<$ControllerEntityName$ListModelPopulator>();
+            var model = container.Execute(null);
+            return View("Index", model);
+        }
+
+        public ActionResult Create()
+        {
+            var container = this.queryContainer.Get<$ControllerEntityName$CreateModelPopulator>();
+            var model = container.Execute(null);
+            return View("Create", model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(CreateDonorViewModel model)
+        {
+            var manager = businessManagerContainer.Get<$ControllerEntityName$BusinessManager>();
+            var donorId = manager.Add(model);
+            return RedirectToAction("Details", new { id = donorId });
+        }
+
+      
+        public ActionResult Details(Guid id)
+        {
+            var modelPopulator = this.queryContainer.Get<$ControllerEntityName$ViewModelPopulator>();
+            var model = modelPopulator.Execute(id);
+            return View("View", model);
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            var modelPopulator = this.queryContainer.Get<Update$ControllerEntityName$ViewModelPopulator>();
+            var model = modelPopulator.Execute(id);
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit($ControllerEntityName$UpdateViewModel model)
+        {
+            var manager = businessManagerContainer.Get<$ControllerEntityName$BusinessManager>();
+            var donorId = manager.Update(model.Id, model);
+            return RedirectToAction("Details", new { id = donorId });
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Guid id)
+        {
+            var manager = businessManagerContainer.Get<$ControllerEntityName$BusinessManager>();
+            var result = manager.Delete(id);
+            return RedirectToAction("Index");
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

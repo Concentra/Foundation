@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Kafala.BusinessManagers.Enums
 {
-    enum DonorStatus
+    enum DonationCaseStatus
     {
        Active,
         Suspended,

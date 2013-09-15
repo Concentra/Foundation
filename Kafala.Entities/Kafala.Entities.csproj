@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\DonationCaseStatus.cs" />
     <Compile Include="Enums\DonorStatus.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="Commitment.cs" />

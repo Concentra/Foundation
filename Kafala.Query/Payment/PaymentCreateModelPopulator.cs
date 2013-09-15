@@ -23,7 +23,7 @@ namespace Kafala.Query.Payment
             var model = new CreatePaymentViewModel()
                 {
                    PaymentPeriods = 
-                   session.Query<PaymentPeriod>()
+                   session.Query<Entities.PaymentPeriod>()
                     .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()})
                     .OrderBy(x => x.Text),
                     PaymentDate = DateTime.Now

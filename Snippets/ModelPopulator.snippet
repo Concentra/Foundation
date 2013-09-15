@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>SnippetFile1</Title>
+      <Author>Abdo</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>
+      </Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ReturnViewModel</ID>
+          <ToolTip>DonorIndexViewModel</ToolTip>
+          <Default>DonorIndexViewModel</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Kind="type decl"><![CDATA[using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Foundation.Infrastructure.Query;
+using Foundation.Infrastructure;
+using NHibernate;
+using NHibernate.Linq;
+using IQuery = Foundation.Infrastructure.Query.IQuery;
+
+namespace NameSpaceHere
+{
+    public class $ReturnViewModel$Populator : IQuery<string, $ReturnViewModel$>
+    {
+        private readonly ISession session;
+
+        public $ReturnViewModel$Populator(ISession session)
+        {
+            this.session = session;
+        }
+
+        public $ReturnViewModel$ Execute(string id)
+        {
+            var model = new $ReturnViewModel$
+                            {
+                              
+
+
+                            };
+            return model;
+        }
+    }
+}
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

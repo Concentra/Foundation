@@ -25,7 +25,7 @@ namespace Kafala.BusinessManagers.Payment
                    Amount = value.Amount,
                    Comments = value.Comments,
                    PaymentDate = value.PaymentDate,
-                   PaymentPeriod = session.Get<PaymentPeriod>(value.PaymentPeriodId)
+                   PaymentPeriod = session.Get<Entities.PaymentPeriod>(value.PaymentPeriodId)
                };
 
            session.Save(persistedObject);
@@ -38,7 +38,7 @@ namespace Kafala.BusinessManagers.Payment
            var persistedObject = session.Get<Entities.Payment>(id);
            if (persistedObject != null)
            {
-               persistedObject.PaymentPeriod = session.Get<PaymentPeriod>(value.PaymentPeriodId);
+               persistedObject.PaymentPeriod = session.Get<Entities.PaymentPeriod>(value.PaymentPeriodId);
                persistedObject.Amount = value.Amount;
                persistedObject.PaymentDate = value.PaymentDate;
                persistedObject.Comments = value.Comments;

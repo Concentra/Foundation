@@ -27,7 +27,7 @@ namespace Kafala.Query.Payment
 
             var model = Mapper.Map<EditPaymentViewModel>(source);
              
-             model.PaymentPeriods = session.Query<PaymentPeriod>()
+             model.PaymentPeriods = session.Query<Entities.PaymentPeriod>()
                                           .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()})
                                           .OrderBy(x => x.Text);
              

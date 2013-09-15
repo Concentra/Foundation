@@ -26,7 +26,7 @@ namespace Kafala.BusinessManagers.Commitment
            var commitmentObject = new Entities.Commitment()
                {
                    Id = new Guid(),
-                   DonationCase = session.Get<DonationCase>(commitmentValue.DonationCaseId),
+                   DonationCase = session.Get<Entities.DonationCase>(commitmentValue.DonationCaseId),
                    Donor = session.Get<Entities.Donor>(commitmentValue.DonorId),
                    EndDate = commitmentValue.EndDate,
                    StartDate = commitmentValue.StartDate
@@ -42,7 +42,7 @@ namespace Kafala.BusinessManagers.Commitment
            var commitmentObject = session.Get<Entities.Commitment>(id);
            if (commitmentObject != null)
            {
-               commitmentObject.DonationCase = session.Get<DonationCase>(commitmentValue.DonationCaseId);
+               commitmentObject.DonationCase = session.Get<Entities.DonationCase>(commitmentValue.DonationCaseId);
                commitmentObject.Donor = session.Get<Entities.Donor>(commitmentValue.DonorId);
                commitmentObject.EndDate = commitmentValue.EndDate;
                commitmentObject.StartDate = commitmentValue.StartDate;

@@ -12,6 +12,7 @@ namespace Foundation.FormBuilder.Blocks
         public ControlContainer(HtmlTextWriter htmlTextWriter, BootstrapFormType formType = BootstrapFormType.Horizontal)
         {
             this.textWriter = htmlTextWriter;
+            this.formType = formType;
             if (formType == BootstrapFormType.Horizontal)
             {
                 // Controls Div
