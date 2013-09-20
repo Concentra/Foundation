@@ -29,7 +29,7 @@ namespace Kafala.Query.Commitment
 
             var model = Mapper.Map<EditCommitmentViewModel>(commitment);
              
-             model.DonationCases = session.Query<DonationCase>()
+             model.DonationCases = session.Query<Entities.DonationCase>()
                                           .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()})
                                           .OrderBy(x => x.Text);
              model.Donors = session.Query<Entities.Donor>()

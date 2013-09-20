@@ -25,6 +25,7 @@ namespace Kafala.BusinessManagers.Payment
                    Amount = value.Amount,
                    Comments = value.Comments,
                    PaymentDate = value.PaymentDate,
+                   Commitment = session.Get<Entities.Commitment>(value.CommitmentId),
                    PaymentPeriod = session.Get<Entities.PaymentPeriod>(value.PaymentPeriodId)
                };
 

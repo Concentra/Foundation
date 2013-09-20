@@ -31,6 +31,7 @@ namespace Kafala.Query.Donor
                                                          Id = x.Id,
                                                          Name = x.Name,
                                                          JoinDate = x.JoinDate,
+                                                         Telephone = x.Telephone,
                                                          DonorStatus = x.DonorStatus
                                                      }).ToList()
                             };

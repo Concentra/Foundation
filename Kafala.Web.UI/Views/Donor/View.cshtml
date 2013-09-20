@@ -14,14 +14,16 @@
         @Html.Bootstrap().ActionButton("Delete" , BootstrapNamedColor.Warning, "Delete" , "Donor", new  {id = Model.Id},new { @class="btn-default"}, GlyphIcons.Trash)
     </div>
     <br/>
-        </div>
+</div>
 <div class="row">
     <div class="col-lg-3">
         <div class="row">
-              @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Vertical, new { @class = "well  well-sm", id = "autoForm" }))
+             @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Vertical, new { @class = "well  well-sm", id = "autoForm" }))
               {
-                  @Html.FormBuilder().DynamicView(Foundation.FormBuilder.DynamicForm.BootstrapFormType.Vertical)
-              }
+<b>abdo</b>                
+                    @Html.FormBuilder().DynamicView(Foundation.FormBuilder.DynamicForm.BootstrapFormType.Vertical) 
+                 <b>abdo</b>                
+              }      <b>abdo</b> 
         </div>
     </div>
     <div class="col-lg-8 col-lg-offset-1">
@@ -47,5 +49,5 @@
             }
         </div>
     </div>
-    </div>
+</div>
 

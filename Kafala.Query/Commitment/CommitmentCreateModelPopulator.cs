@@ -22,7 +22,7 @@ namespace Kafala.Query.Commitment
             var model = new CreateCommitmentViewModel()
                 {
                    DonationCases = 
-                   session.Query<DonationCase>()
+                   session.Query<Entities.DonationCase>()
                     .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()})
                     .OrderBy(x => x.Text),
                    Donors = session.Query<Entities.Donor>()

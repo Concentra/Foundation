@@ -14,7 +14,13 @@ namespace Foundation.Infrastructure
 
             this.Scan(x =>
             {
-                x.AssembliesFromPath(dir+ "bin");
+                var basePath = System.AppDomain.CurrentDomain.BaseDirectory;
+                if (!basePath.ToLower().Contains("bin"))
+                {
+                    basePath = System.IO.Path.Combine(basePath, "bin");
+                }
+                
+                x.AssembliesFromPath(basePath);
                 x.With(new BusinessManagerRegisterationConventrion());
                 x.ConnectImplementationsToTypesClosing(typeof(BusinessManagerInterceptor<>));
             });

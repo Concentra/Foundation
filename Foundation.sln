@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Persistence", "Foundation.Persistence\Foundation.Persistence.csproj", "{C684E3B8-D828-4ECE-B427-AFC06F25977F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Testing", "Foundation.Testing\Foundation.Testing.csproj", "{9CE62612-D884-40E0-AD46-805A637D90C4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Entities", "Kafala.Entities\Kafala.Entities.csproj", "{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Console", "Kafala.Console\Kafala.Console.csproj", "{DC53EF77-8E48-49AA-B108-BC8E85E72A2A}"
@@ -46,6 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Snippet", "Snippet", "{A474
 		Snippets\Controller.snippet = Snippets\Controller.snippet
 		Snippets\ModelPopulator.snippet = Snippets\ModelPopulator.snippet
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Test", "Kafala.Test\Kafala.Test.csproj", "{F367B7B7-E954-476F-88F1-462371F90036}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -80,16 +80,6 @@ Global
 		{C684E3B8-D828-4ECE-B427-AFC06F25977F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C684E3B8-D828-4ECE-B427-AFC06F25977F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C684E3B8-D828-4ECE-B427-AFC06F25977F}.Release|x86.ActiveCfg = Release|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{9CE62612-D884-40E0-AD46-805A637D90C4}.Release|x86.ActiveCfg = Release|Any CPU
 		{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -193,6 +183,16 @@ Global
 		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Release|x86.ActiveCfg = Release|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F367B7B7-E954-476F-88F1-462371F90036}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,8 +15,6 @@ namespace Kafala.BusinessManagers.Donor
 
         Guid ReferralId { get; set; }
 
-        DonorStatus SelectedItem { get; set; }
-
         string Mobile { get; set; }
 
         DateTime? JoinDate { get; set; }

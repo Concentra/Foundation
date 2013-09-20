@@ -10,6 +10,8 @@ namespace Kafala.BusinessManagers.Payment
 
         Guid PaymentPeriodId { get; set; }
 
+        Guid CommitmentId { get; set; }
+
         Decimal Amount { get; set; }
     }
 }

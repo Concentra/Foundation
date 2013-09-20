@@ -16,13 +16,19 @@ namespace Kafala.BusinessManagers.DonationCase
        {
            this.flashMessenger = flashMessenger;
            this.session = session;
-           Mapper.CreateMap<IDonationCaseContract, Entities.DonationCase>();
        }
 
        public virtual Guid Add(IDonationCaseContract value)
        {
-           var persistedObject = Mapper.Map<IDonationCaseContract, Entities.DonationCase>(value);
-           persistedObject.Id = Guid.NewGuid();
+           var persistedObject = new Entities.DonationCase
+           {
+               DonationCaseStatus = value.DonationCaseStatus,
+               EndDate = value.EndDate,
+               Name = value.Name,
+               StartDate = value.StartDate,
+               Id = Guid.NewGuid()
+           };
+
            session.Save(persistedObject);
            this.flashMessenger.AddMessageByKey("CreateDonationCaseSuccess" , FlashMessageType.Success);
            return persistedObject.Id;
@@ -30,6 +36,8 @@ namespace Kafala.BusinessManagers.DonationCase
 
        public virtual Guid Update(Guid id, IDonationCaseContract value)
        {
+           Mapper.CreateMap<IDonationCaseContract, Entities.DonationCase>();
+
            var persistedObject = session.Get<Entities.DonationCase>(id);
            if (persistedObject != null)
            {

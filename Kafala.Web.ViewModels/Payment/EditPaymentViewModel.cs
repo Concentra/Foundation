@@ -17,6 +17,9 @@ namespace Kafala.Web.ViewModels.Payment
 
         public virtual IEnumerable<SelectListItem> PaymentPeriods { get; set; }
 
+        [EditControl(ElementType = ElementType.Hidden)]
+        public Guid CommitmentId { get; set; }
+
         [EditControl(Order = 2, ElementType = ElementType.WholeNumber)]
         public decimal Amount { get; set; }
 

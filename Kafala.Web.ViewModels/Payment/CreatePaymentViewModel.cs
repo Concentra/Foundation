@@ -18,6 +18,9 @@ namespace Kafala.Web.ViewModels.Payment
         [CollectionInfo(ListSourceMember = "PaymentPeriods", SelectPromptLabel = "Please select", SelectPromptValue = null)]
         public virtual Guid PaymentPeriodId { get; set; }
 
+        [EditControl(ElementType = ElementType.Hidden)]
+        public Guid CommitmentId { get; set; }
+
         public virtual IEnumerable<SelectListItem> PaymentPeriods { get; set; }
 
         [EditControl(Order = 4, ElementType = ElementType.WholeNumber)]

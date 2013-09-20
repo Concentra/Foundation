@@ -14,7 +14,7 @@ namespace Kafala.Query.DonationCase
             this.session = session;
         }
 
-        public CreateDonationCaseViewModel Execute(string id)
+        public CreateDonationCaseViewModel Execute(string id = "")
         {
             var model = new CreateDonationCaseViewModel
                             {

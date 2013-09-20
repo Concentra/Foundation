@@ -3,9 +3,9 @@
 
 
 <h2>Register a new donor</h2>
-@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Vertical, new {@class= "well" ,id = "autoForm" }))
+@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
 {
-    @Html.FormBuilder().DynamicForm(Foundation.FormBuilder)
+    @Html.FormBuilder().DynamicForm()
    
 }
 
