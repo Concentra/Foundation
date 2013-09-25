@@ -39,6 +39,9 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Foundation.FormBuilder">
+      <HintPath>..\Kafala.Web.UI\Bin\Foundation.FormBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -102,8 +105,14 @@
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\MvcPanel.cs" />
     <Compile Include="Extensions\MvcPanelTab.cs" />
-    <Compile Include="Extensions\TBExtensions.cs" />
+    <Compile Include="Extensions\PagerExtensions.cs" />
+    <Compile Include="Extensions\TableSorterExtensions.cs" />
+    <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="IResourcesLocator.cs" />
+    <Compile Include="Paging\RendersPagedView.cs" />
+    <Compile Include="Paging\PagedViewModel.cs" />
+    <Compile Include="Paging\PagingInfoViewModel.cs" />
+    <Compile Include="Paging\PagingParameters.cs" />
     <Compile Include="Security\Base64Encoder.cs" />
     <Compile Include="Security\DefaultFormAuthenticationService.cs" />
     <Compile Include="Security\IPasswordHelper.cs" />

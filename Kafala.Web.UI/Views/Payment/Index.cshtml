@@ -1,22 +1,16 @@
-﻿@model Kafala.Web.ViewModels.Payment.PaymentIndexViewModel
+﻿@using Foundation.Web.Extensions
+@model Kafala.Web.ViewModels.Payment.PaymentIndexViewModel
 
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table class="table">
+    <table class="table results">
         <tr>
-            <th>
-                DonationCaseName
-            </th>
-            <th>
-                DonorName
-            </th>
-            <th>
-                PaymentDate
-            </th>
-            <th>
-                PaymentPeriod
-            </th>
+              @Html.SortableHeader(Model.PagingInfo.Sort, "DonationCaseName" , "Donation Case Name")
+              @Html.SortableHeader(Model.PagingInfo.Sort, "DonorName" , "Donor Name")
+              @Html.SortableHeader(Model.PagingInfo.Sort, "DonorName" , "Donor Name")
+              @Html.SortableHeader(Model.PagingInfo.Sort, "PaymentDate" , "Payment Date")
+              @Html.SortableHeader(Model.PagingInfo.Sort, "PaymentPeriod" , "Payment Period")
             <th></th>
         </tr>
     
@@ -44,3 +38,4 @@
     
     </table>
 
+@Html.PageLinks(Model.PagingInfo, Model.PagingInfo.ActionFunc)

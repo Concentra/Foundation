@@ -11,6 +11,7 @@ using Foundation.Persistence;
 using Foundation.Web;
 using Kafala.BusinessManagers;
 using Kafala.Entities.DoNotMap;
+using Kafala.Web.ViewModels.Donor;
 using StructureMap;
 
 namespace Kafala.Web.UI

@@ -1,6 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+using AutoMapper;
 using Foundation.Infrastructure.Query;
+using Foundation.Persistence;
+using Foundation.Web;
+using Foundation.Web.Paging;
 using Kafala.Web.ViewModels.Payment;
 using NHibernate;
 using NHibernate.Linq;
@@ -37,7 +44,9 @@ namespace Kafala.Query.Payment
                 paymentList = paymentList.Where(x => x.PaymentPeriod.Id == parameters.PeriodId.Value);
             }
 
-            var paymentModel = paymentList.Select(x => new ViewPaymentViewModel()
+            var pagedPayments = paymentList.FetchPaged(parameters.PageNumber, parameters.PageSize);
+
+            var paymentModel = pagedPayments.Select(x => new ViewPaymentViewModel()
             {
                 DonationCaseName = x.Commitment.DonationCase.Name,
                 DonorName = x.Commitment.Donor.Name,
@@ -47,27 +56,35 @@ namespace Kafala.Query.Payment
             }).ToList();
 
 
-                                    
+            Mapper.CreateMap<PagingInfo, PagingInfoViewModel>();
+ 
             
             var model = new PaymentIndexViewModel
                             {
-                                Payments = paymentModel.ToList()
+                                Payments = paymentModel,
+                                PagingInfo = Mapper.Map<PagingInfoViewModel>(pagedPayments.PagingInfo)
                             };
+
             return model;
         }
     }
 
-    public class PaymentListParameters
+    public class PaymentListParameters : PagingParameters
     {
         private readonly Guid? donorId;
         private readonly Guid? caseId;
         private readonly Guid? periodId;
-
-        public PaymentListParameters(Guid? donorId = null, Guid? caseId = null, Guid? periodId = null)
+        
+        public PaymentListParameters()
+        {}
+        
+        public PaymentListParameters(Guid? donorId = null, Guid? caseId = null, Guid? periodId = null, int pageNumber = 1, int pageSize = 10)
         {
             this.donorId = donorId;
             this.caseId = caseId;
             this.periodId = periodId;
+            this.PageNumber = pageNumber;
+            this.PageSize = pageSize;
         }
 
         public Guid? DonorId
