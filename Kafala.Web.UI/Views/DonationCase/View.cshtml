@@ -1,0 +1,9 @@
+﻿@model Kafala.Web.ViewModels.DonationCase.ViewDonationCaseViewModel
+
+<h2>Edit Donation Case</h2>
+@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
+{
+    @Html.FormBuilder().DynamicView()
+   
+}
+

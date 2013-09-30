@@ -109,6 +109,15 @@
     <Compile Include="Extensions\TableSorterExtensions.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="IResourcesLocator.cs" />
+    <Compile Include="IWebConfigurator.cs" />
+    <Compile Include="Navigation\MenuList.cs" />
+    <Compile Include="Navigation\MenuBuilder.cs" />
+    <Compile Include="Navigation\MenuContainer.cs" />
+    <Compile Include="Navigation\MenuItem.cs" />
+    <Compile Include="Paging\IPagedList.cs" />
+    <Compile Include="Paging\PagedList.cs" />
+    <Compile Include="Paging\PagingInfo.cs" />
+    <Compile Include="Paging\QueryPager.cs" />
     <Compile Include="Paging\RendersPagedView.cs" />
     <Compile Include="Paging\PagedViewModel.cs" />
     <Compile Include="Paging\PagingInfoViewModel.cs" />

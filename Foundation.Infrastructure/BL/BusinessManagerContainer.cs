@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Castle.DynamicProxy;
-using Foundation.Persistence;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 

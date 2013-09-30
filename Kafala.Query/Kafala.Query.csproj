@@ -81,6 +81,7 @@
     <Compile Include="Donor\DonorViewModelPopulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\UserAuthenticationFacade.cs" />
+    <Compile Include="Shared\MenuPopulator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Foundation.Persistence
+namespace Foundation.Web.Paging
 {
     public class PagingInfo
     {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Persistence
+namespace Foundation.Web.Paging
 {
     public class PagedList<T> : List<T>, IPagedList<T>
     {
         public PagedList(IEnumerable<T> source, int pageIndex, int pageSize) :
-            this(source.GetPage(pageIndex, pageSize), pageIndex, pageSize, x => x.Count())
+            this(PageListExtensions.GetPage(source, pageIndex, pageSize), pageIndex, pageSize, x => x.Count())
         {
         }
 

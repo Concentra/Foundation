@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Foundation.Persistence
+namespace Foundation.Web.Paging
 {
     public interface IPagedList<T> : IList<T>
     {

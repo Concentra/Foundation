@@ -47,8 +47,8 @@ namespace Kafala.Web.UI.Controllers
       
         public ActionResult Details(Guid id)
         {
-            var modelPopulator = this.queryContainer.Get<CreateDonationCaseViewModelPopulator>();
-            var model = modelPopulator.Execute();
+            var modelPopulator = this.queryContainer.Get<ViewDonationCaseViewModelPopulator>();
+            var model = modelPopulator.Execute(id);
             return View("View", model);
         }
 
