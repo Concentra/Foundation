@@ -38,7 +38,7 @@ namespace Foundation.Web.Navigation
 
             if (menuItem.Children != null && menuItem.Children.Any())
             {
-                using (new MenuList(textWriter, isRoot))
+                using (new MenuList(textWriter, false))
                 {
                     foreach (var childMenuItem in menuItem.Children)
                     {
@@ -51,6 +51,7 @@ namespace Foundation.Web.Navigation
             {
                 RenderLeafElement(menuItem, textWriter);
             }
+
             textWriter.RenderEndTag();
 
         }

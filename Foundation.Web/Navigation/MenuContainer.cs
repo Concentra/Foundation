@@ -12,7 +12,7 @@ namespace Foundation.Web.Navigation
             this.htmlTextWriter = htmlTextWriter;
 
             //<nav class="navbar navbar-default" role="navigation">
-            this.htmlTextWriter.AddAttribute(HtmlTextWriterAttribute.Class, "nav navbar-inverse");
+            this.htmlTextWriter.AddAttribute(HtmlTextWriterAttribute.Class, "nav navbar-nav");
             this.htmlTextWriter.RenderBeginTag(HtmlTextWriterTag.Ul);
         }
 

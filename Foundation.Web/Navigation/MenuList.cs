@@ -14,7 +14,7 @@ namespace Foundation.Web.Navigation
             //<nav class="navbar navbar-default" role="navigation">
             if (isRoot)
             {
-                this.htmlTextWriter.AddAttribute(HtmlTextWriterAttribute.Class, "navbar navbar-inverse");
+                this.htmlTextWriter.AddAttribute(HtmlTextWriterAttribute.Class, "navbar navbar-nav");
             }
             else
             {
