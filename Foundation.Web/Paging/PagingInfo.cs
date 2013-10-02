@@ -14,6 +14,8 @@ namespace Foundation.Web.Paging
 
         public int PageSize { get; set; }
 
+        public string Sort { get; set; }
+
         public int PageNumber { get; set; }
 
         public Func<object, string> ActionFunc { get; set; }

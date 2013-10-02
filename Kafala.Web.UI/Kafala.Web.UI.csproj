@@ -130,7 +130,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KafalaFlashMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="WebConfigurator.cs" />
     <Compile Include="WebRegistery.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +137,7 @@
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\SignIn.css" />
+    <Content Include="Content\tableSorter.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -257,7 +257,6 @@
     <Content Include="Views\DonationCase\Edit.cshtml" />
     <Content Include="Views\DonationCase\View.cshtml" />
     <Content Include="Views\DonationCase\Index.cshtml" />
-    <Content Include="Views\Menu\InPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Commitment\Partial\" />

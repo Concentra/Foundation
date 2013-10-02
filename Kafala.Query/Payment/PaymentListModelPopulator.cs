@@ -46,6 +46,8 @@ namespace Kafala.Query.Payment
 
             var pagedPayments = paymentList.FetchPaged(parameters.PageNumber, parameters.PageSize);
 
+            pagedPayments.PagingInfo.Sort = parameters.Sort;
+
             var paymentModel = pagedPayments.Select(x => new ViewPaymentViewModel()
             {
                 DonationCaseName = x.Commitment.DonationCase.Name,
@@ -78,13 +80,14 @@ namespace Kafala.Query.Payment
         public PaymentListParameters()
         {}
         
-        public PaymentListParameters(Guid? donorId = null, Guid? caseId = null, Guid? periodId = null, int pageNumber = 1, int pageSize = 10)
+        public PaymentListParameters(Guid? donorId = null, Guid? caseId = null, Guid? periodId = null, int pageNumber = 1, int pageSize = 10, string sort = "")
         {
             this.donorId = donorId;
             this.caseId = caseId;
             this.periodId = periodId;
             this.PageNumber = pageNumber;
             this.PageSize = pageSize;
+            this.Sort = sort;
         }
 
         public Guid? DonorId

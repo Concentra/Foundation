@@ -28,6 +28,7 @@ namespace Kafala.Web.UI.Controllers
         {
             var container = this.queryContainer.Get<PaymentListModelPopulator>();
             var model = container.Execute(parameters);
+            
             return View("Index", model);
         }
 

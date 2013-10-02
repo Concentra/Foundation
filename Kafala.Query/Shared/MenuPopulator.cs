@@ -16,7 +16,7 @@ namespace Kafala.Query.Shared
             {
                 Children = new List<MenuItem>
                 {
-                    new MenuItem() {Active = false, Text = "Donors"},
+                    new MenuItem() {Active = false, Text = "Donors" },
                     new MenuItem() {Active = false, Text = "Donation Cases"},
                     new MenuItem() {Active = false, Text = "Payments"},
                     new MenuItem() {Active = false, Text = "Alerts"},
@@ -25,6 +25,7 @@ namespace Kafala.Query.Shared
                         Children = new List<MenuItem>
                         {
                             new MenuItem() {Active = false, Text = "Payment Periods"},
+                            new MenuItem() {Divider = true},
                             new MenuItem() {Active = false, Text = "Users"}
                         }
                     }

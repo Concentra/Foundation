@@ -106,10 +106,11 @@
     <Compile Include="Extensions\MvcPanel.cs" />
     <Compile Include="Extensions\MvcPanelTab.cs" />
     <Compile Include="Extensions\PagerExtensions.cs" />
+    <Compile Include="Extensions\BasePagingExtensions.cs" />
     <Compile Include="Extensions\TableSorterExtensions.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
+    <Compile Include="GlyphIcons.cs" />
     <Compile Include="IResourcesLocator.cs" />
-    <Compile Include="IWebConfigurator.cs" />
     <Compile Include="Navigation\MenuList.cs" />
     <Compile Include="Navigation\MenuBuilder.cs" />
     <Compile Include="Navigation\MenuContainer.cs" />

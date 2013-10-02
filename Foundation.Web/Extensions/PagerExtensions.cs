@@ -14,7 +14,7 @@ namespace Foundation.Web.Extensions
         public static MvcHtmlString PageLinks(
             this HtmlHelper html, 
             PagingInfoViewModel pagingInfoViewModel,
-            Func<object, string> pageUrl,
+            Func<object, string> urlActionDelegate,
             int linksToShow = 0)
         {
             var currentPage = pagingInfoViewModel.PageNumber + 1;
@@ -41,11 +41,11 @@ namespace Foundation.Web.Extensions
                         if (currentPage > 1)
                         {
                             pagingInfoViewModel.PageNumber = 1;
-                            PageItem(textWriter, PageLink(pageUrl, pagingInfoViewModel, "First"));
+                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, "First"));
 
 
                             pagingInfoViewModel.PageNumber = currentPage - 1;
-                            PageItem(textWriter, PageLink(pageUrl, pagingInfoViewModel, "Previouse"));
+                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, "Previouse"));
                         }
 
                         // create page links
@@ -58,11 +58,11 @@ namespace Foundation.Web.Extensions
                             pagingInfoViewModel.PageNumber = i;
                             if (i == currentPage)
                             {
-                                PageItem(textWriter, PageLink(pageUrl, pagingInfoViewModel, i.ToString()), "active");
+                                PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, i.ToString()), "active");
                             }
                             else
                             {
-                                PageItem(textWriter, PageLink(pageUrl, pagingInfoViewModel, i.ToString()));
+                                PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, i.ToString()));
                             }
 
                         }
@@ -72,10 +72,10 @@ namespace Foundation.Web.Extensions
                         if (currentPage < totalPages)
                         {
                             pagingInfoViewModel.PageNumber = currentPage + 1;
-                            PageItem(textWriter, PageLink(pageUrl, pagingInfoViewModel, "Next"));
+                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, "Next"));
 
                             pagingInfoViewModel.PageNumber = totalPages;
-                            PageItem(textWriter, PageLink(pageUrl, pagingInfoViewModel, "Last"));
+                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, "Last"));
                         }
 
 
@@ -122,30 +122,6 @@ namespace Foundation.Web.Extensions
             textWriter.Write(linkBlock);
             textWriter.RenderEndTag();
         }
-
-
-        private static MvcHtmlString PageLink(Func<object, string> pageUrl,
-            object pagingInfo,
-            string linkText,
-            string title = "",
-            string cssClass = "")
-        {
-            title = title == string.Empty ? linkText : title;
-            var href = pageUrl(pagingInfo);
-            var tagBuilder = TagBuilder(href, title, cssClass, linkText);
-            return MvcHtmlString.Create(tagBuilder.ToString());
-        }
-
-        private static TagBuilder TagBuilder(string href, string title,string cssClass, string innerHtml)
-        {
-            var tag = new TagBuilder("a");
-            tag.MergeAttribute("href", href);
-            tag.MergeAttribute("title", title);
-            tag.MergeAttribute("class", cssClass);
-
-            tag.GenerateId("paging");
-            tag.InnerHtml = innerHtml;
-            return tag;
-        }
+      
     }
 }

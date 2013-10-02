@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace Foundation.Web.Paging
 {
-    [Bind(Include = "PageSize,PageNumber")]
+    [Bind(Include = "PageSize,PageNumber,Sort")]
     public class PagingInfoViewModel
     {
         

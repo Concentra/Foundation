@@ -30,7 +30,18 @@ namespace Foundation.Web.Navigation
 
         private void Render(MenuItem menuItem, NavHtmlTextWritter textWriter, bool isRoot = false)
         {
+            if (menuItem.Children != null && menuItem.Children.Any())
+            {
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "dropdown");
+            }
+
+            if (menuItem.Divider)
+            {
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "divider");
+            }
+
             textWriter.RenderBeginTag(HtmlTextWriterTag.Li);
+           
             if (menuItem.Active)
             {
                 textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "active");
@@ -38,6 +49,7 @@ namespace Foundation.Web.Navigation
 
             if (menuItem.Children != null && menuItem.Children.Any())
             {
+                RenderLeafElement(menuItem, textWriter, true); 
                 using (new MenuList(textWriter, false))
                 {
                     foreach (var childMenuItem in menuItem.Children)
@@ -56,11 +68,18 @@ namespace Foundation.Web.Navigation
 
         }
 
-        private void RenderLeafElement(MenuItem menuItem, NavHtmlTextWritter textWriter)
+        private void RenderLeafElement(MenuItem menuItem, NavHtmlTextWritter textWriter, bool dropDownToggle = false)
         {
            
+             
                 var link = new TagBuilder("a");
+                menuItem.URL = string.IsNullOrEmpty(menuItem.URL) ? "#" : menuItem.URL;
                 link.Attributes.Add("href", menuItem.URL);
+                if (dropDownToggle)
+                {
+                    link.Attributes.Add("class", "dropdown-toggle");
+                    link.Attributes.Add("data-toggle", "dropdown");
+                }
                 link.MergeAttributes(HtmlHelper.AnonymousObjectToHtmlAttributes(menuItem.HtmlAttributes));
                 link.InnerHtml = menuItem.Text;
                 textWriter.Write(link.ToString());

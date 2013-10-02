@@ -1,41 +1,41 @@
-﻿@using Foundation.Web.Extensions
+﻿@using System.Web.UI.HtmlControls
+@using Foundation.Web.Extensions
 @model Kafala.Web.ViewModels.Payment.PaymentIndexViewModel
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table results">
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+    <table class="table sorter">
         <tr>
-              @Html.SortableHeader(Model.PagingInfo.Sort, "DonationCaseName" , "Donation Case Name")
-              @Html.SortableHeader(Model.PagingInfo.Sort, "DonorName" , "Donor Name")
-              @Html.SortableHeader(Model.PagingInfo.Sort, "DonorName" , "Donor Name")
-              @Html.SortableHeader(Model.PagingInfo.Sort, "PaymentDate" , "Payment Date")
-              @Html.SortableHeader(Model.PagingInfo.Sort, "PaymentPeriod" , "Payment Period")
+            @Html.SortableHeader(Model.PagingInfo.Sort, "DonationCaseName", "Donation Case Name", Model.PagingInfo.ActionFunc)
+            @Html.SortableHeader(Model.PagingInfo.Sort, "DonorName", "Donor Name", Model.PagingInfo.ActionFunc)
+            @Html.SortableHeader(Model.PagingInfo.Sort, "PaymentDate", "Payment Date", Model.PagingInfo.ActionFunc)
+            @Html.SortableHeader(Model.PagingInfo.Sort, "PaymentPeriod", "Payment Period", Model.PagingInfo.ActionFunc)
             <th></th>
         </tr>
     
-    @foreach (var item in Model.Payments) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonationCaseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentPeriod)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model.Payments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonationCaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentPeriod)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                    @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                </td>
+            </tr>
+        }
     
     </table>
-
 @Html.PageLinks(Model.PagingInfo, Model.PagingInfo.ActionFunc)

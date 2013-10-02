@@ -6,6 +6,7 @@
 <head>
      <title>@Html.PageTitle()</title>
     @Html.CssInclude("~/Content/bootstrap/bootstrap.min.css")
+    @Html.CssInclude("~/Content/tableSorter.css")
     @Html.CssInclude("~/Content/themes/base/jquery.ui.all.css")
     
     @RenderSection("Css", required: false)
@@ -18,15 +19,12 @@
     
         <div class="navbar navbar-inverse">
             <div class="container">
-                <div class="navbar-header">
+                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" title="change in _bootstrapLayout.basic.cshtml">Kafel</a>
-                </div>
-            <div class="navbar-collapse collapse" style="height: 1px;">
-                 @Html.Action("Index", "Menu")
-        </div>
-            
-                 
-                
+                 </div>
+                 <div class="navbar-collapse collapse" style="height: auto;">
+                     @Html.Action("Index", "Menu")
+                 </div>
             </div>
         </div>
     

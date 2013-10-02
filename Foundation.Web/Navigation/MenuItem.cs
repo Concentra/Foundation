@@ -12,6 +12,8 @@ namespace Foundation.Web.Navigation
 
         public bool Active { get; set; }
 
+        public bool Divider { get; set; }
+
         public object HtmlAttributes { get; set; }
 
         public object RouteValues { get; set; }

@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
 namespace Foundation.Web.Paging
 {
     public class PagedList<T> : List<T>, IPagedList<T>
     {
-        public PagedList(IEnumerable<T> source, int pageIndex, int pageSize) :
-            this(PageListExtensions.GetPage(source, pageIndex, pageSize), pageIndex, pageSize, x => x.Count())
+       
+        internal PagedList(IEnumerable<T> source, int pageIndex, int pageSize) :
+            this(source.GetPage(pageIndex, pageSize), pageIndex, pageSize, x => x.Count())
         {
         }
 
-        public PagedList(IEnumerable<T> source, int pageIndex, int pageSize, Func<IEnumerable<T>, int> totalFunc)
+        internal PagedList(IEnumerable<T> source, int pageIndex, int pageSize, Func<IEnumerable<T>, int> totalFunc)
         {
+            
             var sourceAsList = source as IList<T> ?? source.ToList();
 
             var totalCount = totalFunc(sourceAsList);

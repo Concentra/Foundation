@@ -30,9 +30,10 @@ window.onerror = function (msg, url, lineNo) {
 
 // needed for table sorter 
 $(function () {
-    $("table.results th[class~='header']").click(function () {
+    $("table.sorter th[class~='SortableHeader']").click(function () {
         var ref = this.id;
-        $("#Sort").val(ref);
+        var sorthandler = $("input[id~='Sort']");
+        sorthandler.val(ref);
         $(this).parents("form").submit();
     });
 
