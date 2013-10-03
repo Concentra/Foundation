@@ -8,6 +8,7 @@ using Foundation.Infrastructure.Query;
 using Foundation.Web;
 using Foundation.Web.Security;
 using Kafala.BusinessManagers;
+using Kafala.BusinessManagers.User;
 using Kafala.Web.ViewModels.Home;
 
 namespace Kafala.Web.UI.Controllers
@@ -18,15 +19,15 @@ namespace Kafala.Web.UI.Controllers
 
         private readonly IQueryContainer queryContainer;
 
-        private readonly IFormAuthenticationService formAuthenticationService;
+        private readonly IAuthenticationService authenticationService;
 
         public HomeController(IBusinessManagerContainer businessManagerContainer,
             IQueryContainer queryContainer, 
-            IFormAuthenticationService formAuthenticationService)
+            IAuthenticationService authenticationService)
         {
             this.businessManagerContainer = businessManagerContainer;
             this.queryContainer = queryContainer;
-            this.formAuthenticationService = formAuthenticationService;
+            this.authenticationService = authenticationService;
         }
 
         public ActionResult LogOn()
@@ -37,7 +38,7 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult LogOn(LogOnViewModel model)
         {
-            var signInResult = this.formAuthenticationService.SignIn(model.UserName, model.Password);
+            var signInResult = this.authenticationService.SignIn(model.UserName, model.Password);
 
             if(signInResult == SignInResult.Success )
             {
@@ -57,10 +58,10 @@ namespace Kafala.Web.UI.Controllers
             }
         }
 
-        public ActionResult ForgotPassword()
+        public ActionResult ForgotPassword(string email)
         {
-            var notManager = new AccountNotificationManager();
-            notManager.SendPasswordReminderEmail("timur.ozuns@concentra.co.uk");
+            var user = businessManagerContainer.Get<UserManager>();
+            user.SendPasswordReminderEmail(email);
             return RedirectToAction("LogOn");
         }
     }

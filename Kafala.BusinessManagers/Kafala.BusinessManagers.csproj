@@ -68,7 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountNotificationManager.cs" />
+    <Compile Include="User\IUserContract.cs" />
+    <Compile Include="User\UserManager.cs" />
     <Compile Include="Commitment\CommitmentBusinessManager.cs" />
     <Compile Include="Commitment\ICommitmentContract.cs" />
     <Compile Include="DonationCase\DonationCaseBusinessManager.cs" />

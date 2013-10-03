@@ -1,0 +1,19 @@
+﻿table.sorter th.SortableHeader
+{
+    cursor: pointer;
+    padding-right: 20px;
+}
+
+table.tablesorter th.headerSortUp
+{
+}
+
+table.tablesorter th.headerSortDown
+{
+}
+
+table.sorter th.Sorted
+{
+    color: #fff;
+    background-color: #644767;
+}

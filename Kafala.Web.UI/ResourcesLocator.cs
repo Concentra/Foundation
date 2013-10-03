@@ -11,5 +11,11 @@ namespace Kafala.Web.UI
                 return Kafala.Web.UI.Resources.KafalaFlashMessages.ResourceManager;
             }
         }
+
+        public string PasswordReminderEmailTemplate
+        {
+            get; 
+            private set;
+        }
     }
 }

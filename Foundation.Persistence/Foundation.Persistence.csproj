@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionString.cs" />
-    <Compile Include="IAuthenticatableUser.cs" />
+    <Compile Include="IUserToken.cs" />
     <Compile Include="IConnectionString.cs" />
     <Compile Include="ISessionFactoryProvider.cs" />
     <Compile Include="ISessionProvider.cs" />

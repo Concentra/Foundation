@@ -5,5 +5,6 @@ namespace Foundation.Web
     public interface IResourcesLocator
     {
         ResourceManager FlashMessagesResourceManager { get; }
+        string PasswordReminderEmailTemplate { get; }
     }
 }

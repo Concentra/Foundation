@@ -123,13 +123,9 @@
     <Compile Include="Paging\PagedViewModel.cs" />
     <Compile Include="Paging\PagingInfoViewModel.cs" />
     <Compile Include="Paging\PagingParameters.cs" />
-    <Compile Include="Security\Base64Encoder.cs" />
-    <Compile Include="Security\DefaultFormAuthenticationService.cs" />
     <Compile Include="Security\IPasswordHelper.cs" />
-    <Compile Include="Security\IUserAuthenticationFacade.cs" />
+    <Compile Include="Security\IAuthenticationService.cs" />
     <Compile Include="Security\PasswordHelper.cs" />
-    <Compile Include="Security\IFormAuthenticationService.cs" />
-    <Compile Include="Security\IPasswordEncoder.cs" />
     <Compile Include="Security\PasswordInfo.cs" />
     <Compile Include="Security\SignInResult.cs" />
     <Compile Include="StructureMapControllerFactory.cs" />

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Foundation.Infrastructure.Notifications
@@ -11,7 +10,7 @@ namespace Foundation.Infrastructure.Notifications
     public class NotificationHelper
     {
         private readonly IEmailService emailService;
-        private static readonly Dictionary<string, string> GlobalVariables =
+        private static readonly Dictionary<string, string> EmailConfigurations =
             ConfigurationManager.AppSettings.AllKeys
                 .Where(x => x.StartsWith("Email_"))
                 .ToDictionary(x => x.Replace("Email_", string.Empty), x => ConfigurationManager.AppSettings.Get(x));
@@ -93,9 +92,9 @@ namespace Foundation.Infrastructure.Notifications
 
             var variableNamePath = name.Split('.');
 
-            if (variableNamePath.Length == 1 && GlobalVariables.ContainsKey(variableNamePath[0]))
+            if (variableNamePath.Length == 1 && EmailConfigurations.ContainsKey(variableNamePath[0]))
             {
-                return GlobalVariables[variableNamePath[0]];
+                return EmailConfigurations[variableNamePath[0]];
             }
 
             var rootVariableProperty = variables.GetType().GetProperty(variableNamePath[0]);

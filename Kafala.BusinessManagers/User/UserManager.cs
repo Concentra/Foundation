@@ -1,0 +1,60 @@
+﻿using System;
+using Foundation.Infrastructure.BL;
+using Foundation.Infrastructure.Notifications;
+using Foundation.Web.Security;
+using NHibernate;
+
+namespace Kafala.BusinessManagers.User
+{
+    public class UserManager : IBusinessManager
+    {
+        private readonly IEmailService emailService;
+        private readonly IAuthenticationService authenticationService;
+        private readonly IPasswordHelper passwordHelper;
+        private readonly ISession session;
+
+        public UserManager(IEmailService emailService, IAuthenticationService authenticationService, IPasswordHelper passwordHelper,ISession session)
+        {
+            this.emailService = emailService;
+            this.authenticationService = authenticationService;
+            this.passwordHelper = passwordHelper;
+            this.session = session;
+        }
+
+
+        public virtual Guid RegisterUser(IUserContract userValue)
+        {
+            var userId = Guid.NewGuid();
+            var passwordInfo = passwordHelper.GetEncryptedPasswordAndSalt(userValue.Password);
+            var user = new Entities.User()
+                {
+                    EmailAddress = userValue.EmailAddress,
+                    Id = userId,
+                    Telephone = userValue.Telephone,
+                    FirstName = userValue.FirstName,
+                    LastName = userValue.LastName,
+                    Password = passwordInfo.EncryptedPassword,
+                    PasswordExpirtyDate = DateTime.Now.AddDays(authenticationService.PasswordExpiryDays),
+                    PasswordSalt = passwordInfo.Salt,
+
+
+                    AccountLocked = false,
+                    Disabled = false,
+                    FailedLoginAttempts = 0
+                };
+            this.session.Save(user);
+            return userId;
+        }
+
+        public void SendPasswordReminderEmail(string emailAddress)
+        {
+            var notificationHelper = new NotificationHelper(emailService);
+            var user = authenticationService.GetUser(emailAddress);
+
+            notificationHelper.SendEmailWithTemplatePath(emailAddress,
+                string.Empty, "concentra@Concentra.co.uk.abdo", 
+                "Password Reminder", "C:/temp/template.txt",
+                new { name = user.UserName, newPassword = passwordHelper.GenerateRandomPassword() });
+        }
+    }
+}

@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="BaseTextFixture.cs" />
     <Compile Include="Configurations.cs" />
+    <Compile Include="SecurityTests.cs" />
     <Compile Include="SwallowFlashMessneger.cs" />
     <Compile Include="Donors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

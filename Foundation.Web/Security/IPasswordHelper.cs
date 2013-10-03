@@ -10,5 +10,6 @@ namespace Foundation.Web.Security
         PasswordInfo GetEncryptedPasswordAndSalt(string password);
         bool CheckPassword(string password, string salt, string encryptedPassword);
         string GenerateRandomPassword();
+        
     }
 }

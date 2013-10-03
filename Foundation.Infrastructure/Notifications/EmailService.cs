@@ -8,12 +8,20 @@ namespace Foundation.Infrastructure.Notifications
 {
     public class EmailService : IEmailService
     {
+        private readonly IEmailLogger emailLogger;
+
+        public EmailService(IEmailLogger emailLogger)
+        {
+            this.emailLogger = emailLogger;
+        }
+
         public void Send(string toAddresses, string ccAddresses, string from, string subject, string body)
         {
             using (var mailMessage = new MailMessage())
             {
                 mailMessage.To.Add(toAddresses);
-                mailMessage.CC.Add(ccAddresses);
+                if (ccAddresses != null)
+                    mailMessage.CC.Add(ccAddresses);
                 mailMessage.Subject = subject;
                 mailMessage.Body = body;
 
@@ -25,14 +33,8 @@ namespace Foundation.Infrastructure.Notifications
                     smtpClient.Send(mailMessage);
                 }
 
-                // this.LogEmailSent(mailMessage, commandName, objectId, alertType);
+                emailLogger.LogEmail(mailMessage);
             }
         }
-
-        //private void LogEmailSent(MailMessage message, string commandName, Guid? objectId, string alertType)
-        //{
-        //    var logger = new EmailServiceLogger(new ConnectionString("RM"));
-        //    logger.Log(Guid.NewGuid(), message.To[0].Address, message.Subject, message.Body, DateTime.Now, commandName, objectId, alertType);
-        //}
     }
 }
