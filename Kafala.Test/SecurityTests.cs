@@ -33,5 +33,28 @@ namespace Kafala.Test
             var result = authenticationService.SignIn(email, email);
             Assert.AreEqual(SignInResult.Success, result);
         }
+
+        [Test]
+        public void UserLockAfterFailureAttempts()
+        {
+            var email = Faker.Internet.Email();
+            var userMock = new Mock<IUserContract>();
+            userMock.SetupProperty(x => x.FirstName, Faker.Name.First());
+            userMock.SetupProperty(x => x.LastName, Faker.Name.Last());
+            userMock.SetupProperty(x => x.EmailAddress, email);
+            userMock.SetupProperty(x => x.Telephone, Faker.Phone.Number());
+            userMock.SetupProperty(x => x.Password, email);
+            var ubm = bmc.Get<UserManager>();
+            ubm.RegisterUser(userMock.Object);
+
+            var authenticationService = ObjectFactory.GetInstance<IAuthenticationService>();
+            var result = SignInResult.Success;
+            for (int i = 0; i < authenticationService.MaximumPasswordAttemptsLimit+1; i++)
+            {
+               result = authenticationService.SignIn(email, Faker.Lorem.GetFirstWord());
+            }
+
+           Assert.AreEqual(SignInResult.UserAlreadyLocked, result);
+        }
     }
 }

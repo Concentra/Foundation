@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Linq;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Notifications;
+using Foundation.Persistence;
 using Foundation.Web.Security;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace Kafala.BusinessManagers.User
 {
@@ -46,7 +49,7 @@ namespace Kafala.BusinessManagers.User
             return userId;
         }
 
-        public void SendPasswordReminderEmail(string emailAddress)
+        public virtual void SendPasswordReminderEmail(string emailAddress)
         {
             var notificationHelper = new NotificationHelper(emailService);
             var user = authenticationService.GetUser(emailAddress);
@@ -55,6 +58,31 @@ namespace Kafala.BusinessManagers.User
                 string.Empty, "concentra@Concentra.co.uk.abdo", 
                 "Password Reminder", "C:/temp/template.txt",
                 new { name = user.UserName, newPassword = passwordHelper.GenerateRandomPassword() });
+        }
+
+        public virtual void RegisterFailedLoginAttempt(IUserToken userToken, int maximumLoginAttempts)
+        {
+            var user = session.Query<Entities.User>().FirstOrDefault(x => x.EmailAddress == userToken.EmailAddress);
+            if (user != null)
+            {
+                ++user.FailedLoginAttempts;
+
+                if (user.FailedLoginAttempts >= maximumLoginAttempts)
+                {
+                    user.AccountLocked = true;
+                    session.Save(user);
+                }
+            }
+        }
+
+        public virtual void ResetFailedLoginAttempts(IUserToken userToken)
+        {
+            var user = session.Query<Entities.User>().FirstOrDefault(x => x.EmailAddress == userToken.EmailAddress);
+            if (user != null)
+            {
+                user.FailedLoginAttempts = 0;
+                session.Save(user);
+            }
         }
     }
 }

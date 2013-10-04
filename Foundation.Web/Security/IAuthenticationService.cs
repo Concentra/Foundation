@@ -14,5 +14,6 @@ namespace Foundation.Web.Security
         SignInResult SignIn(string userName, string password, bool rememberMe = false);
         void SignOut();
         int PasswordExpiryDays { get; set; }
+        int MaximumPasswordAttemptsLimit { get; set; }
     }
 }

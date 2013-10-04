@@ -11,10 +11,6 @@ namespace Kafala.Query.Security
     class UserToken : User , IUserToken
     {
         
-        public string UserName
-        {
-            get { return this.FirstName + ", " + this.LastName; }
-        }
-
+      
     }
 }

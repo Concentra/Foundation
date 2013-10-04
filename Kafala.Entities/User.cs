@@ -6,7 +6,7 @@ using Foundation.Persistence;
 
 namespace Kafala.Entities
 {
-    public class User 
+    public class User : IUserToken
     {
         public virtual Guid Id { get; set; }
 
@@ -29,8 +29,11 @@ namespace Kafala.Entities
         public virtual DateTime PasswordExpirtyDate { get; set; }
 
         public virtual int FailedLoginAttempts { get; set; }
-
-      
+        
+        public virtual string UserName
+        {
+            get { return this.FirstName + ", " + this.LastName; }
+        }
 
     }
 }

@@ -12,5 +12,7 @@ namespace Kafala.Web.ViewModels.Home
         public string Password { get; set; }
 
         public string ReturnURL { get; set; }
+        
+        public bool RememberMe { get; set; }
     }
 }

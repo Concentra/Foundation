@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Web;
@@ -42,6 +43,8 @@ namespace Kafala.Web.UI.Controllers
 
             if(signInResult == SignInResult.Success )
             {
+                FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+              
                 if(!string.IsNullOrEmpty(model.ReturnURL))
                 {
                     return Redirect(model.ReturnURL);
@@ -62,6 +65,12 @@ namespace Kafala.Web.UI.Controllers
         {
             var user = businessManagerContainer.Get<UserManager>();
             user.SendPasswordReminderEmail(email);
+            return RedirectToAction("LogOn");
+        }
+
+        public ActionResult LogOff()
+        {
+            this.authenticationService.SignOut();
             return RedirectToAction("LogOn");
         }
     }

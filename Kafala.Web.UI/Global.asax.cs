@@ -32,6 +32,8 @@ namespace Kafala.Web.UI
 
             routes.IgnoreRoute("favicon.ico");
 
+            //routes.IgnoreRoute("{Content}/{*pathInfo}");
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

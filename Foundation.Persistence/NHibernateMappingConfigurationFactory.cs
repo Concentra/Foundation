@@ -15,8 +15,8 @@ namespace Foundation.Persistence
                {
                    m.AutoMappings.Add(
                        AutoMap.Assemblies(Assembly.GetAssembly(type))
-                       .UseOverridesFromAssembly(Assembly.GetExecutingAssembly())
-                       .Conventions.AddAssembly(Assembly.GetExecutingAssembly())
+                       .UseOverridesFromAssembly(Assembly.GetAssembly(type))
+                       .Conventions.AddAssembly(Assembly.GetAssembly(type))
                        .Where(t => t.Namespace == nameSpace));
                    m.HbmMappings.AddFromAssembly(Assembly.Load("Kafala.Entities")); // for stored procedures
                   

@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Security;
+using Foundation.Infrastructure.BL;
 using Foundation.Persistence;
 using Foundation.Web.Security;
+using Kafala.BusinessManagers.User;
 using Kafala.Entities;
 using NHibernate;
 using NHibernate.Linq;
@@ -17,13 +19,15 @@ namespace Kafala.Query.Security
     {
         private readonly ISession session;
         private readonly IPasswordHelper passwordHelper;
-        private readonly int maximumPasswordAttemptsLimit;
+        private readonly IBusinessManagerContainer businessManagerContainer;
+        public int MaximumPasswordAttemptsLimit { get; set; }
 
-        public AuthenticationService(ISession session, IPasswordHelper passwordHelper)
+        public AuthenticationService(ISession session, IPasswordHelper passwordHelper, IBusinessManagerContainer businessManagerContainer)
         {
             this.session = session;
             this.passwordHelper = passwordHelper;
-            this.maximumPasswordAttemptsLimit = Convert.ToInt32(ConfigurationManager.AppSettings["MaxmimumPasswordAttempts"]);
+            this.businessManagerContainer = businessManagerContainer;
+            this.MaximumPasswordAttemptsLimit = Convert.ToInt32(ConfigurationManager.AppSettings["MaxmimumPasswordAttempts"]);
             this.PasswordExpiryDays = Convert.ToInt32(ConfigurationManager.AppSettings["PasswordExpiryDays"]);
         }
 
@@ -32,33 +36,19 @@ namespace Kafala.Query.Security
         public IUserToken GetUser(string userName)
         {
             var user = session.Query<User>().FirstOrDefault(x => x.EmailAddress == userName);
-            var userObject = (UserToken)((UserToken)(object)user);
-            return userObject;
+            return user;
         }
 
         public void RegisterFailedLoginAttempt(IUserToken userToken, int maximumLoginAttempts)
         {
-            var user = session.Query<User>().FirstOrDefault(x => x.EmailAddress == userToken.EmailAddress);
-            if (user != null)
-            {
-                ++user.FailedLoginAttempts;
-
-                if (user.FailedLoginAttempts >= maximumLoginAttempts)
-                {
-                    user.AccountLocked = true;
-                    session.Save(user);
-                }
-            }
+            var userManager = this.businessManagerContainer.Get<UserManager>();
+            userManager.RegisterFailedLoginAttempt(userToken, maximumLoginAttempts);
         }
 
         public void ResetFailedLoginAttempts(IUserToken userToken)
         {
-            var user = session.Query<User>().FirstOrDefault(x => x.EmailAddress == userToken.EmailAddress);
-            if (user != null)
-            {
-                user.FailedLoginAttempts = 0;
-                session.Save(user);
-            }
+            var userManager = this.businessManagerContainer.Get<UserManager>();
+            userManager.ResetFailedLoginAttempts(userToken);
         }
 
         public SignInResult SignIn(string userName, string password, bool rememberMe = false)
@@ -80,22 +70,16 @@ namespace Kafala.Query.Security
                 return SignInResult.UserAlreadyLocked;
             }
 
-            if (user.AccountLocked)
-            {
-                return SignInResult.LockedForExcessiveLoginAttempts;
-            }
-
             var validPassword = CheckPassword(user.Password, password, user.PasswordSalt);
 
             if (validPassword)
             {
                 this.ResetFailedLoginAttempts(user);
-                FormsAuthentication.SetAuthCookie(userName, rememberMe);
                 return SignInResult.Success;
             }
             else
             {
-                this.RegisterFailedLoginAttempt(user, maximumPasswordAttemptsLimit);
+                this.RegisterFailedLoginAttempt(user, MaximumPasswordAttemptsLimit);
                 return SignInResult.WrongPassword;
             }
         }
