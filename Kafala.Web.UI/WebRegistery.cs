@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
 using StructureMap;
 using Foundation.Web;
@@ -20,13 +21,12 @@ namespace Kafala.Web.UI
             this.For<IEmailService>().Use<EmailService>();
             this.For<IEmailLogger>().Use<EmailLogger>();
             this.For<IResourcesLocator>().Use<ResourcesLocator>();
-            this.For<IFlashMessenger>().Use<WebFlashMessenger>();
             this.Scan(x =>
             {
                 x.Assembly(Assembly.GetExecutingAssembly().GetName().Name);
                 x.With(new ControllerRegistrationConvention());
             });
-
+            this.For<HttpSessionStateBase>().Use(ctx => new HttpSessionStateWrapper(HttpContext.Current.Session));
             
         }
     }

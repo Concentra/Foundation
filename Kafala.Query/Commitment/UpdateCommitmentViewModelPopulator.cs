@@ -33,7 +33,8 @@ namespace Kafala.Query.Commitment
                                           .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()})
                                           .OrderBy(x => x.Text);
              model.Donors = session.Query<Entities.Donor>()
-                                   .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()});
+                                   .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()})
+                                       .OrderBy(x => x.Text); 
 
             return model;
         }

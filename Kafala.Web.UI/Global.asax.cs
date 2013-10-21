@@ -29,11 +29,11 @@ namespace Kafala.Web.UI
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.IgnoreRoute("favicon.ico");
-
-            //routes.IgnoreRoute("{Content}/{*pathInfo}");
-
+            routes.IgnoreRoute("content/{*pathInfo}");
+            routes.IgnoreRoute("scripts/{*pathInfo}");
+            routes.IgnoreRoute("elmah.axd");
+            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+            
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

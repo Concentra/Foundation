@@ -57,11 +57,20 @@ namespace Foundation.Web
                 cfg.For<RequestContext>().Use(requestContext);
                 cfg.For<HttpContextBase>().Use(requestContext.HttpContext);
                 cfg.For<Func<ControllerContext>>().Use(ctxtCtor);
-                cfg.For<IFlashMessenger>().Use<WebFlashMessenger>();
+                cfg.For<IFlashMessenger>()
+                    .HybridHttpOrThreadLocalScoped()
+                    .Use(x =>
+                    {
+                        //var tempData = x.GetInstance<Func<ControllerContext>>()().Controller.TempData;
+                        var resourceLocator = nestedContainer.GetInstance<IResourcesLocator>();
+                        var flashMessenger = new WebFlashMessenger(resourceLocator);
+                        //tempData["FlashMessenger"] = flashMessenger;
+                        return flashMessenger;
+                    });
             });
 
             var controller = nestedContainer.TryGetInstance<IController>(controllerName);
-           controllerBase = controller as ControllerBase;
+            controllerBase = controller as ControllerBase;
             
             if (controller == null)
             {

@@ -21,14 +21,17 @@ namespace Kafala.Web.UI.Controllers
         private readonly IQueryContainer queryContainer;
 
         private readonly IAuthenticationService authenticationService;
+        private readonly IFlashMessenger flashMessenger;
 
         public HomeController(IBusinessManagerContainer businessManagerContainer,
             IQueryContainer queryContainer, 
-            IAuthenticationService authenticationService)
+            IAuthenticationService authenticationService,
+            IFlashMessenger flashMessenger)
         {
             this.businessManagerContainer = businessManagerContainer;
             this.queryContainer = queryContainer;
             this.authenticationService = authenticationService;
+            this.flashMessenger = flashMessenger;
         }
 
         public ActionResult LogOn()
@@ -56,7 +59,7 @@ namespace Kafala.Web.UI.Controllers
             }
             else
             {
-                this.FlashMessenger.AddMessage("Wrong Login", FlashMessageType.Failure);
+                this.flashMessenger.AddMessage("Wrong Login", FlashMessageType.Failure);
                 return View("LogOn", model);
             }
         }

@@ -14,12 +14,12 @@ namespace Kafala.Web.ViewModels.Commitment
         public virtual Guid Id { get; set; }
 
         [EditControl(Order = 1, ElementType = ElementType.List,Label = "Beneficiary Case Name")]
-        [CollectionInfo(ListSourceMember = "DonationCases",SelectPromptLabel = "Please select",SelectPromptValue = null)]
+        [CollectionInfo(ListSourceMember = "DonationCases",SelectPromptLabel = "Please select",SelectPromptValue = "Please select")]
         public virtual Guid DonationCaseId { get; set; }
 
         public virtual IEnumerable<SelectListItem> DonationCases { get; set; }
 
-        [EditControl(Order = 2,ElementType = ElementType.Text,Label = "Donor")]
+        [EditControl(Order = 2, ElementType = ElementType.List, Label = "Donor")]
         [CollectionInfo(ListSourceMember = "Donors", SelectPromptLabel = "Please select", SelectPromptValue = null)]
         public virtual Guid DonorId { get; set; }
 
