@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper;
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
@@ -11,6 +11,7 @@ using Foundation.Persistence;
 using Foundation.Web;
 using Kafala.BusinessManagers;
 using Kafala.Entities.DoNotMap;
+using Kafala.Query;
 using Kafala.Web.ViewModels.Donor;
 using StructureMap;
 
@@ -72,6 +73,8 @@ namespace Kafala.Web.UI
             cfg.For<ITypeHolder>().Use<TypeHolder>();
 
             cfg.For<IConnectionString>().Use(new ConnectionString("KafalaDB"));
+
+            Mapper.Initialize(AutoMapperConfigurations.Configure);
         }
     }
 }

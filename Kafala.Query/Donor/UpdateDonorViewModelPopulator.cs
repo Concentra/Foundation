@@ -23,8 +23,6 @@ namespace Kafala.Query.Donor
         {
             var donor = this.session.Get<Entities.Donor>(id);
 
-            Mapper.CreateMap<Entities.Donor, DonorUpdateViewModel>();
-
             var model = Mapper.Map<DonorUpdateViewModel>(donor);
             return model;
         }

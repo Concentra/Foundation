@@ -14,14 +14,12 @@ using Foundation.FormBuilder.ElementGenerators;
 
 namespace Foundation.FormBuilder.DynamicForm
 {
-    public class BootStrapViewBuilder<TModel> : UiBuilderBase, IDynamicUiBuilder<TModel>
+    public class BootStrapViewBuilder<TModel> : UiBuilderBase<TModel>, IDynamicUiBuilder<TModel>
     {
-        private readonly Dictionary<string, PropertyInfo> properties;
-
         public BootStrapViewBuilder()
         {
             ElementGenerator = new ViewElementGenerator();
-            properties = typeof(TModel).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            Properties = typeof(TModel).GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .ToDictionary(p => p.Name , p => p);
         }
 
@@ -88,47 +86,6 @@ namespace Foundation.FormBuilder.DynamicForm
 
             var returnValue = elementBlock.ToString();
             return returnValue;
-        }
-
-        private List<FormElement> ExtractElementsToRender(TModel model)
-        {
-            var formElements = properties.Select(p =>
-                                            new FormElement
-                                                {
-                                                    PropertyInfo = p.Value,
-                                                    ControlSpecs =
-                                                        p.Value.GetCustomAttributes(typeof (EditControl), false)
-                                                         .Cast<EditControl>()
-                                                         .FirstOrDefault(),
-                                                    CollectionInfo = p.Value.GetCustomAttributes(typeof(CollectionInfo), false)
-                                                         .Cast<CollectionInfo>()
-                                                         .FirstOrDefault(),
-                                                    FieldValue = FieldValue(model, p),
-                                                    ValidationInfo = null
-                                                })
-                                    .Where(p => p.ControlSpecs != null)
-                                    .ToList();
-
-            foreach (var collectionItems in formElements.Where(x => x.CollectionInfo != null))
-            {
-                collectionItems.CollectionInfo.CollectionObject =
-                    properties[collectionItems.CollectionInfo.ListSourceMember]
-                        .GetValue(model, null) as IEnumerable<SelectListItem>;
-            }
-
-            return formElements;
-        }
-
-        private static object FieldValue(TModel model, KeyValuePair<string, PropertyInfo> p)
-        {
-            if (model != null)
-            {
-                return p.Value.GetValue(model, null);
-            }
-            else
-            {
-                return null;
-            }
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Foundation.FormBuilder.CustomAttribute;
@@ -30,12 +29,6 @@ namespace Kafala.Web.ViewModels.Donor
         public DonorStatus DonorStatus { get; set; }
 
         public Guid ReferralId { get; set; }
-
-        [EditControl(GroupName = "Contact Info", ElementType = ElementType.List, PromptText = "Enter Telephone Number")]
-        [CollectionInfo(ListSourceMember = "ListProperty")]
-        public DonorStatus SelectedItem { get; set; }
-
-        public IEnumerable<SelectListItem> ListProperty { get; set; }
 
         [EditControl(GroupName = "Contact Info", ElementType = ElementType.Text)]
         public string Mobile { get; set; }

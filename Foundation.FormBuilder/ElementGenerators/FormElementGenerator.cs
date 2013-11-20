@@ -91,20 +91,14 @@ namespace Foundation.FormBuilder.ElementGenerators
             var value = formElement.FieldValue;
             var isRequired = formElement.ValidationInfo.Required;
 
-            DateTime? dateTimeValue;
-            if (value != null)
-            {
-                dateTimeValue = Convert.ToDateTime(value);
-            }
-            else
-            {
-                dateTimeValue = null;
-            }
-
-            var datePicker = string.Empty;
-            //htmlHelper.JQueryUI().Datepicker(formElement.PropertyInfo.Name, dateTimeValue).ChangeYear(true).ChangeMonth(true);
-            writer.ClearAttributes();
-            writer.Write(datePicker);
+            writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
+            writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "datepicker");
+            writer.AddAttribute(HtmlTextWriterAttribute.Cols, "14");
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
+            writer.RenderBeginTag(HtmlTextWriterTag.Input);
+            writer.RenderEndTag(); // </input>
         }
 
         private void RenderWholeNumber(NavHtmlTextWritter writer, FormElement formElement)
@@ -272,7 +266,7 @@ namespace Foundation.FormBuilder.ElementGenerators
                 {
                     writer.AddAttribute(HtmlTextWriterAttribute.Value, selectListItem.Value);
 
-                    if (value != null && selectListItem.Value == value.ToString())
+                    if (value != null && selectListItem.Value.ToUpper() == value.ToString().ToUpper())
                     {
                         writer.AddAttribute(HtmlTextWriterAttribute.Selected, null);
                     }
@@ -297,6 +291,7 @@ namespace Foundation.FormBuilder.ElementGenerators
             writer.RenderBeginTag(HtmlTextWriterTag.P);
             writer.Write(Convert.ToString(value));
             writer.RenderEndTag(); // input
+            RenderHidden(writer, formElement);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Web;
+using Foundation.Web.Paging;
 using Kafala.BusinessManagers.DonationCase;
 using Kafala.Query.DonationCase;
 using Kafala.Web.ViewModels.DonationCase;
@@ -14,19 +15,19 @@ namespace Kafala.Web.UI.Controllers
     {
         private readonly IQueryContainer queryContainer;
 
-        private readonly DonationCaseBusinessManager manager;
+        private readonly IBusinessManagerContainer businessManagerContainer;
 
         public DonationCaseController(IBusinessManagerContainer businessManagerContainer, IQueryContainer queryContainer)
         {
-            this.manager = businessManagerContainer.Get<DonationCaseBusinessManager>();
+            this.businessManagerContainer = businessManagerContainer;
             this.queryContainer = queryContainer;
         }
 
- 
-        public ActionResult Index()
+        [RendersPagedView]
+        public ActionResult Index(ListDonationCasesParameters parameters)
         {
             var container = this.queryContainer.Get<ListDonationCaseViewModelPopulator>();
-            var model = container.Execute(null);
+            var model = container.Execute(parameters);
             return View("Index", model);
         }
 
@@ -40,6 +41,7 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Create(CreateDonationCaseViewModel model)
         {
+            var manager = businessManagerContainer.Get<DonationCaseBusinessManager>();
             var donorId = manager.Add(model);
             return RedirectToAction("Details", new { id = donorId });
         }
@@ -62,6 +64,7 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Edit(EditDonationCaseViewModel model)
         {
+            var manager = businessManagerContainer.Get<DonationCaseBusinessManager>();
             var donorId = manager.Update(model.Id, model);
             return RedirectToAction("Details", new { id = donorId });
         }
@@ -69,6 +72,7 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Delete(Guid id)
         {
+            var manager = businessManagerContainer.Get<DonationCaseBusinessManager>(); 
             var result = manager.Delete(id);
             return RedirectToAction("Index");
         }

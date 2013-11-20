@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Web;
+using Foundation.Web.Paging;
 using Kafala.BusinessManagers.Commitment;
 using Kafala.Query.Commitment;
 using Kafala.Web.ViewModels.Commitment;
@@ -14,18 +15,20 @@ namespace Kafala.Web.UI.Controllers
     {
         private readonly IQueryContainer queryContainer;
 
-        private readonly CommitmentBusinessManager businessManager;
+        
+        private readonly IBusinessManagerContainer businessManagerContainer;
 
         public CommitmentController(IBusinessManagerContainer businessManagerContainer, IQueryContainer queryContainer)
         {
-            this.businessManager = businessManagerContainer.Get<CommitmentBusinessManager>();
+            this.businessManagerContainer = businessManagerContainer;
             this.queryContainer = queryContainer;
         }
 
-        public ActionResult Index()
+        [RendersPagedView]
+        public ActionResult Index(CommitmentsListParameters parameters)
         {
             var container = this.queryContainer.Get<CommitmentListModelPopulator>();
-            var model = container.Execute(new CommitmentsListParameters(null));
+            var model = container.Execute(parameters);
             return View("Index", model);
         }
 
@@ -39,7 +42,7 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Create(CreateCommitmentViewModel model)
         {
-            var id = businessManager.Add(model);
+            var id = businessManagerContainer.Get<CommitmentBusinessManager>().Add(model);
             return RedirectToAction("Details", new {id });
         }
 
@@ -61,14 +64,14 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Edit(EditCommitmentViewModel model)
         {
-            var id = businessManager.Update(model.Id, model);
+            var id = businessManagerContainer.Get<CommitmentBusinessManager>().Update(model.Id, model);
             return RedirectToAction("Details", new {id });
         }
 
         [HttpPost]
         public ActionResult Delete(Guid id)
         {
-            var result = businessManager.Delete(id);
+            var result = businessManagerContainer.Get<CommitmentBusinessManager>().Delete(id);
             return RedirectToAction("Index");
         }
     }

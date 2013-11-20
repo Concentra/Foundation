@@ -46,21 +46,18 @@ namespace Kafala.Query.Payment
 
             var pagedPayments = paymentList.FetchPaged(parameters.PageNumber, parameters.PageSize);
 
-            pagedPayments.PagingInfo.Sort = parameters.Sort;
-
+            
             var paymentModel = pagedPayments.Select(x => new ViewPaymentViewModel()
             {
-                DonationCaseName = x.Commitment.DonationCase.Name,
-                DonorName = x.Commitment.Donor.Name,
+                CommitmentDonationCaseName = x.Commitment.DonationCase.Name,
+                CommitmentDonorName = x.Commitment.Donor.Name,
                 Id = x.Id,
                 PaymentDate = x.PaymentDate,
-                PaymentPeriod = x.PaymentPeriod.Month + "-" + x.PaymentPeriod.Year
+                PaymentPeriodName = x.PaymentPeriod.Month + "-" + x.PaymentPeriod.Year
             }).ToList();
 
+            pagedPayments.PagingInfo.Sort = parameters.Sort;
 
-            Mapper.CreateMap<PagingInfo, PagingInfoViewModel>();
- 
-            
             var model = new PaymentIndexViewModel
                             {
                                 Payments = paymentModel,

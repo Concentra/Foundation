@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using AutoMapper;
 using Foundation.Infrastructure.Query;
+using Foundation.Web.Paging;
 using Kafala.Web.ViewModels.Commitment;
 using NHibernate;
 using NHibernate.Engine.Query;
@@ -32,7 +34,9 @@ namespace Kafala.Query.Commitment
                 commitmentList = commitmentList.Where(x => x.DonationCase.Id == commitmentsListParameters.CaseId.Value);
             }
 
-             var commitmentModels = commitmentList.Select(x => new ViewCommitmentViewModel()
+            var pagedCommitments = commitmentList
+                .FetchPaged(commitmentsListParameters.PageNumber, commitmentsListParameters.PageSize);
+            var commitmentModels = pagedCommitments.Select(x => new ViewCommitmentViewModel()
                 {
                     DonationCaseName = x.DonationCase.Name,
                     DonorName = x.Donor.Name,
@@ -40,24 +44,34 @@ namespace Kafala.Query.Commitment
                     StartDate = x.StartDate,
                     EndDate = x.EndDate
                 }).ToList();
-
+            
             var model = new CommitmentIndexViewModel
                             {
-                                Commitments = commitmentModels
+                                Commitments = commitmentModels,
+                                PagingInfo = Mapper.Map<PagingInfoViewModel>(pagedCommitments.PagingInfo)
+                                
                             };
+            model.PagingInfo.Sort = commitmentsListParameters.Sort;
             return model;
         }
     }
-    
-    public class CommitmentsListParameters
+
+    public class CommitmentsListParameters : PagingParameters
     {
         private readonly Guid? donorId;
         private readonly Guid? caseId;
 
-        public CommitmentsListParameters(Guid? donorId = null, Guid? caseId = null)
+        public CommitmentsListParameters()
+        {
+        }
+
+        public CommitmentsListParameters(Guid? donorId = null, Guid? caseId = null, int pageNumber = 1, int pageSize = 10, string sort = "")
         {
             this.donorId = donorId;
             this.caseId = caseId;
+            this.PageNumber = pageNumber;
+            this.PageSize = pageSize;
+            this.Sort = sort;
         }
 
         public Guid? DonorId

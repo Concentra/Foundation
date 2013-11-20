@@ -15,11 +15,11 @@ namespace Kafala.Web.UI.Controllers
     {
         private readonly IQueryContainer queryContainer;
 
-        private readonly PaymentBusinessManager businessManager;
+        private readonly IBusinessManagerContainer businessManagerContainer;
 
         public PaymentController(IBusinessManagerContainer businessManagerContainer, IQueryContainer queryContainer)
         {
-            this.businessManager = businessManagerContainer.Get<PaymentBusinessManager>();
+            this.businessManagerContainer = businessManagerContainer;
             this.queryContainer = queryContainer;
         }
 
@@ -42,6 +42,7 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Create(CreatePaymentViewModel model)
         {
+            var businessManager = businessManagerContainer.Get<PaymentBusinessManager>();
             var id = businessManager.Register(model);
             return RedirectToAction("Details", new {id });
         }
@@ -64,6 +65,7 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Edit(EditPaymentViewModel model)
         {
+            var businessManager = businessManagerContainer.Get<PaymentBusinessManager>();
             var id = businessManager.Update(model.Id, model);
             return RedirectToAction("Details", new {id });
         }
@@ -71,6 +73,7 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Delete(Guid id)
         {
+            var businessManager = businessManagerContainer.Get<PaymentBusinessManager>();
             var result = businessManager.Delete(id);
             return RedirectToAction("Index");
         }

@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
-using Foundation.FormBuilder;
 
-namespace VortexSoft.Bootstrap
+namespace Foundation.FormBuilder
 {
     public static class HtmlHelperExtensions
     {

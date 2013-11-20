@@ -36,8 +36,6 @@ namespace Kafala.BusinessManagers.DonationCase
 
        public virtual Guid Update(Guid id, IDonationCaseContract value)
        {
-           Mapper.CreateMap<IDonationCaseContract, Entities.DonationCase>();
-
            var persistedObject = session.Get<Entities.DonationCase>(id);
            if (persistedObject != null)
            {

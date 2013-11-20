@@ -18,8 +18,7 @@ namespace Kafala.Query.DonationCase
         public ViewDonationCaseViewModel Execute(Guid id)
         {
             var persistedValue = session.Get<Entities.DonationCase>(id);
-            Mapper.CreateMap<Entities.DonationCase, ViewDonationCaseViewModel>();
-
+         
             var model = Mapper.Map<Entities.DonationCase, ViewDonationCaseViewModel>(persistedValue);
             return model;
         }

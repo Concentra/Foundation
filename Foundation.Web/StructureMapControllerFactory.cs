@@ -4,7 +4,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Foundation.Infrastructure.Query;
 using StructureMap;
 
 namespace Foundation.Web
@@ -61,10 +60,12 @@ namespace Foundation.Web
                     .HybridHttpOrThreadLocalScoped()
                     .Use(x =>
                     {
-                        //var tempData = x.GetInstance<Func<ControllerContext>>()().Controller.TempData;
+                        var controllerContext = x.GetInstance<Func<ControllerContext>>()();
+                        var currentController = controllerContext.Controller;
+                        var tempData = currentController.TempData;
                         var resourceLocator = nestedContainer.GetInstance<IResourcesLocator>();
                         var flashMessenger = new WebFlashMessenger(resourceLocator);
-                        //tempData["FlashMessenger"] = flashMessenger;
+                        tempData["FlashMessenger"] = flashMessenger;
                         return flashMessenger;
                     });
             });

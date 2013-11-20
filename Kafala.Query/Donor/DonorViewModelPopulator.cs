@@ -26,8 +26,6 @@ namespace Kafala.Query.Donor
         public ViewDonorViewModel Execute(Guid donorId)
         {
             var donor = this.session.Get<Entities.Donor>(donorId);
-            Mapper.CreateMap<Entities.Donor, ViewDonorViewModel>();
-
             var model = Mapper.Map<ViewDonorViewModel>(donor);
             model.DonorDashBoard = new DonorDashBoard()
             {

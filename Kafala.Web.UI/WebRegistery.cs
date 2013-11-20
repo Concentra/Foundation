@@ -9,6 +9,7 @@ using Kafala.Query.Security;
 using Foundation.Web.Security;
 using StructureMap.Configuration.DSL;
 using Foundation.Infrastructure.Notifications;
+using StructureMap.Pipeline;
 
 namespace Kafala.Web.UI
 {
@@ -27,7 +28,7 @@ namespace Kafala.Web.UI
                 x.With(new ControllerRegistrationConvention());
             });
             this.For<HttpSessionStateBase>().Use(ctx => new HttpSessionStateWrapper(HttpContext.Current.Session));
-            
+
         }
     }
 }

@@ -25,8 +25,7 @@ namespace Kafala.Query.Commitment
         {
             var commitment = this.session.Get<Entities.Commitment>(id);
 
-            Mapper.CreateMap<Entities.Commitment, EditCommitmentViewModel>();
-
+        
             var model = Mapper.Map<EditCommitmentViewModel>(commitment);
              
              model.DonationCases = session.Query<Entities.DonationCase>()
