@@ -73,6 +73,7 @@
     <Compile Include="Filter\FilterUtility.cs" />
     <Compile Include="GlyphIcons.cs" />
     <Compile Include="IResourcesLocator.cs" />
+    <Compile Include="ModelBinders\PagingInfoModelBinder.cs" />
     <Compile Include="Navigation\MenuList.cs" />
     <Compile Include="Navigation\MenuBuilder.cs" />
     <Compile Include="Navigation\MenuContainer.cs" />

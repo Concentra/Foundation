@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -9,6 +11,8 @@ using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Persistence;
 using Foundation.Web;
+using Foundation.Web.ModelBinders;
+using Foundation.Web.Paging;
 using Kafala.BusinessManagers;
 using Kafala.Entities.DoNotMap;
 using Kafala.Query;
@@ -48,6 +52,11 @@ namespace Kafala.Web.UI
             ObjectFactory.Configure(ConfigureDependencies);
             AreaRegistration.RegisterAllAreas();
 
+            foreach (var keyValuePair in GetModels())
+            {
+                ModelBinders.Binders.Add(keyValuePair);
+            }
+            
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory(ObjectFactory.Container));
@@ -75,6 +84,14 @@ namespace Kafala.Web.UI
             cfg.For<IConnectionString>().Use(new ConnectionString("KafalaDB"));
 
             Mapper.Initialize(AutoMapperConfigurations.Configure);
+        }
+
+        public IEnumerable<KeyValuePair<Type, IModelBinder>> GetModels()
+        {
+            return Assembly.Load("Kafala.Web.ViewModels").GetTypes()
+                .Where(x => x.IsSubclassOf(typeof (PagedViewModel)))
+                .Select(x => new KeyValuePair<Type, IModelBinder>(x, new PagingInfoModelBinder()));
+
         }
     }
 }

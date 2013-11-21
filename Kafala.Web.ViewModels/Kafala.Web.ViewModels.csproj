@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commitment\CommitmentIndexViewModel.cs" />
+    <Compile Include="Commitment\Partials\FilterCommitmentViewModel.cs" />
     <Compile Include="Commitment\ViewCommitmentViewModel.cs" />
     <Compile Include="Commitment\EditCommitmentViewModel.cs" />
     <Compile Include="Commitment\CreateCommitmentViewModel.cs" />

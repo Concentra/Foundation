@@ -6,6 +6,7 @@ using AutoMapper;
 using Foundation.Infrastructure.Query;
 using Kafala.Query.Commitment;
 using Kafala.Query.Payment;
+using Kafala.Web.ViewModels.Commitment.Partials;
 using Kafala.Web.ViewModels.Donor;
 using NHibernate;
 using NHibernate.Linq;
@@ -31,7 +32,7 @@ namespace Kafala.Query.Donor
             {
                 DonorId = model.Id,
                 Commitments = queryContainer.Get<CommitmentListModelPopulator>()
-                .Execute(new CommitmentsListParameters(donorId)).Commitments,
+                .Execute(new FilterCommitmentViewModel() { DonorId = donorId}).Commitments,
                 Payments = queryContainer.Get<PaymentListModelPopulator>()
                 .Execute(new PaymentListParameters(donorId)).Payments
             };

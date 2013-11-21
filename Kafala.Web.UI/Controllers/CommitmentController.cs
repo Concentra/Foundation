@@ -8,6 +8,7 @@ using Foundation.Web.Paging;
 using Kafala.BusinessManagers.Commitment;
 using Kafala.Query.Commitment;
 using Kafala.Web.ViewModels.Commitment;
+using Kafala.Web.ViewModels.Commitment.Partials;
 
 namespace Kafala.Web.UI.Controllers
 {
@@ -25,7 +26,7 @@ namespace Kafala.Web.UI.Controllers
         }
 
         [RendersPagedView]
-        public ActionResult Index(CommitmentsListParameters parameters)
+        public ActionResult Index(FilterCommitmentViewModel parameters)
         {
             var container = this.queryContainer.Get<CommitmentListModelPopulator>();
             var model = container.Execute(parameters);

@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Linq;
+using System.Web.Mvc;
 using AutoMapper;
 using Foundation.Infrastructure.Query;
+using Foundation.Web.Filter;
 using Foundation.Web.Paging;
 using Kafala.Web.ViewModels.Commitment;
+using Kafala.Web.ViewModels.Commitment.Partials;
 using NHibernate;
 using NHibernate.Engine.Query;
 using NHibernate.Linq;
 
 namespace Kafala.Query.Commitment
 {
-    public class CommitmentListModelPopulator : IQuery<CommitmentsListParameters, CommitmentIndexViewModel>
+    public class CommitmentListModelPopulator : IQuery<FilterCommitmentViewModel, CommitmentIndexViewModel>
     {
         private readonly ISession session;
 
@@ -19,23 +22,15 @@ namespace Kafala.Query.Commitment
             this.session = session;
         }
 
-        public CommitmentIndexViewModel Execute(CommitmentsListParameters commitmentsListParameters)
+        public CommitmentIndexViewModel Execute(FilterCommitmentViewModel commitmentsListParameters)
         {
             var commitmentList = this.session.Query<Entities.Commitment>();
-               
-            
-            if (commitmentsListParameters.DonorId.HasValue)
-            {
-                commitmentList = commitmentList.Where(x => x.Donor.Id == commitmentsListParameters.DonorId.Value);
-            }
 
-            if (commitmentsListParameters.CaseId.HasValue)
-            {
-                commitmentList = commitmentList.Where(x => x.DonationCase.Id == commitmentsListParameters.CaseId.Value);
-            }
+
+            commitmentList = commitmentList.ApplyFilter(commitmentList);
 
             var pagedCommitments = commitmentList
-                .FetchPaged(commitmentsListParameters.PageNumber, commitmentsListParameters.PageSize);
+                .FetchPaged(commitmentsListParameters.PagingInfo.PageNumber, commitmentsListParameters.PagingInfo.PageSize);
             var commitmentModels = pagedCommitments.Select(x => new ViewCommitmentViewModel()
                 {
                     DonationCaseName = x.DonationCase.Name,
@@ -44,14 +39,22 @@ namespace Kafala.Query.Commitment
                     StartDate = x.StartDate,
                     EndDate = x.EndDate
                 }).ToList();
-            
+
             var model = new CommitmentIndexViewModel
-                            {
-                                Commitments = commitmentModels,
-                                PagingInfo = Mapper.Map<PagingInfoViewModel>(pagedCommitments.PagingInfo)
-                                
-                            };
-            model.PagingInfo.Sort = commitmentsListParameters.Sort;
+            {
+                Commitments = commitmentModels,
+                Search = commitmentsListParameters
+            };
+
+            model.Search.DonationCases =
+                session.Query<Entities.DonationCase>()
+                    .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()})
+                    .OrderBy(x => x.Text);
+
+            model.Search.Donors = session.Query<Entities.Donor>()
+                   .Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() })
+                   .OrderBy(x => x.Text);
+            
             return model;
         }
     }
