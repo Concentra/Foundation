@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
@@ -24,14 +25,16 @@ namespace Kafala.Query.Commitment
 
         public CommitmentIndexViewModel Execute(FilterCommitmentViewModel commitmentsListParameters)
         {
-            var commitmentList = this.session.Query<Entities.Commitment>();
+            var query = this.session.Query<Entities.Commitment>();
 
 
-            commitmentList = commitmentList.ApplyFilter(commitmentList);
+            query = query.ApplyFilter(commitmentsListParameters);
 
-            var pagedCommitments = commitmentList
-                .FetchPaged(commitmentsListParameters.PagingInfo.PageNumber, commitmentsListParameters.PagingInfo.PageSize);
-            var commitmentModels = pagedCommitments.Select(x => new ViewCommitmentViewModel()
+            var pagedCommitments = query
+                .FetchPaged(commitmentsListParameters.PagingInfo);
+            
+
+            var commitmentModels = query.Select(x => new ViewCommitmentViewModel()
                 {
                     DonationCaseName = x.DonationCase.Name,
                     DonorName = x.Donor.Name,
@@ -43,9 +46,10 @@ namespace Kafala.Query.Commitment
             var model = new CommitmentIndexViewModel
             {
                 Commitments = commitmentModels,
-                Search = commitmentsListParameters
+                Search = commitmentsListParameters,
             };
 
+            model.Search.PagingInfo = Mapper.Map<PagingInfoViewModel>(pagedCommitments.PagingInfo);
             model.Search.DonationCases =
                 session.Query<Entities.DonationCase>()
                     .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()})

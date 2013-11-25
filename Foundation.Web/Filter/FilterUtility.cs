@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Web.Mvc;
 using Foundation.FormBuilder.CustomAttribute;
+using NHibernate.Hql.Ast;
 using NHibernate.Linq.Expressions;
 using Remotion.Linq.Parsing.ExpressionTreeVisitors.Transformation.PredefinedTransformations;
 using Expression = System.Linq.Expressions.Expression;
@@ -44,20 +46,48 @@ namespace Foundation.Web.Filter
                 {
                     PropertyInfo pi = type.GetProperty(property);
                     propertyExpression = Expression.Property(propertyExpression, pi);
-                    var nullExpression = Expression.Default(pi.PropertyType);
-                    notNullExpression = Expression.And(notNullExpression, Expression.NotEqual(propertyExpression, nullExpression));
-                    
+                    var nullExpression = Expression.Constant(GetNullExpressionForType(pi.PropertyType), pi.PropertyType);
+                    notNullExpression = Expression.AndAlso(notNullExpression, Expression.NotEqual(propertyExpression, nullExpression));
                     type = pi.PropertyType;
-
                 }
 
                 var valueExpression = Expression.Constant(filterElement.FieldValue, filterElement.Property.PropertyType);
-                var clausePart = Expression.And(notNullExpression, Expression.Equal(propertyExpression, valueExpression));
+                
+                BinaryExpression conditionExpression = Expression.Equal(propertyExpression, valueExpression);
 
-                expression = Expression.And(expression, clausePart);
+                switch (filterElement.FilterSpecs.OperatorOption)
+                {
+                    case Operator.Equal:
+                        conditionExpression = Expression.Equal(propertyExpression, valueExpression);
+                        break;
+                   case Operator.GreaterThan:
+                        break;
+                   case    Operator.GreaterThanOrEqualTo:
+                        break;
+                }
+
+
+                var clausePart = Expression.AndAlso(notNullExpression, conditionExpression);
+                
+                if (!filterElement.FieldValue.Equals(GetNullExpressionForType(filterElement.Property.PropertyType)))
+                {
+                    expression = Expression.AndAlso(expression, clausePart);
+                }
             }
             
             return expression;
+        }
+
+        private static object GetNullExpressionForType(Type type)
+        {
+            var canBeNull = CanBeNull(type);
+            var nullValue = canBeNull ? null : Activator.CreateInstance(type);
+            return nullValue;
+        }
+
+        private static bool CanBeNull(Type type)
+        {
+            return !(type.IsValueType || (Nullable.GetUnderlyingType(type) != null));
         }
 
 

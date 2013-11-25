@@ -32,10 +32,10 @@ namespace Kafala.Web.UI.Controllers
             return View("Index", model);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(Guid id)
         {
             var container = this.queryContainer.Get<PaymentCreateModelPopulator>();
-            var model = container.Execute(null);
+            var model = container.Execute(id);
             return View("Create", model);
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace Foundation.Web.Paging
 {
-    public class PagingParameters
+    public class PagingParameters: IPagingParameters
     {
         public int PageSize { get; set; }
 

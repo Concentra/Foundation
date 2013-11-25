@@ -12,6 +12,6 @@ namespace Kafala.BusinessManagers.Payment
 
         Guid CommitmentId { get; set; }
 
-        Decimal Amount { get; set; }
+        decimal Amount { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Kafala.Entities
 
         public virtual Donor Donor { get; set; }
 
-        public virtual double Amount { get; set; }
+        public virtual decimal Amount { get; set; }
 
         public virtual bool Deleted { get; set; }
 

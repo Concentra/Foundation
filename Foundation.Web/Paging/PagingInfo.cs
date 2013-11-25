@@ -2,7 +2,7 @@
 
 namespace Foundation.Web.Paging
 {
-    public class PagingInfo
+    public class PagingInfo : IPagingInfo
     {
         public int TotalItems { get; set; }
 

@@ -20,7 +20,7 @@ namespace Kafala.Query.DonationCase
         public ListDonationCaseViewModel Execute(ListDonationCasesParameters parameters)
         {
             var donationCaseStatusPaged = session.Query<Entities.DonationCase>()
-                .FetchPaged(parameters.PageNumber, parameters.PageSize);
+                .FetchPaged(parameters);
 
             donationCaseStatusPaged.PagingInfo.Sort = parameters.Sort;
 

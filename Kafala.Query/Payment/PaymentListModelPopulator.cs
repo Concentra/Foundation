@@ -44,7 +44,7 @@ namespace Kafala.Query.Payment
                 paymentList = paymentList.Where(x => x.PaymentPeriod.Id == parameters.PeriodId.Value);
             }
 
-            var pagedPayments = paymentList.FetchPaged(parameters.PageNumber, parameters.PageSize);
+            var pagedPayments = paymentList.FetchPaged(parameters);
 
             
             var paymentModel = pagedPayments.Select(x => new ViewPaymentViewModel()

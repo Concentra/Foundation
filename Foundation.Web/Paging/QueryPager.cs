@@ -24,15 +24,25 @@ namespace Foundation.Web.Paging
                 pageSize = PageSize;
             }
 
+            if (pageIndex == 0)
+            {
+                pageIndex = 1;
+            }
+
             return source.Skip(pageIndex * pageSize)
                 .Take(pageSize);
         }
 
-        public static IPagedList<T> FetchPaged<T>(this IQueryable<T> query, int pageIndex, int pageSize)
+        private static IPagedList<T> FetchPaged<T>(this IQueryable<T> query, int pageIndex, int pageSize)
         {
             if (pageSize == 0)
             {
                 pageSize = PageSize;
+            }
+
+            if (pageIndex == 0)
+            {
+                pageIndex = 1;
             }
             
             var futureCount = query.ToFutureValue(x => Queryable.Count<T>(x));
@@ -40,6 +50,18 @@ namespace Foundation.Web.Paging
             var queryPaged = query.Skip((pageIndex - 1)*pageSize).Take(pageSize).ToFuture();
 
             return new PagedList<T>(queryPaged,(pageIndex - 1), pageSize, x => futureCount.Value);
+        }
+
+        public static IPagedList<T> FetchPaged<T>(this IQueryable<T> query, IPagingParameters pagingParameters)
+        {
+            if (pagingParameters != null)
+            {
+                return query.FetchPaged(pagingParameters.PageNumber, pagingParameters.PageSize);
+            }
+            else
+            {
+                return query.FetchPaged(new PagingInfo());
+            }
         }
 
         public static IPagedList<T> FetchPaged<T>(this IQueryable<T> parentQuery, IQueryable<T> queryWithChildren, int pageIndex, int pageSize)
@@ -62,6 +84,11 @@ namespace Foundation.Web.Paging
             if (pageSize == 0)
             {
                 pageSize = PageSize;
+            }
+
+            if (pageIndex == 0)
+            {
+                pageIndex = 1;
             }
 
             var futureCount = query.ToFutureValue(x => x.Count());

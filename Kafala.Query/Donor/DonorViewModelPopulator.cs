@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AutoMapper;
 using Foundation.Infrastructure.Query;
+using Foundation.Web.Paging;
 using Kafala.Query.Commitment;
 using Kafala.Query.Payment;
 using Kafala.Web.ViewModels.Commitment.Partials;
@@ -32,7 +33,7 @@ namespace Kafala.Query.Donor
             {
                 DonorId = model.Id,
                 Commitments = queryContainer.Get<CommitmentListModelPopulator>()
-                .Execute(new FilterCommitmentViewModel() { DonorId = donorId}).Commitments,
+                .Execute(new FilterCommitmentViewModel() { DonorId = donorId }).Commitments,
                 Payments = queryContainer.Get<PaymentListModelPopulator>()
                 .Execute(new PaymentListParameters(donorId)).Payments
             };
