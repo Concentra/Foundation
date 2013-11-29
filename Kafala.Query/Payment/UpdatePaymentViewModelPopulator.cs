@@ -23,8 +23,6 @@ namespace Kafala.Query.Payment
         {
             var source = this.session.Get<Entities.Payment>(id);
 
-            Mapper.CreateMap<Entities.Payment, EditPaymentViewModel>();
-
             var model = Mapper.Map<EditPaymentViewModel>(source);
              
              model.PaymentPeriods = session.Query<Entities.PaymentPeriod>()

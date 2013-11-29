@@ -1,8 +1,7 @@
-﻿@using Foundation.Web
-@model Kafala.Web.ViewModels.Donor.ViewDonorViewModel
+﻿@model Kafala.Web.ViewModels.Donor.ViewDonorViewModel
 
 <div class="page-header">
-    <h1>Name @Model.Name</h1>
+    <h1>@Model.Name</h1>
 </div>
 <div class="row">
     <div class="btn-group  btn-group-justified ">
@@ -47,7 +46,7 @@
             {
                 @Html.Partial("Partial/DonorPayments", Model.DonorDashBoard, new ViewDataDictionary())
             }
-        </div>
+        </div> 
     </div>
 </div>
 

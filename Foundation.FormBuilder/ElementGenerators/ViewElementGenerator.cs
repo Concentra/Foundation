@@ -116,16 +116,6 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderWholeNumber(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required,custom[integer]]");
-            }
-            else
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[custom[integer]]");
-            }
             writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
@@ -137,12 +127,7 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderPassword(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
             
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "password");
             if (formElement.ControlSpecs.MaxLength != 0)
             {
@@ -157,12 +142,6 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderTextBox(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
             
             writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
@@ -181,8 +160,6 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderHidden(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
@@ -195,13 +172,7 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderTextArea(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
-
+            
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Cols, formElement.ControlSpecs.Cols.ToString(CultureInfo.InvariantCulture));
@@ -214,16 +185,7 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderFloatingPointNumber(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required,custom[number]]");
-            }
-            else
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[custom[number]]");
-            }
+           
             writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
@@ -235,8 +197,7 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderEnum(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
+            
             var property = formElement.PropertyInfo;
             var dropDownList = new DropDownList();
             dropDownList.ID = property.Name;
@@ -246,12 +207,7 @@ namespace Foundation.FormBuilder.ElementGenerators
                 var item = new ListItem(fieldInfo.Name.SpacePascal(), fieldInfo.GetRawConstantValue().ToString());
                 dropDownList.Items.Add(item);
             }
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
-
+            
             writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
             dropDownList.RenderControl(writer);
         }
@@ -259,14 +215,8 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderDropDownList(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
             
             var itemsList = formElement.CollectionInfo.CollectionObject;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
 
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
@@ -295,7 +245,7 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderStaticText(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo != null && formElement.ValidationInfo.Required;
+            
             var property = formElement.PropertyInfo;
             writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);

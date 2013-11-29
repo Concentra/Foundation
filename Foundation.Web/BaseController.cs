@@ -5,26 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.BL;
-using Foundation.Infrastructure.Query;
 using StructureMap;
 
 namespace Foundation.Web
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
-        public IFlashMessenger FlashMessenger { get; set; }
-        
         public ICurrentAuthenticateUser CurrentAuthenticateUser { get; set; }
         
-        public  BaseController()
-        {
-            var flashMessenger = new WebFlashMessenger(ObjectFactory.GetInstance<IResourcesLocator>());
-            TempData["FlashMessenger"] = flashMessenger;
-            this.FlashMessenger = flashMessenger;
-        }
-
         protected ActionResult PageNotFound()
         {
             return this.View("NotFound");

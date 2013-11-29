@@ -89,37 +89,19 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderDateTime(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
-            DateTime? dateTimeValue;
-            if (value != null)
-            {
-                dateTimeValue = Convert.ToDateTime(value);
-            }
-            else
-            {
-                dateTimeValue = null;
-            }
-
-            var datePicker = string.Empty;
-            //htmlHelper.JQueryUI().Datepicker(formElement.PropertyInfo.Name, dateTimeValue).ChangeYear(true).ChangeMonth(true);
-            writer.ClearAttributes();
-            writer.Write(datePicker);
+            writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
+            writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "datepicker");
+            writer.AddAttribute(HtmlTextWriterAttribute.Cols, "14");
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
+            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
+            writer.RenderBeginTag(HtmlTextWriterTag.Input);
+            writer.RenderEndTag(); // </input>
         }
 
         private void RenderWholeNumber(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required,custom[integer]]");
-            }
-            else
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[custom[integer]]");
-            }
             writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
@@ -131,12 +113,6 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderPassword(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-            
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "password");
             if (formElement.ControlSpecs.MaxLength != 0)
             {
@@ -151,13 +127,6 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderTextBox(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
-            
             writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
             
@@ -175,8 +144,6 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderHidden(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
@@ -189,13 +156,7 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderTextArea(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
-
+            
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Cols, formElement.ControlSpecs.Cols.ToString(CultureInfo.InvariantCulture));
@@ -208,16 +169,6 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderFloatingPointNumber(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required,custom[number]]");
-            }
-            else
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[custom[number]]");
-            }
             writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
@@ -229,21 +180,20 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderEnum(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
-
+            
             var property = formElement.PropertyInfo;
             var dropDownList = new DropDownList();
             dropDownList.ID = property.Name;
 
-            foreach (var fieldInfo in property.PropertyType.GetFields(BindingFlags.Public | BindingFlags.Static).OrderBy(x => x.Name))
+            foreach (var enumValue in Enum.GetValues(property.PropertyType))
             {
-                var item = new ListItem(fieldInfo.Name.SpacePascal(), fieldInfo.GetRawConstantValue().ToString());
-                dropDownList.Items.Add(item);
-            }
 
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
+                var item = new ListItem(enumValue.ToString().SpacePascal(), enumValue.ToString());
+
+                item.Selected = value != null &&
+                                (int) enumValue == (int) Enum.Parse(property.PropertyType, value.ToString());
+
+                dropDownList.Items.Add(item);
             }
 
             writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
@@ -253,14 +203,8 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderDropDownList(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
             
             var itemsList = formElement.CollectionInfo.CollectionObject;
-
-            if (isRequired)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "validate[required]");
-            }
 
             writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
@@ -272,12 +216,12 @@ namespace Foundation.FormBuilder.ElementGenerators
                 {
                     writer.AddAttribute(HtmlTextWriterAttribute.Value, selectListItem.Value);
 
-                    if (value != null && selectListItem.Value == value.ToString())
+                    if (value != null && selectListItem.Value.ToUpper() == value.ToString().ToUpper())
                     {
                         writer.AddAttribute(HtmlTextWriterAttribute.Selected, null);
                     }
 
-                    writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Option);
+                    writer.RenderBeginTag(HtmlTextWriterTag.Option);
                     writer.Write(selectListItem.Text);
                     writer.RenderEndTag();
                 }
@@ -289,7 +233,6 @@ namespace Foundation.FormBuilder.ElementGenerators
         private void RenderStaticText(NavHtmlTextWritter writer, FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var isRequired = formElement.ValidationInfo.Required;
             var property = formElement.PropertyInfo;
             writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
@@ -297,6 +240,7 @@ namespace Foundation.FormBuilder.ElementGenerators
             writer.RenderBeginTag(HtmlTextWriterTag.P);
             writer.Write(Convert.ToString(value));
             writer.RenderEndTag(); // input
+            RenderHidden(writer, formElement);
         }
     }
 }

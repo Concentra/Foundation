@@ -73,7 +73,7 @@ namespace Foundation.Web.Navigation
            
              
                 var link = new TagBuilder("a");
-                menuItem.URL = string.IsNullOrEmpty(menuItem.URL) ? "#" : menuItem.URL;
+                menuItem.URL = string.IsNullOrEmpty(menuItem.URL) ? "#" : "/" + menuItem.URL;
                 link.Attributes.Add("href", menuItem.URL);
                 if (dropDownToggle)
                 {

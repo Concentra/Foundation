@@ -2,6 +2,7 @@
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.BL;
 using Foundation.Persistence;
+using Foundation.Web;
 using Kafala.BusinessManagers;
 using Kafala.BusinessManagers.Donor;
 using Kafala.Entities.DoNotMap;
@@ -39,7 +40,7 @@ namespace Kafala.Console
             container.Configure(x => x.For<ITypeHolder>().Use<TypeHolder>());
 
             container.Configure(x => x.For<IConnectionString>().Use(new ConnectionString("KafalaDB")));
-
+            container.Configure(x => x.For<IFlashMessenger>().Use<SwallowFlashMessneger>());
             return container;
         }
     }

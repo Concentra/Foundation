@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Kafala.Entities
@@ -13,13 +12,13 @@ namespace Kafala.Entities
 
         public virtual Donor Donor { get; set; }
 
-        public virtual double Amount { get; set; }
+        public virtual decimal Amount { get; set; }
 
         public virtual bool Deleted { get; set; }
 
-        public virtual DateTime StartDate { get; set; }
+        public virtual DateTime? StartDate { get; set; }
 
-        public virtual DateTime EndDate { get; set; }
+        public virtual DateTime? EndDate { get; set; }
 
         public virtual IList<Payment> Payments { get; set; }
     }

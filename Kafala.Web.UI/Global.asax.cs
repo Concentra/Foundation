@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper;
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Persistence;
 using Foundation.Web;
+using Foundation.Web.ModelBinders;
+using Foundation.Web.Paging;
 using Kafala.BusinessManagers;
 using Kafala.Entities.DoNotMap;
+using Kafala.Query;
 using Kafala.Web.ViewModels.Donor;
 using StructureMap;
 
@@ -29,11 +34,11 @@ namespace Kafala.Web.UI
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.IgnoreRoute("favicon.ico");
-
-            //routes.IgnoreRoute("{Content}/{*pathInfo}");
-
+            routes.IgnoreRoute("content/{*pathInfo}");
+            routes.IgnoreRoute("scripts/{*pathInfo}");
+            routes.IgnoreRoute("elmah.axd");
+            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+            
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
@@ -47,6 +52,11 @@ namespace Kafala.Web.UI
             ObjectFactory.Configure(ConfigureDependencies);
             AreaRegistration.RegisterAllAreas();
 
+            foreach (var keyValuePair in GetModels())
+            {
+                ModelBinders.Binders.Add(keyValuePair);
+            }
+            
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory(ObjectFactory.Container));
@@ -72,6 +82,16 @@ namespace Kafala.Web.UI
             cfg.For<ITypeHolder>().Use<TypeHolder>();
 
             cfg.For<IConnectionString>().Use(new ConnectionString("KafalaDB"));
+
+            Mapper.Initialize(AutoMapperConfigurations.Configure);
+        }
+
+        public IEnumerable<KeyValuePair<Type, IModelBinder>> GetModels()
+        {
+            return Assembly.Load("Kafala.Web.ViewModels").GetTypes()
+                .Where(x => x.IsSubclassOf(typeof (PagedViewModel)))
+                .Select(x => new KeyValuePair<Type, IModelBinder>(x, new PagingInfoModelBinder()));
+
         }
     }
 }

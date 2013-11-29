@@ -19,8 +19,7 @@ namespace Kafala.Query.Commitment
         {
             var commitment = this.session.Get<Entities.Commitment>(id);
 
-            Mapper.CreateMap<Entities.Commitment, ViewCommitmentViewModel>();
-
+            
             var model = Mapper.Map<ViewCommitmentViewModel>(commitment);
             return model;
         }

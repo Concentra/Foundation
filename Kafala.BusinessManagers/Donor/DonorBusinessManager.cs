@@ -55,7 +55,7 @@ namespace Kafala.BusinessManagers.Donor
                donor.Telephone = donorValue.Telephone;
                donor.Referral = referral;
            }
-           
+           FlashMessenger.AddMessageByKey("UpdateDonorSuccess", FlashMessageType.Success);
            session.Save(donor);
            return id;
        }

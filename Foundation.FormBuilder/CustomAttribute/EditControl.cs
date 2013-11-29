@@ -1,5 +1,3 @@
-using Microsoft.SqlServer.Server;
-
 namespace Foundation.FormBuilder.CustomAttribute
 {
     [System.AttributeUsage(System.AttributeTargets.Property)

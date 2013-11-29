@@ -14,8 +14,8 @@
          @foreach (var item in Model.Payments)
          {
              <tr>
-                 <td>@item.DonationCaseName</td>
-                 <td>@item.PaymentPeriod</td>
+                 <td>@item.CommitmentDonationCaseName</td>
+                 <td>@item.PaymentPeriodName</td>
                  <td>@item.PaymentDate</td>
                  <td>
                      @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |

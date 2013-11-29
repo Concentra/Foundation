@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using AutoMapper;
 using Foundation.Infrastructure.Query;
+using Foundation.Web.Paging;
 using Kafala.Query.Commitment;
 using Kafala.Query.Payment;
+using Kafala.Web.ViewModels.Commitment.Partials;
 using Kafala.Web.ViewModels.Donor;
 using NHibernate;
 using NHibernate.Linq;
@@ -26,14 +28,12 @@ namespace Kafala.Query.Donor
         public ViewDonorViewModel Execute(Guid donorId)
         {
             var donor = this.session.Get<Entities.Donor>(donorId);
-            Mapper.CreateMap<Entities.Donor, ViewDonorViewModel>();
-
             var model = Mapper.Map<ViewDonorViewModel>(donor);
             model.DonorDashBoard = new DonorDashBoard()
             {
                 DonorId = model.Id,
                 Commitments = queryContainer.Get<CommitmentListModelPopulator>()
-                .Execute(new CommitmentsListParameters(donorId)).Commitments,
+                .Execute(new FilterCommitmentViewModel() { DonorId = donorId }).Commitments,
                 Payments = queryContainer.Get<PaymentListModelPopulator>()
                 .Execute(new PaymentListParameters(donorId)).Payments
             };

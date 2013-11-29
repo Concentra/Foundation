@@ -1,5 +1,9 @@
 ﻿/// <reference path="ThirdParty/jquery-vsdoc.js" />
 
+$(function () {
+    $(".datepicker").datepicker();
+});
+
 // Log script errors using ELMAH
 window.onerror = function (msg, url, lineNo) {
     /// This method is based on jquery.ajax. Don't want to rely on jquery incase an issue loading that occurs.

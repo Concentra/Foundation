@@ -19,8 +19,6 @@ namespace Kafala.Query.Payment
         {
             var source = this.session.Get<Entities.Payment>(id);
 
-            Mapper.CreateMap<Entities.Payment, ViewPaymentViewModel>();
-
             var model = Mapper.Map<ViewPaymentViewModel>(source);
             return model;
         }

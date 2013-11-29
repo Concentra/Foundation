@@ -13,7 +13,7 @@ namespace Kafala.Web.ViewModels.Payment
         [EditControl(Order = 1, 
             ElementType = ElementType.Text,
             Label = "Beneficiary Case Name")]
-        public virtual string DonationCaseName { get; set; }
+        public virtual string CommitmentDonationCaseName { get; set; }
 
         public virtual Guid DonationCaseId { get; set; }
 
@@ -21,16 +21,19 @@ namespace Kafala.Web.ViewModels.Payment
         [EditControl(Order = 2,
             ElementType = ElementType.Text,
             Label = "Donor Name")]
-        public virtual string DonorName { get; set; }
+        public virtual string CommitmentDonorName { get; set; }
 
         [EditControl(ElementType = ElementType.Hidden)]
-        public virtual Guid DonorId { get; set; }
+        public virtual Guid CommitmentDonorId { get; set; }
+
+        [EditControl(ElementType = ElementType.FloatingPointNumber)]
+        public virtual decimal Amount { get; set; }
 
         [EditControl(ElementType = ElementType.DateTime)]
         public virtual DateTime? PaymentDate { get; set; }
 
         [EditControl(ElementType = ElementType.Text)]
-        public virtual string PaymentPeriod { get; set; }
+        public virtual string PaymentPeriodName { get; set; }
 
     }
 }

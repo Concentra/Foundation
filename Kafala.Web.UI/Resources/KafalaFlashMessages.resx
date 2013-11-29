@@ -120,4 +120,7 @@
   <data name="CreateDonorSuccess" xml:space="preserve">
     <value>Donor was created successfully</value>
   </data>
+  <data name="UpdateDonorSuccess" xml:space="preserve">
+    <value>Donor was update successfully.</value>
+  </data>
 </root>

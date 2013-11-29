@@ -26,10 +26,7 @@ namespace Foundation.FormBuilder.Blocks
 
         public void Dispose()
         {
-            if (formType == BootstrapFormType.Horizontal)
-            {
-                textWriter.RenderEndTag(); // div (ElementType-Group)
-            }
+            textWriter.RenderEndTag(); // div (ElementType-Group)
         }
     }
 }

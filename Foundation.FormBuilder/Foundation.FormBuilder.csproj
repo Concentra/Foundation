@@ -30,25 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JQueryUIHelpers">
-      <HintPath>..\packages\jQueryUIHelpers.Mvc4.2.1.0\lib\net40\JQueryUIHelpers.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blocks\ControlContainer.cs" />
     <Compile Include="Blocks\ControlGroup.cs" />
     <Compile Include="Blocks\ElementGroup.cs" />
     <Compile Include="CustomAttribute\Contents.cs" />
+    <Compile Include="CustomAttribute\FilterControl.cs" />
     <Compile Include="CustomAttribute\ValidationInfo.cs" />
     <Compile Include="DynamicForm\BootStrapViewBuilder.cs" />
     <Compile Include="DynamicForm\UiBuilderBase.cs" />
@@ -57,7 +49,7 @@
     <Compile Include="ElementGenerators\ViewElementGenerator.cs" />
     <Compile Include="FormBuilder.cs" />
     <Compile Include="CustomAttribute\CollectionInfo.cs" />
-    <Compile Include="CustomAttribute\ElementType.cs" />
+    <Compile Include="CustomAttribute\EditControl.cs" />
     <Compile Include="DynamicForm\BootStrapFormBuilder.cs" />
     <Compile Include="DynamicForm\BootstrapFormType.cs" />
     <Compile Include="CustomAttribute\FormElement.cs" />

@@ -16,17 +16,25 @@ namespace Kafala.Query.Shared
             {
                 Children = new List<MenuItem>
                 {
-                    new MenuItem() {Active = false, Text = "Donors" },
-                    new MenuItem() {Active = false, Text = "Donation Cases"},
-                    new MenuItem() {Active = false, Text = "Payments"},
-                    new MenuItem() {Active = false, Text = "Alerts"},
+                    new MenuItem() {Active = false, Text = "Donors", URL = "Donor"},
+                    new MenuItem() {Active = false, Text = "Donation Cases", URL = "DonationCase"},
+                    new MenuItem()
+                    {
+                        Active = false, Text = "Payments",
+                        Children = new List<MenuItem>
+                        {
+                            new MenuItem() {Active = false, Text = "Find Payments" , URL = "Payment"},
+                            new MenuItem() {Active = false, Text = "Create Payments" , URL = "Payment/Create"},
+                        }
+                    },
+                    new MenuItem() {Active = false, Text = "Alerts", URL = "Alerts"},
                     new MenuItem() {
                         Active = false, Text = "Settings" ,
                         Children = new List<MenuItem>
                         {
-                            new MenuItem() {Active = false, Text = "Payment Periods"},
+                            new MenuItem() {Active = false, Text = "Payment Periods", URL = "PaymentPeriod"},
                             new MenuItem() {Divider = true},
-                            new MenuItem() {Active = false, Text = "Users"}
+                            new MenuItem() {Active = false, Text = "Users", URL = "User"}
                         }
                     }
                 }
