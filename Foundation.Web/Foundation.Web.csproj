@@ -100,9 +100,13 @@
   <ItemGroup>
     <Compile Include="BaseController.cs" />
     <Compile Include="ControllerRegistrationConvention.cs" />
+    <Compile Include="Extensions\CacheType.cs" />
+    <Compile Include="Extensions\CachingExtentions.cs" />
     <Compile Include="Extensions\CssMediaType.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Extensions\IFlushable.cs" />
+    <Compile Include="Extensions\InMemoryCache.cs" />
     <Compile Include="Extensions\MvcPanel.cs" />
     <Compile Include="Extensions\MvcPanelTab.cs" />
     <Compile Include="Extensions\PagerExtensions.cs" />
