@@ -1,6 +1,6 @@
 ﻿create table [Commitment] (
         Id UNIQUEIDENTIFIER not null,
-       Amount DOUBLE PRECISION null,
+       Amount DECIMAL(19,5) null,
        Deleted BIT null,
        StartDate DATETIME null,
        EndDate DATETIME null,

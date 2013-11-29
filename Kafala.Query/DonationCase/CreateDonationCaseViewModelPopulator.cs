@@ -18,7 +18,7 @@ namespace Kafala.Query.DonationCase
         {
             var model = new CreateDonationCaseViewModel
                             {
-
+                                
                                 DonationCaseStatus = DonationCaseStatus.Active
                             };
             return model;

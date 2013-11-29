@@ -7,3 +7,10 @@
    
 }
 
+ <div class="row">
+            
+            @if (Model.Commitments != null)
+            {
+                @Html.Partial("Partial/Commitments", Model, new ViewDataDictionary())
+            }
+        </div>

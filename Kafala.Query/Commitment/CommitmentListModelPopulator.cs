@@ -39,6 +39,7 @@ namespace Kafala.Query.Commitment
                     DonationCaseName = x.DonationCase.Name,
                     DonorName = x.Donor.Name,
                     Id = x.Id,
+                    Amount = x.Amount,
                     StartDate = x.StartDate,
                     EndDate = x.EndDate
                 }).ToList();

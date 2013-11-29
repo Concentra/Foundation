@@ -31,7 +31,7 @@ namespace Kafala.Query.Payment
             var commitment = session.Get<Entities.Commitment>(id);
             var model = new CreatePaymentViewModel()
                 {
-                    PaymentPeriods = session.Query<Entities.PaymentPeriod>().AsEnumerable().CreateDropDownList(x => x.Name, y => y.Id),
+                    PaymentPeriods = session.CreateDropDownList<Entities.PaymentPeriod>(x => x.Name, y => y.Id),
                     PaymentDate = DateTime.Now,
                     DonorName = commitment.Donor.Name,
                     Amount = commitment.Amount,

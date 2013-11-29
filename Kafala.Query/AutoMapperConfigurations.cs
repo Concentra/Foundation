@@ -19,7 +19,6 @@ namespace Kafala.Query
             cfg.CreateMap<Entities.Donor, ViewDonorViewModel>();
             cfg.CreateMap<Entities.Donor, DonorUpdateViewModel>();
             cfg.CreateMap<Entities.Commitment, ViewCommitmentViewModel>();
-            cfg.CreateMap<Entities.Payment, PaymentsViewModel>();
             cfg.CreateMap<Entities.Payment, ViewPaymentViewModel>();
             cfg.CreateMap<Entities.Payment, EditPaymentViewModel>();
             cfg.CreateMap<Entities.PaymentPeriod, ViewPaymentPeriodViewModel>();

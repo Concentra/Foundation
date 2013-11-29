@@ -26,6 +26,9 @@ namespace Kafala.Web.ViewModels.Payment
         [EditControl(ElementType = ElementType.Hidden)]
         public virtual Guid CommitmentDonorId { get; set; }
 
+        [EditControl(ElementType = ElementType.FloatingPointNumber)]
+        public virtual decimal Amount { get; set; }
+
         [EditControl(ElementType = ElementType.DateTime)]
         public virtual DateTime? PaymentDate { get; set; }
 

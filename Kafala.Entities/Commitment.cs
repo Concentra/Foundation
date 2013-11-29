@@ -16,9 +16,9 @@ namespace Kafala.Entities
 
         public virtual bool Deleted { get; set; }
 
-        public virtual DateTime StartDate { get; set; }
+        public virtual DateTime? StartDate { get; set; }
 
-        public virtual DateTime EndDate { get; set; }
+        public virtual DateTime? EndDate { get; set; }
 
         public virtual IList<Payment> Payments { get; set; }
     }

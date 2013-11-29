@@ -25,9 +25,9 @@ namespace Kafala.Web.ViewModels.Commitment
         public virtual IEnumerable<SelectListItem> Donors { get; set; }
 
         [EditControl(ElementType = ElementType.DateTime)]
-        public virtual DateTime StartDate { get; set; }
+        public virtual DateTime? StartDate { get; set; }
 
         [EditControl(ElementType = ElementType.DateTime)]
-        public virtual DateTime EndDate { get; set; }
+        public virtual DateTime? EndDate { get; set; }
     }
 }

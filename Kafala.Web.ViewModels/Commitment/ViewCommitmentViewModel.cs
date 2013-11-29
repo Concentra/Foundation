@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Foundation.FormBuilder.CustomAttribute;
+using Kafala.Web.ViewModels.Payment;
 
 namespace Kafala.Web.ViewModels.Commitment
 {
@@ -27,11 +28,14 @@ namespace Kafala.Web.ViewModels.Commitment
         public virtual Guid DonorId { get; set; }
 
         [EditControl(ElementType = ElementType.DateTime)]
-        public virtual DateTime StartDate { get; set; }
+        public virtual DateTime? StartDate { get; set; }
 
         [EditControl(ElementType = ElementType.DateTime)]
-        public virtual DateTime EndDate { get; set; }
+        public virtual DateTime? EndDate { get; set; }
 
-        public virtual IList<PaymentsViewModel> Payments { get; set; }
+        [EditControl(ElementType = ElementType.FloatingPointNumber)]
+        public virtual decimal Amount { get; set; }
+
+        public virtual IList<ViewPaymentViewModel> Payments { get; set; }
     }
 }

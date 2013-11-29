@@ -225,10 +225,10 @@
     <Content Include="Views\DonationCase\Edit.cshtml" />
     <Content Include="Views\DonationCase\View.cshtml" />
     <Content Include="Views\DonationCase\Index.cshtml" />
+    <Content Include="Views\DonationCase\Partial\Commitments.cshtml" />
+    <Content Include="Views\Commitment\Partial\Payment.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Commitment\Partial\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>

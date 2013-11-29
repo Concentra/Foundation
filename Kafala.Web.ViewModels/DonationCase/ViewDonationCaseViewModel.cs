@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Foundation.FormBuilder.CustomAttribute;
 using Kafala.Entities.Enums;
+using Kafala.Web.ViewModels.Commitment;
 
 namespace Kafala.Web.ViewModels.DonationCase
 {
@@ -20,6 +22,8 @@ namespace Kafala.Web.ViewModels.DonationCase
 
         [EditControl(ElementType = ElementType.Enum)]
         public virtual DonationCaseStatus DonationCaseStatus { get; set; }
+
+        public IEnumerable<ViewCommitmentViewModel> Commitments { get; set; }
 
     }
 }

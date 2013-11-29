@@ -48,10 +48,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SwallowFlashMessneger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">
@@ -61,6 +64,10 @@
     <ProjectReference Include="..\Foundation.Persistence\Foundation.Persistence.csproj">
       <Project>{C684E3B8-D828-4ECE-B427-AFC06F25977F}</Project>
       <Name>Foundation.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
+      <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
+      <Name>Foundation.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kafala.BusinessManagers\Kafala.BusinessManagers.csproj">
       <Project>{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}</Project>

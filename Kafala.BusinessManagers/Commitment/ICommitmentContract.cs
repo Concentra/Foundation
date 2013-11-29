@@ -7,7 +7,7 @@ namespace Kafala.BusinessManagers.Commitment
     {
         Guid DonationCaseId { get; set; }
         Guid DonorId { get; set; }
-        DateTime StartDate { get; set; }
-        DateTime EndDate { get; set; }
+        DateTime? StartDate { get; set; }
+        DateTime? EndDate { get; set; }
     }
 }

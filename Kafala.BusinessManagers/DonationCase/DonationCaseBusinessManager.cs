@@ -39,7 +39,7 @@ namespace Kafala.BusinessManagers.DonationCase
            var persistedObject = session.Get<Entities.DonationCase>(id);
            if (persistedObject != null)
            {
-               persistedObject = Mapper.Map<IDonationCaseContract, Entities.DonationCase>(value);
+               Mapper.Map<IDonationCaseContract, Entities.DonationCase>(value, persistedObject);
            }
            
            session.Save(persistedObject);

@@ -6,3 +6,11 @@
 {
     @Html.FormBuilder().DynamicView()
 }
+
+ <div class="row">
+            
+            @if (Model.Payments != null)
+            {
+                @Html.Partial("Partial/Payment", Model, new ViewDataDictionary())
+            }
+        </div>

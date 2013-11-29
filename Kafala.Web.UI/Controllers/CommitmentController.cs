@@ -33,10 +33,10 @@ namespace Kafala.Web.UI.Controllers
             return View("Index", model);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(CreateCommitmentParameters parameters)
         {
             var container = this.queryContainer.Get<CommitmentCreateModelPopulator>();
-            var model = container.Execute(null);
+            var model = container.Execute(parameters);
             return View("Create", model);
         }
 

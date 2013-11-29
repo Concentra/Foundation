@@ -47,7 +47,6 @@
     <Compile Include="Commitment\ViewCommitmentViewModel.cs" />
     <Compile Include="Commitment\EditCommitmentViewModel.cs" />
     <Compile Include="Commitment\CreateCommitmentViewModel.cs" />
-    <Compile Include="Commitment\PaymentsViewModel.cs" />
     <Compile Include="DonationCase\CreateDonationCaseViewModel.cs" />
     <Compile Include="DonationCase\EditDonationCaseViewModel.cs" />
     <Compile Include="DonationCase\ListDonationCaseViewModel.cs" />

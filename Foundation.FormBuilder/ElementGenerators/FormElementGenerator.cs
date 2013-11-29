@@ -185,12 +185,17 @@ namespace Foundation.FormBuilder.ElementGenerators
             var dropDownList = new DropDownList();
             dropDownList.ID = property.Name;
 
-            foreach (var fieldInfo in property.PropertyType.GetFields(BindingFlags.Public | BindingFlags.Static).OrderBy(x => x.Name))
+            foreach (var enumValue in Enum.GetValues(property.PropertyType))
             {
-                var item = new ListItem(fieldInfo.Name.SpacePascal(), fieldInfo.GetRawConstantValue().ToString());
+
+                var item = new ListItem(enumValue.ToString().SpacePascal(), enumValue.ToString());
+
+                item.Selected = value != null &&
+                                (int) enumValue == (int) Enum.Parse(property.PropertyType, value.ToString());
+
                 dropDownList.Items.Add(item);
             }
-            
+
             writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
             dropDownList.RenderControl(writer);
         }
