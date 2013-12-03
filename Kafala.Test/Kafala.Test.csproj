@@ -71,6 +71,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTextFixture.cs" />
+    <Compile Include="MappingViews.cs" />
     <Compile Include="FilterModel.cs" />
     <Compile Include="Configurations.cs" />
     <Compile Include="SecurityTests.cs" />

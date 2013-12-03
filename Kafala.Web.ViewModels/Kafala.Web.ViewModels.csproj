@@ -68,9 +68,7 @@
     <Compile Include="Home\LogonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Donor\Partial\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Foundation.FormBuilder\Foundation.FormBuilder.csproj">
       <Project>{c5fa847f-2fb5-403d-ad02-3e9332bf60c7}</Project>

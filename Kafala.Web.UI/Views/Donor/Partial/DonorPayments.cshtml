@@ -13,16 +13,7 @@
   
          @foreach (var item in Model.Payments)
          {
-             <tr>
-                 <td>@item.CommitmentDonationCaseName</td>
-                 <td>@item.PaymentPeriodName</td>
-                 <td>@item.PaymentDate</td>
-                 <td>
-                     @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                     @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                     @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-                 </td>
-             </tr>
+             Html.RenderPartial("Partials/PaymentListing", item);
          }
 
      </table>
@@ -31,7 +22,5 @@ else
 {
 <div class="alert-info alert">
     No Payments are registered for this donor.<br/>
-    Click @Html.ActionLink("here", "Create", "Payment", new {donorId = Model.DonorId}, new {@class = "alert-link"}) to register a payment.
-     
 </div>
 }

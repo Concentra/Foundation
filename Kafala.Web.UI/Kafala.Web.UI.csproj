@@ -227,6 +227,8 @@
     <Content Include="Views\DonationCase\Index.cshtml" />
     <Content Include="Views\DonationCase\Partial\Commitments.cshtml" />
     <Content Include="Views\Commitment\Partial\Payment.cshtml" />
+    <Content Include="Views\Shared\Partials\CommitmentListing.cshtml" />
+    <Content Include="Views\Shared\Partials\PaymentListing.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
