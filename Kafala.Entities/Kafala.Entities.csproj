@@ -54,12 +54,14 @@
   <ItemGroup>
     <Compile Include="Enums\DonationCaseStatus.cs" />
     <Compile Include="Enums\DonorStatus.cs" />
+    <Compile Include="Mapping\PaymentStatusMapper.cs" />
     <Compile Include="Mapping\UserMapper.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="Commitment.cs" />
     <Compile Include="DonationCase.cs" />
     <Compile Include="Donor.cs" />
     <Compile Include="PaymentPeriod.cs" />
+    <Compile Include="PaymentStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DoNotMap\TypeHolder.cs" />
     <Compile Include="User.cs" />

@@ -200,6 +200,7 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\User.table.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\PaymentStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\ScriptsIgnoredOnImport.sql">
