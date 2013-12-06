@@ -1,0 +1,24 @@
+﻿@model Kafala.Web.ViewModels.Payment.ViewPaymentViewModel
+
+  <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.CommitmentDonationCaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.CommitmentDonorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PaymentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PaymentPeriodName)
+                </td>
+          <td>
+              @using(Html.ButtonGroup("Actions"))
+              {
+                  @Html.ButtonWithinGroup("Edit", "Edit", "Payment", new {id = Model.Id} , new {role = "button" }, glyphIcons: GlyphIcons.Edit)
+                  @Html.ButtonWithinGroup("Details", "Details", "Payment", new {id = Model.Id},  new {role = "button"}, glyphIcons: GlyphIcons.EyeOpen) 
+                  @Html.ButtonWithinGroup("Delete", "Delete", "Payment", new {id = Model.Id}, new {role = "button" ,@class = " warning "} , glyphIcons: GlyphIcons.Remove) 
+              }
+      </td>
+            </tr>

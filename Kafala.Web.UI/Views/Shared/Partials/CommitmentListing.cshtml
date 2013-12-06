@@ -1,0 +1,16 @@
+﻿@model Kafala.Web.ViewModels.Commitment.ViewCommitmentViewModel
+
+ <tr>
+                        <td>@Model.DonorName</td>
+                        <td>@Model.Amount</td>
+                        <td>@Model.StartDate</td>
+                        <td>@Model.EndDate</td>
+                        <td>
+                          @using(Html.ButtonGroup())
+                            {
+                                    @Html.ButtonWithinGroup("Edit", "Edit", "Commitment", new {id = Model.Id} , new {role = "button" })
+                                    @Html.ButtonWithinGroup("Details", "Details", "Commitment", new {id = Model.Id},  new {role = "button"})
+                                    @Html.ButtonWithinGroup("Delete", "Create", "Payment", new {id = Model.Id}, new {role = "button" ,@class = " warning "})
+                             }
+                        </td>
+                    </tr> 
