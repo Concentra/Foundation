@@ -11,17 +11,17 @@ namespace Kafala.BusinessManagers.User
 {
     public class UserManager : IBusinessManager
     {
+        private readonly IEmailService emailService;
         private readonly IAuthenticationService authenticationService;
         private readonly IPasswordHelper passwordHelper;
         private readonly ISession session;
-        private readonly NotificationHelper notificationHelper;
 
-        public UserManager( IAuthenticationService authenticationService, IPasswordHelper passwordHelper,ISession session, NotificationHelper notificationHelper)
+        public UserManager(IEmailService emailService, IAuthenticationService authenticationService, IPasswordHelper passwordHelper,ISession session)
         {
+            this.emailService = emailService;
             this.authenticationService = authenticationService;
             this.passwordHelper = passwordHelper;
             this.session = session;
-            this.notificationHelper = notificationHelper;
         }
 
 
@@ -51,10 +51,13 @@ namespace Kafala.BusinessManagers.User
 
         public virtual void SendPasswordReminderEmail(string emailAddress)
         {
-           var user = authenticationService.GetUser(emailAddress);
+            var notificationHelper = new NotificationHelper(emailService);
+            var user = authenticationService.GetUser(emailAddress);
 
             notificationHelper.SendEmailWithTemplatePath(emailAddress,
-                string.Empty, "Password Reminder", "C:/temp/template.txt", new { name = user.UserName, newPassword = passwordHelper.GenerateRandomPassword() });
+                string.Empty, "concentra@Concentra.co.uk.abdo", 
+                "Password Reminder", "C:/temp/template.txt",
+                new { name = user.UserName, newPassword = passwordHelper.GenerateRandomPassword() });
         }
 
         public virtual void RegisterFailedLoginAttempt(IUserToken userToken, int maximumLoginAttempts)

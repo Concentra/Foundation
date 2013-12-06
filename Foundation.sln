@@ -47,6 +47,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Snippet", "Snippet", "{A474
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Test", "Kafala.Test\Kafala.Test.csproj", "{F367B7B7-E954-476F-88F1-462371F90036}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{1A254B33-082F-496B-B36C-68337D190097}"
+	ProjectSection(SolutionItems) = preProject
+		Build\default.build = Build\default.build
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi

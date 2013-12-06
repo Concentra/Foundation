@@ -13,7 +13,16 @@
   
          @foreach (var item in Model.Commitments)
          {
-             Html.RenderPartial("Partials/CommitmentListing", item);
+             <tr>
+                 <td>@item.DonationCaseName</td>
+                 <td>@item.StartDate</td>
+                 <td>@item.EndDate</td>
+                 <td>
+                     @Html.ActionLink("Edit", "Edit", "Commitment", new {id = item.Id} , null) |
+                     @Html.ActionLink("Details", "Details", "Commitment", new {id = item.Id}, null) |
+                     @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                 </td>
+             </tr>
          }
 
      </table>

@@ -1,18 +1,17 @@
-﻿@using BootstrapNamedColor = Foundation.Web.BootstrapNamedColor
-@model Kafala.Web.ViewModels.Donor.ViewDonorViewModel
+﻿@model Kafala.Web.ViewModels.Donor.ViewDonorViewModel
 
 <div class="page-header">
     <h1>@Model.Name</h1>
 </div>
 <div class="row">
     <div class="btn-group  btn-group-justified ">
-        @Html.ActionButton("Edit" , "Edit" , "Donor", new  {id = Model.Id}, new { @class="btn-default "}, GlyphIcons.Edit)
-        @Html.ActionButton("Assign Case" ,  "Create" , "Commitment", new  {donorId = Model.Id}, new { @class="btn-default"}, "icon-link")
-        @Html.ActionButton("Register Payment" , "Create" , "Payment", new  {donorId = Model.Id}, new { @class="btn-default"}, "icon-euro")
+        @Html.Bootstrap().ActionButton("Edit" , BootstrapNamedColor.Default, "Edit" , "Donor", new  {id = Model.Id}, new { @class="btn-default "}, GlyphIcons.Edit)
+        @Html.Bootstrap().ActionButton("Assign Case" , BootstrapNamedColor.Default, "Create" , "Commitment", new  {donorId = Model.Id}, new { @class="btn-default"}, "icon-link")
+        @Html.Bootstrap().ActionButton("Register Payment" , BootstrapNamedColor.Default, "Create" , "Payment", new  {donorId = Model.Id}, new { @class="btn-default"}, "icon-euro")
         
-        @Html.ActionButton("Send Reminder" , "Remind" , "Reminder", new  {donorId = Model.Id}, new { @class="btn-default"}, GlyphIcons.Envelope)
+        @Html.Bootstrap().ActionButton("Send Reminder" , BootstrapNamedColor.Default, "Remind" , "Reminder", new  {donorId = Model.Id}, new { @class="btn-default"},GlyphIcons.Envelope)
                 
-        @Html.ActionButton("Delete" , "Delete" , "Donor", new  {id = Model.Id},new { @class="btn-default"}, GlyphIcons.Trash)
+        @Html.Bootstrap().ActionButton("Delete" , BootstrapNamedColor.Warning, "Delete" , "Donor", new  {id = Model.Id},new { @class="btn-default"}, GlyphIcons.Trash)
     </div>
     <br/>
 </div>

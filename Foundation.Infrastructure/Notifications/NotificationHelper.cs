@@ -12,7 +12,7 @@ namespace Foundation.Infrastructure.Notifications
         private readonly IEmailService emailService;
         private static readonly Dictionary<string, string> EmailConfigurations =
             ConfigurationManager.AppSettings.AllKeys
-                .Where(x => x.StartsWith("Foundation_Email_"))
+                .Where(x => x.StartsWith("Email_"))
                 .ToDictionary(x => x.Replace("Email_", string.Empty), x => ConfigurationManager.AppSettings.Get(x));
 
         public NotificationHelper(IEmailService emailService)
@@ -20,41 +20,26 @@ namespace Foundation.Infrastructure.Notifications
             this.emailService = emailService;
         }
 
-        public void SendEmail(string to, string cc, string subject, string body , string from = null)
+        public void SendEmail(string to, string cc, string from, string subject, string body)
         {
-            if (string.IsNullOrEmpty(from))
-            {
-                from = EmailConfigurations["FromAddress"];
-            }
-
             emailService.Send(to, cc, from, subject, body);
         }
 
-        public void SendEmailWithTemplateString(string to, string cc, string subject, string templateContents, object templateValues, string @from = null)
+        public void SendEmailWithTemplateString(string to, string cc, string from, string subject, string templateContents, object templateValues)
         {
-            if (string.IsNullOrEmpty(from))
-            {
-                from = EmailConfigurations["FromAddress"];
-            } 
-            
             var body = ParseText(templateContents, templateValues);
             emailService.Send(to, cc, from, subject, body);
         }
 
-        public void SendEmailWithTemplatePath(string to, string cc, string subject, string templatePath, object templateValues, string @from = null)
+        public void SendEmailWithTemplatePath(string to, string cc, string from, string subject, string templatePath, object templateValues)
         {
-            if (string.IsNullOrEmpty(from))
-            {
-                from = EmailConfigurations["FromAddress"];
-            }
-            
             string templateContents;
             using (var stream = new StreamReader(templatePath))
             {
                 templateContents = stream.ReadToEnd();
             }
 
-            SendEmailWithTemplateString(to, cc, subject, templateContents, templateValues, @from);
+            SendEmailWithTemplateString(to, cc, from, subject, templateContents, templateValues);
         }
 
         /*Utility methods for templates*/

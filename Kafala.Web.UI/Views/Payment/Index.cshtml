@@ -16,7 +16,25 @@
     
         @foreach (var item in Model.Payments)
         {
-          
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommitmentDonationCaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommitmentDonorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentPeriodName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                    @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                </td>
+            </tr>
         }
     
     </table>
