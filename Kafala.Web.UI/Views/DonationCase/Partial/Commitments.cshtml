@@ -1,0 +1,31 @@
+﻿@model Kafala.Web.ViewModels.DonationCase.ViewDonationCaseViewModel
+
+<h4>Assigned Cases </h4>
+
+ @if (Model.Commitments != null && Model.Commitments.Any())
+ {
+     <table class="table table-condensed">
+         <tr>
+             <th>Donor Name</th>
+             <th>Amount</th>
+             <th>Start Date</th>
+             <th>End Date</th>
+             <th></th>
+         </tr>
+  
+         @foreach (var item in Model.Commitments)
+         {
+             Html.RenderPartial("Partials/CommitmentListing", item);
+
+         }
+
+     </table>
+ }
+else
+{
+<div class="alert-info alert">
+    No donors are assigned to this case.<br/>
+    Click @Html.ActionLink("here", "Create", "Commitment", new {DonationCaseId = Model.Id}, new {@class = "alert-link"}) to assign a donor to this case.
+     
+</div>
+}
