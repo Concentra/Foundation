@@ -57,7 +57,8 @@
     <Compile Include="PaymentPeriod\ViewPaymentPeriodViewModel.cs" />
     <Compile Include="Donor\DonorDashBoard.cs" />
     <Compile Include="Payment\PaymentIndexViewModel.cs" />
-    <Compile Include="Payment\OverDuePaymentViewModel.cs" />
+    <Compile Include="Reports\Partials\FilterPaymentStatus.cs" />
+    <Compile Include="Reports\OverDuePaymentViewModel.cs" />
     <Compile Include="Payment\CreatePaymentViewModel.cs" />
     <Compile Include="Payment\EditPaymentViewModel.cs" />
     <Compile Include="Payment\ViewPaymentViewModel.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Donor\ViewDonorViewModel.cs" />
     <Compile Include="Home\LogonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\PaymentStatusReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Donor\Partial\" />

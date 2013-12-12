@@ -13,9 +13,9 @@ using NHibernate.Criterion;
 
 namespace Kafala.Query.Donor
 {
-    public class OverDueExpression
+    public class ReportingHelper
     {
-        public static Func<PaymentStatus, DateTime, bool> OverDue = (p , d) => 
+        public static Expression<Func<PaymentStatus, DateTime, bool>> OverDue = (p , d) => 
                 !p.Paid  && (new DateTime(p.PaymentPeriod.Year , p.PaymentPeriod.Month , 1) > d);
     }
 }

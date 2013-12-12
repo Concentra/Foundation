@@ -6,6 +6,7 @@ using AutoMapper;
 using Foundation.Infrastructure.Query;
 using Foundation.Web.Filter;
 using Foundation.Web.Paging;
+using Kafala.Query.Donor;
 using Kafala.Web.ViewModels.Commitment;
 using Kafala.Web.ViewModels.Commitment.Partials;
 using NHibernate;
