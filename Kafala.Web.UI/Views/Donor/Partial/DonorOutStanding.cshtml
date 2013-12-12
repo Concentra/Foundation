@@ -9,7 +9,8 @@
              <th>Case Name</th>
              <th>For the Period</th>
              <th>Due Date</th>
-             <th>Amount</th>
+             <th>Commited Amount</th>
+             <th>Paid Amount</th>
              <th></th>
          </tr>
   
@@ -20,7 +21,8 @@
                  <td>@item.PaymentPeriod</td>
                  <td>@item.DueDate</td>
                  <td>@item.PaymentPeriod</td>
-                 <td>@item.Amount</td>
+                 <td>@item.CommittedAmount</td>
+                 <td>@item.PaidAmount</td>
                  <td>
                      @Html.ActionLink("Pay", "Create", "Payment" , new {id = item.DonationCaseId} , null) |
                      

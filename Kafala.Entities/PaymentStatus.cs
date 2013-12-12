@@ -18,12 +18,12 @@ namespace Kafala.Entities
 
         public virtual Payment Payment { get; set; }
 
-        public virtual decimal PaidAmount { get; set; }
+        public virtual decimal CommittedAmount { get; set; }
 
-        public virtual decimal CommitedAmount { get; set; }
+        public virtual decimal PaidAmount { get; set; }
 
         public virtual bool Paid { get; set; }
 
-
+        public virtual Guid DonationCaseId { get; set; }
     }
 }
