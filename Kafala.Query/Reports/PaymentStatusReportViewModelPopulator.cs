@@ -30,14 +30,19 @@ namespace Kafala.Query.Reports
             
             query = query.ApplyFilter(filter);
 
-            
-            var collectedAmount =  query.Sum(x => x.PaidAmount);
+            if (filter.PointInTime.HasValue)
+            {
+                query = query.Where(x => x.PaymentPeriod.Month == filter.PointInTime.Value.Month
+                                         && x.PaymentPeriod.Year == filter.PointInTime.Value.Year);
+            }
 
-            var expectedAmount = query.Sum(x => x.CommittedAmount);
+            var collectedAmount = query.ToFutureValue(x => x.Sum( e => e.PaidAmount));
+
+            var expectedAmount = query.ToFutureValue(x => x.Sum(e => e.CommittedAmount));
 
                 var pagedCommitments = query.FetchPaged(filter.PagingInfo);
 
-                var payments = query.Select(x => new OverDuePaymentViewModel()
+                var payments = pagedCommitments.Select(x => new OverDuePaymentViewModel()
                 {
                     PaidAmount = x.PaidAmount,
                     DonationCaseId = x.DonationCaseId,
@@ -51,10 +56,10 @@ namespace Kafala.Query.Reports
 
                 var model = new PaymentStatusReportViewModel()
                 {
-                    CollectedAmount = collectedAmount,
-                    ExpectedAmount = expectedAmount,
+                    CollectedAmount = collectedAmount.Value,
+                    ExpectedAmount = expectedAmount.Value,
                     OutStanding = payments,
-                    OverDueAmount = expectedAmount - collectedAmount,
+                    OverDueAmount = expectedAmount.Value - collectedAmount.Value,
                     PagingInfo = Mapper.Map<PagingInfoViewModel>(pagedCommitments.PagingInfo)
 
                 };

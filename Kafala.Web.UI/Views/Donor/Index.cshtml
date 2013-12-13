@@ -1,5 +1,4 @@
 ﻿@using Kafala.Web.ViewModels.Donor;
-@using BootstrapNamedColor = VortexSoft.Bootstrap.BootstrapNamedColor
 @model DonorIndexViewModel
 
 @{
@@ -63,8 +62,7 @@
         }
         using (var footer = modal.BeginFooter())
         {
-            @Html.Bootstrap().Button("Close", BootstrapNamedColor.Default, null, new { data_dismiss = "modal" })
-            @Html.Bootstrap().Button("Save Changes", BootstrapNamedColor.Primary, null)
+           
         }
     }
 

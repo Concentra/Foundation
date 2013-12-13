@@ -13,7 +13,7 @@ namespace Foundation.Web.Paging
             get
             {
                 var configuredPageSize = ConfigurationManager.AppSettings["Foundation_PageSize"];
-                return string.IsNullOrEmpty(configuredPageSize) ? 15 : Convert.ToInt32(configuredPageSize);
+                return string.IsNullOrEmpty(configuredPageSize) ? 100 : Convert.ToInt32(configuredPageSize);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Foundation.Web.Paging
                 pageIndex = 1;
             }
             
-            var futureCount = query.ToFutureValue(x => Queryable.Count<T>(x));
+            var futureCount = query.ToFutureValue(x => x.Count());
 
             var queryPaged = query.Skip((pageIndex - 1)*pageSize).Take(pageSize).ToFuture();
 
