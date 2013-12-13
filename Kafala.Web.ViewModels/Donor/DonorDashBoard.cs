@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Kafala.Web.ViewModels.Commitment;
 using Kafala.Web.ViewModels.Payment;
+using Kafala.Web.ViewModels.Reports;
 
 namespace Kafala.Web.ViewModels.Donor
 {
