@@ -83,6 +83,13 @@ namespace Foundation.FormBuilder.DynamicForm
                             {
                                 // ElementType
                                 var elementBlock = ElementGenerator.RenderElement(formElement);
+                                /*Func<object> modelAccessor = () => formElement.PropertyInfo;
+
+                                var metadataProvider = new DataAnnotationsModelMetadataProvider();
+
+                                metadataProvider.GetMetadataForProperty()
+                                
+                                 */
                                 textWriter.Write(elementBlock);
                             }
                         }

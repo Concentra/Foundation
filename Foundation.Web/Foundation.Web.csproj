@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseController.cs" />
+    <Compile Include="BootstrapNamedColor.cs" />
     <Compile Include="ControllerRegistrationConvention.cs" />
     <Compile Include="Extensions\CacheType.cs" />
     <Compile Include="Extensions\CachingExtentions.cs" />

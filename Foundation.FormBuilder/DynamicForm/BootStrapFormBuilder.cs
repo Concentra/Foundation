@@ -25,6 +25,9 @@ namespace Foundation.FormBuilder.DynamicForm
 
         public MvcHtmlString Build(TModel model, BootstrapFormType formType, bool renderButtons = true)
         {
+            
+            
+
             var formElements = ExtractElementsToRender(model);
             
             var sb = new StringBuilder();

@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Enums\DonationCaseStatus.cs" />
     <Compile Include="Enums\DonorStatus.cs" />
+    <Compile Include="Mapping\PaymentStatusMapper.cs" />
     <Compile Include="Mapping\UserMapper.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="Commitment.cs" />
