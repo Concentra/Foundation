@@ -9,5 +9,6 @@ namespace Kafala.BusinessManagers.Commitment
         Guid DonorId { get; set; }
         DateTime? StartDate { get; set; }
         DateTime? EndDate { get; set; }
+        decimal Amount { get; set; }
     }
 }

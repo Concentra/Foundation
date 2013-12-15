@@ -15,11 +15,11 @@ namespace Kafala.Web.ViewModels.Donor
         public Guid? Id { get; set; }
 
         [EditControl(Order = 1,ElementType = ElementType.Text, Label = "Donor Name", PromptText = "The full donor name")]
-        [Required]
+        [Required(ErrorMessage = "Address is required")]
         public string Name { get; set; }
 
         [EditControl(GroupName = "Contact Info", Order = 2, ElementType = ElementType.Text, Label = "Email", PromptText = "Enter email address")]
-        [Required]
+        [Required(ErrorMessage = "Please enter a valid email")]
         public string Email { get; set; }
 
         [EditControl(GroupName = "Contact Info", Order = 3, ElementType = ElementType.Text, Label = "Telephone", PromptText = "Enter Telephone Number")]

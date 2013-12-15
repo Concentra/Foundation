@@ -31,11 +31,11 @@ namespace Kafala.Query.Reports
             
             query = query.ApplyFilter(filter);
 
-            /*if (filter.PointInTime.HasValue)
+            if (filter.PointInTime.HasValue)
             {
                 query = query.Where(x => x.PaymentPeriod.Month == filter.PointInTime.Value.Month
                                          && x.PaymentPeriod.Year == filter.PointInTime.Value.Year);
-            }*/
+            }
 
             var collectedAmountValue = query
                 .Select<PaymentStatus, decimal?>(x => x.PaidAmount).ToFutureValue<decimal?>();

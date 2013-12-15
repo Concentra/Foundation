@@ -44,7 +44,7 @@ namespace Kafala.Test
                     var commitmentId = CommitmentBusinessManager.Add(commitmentMock.Object);
                     for (var payment = 0; payment < 2; payment++)
                     {
-                        var paymentMock = MockPayment(commitmentId, PaymentPeriodList[payment].Id);
+                        var paymentMock = MockPayment(commitmentId, PaymentPeriodList[payment].Id, (int) commitmentMock.Object.Amount);
                         PaymentBusinessManager.Register(paymentMock.Object);
                     }
                 }

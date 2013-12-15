@@ -1,4 +1,5 @@
-﻿@model Kafala.Web.ViewModels.Payment.ViewPaymentViewModel
+﻿@using Foundation.FormBuilder.Extensions
+@model Kafala.Web.ViewModels.Payment.ViewPaymentViewModel
 <h2>Payment Details</h2>
 @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
 {

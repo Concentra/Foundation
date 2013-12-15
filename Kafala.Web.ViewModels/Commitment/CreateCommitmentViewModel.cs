@@ -26,5 +26,8 @@ namespace Kafala.Web.ViewModels.Commitment
 
         [EditControl(ElementType = ElementType.DateTime)]
         public virtual DateTime? EndDate { get; set; }
+
+        [EditControl(ElementType = ElementType.FloatingPointNumber)]
+        public virtual decimal Amount { get; set; }
     }
 }

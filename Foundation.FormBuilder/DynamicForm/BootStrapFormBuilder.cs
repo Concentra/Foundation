@@ -23,11 +23,9 @@ namespace Foundation.FormBuilder.DynamicForm
                 .ToDictionary(p => p.Name , p => p);
         }
 
-        public MvcHtmlString Build(TModel model, BootstrapFormType formType, bool renderButtons = true)
+        public MvcHtmlString Build(TModel model, BootstrapFormType formType, bool renderButtons, HtmlHelper<TModel> htmlelper)
         {
             
-            
-
             var formElements = ExtractElementsToRender(model);
             
             var sb = new StringBuilder();
@@ -35,7 +33,7 @@ namespace Foundation.FormBuilder.DynamicForm
             var stringWriter = new StringWriter(sb);
             using (var textWriter = new NavHtmlTextWritter(stringWriter))
             {
-                BuildLayout(formType, formElements, textWriter);
+                BuildLayout(htmlelper, formType, formElements, textWriter);
 
                 if (renderButtons)
                 {
@@ -75,13 +73,14 @@ namespace Foundation.FormBuilder.DynamicForm
                
                 using (new ControlContainer(textWriter))
                 {
-                    textWriter.Write(RenderButton("submit", "btn btn-default btn-primary", "Submit"));
+                    textWriter.Write(RenderButton("submit", "btn btn-default btn-primary", "submit"));
                     textWriter.Write("&nbsp;&nbsp;");
 
                     // Cancel Button
                     textWriter.AddAttribute(HtmlTextWriterAttribute.Type, "button");
                     textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "btn btn-default");
                     textWriter.AddAttribute(HtmlTextWriterAttribute.Value, "Cancel");
+                    textWriter.AddAttribute(HtmlTextWriterAttribute.Name, "CancelBtn");
                     textWriter.AddAttribute(HtmlTextWriterAttribute.Onclick,
                         "window.location = '" + HttpContext.Current.Request.UrlReferrer + "'");
                     textWriter.RenderBeginTag((HtmlTextWriterTag)HtmlTextWriterTag.Input);
@@ -106,14 +105,6 @@ namespace Foundation.FormBuilder.DynamicForm
 
             var returnValue = elementBlock.ToString();
             return returnValue;
-        }
-
-        private ValidationInfo ExtractValidationInfo(PropertyInfo propertyInfo)
-        {
-            return new ValidationInfo()
-                {
-                    Required = false
-                };
         }
     }
 }

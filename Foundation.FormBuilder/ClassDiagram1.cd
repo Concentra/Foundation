@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Foundation.FormBuilder.Blocks.ControlContainer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Blocks\ControlContainer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.FormBuilder.Blocks.ControlGroup" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAABAAAAAAAAgAAA=</HashCode>
+      <FileName>Blocks\ControlGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.FormBuilder.Blocks.ElementGroup" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Blocks\ElementGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.FormBuilder.CustomAttribute.CollectionInfo" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAEAAAAAAAAAAECAAAAAAAAAA=</HashCode>
+      <FileName>CustomAttribute\CollectionInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.CustomAttribute.EditControl" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEABAAAEAAAgEAAAAAAAIAAAAAAAAAAAAAYAAQAAAE=</HashCode>
+      <FileName>CustomAttribute\EditControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.CustomAttribute.FilterControl" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgAAAIAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomAttribute\FilterControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.CustomAttribute.FormElement" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAoAAAAAABAAAAAAQAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>CustomAttribute\FormElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.DynamicForm.ValidationInfo" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomAttribute\ValidationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.DynamicForm.BootStrapFormBuilder&lt;TModel&gt;">
+    <Position X="0.5" Y="3.75" Width="2.25" />
+    <InheritanceLine Type="Foundation.FormBuilder.DynamicForm.UiBuilderBase&lt;TModel&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="2.25" Y="2.632" />
+        <Point X="2.25" Y="3.375" />
+        <Point X="1.625" Y="3.375" />
+        <Point X="1.625" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAgAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DynamicForm\BootStrapFormBuilder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Foundation.FormBuilder.DynamicForm.BootStrapViewBuilder&lt;TModel&gt;">
+    <Position X="3" Y="3.75" Width="2" />
+    <InheritanceLine Type="Foundation.FormBuilder.DynamicForm.UiBuilderBase&lt;TModel&gt;" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="2.75" Y="2.632" />
+        <Point X="2.75" Y="3.375" />
+        <Point X="4" Y="3.375" />
+        <Point X="4" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DynamicForm\BootStrapViewBuilder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Foundation.FormBuilder.DynamicForm.NavHtmlTextWritter" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgEAAAAAEAAAAAAAAAAAAAAAAAAABBAAEAAAAA=</HashCode>
+      <FileName>DynamicForm\NavHtmlTextWritter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.DynamicForm.UiBuilderBase&lt;TModel&gt;">
+    <Position X="1.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAQAAAAAAAAAAAAAAAAAAAAAEAAAAQACAAA=</HashCode>
+      <FileName>DynamicForm\UiBuilderBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.ElementGenerators.FormElementGenerator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIQAAiAAAAgAAgAABAAAAAAABAAAEQAAAAIAA=</HashCode>
+      <FileName>ElementGenerators\FormElementGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.FormBuilder.ElementGenerators.ViewElementGenerator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIQAAiAAAAgAAgAABAAAAAAABAAAEQAAAAIAA=</HashCode>
+      <FileName>ElementGenerators\ViewElementGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.FormBuilder.FormBuilder&lt;TModel&gt;" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAkQAAAAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>FormBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.HtmlHelperExtensions" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HtmlHelperExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.StringExtensions" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StringExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.FormBuilder.Validation.ValidationUtility" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\ValidationAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Foundation.FormBuilder.DynamicForm.IDynamicUiBuilder&lt;TModel&gt;">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DynamicForm\IDynamicUiBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.FormBuilder.ElementGenerators.IElementGenerator">
+    <Position X="7.25" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>ElementGenerators\IElementGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Foundation.FormBuilder.CustomAttribute.Contents">
+    <Position X="7" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomAttribute\Contents.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Foundation.FormBuilder.CustomAttribute.ElementType">
+    <Position X="8.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAACAAAAAAQAAAAAAAAAAACBAQCCAAACAEMAQI=</HashCode>
+      <FileName>CustomAttribute\EditControl.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Foundation.FormBuilder.CustomAttribute.Operator">
+    <Position X="10.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAgAAAIAAAAAAAAAAAAAAAIAgBACA=</HashCode>
+      <FileName>CustomAttribute\FilterControl.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Foundation.FormBuilder.DynamicForm.BootstrapFormType" Collapsed="true">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEBAAAAAAAAAAAIAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>DynamicForm\BootstrapFormType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

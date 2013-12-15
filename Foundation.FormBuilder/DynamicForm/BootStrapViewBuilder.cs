@@ -23,7 +23,7 @@ namespace Foundation.FormBuilder.DynamicForm
                 .ToDictionary(p => p.Name , p => p);
         }
 
-        public MvcHtmlString Build(TModel model, BootstrapFormType formType, bool renderButtons = false)
+        public MvcHtmlString Build(TModel model, BootstrapFormType formType, bool renderButtons, HtmlHelper<TModel> htmlelper)
         {
             var formElements = ExtractElementsToRender(model);
             
@@ -31,7 +31,7 @@ namespace Foundation.FormBuilder.DynamicForm
             var stringWriter = new StringWriter(sb);
             using (var textWriter = new NavHtmlTextWritter(stringWriter))
             {
-                BuildLayout(formType, formElements, textWriter);
+                BuildLayout(htmlelper, formType, formElements, textWriter);
 
                 if (renderButtons)
                 {
