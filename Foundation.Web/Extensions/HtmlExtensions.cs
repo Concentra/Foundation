@@ -20,17 +20,17 @@ namespace Foundation.Web.Extensions
         private static readonly ResourceManager HelpMessagesResourceManager;
         private static readonly string DefaultPageTitle;
 
+        private static IResourcesLocator resourcesLocator = ObjectFactory.GetInstance<IResourcesLocator>();
+
         static HtmlExtensions()
         {
-            var webPageTitlesResourceManagerName = ConfigurationManager.AppSettings["Foundation_WebPageTitlesResource"];
-            if (webPageTitlesResourceManagerName != null)
-                WebPageTitlesResourceManager = new ResourceManager(webPageTitlesResourceManagerName, Assembly.GetExecutingAssembly());
+            if (resourcesLocator.PageTitleResourceManager != null)
+                WebPageTitlesResourceManager = resourcesLocator.PageTitleResourceManager;
 
-            var helpMessagesResourceName = ConfigurationManager.AppSettings["Foundation_HelpMessagesResource"];
-            if (helpMessagesResourceName != null)
-                HelpMessagesResourceManager = new ResourceManager(helpMessagesResourceName, Assembly.GetExecutingAssembly());
+            if (resourcesLocator.HelpResourceManager != null)
+                HelpMessagesResourceManager = resourcesLocator.HelpResourceManager;
 
-            DefaultPageTitle = ConfigurationManager.AppSettings["DefaultPageTitle"];
+            DefaultPageTitle = resourcesLocator.DefaultPageTitle;
         }
 
 

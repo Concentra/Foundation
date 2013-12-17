@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Foundation.InfraStructure</id>
+    <version>0.0.0.1</version>
+    <description>Buseinss Manager COntainers , Notification , Query Containers .. </description>
+    <title>Foundation.InfraStructure</title>
+    <authors>Abdelrahman Hassan</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+  </metadata>
+</package>

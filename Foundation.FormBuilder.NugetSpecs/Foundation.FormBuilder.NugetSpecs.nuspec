@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Foundation.FormBuilder</id>
+    <version>0.0.0.1</version>
+    <description>Dynamic Form Builder</description>
+    <title>Foundation Form Builder</title>
+    <authors>Abdelrahman Hassan</authors>
+    <owners>Abdelrahman Hassan</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+  </metadata>
+</package>

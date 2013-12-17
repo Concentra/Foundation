@@ -12,6 +12,24 @@ namespace Kafala.Web.UI
             }
         }
 
+        public ResourceManager PageTitleResourceManager
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public ResourceManager HelpResourceManager
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string DefaultPageTitle { get; set; }
+
         public string PasswordReminderEmailTemplate
         {
             get; 

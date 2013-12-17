@@ -26,6 +26,8 @@ namespace Kafala.Web.UI
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private readonly BootStrapWeb bootStrapWeb = new BootStrapWeb();
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
@@ -49,49 +51,13 @@ namespace Kafala.Web.UI
 
         protected void Application_Start()
         {
-            ObjectFactory.Configure(ConfigureDependencies);
+            BootStrapWeb.ConfigureWebApplication();
             AreaRegistration.RegisterAllAreas();
 
-            foreach (var keyValuePair in GetModels())
-            {
-                ModelBinders.Binders.Add(keyValuePair);
-            }
             
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory(ObjectFactory.Container));
-            DependencyResolver.SetResolver(new StructureMapDependencyResolver(ObjectFactory.Container));
-        }
-
-        private static void ConfigureDependencies(ConfigurationExpression cfg)
-        {
-            cfg.AddRegistry(new PersistenceRegistery());
-
-            cfg.AddRegistry(new WebRegistery());
-
-            cfg.AddRegistry(new QueryRegistery());
-
-            cfg.AddRegistry(new BusinessManagerRegistery());
-
-            cfg.For<IQueryRegistery>().Use<QueryRegistery>();
-
-            cfg.For<IBusinessManagerRegistery>().Use<BusinessManagerRegistery>();
             
-            cfg.For<IBusinessManagerInvocationLogger>().Singleton().Use<SqlProcBusinessManagerInvocationLogger>();
-
-            cfg.For<ITypeHolder>().Use<TypeHolder>();
-
-            cfg.For<IConnectionString>().Use(new ConnectionString("KafalaDB"));
-
-            Mapper.Initialize(AutoMapperConfigurations.Configure);
-        }
-
-        public IEnumerable<KeyValuePair<Type, IModelBinder>> GetModels()
-        {
-            return Assembly.Load("Kafala.Web.ViewModels").GetTypes()
-                .Where(x => x.IsSubclassOf(typeof (PagedViewModel)))
-                .Select(x => new KeyValuePair<Type, IModelBinder>(x, new PagingInfoModelBinder()));
-
         }
     }
 }

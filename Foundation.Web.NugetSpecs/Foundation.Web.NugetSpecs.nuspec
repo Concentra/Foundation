@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Foundation.Web</id>
+    <version>0.0.0.1</version>
+    <description>Extensions , Security , Paging , Filtering , Sorting  </description>
+    <title>Foundation.Web</title>
+    <authors>Abdelrahman Hassan</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+  </metadata>
+</package>

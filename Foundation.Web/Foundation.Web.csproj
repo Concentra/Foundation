@@ -96,6 +96,7 @@
     <Compile Include="Paging\PagingParameters.cs" />
     <Compile Include="Security\IPasswordHelper.cs" />
     <Compile Include="Security\IAuthenticationService.cs" />
+    <Compile Include="Security\IUserToken.cs" />
     <Compile Include="Security\PasswordHelper.cs" />
     <Compile Include="Security\PasswordInfo.cs" />
     <Compile Include="Security\SignInResult.cs" />
@@ -113,15 +114,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Foundation.Persistence\Foundation.Persistence.csproj">
-      <Project>{c684e3b8-d828-4ece-b427-afc06f25977f}</Project>
-      <Name>Foundation.Persistence</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
