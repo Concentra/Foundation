@@ -1,4 +1,5 @@
 ﻿using Foundation.Web;
+using Kafala.Query.Security;
 
 namespace Kafala.Web.UI
 {

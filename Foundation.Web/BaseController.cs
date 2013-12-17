@@ -11,8 +11,6 @@ namespace Foundation.Web
 {
     public abstract class BaseController : Controller
     {
-        public ICurrentAuthenticateUser CurrentAuthenticateUser { get; set; }
-        
         protected ActionResult PageNotFound()
         {
             return this.View("NotFound");

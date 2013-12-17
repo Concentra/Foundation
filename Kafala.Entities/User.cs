@@ -6,7 +6,7 @@ using Foundation.Web.Security;
 
 namespace Kafala.Entities
 {
-    public class User : IUserToken
+    public class User : IUser
     {
         public virtual Guid Id { get; set; }
 

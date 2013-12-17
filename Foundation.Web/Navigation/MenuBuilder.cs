@@ -17,7 +17,7 @@ namespace Foundation.Web.Navigation
         {
             var sb = new StringBuilder();
             var stringWriter = new StringWriter(sb);
-            using (var textWriter = new NavHtmlTextWritter(stringWriter))
+            using (var textWriter = new HtmlTextWriter(stringWriter))
             {
                 using (new MenuContainer(textWriter)) foreach (var menuItem in menu.Children)
                 {
@@ -28,7 +28,7 @@ namespace Foundation.Web.Navigation
             }
         }
 
-        private void Render(MenuItem menuItem, NavHtmlTextWritter textWriter, bool isRoot = false)
+        private void Render(MenuItem menuItem, HtmlTextWriter textWriter, bool isRoot = false)
         {
             if (menuItem.Children != null && menuItem.Children.Any())
             {
@@ -68,7 +68,7 @@ namespace Foundation.Web.Navigation
 
         }
 
-        private void RenderLeafElement(MenuItem menuItem, NavHtmlTextWritter textWriter, bool dropDownToggle = false)
+        private void RenderLeafElement(MenuItem menuItem, HtmlTextWriter textWriter, bool dropDownToggle = false)
         {
            
              
@@ -77,8 +77,8 @@ namespace Foundation.Web.Navigation
                 link.Attributes.Add("href", menuItem.URL);
                 if (dropDownToggle)
                 {
-                    link.Attributes.Add("class", "dropdown-toggle");
-                    link.Attributes.Add("data-toggle", "dropdown");
+                    link.MergeAttribute("class", "dropdown-toggle");
+                    link.MergeAttribute("data-toggle", "dropdown");
                 }
                 link.MergeAttributes(HtmlHelper.AnonymousObjectToHtmlAttributes(menuItem.HtmlAttributes));
                 link.InnerHtml = menuItem.Text;

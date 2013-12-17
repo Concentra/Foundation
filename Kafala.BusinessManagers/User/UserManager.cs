@@ -60,7 +60,7 @@ namespace Kafala.BusinessManagers.User
                 new { name = user.UserName, newPassword = passwordHelper.GenerateRandomPassword() });
         }
 
-        public virtual void RegisterFailedLoginAttempt(IUserToken userToken, int maximumLoginAttempts)
+        public virtual void RegisterFailedLoginAttempt(IUser userToken, int maximumLoginAttempts)
         {
             var user = session.Query<Entities.User>().FirstOrDefault(x => x.EmailAddress == userToken.EmailAddress);
             if (user != null)
@@ -75,7 +75,7 @@ namespace Kafala.BusinessManagers.User
             }
         }
 
-        public virtual void ResetFailedLoginAttempts(IUserToken userToken)
+        public virtual void ResetFailedLoginAttempts(IUser userToken)
         {
             var user = session.Query<Entities.User>().FirstOrDefault(x => x.EmailAddress == userToken.EmailAddress);
             if (user != null)

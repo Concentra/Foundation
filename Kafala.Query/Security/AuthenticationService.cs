@@ -33,19 +33,19 @@ namespace Kafala.Query.Security
 
         public int PasswordExpiryDays { get; set; }
 
-        public IUserToken GetUser(string userName)
+        public IUser GetUser(string userName)
         {
             var user = session.Query<User>().FirstOrDefault(x => x.EmailAddress == userName);
             return user;
         }
 
-        public void RegisterFailedLoginAttempt(IUserToken userToken, int maximumLoginAttempts)
+        public void RegisterFailedLoginAttempt(IUser userToken, int maximumLoginAttempts)
         {
             var userManager = this.businessManagerContainer.Get<UserManager>();
             userManager.RegisterFailedLoginAttempt(userToken, maximumLoginAttempts);
         }
 
-        public void ResetFailedLoginAttempts(IUserToken userToken)
+        public void ResetFailedLoginAttempts(IUser userToken)
         {
             var userManager = this.businessManagerContainer.Get<UserManager>();
             userManager.ResetFailedLoginAttempts(userToken);
@@ -75,6 +75,7 @@ namespace Kafala.Query.Security
             if (validPassword)
             {
                 this.ResetFailedLoginAttempts(user);
+
                 return SignInResult.Success;
             }
             else

@@ -9,7 +9,7 @@ using Kafala.Entities;
 
 namespace Kafala.Query.Security
 {
-    class UserToken : User , IUserToken
+    class UserToken : User , IUser
     {
         
       

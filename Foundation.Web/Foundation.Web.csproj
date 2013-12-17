@@ -99,7 +99,7 @@
     <Compile Include="Paging\PagingParameters.cs" />
     <Compile Include="Security\IPasswordHelper.cs" />
     <Compile Include="Security\IAuthenticationService.cs" />
-    <Compile Include="Security\IUserToken.cs" />
+    <Compile Include="Security\IUser.cs" />
     <Compile Include="Security\PasswordHelper.cs" />
     <Compile Include="Security\PasswordInfo.cs" />
     <Compile Include="Security\SignInResult.cs" />
@@ -107,7 +107,6 @@
     <Compile Include="StructureMapControllerFactory.cs" />
     <Compile Include="StructureMapDependencyResolver.cs" />
     <Compile Include="WebFlashMessenger.cs" />
-    <Compile Include="ICurrentAuthenticateUser.cs" />
     <Compile Include="IFlashMessenger.cs" />
     <Compile Include="IWebRegistery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
