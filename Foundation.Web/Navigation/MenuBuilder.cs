@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Foundation.FormBuilder.DynamicForm;
+using Foundation.FormBuilder.Extensions;
 
 namespace Foundation.Web.Navigation
 {
@@ -17,7 +18,7 @@ namespace Foundation.Web.Navigation
         {
             var sb = new StringBuilder();
             var stringWriter = new StringWriter(sb);
-            using (var textWriter = new HtmlTextWriter(stringWriter))
+            using (var textWriter = new NavHtmlTextWritter(stringWriter))
             {
                 using (new MenuContainer(textWriter)) foreach (var menuItem in menu.Children)
                 {

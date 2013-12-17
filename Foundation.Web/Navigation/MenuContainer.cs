@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.UI;
+using Foundation.FormBuilder.Extensions;
 
 namespace Foundation.Web.Navigation
 {
@@ -7,7 +8,7 @@ namespace Foundation.Web.Navigation
     {
         private readonly HtmlTextWriter htmlTextWriter;
 
-        public MenuContainer(HtmlTextWriter htmlTextWriter)
+        public MenuContainer(NavHtmlTextWritter htmlTextWriter)
         {
             this.htmlTextWriter = htmlTextWriter;
 

@@ -9,6 +9,7 @@ using System.Web.Mvc.Html;
 using Foundation.FormBuilder.Blocks;
 using Foundation.FormBuilder.CustomAttribute;
 using Foundation.FormBuilder.ElementGenerators;
+using Foundation.FormBuilder.Extensions;
 using Foundation.FormBuilder.Validation;
 
 namespace Foundation.FormBuilder.DynamicForm

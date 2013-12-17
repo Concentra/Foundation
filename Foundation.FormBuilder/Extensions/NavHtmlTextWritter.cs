@@ -3,7 +3,7 @@ using System.IO;
 using System.Web.UI;
 using System.Linq;
 
-namespace Foundation.FormBuilder.DynamicForm
+namespace Foundation.FormBuilder.Extensions
 {
     public class NavHtmlTextWritter : HtmlTextWriter
     {
