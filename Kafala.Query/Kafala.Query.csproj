@@ -100,7 +100,7 @@
       <Name>Foundation.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kafala.BusinessManagers\Kafala.BusinessManagers.csproj">
-      <Project>{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}</Project>
+      <Project>{a5d4402e-ce60-420e-b14c-4dcc6f8815e7}</Project>
       <Name>Kafala.BusinessManagers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kafala.Entities\Kafala.Entities.csproj">
@@ -108,7 +108,7 @@
       <Name>Kafala.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kafala.Web.ViewModels\Kafala.Web.ViewModels.csproj">
-      <Project>{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}</Project>
+      <Project>{a6e405f1-0e83-407b-b07c-edaef5b6111e}</Project>
       <Name>Kafala.Web.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
