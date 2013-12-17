@@ -28,8 +28,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Web", "Foundatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Query", "Kafala.Query\Kafala.Query.csproj", "{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexSoft.Bootstrap", "VortexSoft.Bootstrap\VortexSoft.Bootstrap.csproj", "{371BABEC-5A00-464D-8EBB-09C32CA4C326}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.FormBuilder", "Foundation.FormBuilder\Foundation.FormBuilder.csproj", "{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Snippet", "Snippet", "{A474D667-CAFF-4F0D-9587-DCB53C2927A9}"
@@ -44,6 +42,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{1A254B33
 	ProjectSection(SolutionItems) = preProject
 		Build\default.build = Build\default.build
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexSoft.Bootstrap", "VortexSoft.Bootstrap\VortexSoft.Bootstrap.csproj", "{371BABEC-5A00-464D-8EBB-09C32CA4C326}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -161,16 +161,6 @@ Global
 		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Release|x86.ActiveCfg = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Any CPU.Build.0 = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|x86.ActiveCfg = Release|Any CPU
 		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5FA847F-2FB5-403D-AD02-3E9332BF60C7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -191,6 +181,16 @@ Global
 		{F367B7B7-E954-476F-88F1-462371F90036}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F367B7B7-E954-476F-88F1-462371F90036}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F367B7B7-E954-476F-88F1-462371F90036}.Release|x86.ActiveCfg = Release|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
