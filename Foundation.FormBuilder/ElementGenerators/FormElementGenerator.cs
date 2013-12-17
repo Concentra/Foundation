@@ -3,244 +3,261 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Foundation.FormBuilder.CustomAttribute;
 using Foundation.FormBuilder.DynamicForm;
+using Foundation.FormBuilder.Extensions;
 
 namespace Foundation.FormBuilder.ElementGenerators
 {
     public class FormElementGenerator : IElementGenerator
     {
         
-        public string RenderElement(FormElement formElement)
+        public TagBuilder RenderElement(FormElement formElement)
         {
-            var elementBlock = new StringWriter();
-            var writer = new NavHtmlTextWritter(elementBlock);
-            
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "form-control");
+            TagBuilder elementTagBuilder = null;
+
             switch (formElement.ControlSpecs.ElementType)
             {
                 case ElementType.Text:
-                    this.RenderTextBox(writer, formElement);
+                    elementTagBuilder = this.RenderTextBox(formElement);
                     break;
                 case ElementType.Hidden:
-                    this.RenderHidden(writer, formElement);
+                    elementTagBuilder = this.RenderHidden(formElement);
                     break;
                 case ElementType.TextArea:
-                    this.RenderTextArea(writer, formElement);
+                    elementTagBuilder = this.RenderTextArea(formElement);
                     break;
                 case ElementType.Password:
-                    this.RenderPassword(writer, formElement);
+                    elementTagBuilder = this.RenderPassword(formElement);
                     break;
                 case ElementType.DateTime:
-                    this.RenderDateTime(writer, formElement);
+                    elementTagBuilder = this.RenderDateTime(formElement);
                     break;
                 case ElementType.FloatingPointNumber:
-                    this.RenderFloatingPointNumber(writer, formElement);
+                    elementTagBuilder = this.RenderFloatingPointNumber(formElement);
                     break;
                 case ElementType.WholeNumber:
-                    this.RenderWholeNumber(writer, formElement);
+                    elementTagBuilder = this.RenderWholeNumber(formElement);
                     break;
                 case ElementType.Time:
-                    this.RenderDateTime(writer, formElement);
+                    elementTagBuilder = this.RenderDateTime(formElement);
                     break;
                 case ElementType.CheckBox:
-                    this.RenderBoolean(writer, formElement);
+                    elementTagBuilder = this.RenderBoolean(formElement);
                     break;
                 case ElementType.Enum:
-                    this.RenderEnum(writer, formElement);
+                    elementTagBuilder = this.RenderEnum(formElement);
                     break;
                 case ElementType.List:
-                    this.RenderDropDownList(writer, formElement);
+                    elementTagBuilder = this.RenderDropDownList(formElement);
                     break;
                 case ElementType.ListBox:
                     break;
                 case ElementType.StaticText:
-                    this.RenderStaticText(writer, formElement);
+                    elementTagBuilder = this.RenderStaticText(formElement);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            return elementBlock.ToString();
+
+            if (elementTagBuilder != null)
+            {
+                elementTagBuilder.AddCssClass("form-control");
+            }
+
+            return elementTagBuilder;
         }
-        public virtual void RenderBoolean(NavHtmlTextWritter writer, FormElement formElement)
+
+        public virtual TagBuilder RenderBoolean(FormElement formElement)
         {
+            var tagbuilder = new TagBuilder("input");
             var value = formElement.FieldValue;
+            
             if (Convert.ToBoolean(value))
             {
-                writer.AddAttribute(HtmlTextWriterAttribute.Checked, "checked");
+                tagbuilder.MergeAttribute(HtmlAtrributes.Checked, "checked");
             }
 
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "checkbox");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, "true");
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // input
+            tagbuilder.MergeAttribute(HtmlAtrributes.Type, "checkbox");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Value, "true");
 
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, "false");
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // input
+            return tagbuilder;
         }
 
-        private void RenderDateTime(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderDateTime(FormElement formElement)
         {
             var value = formElement.FieldValue;
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "datepicker");
-            writer.AddAttribute(HtmlTextWriterAttribute.Cols, "14");
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // </input>
+            var tagbuilder = new TagBuilder("input");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Value, Convert.ToString(value));
+            tagbuilder.MergeAttribute(HtmlAtrributes.Type, "text");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Class, "datepicker");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Cols, "14");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+
+            return tagbuilder;
         }
 
-        private void RenderWholeNumber(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderWholeNumber(FormElement formElement)
         {
             var value = formElement.FieldValue;
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // input
+            var tagbuilder = new TagBuilder("input");
+            
+            tagbuilder.MergeAttribute(HtmlAtrributes.Value, Convert.ToString(value));
+            tagbuilder.MergeAttribute(HtmlAtrributes.Type, "text");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            return tagbuilder;
         }
 
-        private void RenderPassword(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderPassword(FormElement formElement)
         {
             var value = formElement.FieldValue;
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "password");
+            var tagbuilder = new TagBuilder("input");
+          
+            tagbuilder.MergeAttribute(HtmlAtrributes.Type, "password");
+          
             if (formElement.ControlSpecs.MaxLength != 0)
             {
-                writer.AddAttribute(HtmlTextWriterAttribute.Maxlength, formElement.ControlSpecs.MaxLength.ToString(CultureInfo.InvariantCulture));
+                tagbuilder.MergeAttribute(HtmlAtrributes.Maxlength, formElement.ControlSpecs.MaxLength.ToString(CultureInfo.InvariantCulture));
             }
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag((HtmlTextWriterTag) HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // </input>
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            return tagbuilder;
         }
 
-        private void RenderTextBox(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderTextBox(FormElement formElement)
         {
             var value = formElement.FieldValue;
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
+            var tagbuilder = new TagBuilder("input");
+            tagbuilder.MergeAttribute("value", Convert.ToString(value));
+            tagbuilder.MergeAttribute(HtmlAtrributes.Type, "text");
             
             if (formElement.ControlSpecs.MaxLength != 0)
             {
-                writer.AddAttribute(HtmlTextWriterAttribute.Maxlength, formElement.ControlSpecs.MaxLength.ToString(CultureInfo.InvariantCulture));
+                tagbuilder.MergeAttribute(HtmlAtrributes.Maxlength, formElement.ControlSpecs.MaxLength.ToString(CultureInfo.InvariantCulture));
             }
 
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // </input>
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            return tagbuilder;
         }
 
-        private void RenderHidden(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderHidden(FormElement formElement)
         {
             var value = formElement.FieldValue;
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "hidden");
+            var tagbuilder = new TagBuilder("input");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Type, "hidden");
             var hiddenValue = (value == null) ? String.Empty : value.ToString();
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, hiddenValue);
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag();
+            tagbuilder.MergeAttribute(HtmlAtrributes.Value, hiddenValue);
+            return tagbuilder;
         }
 
-        private void RenderTextArea(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderTextArea(FormElement formElement)
         {
             var value = formElement.FieldValue;
+            var tagbuilder = new TagBuilder("textarea");
             
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Cols, formElement.ControlSpecs.Cols.ToString(CultureInfo.InvariantCulture));
-            writer.AddAttribute(HtmlTextWriterAttribute.Rows, formElement.ControlSpecs.Rows.ToString(CultureInfo.InvariantCulture));
-            writer.RenderBeginTag(HtmlTextWriterTag.Textarea);
-            writer.Write(value);
-            writer.RenderEndTag(); // </textarea>
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Cols, formElement.ControlSpecs.Cols.ToString(CultureInfo.InvariantCulture));
+            tagbuilder.MergeAttribute(HtmlAtrributes.Rows, formElement.ControlSpecs.Rows.ToString(CultureInfo.InvariantCulture));
+            tagbuilder.SetInnerText(value.ToString());
+            return tagbuilder; 
+            
         }
 
-        private void RenderFloatingPointNumber(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderFloatingPointNumber(FormElement formElement)
         {
             var value = formElement.FieldValue;
-            writer.AddAttribute(HtmlTextWriterAttribute.Value, Convert.ToString(value));
-            writer.AddAttribute(HtmlTextWriterAttribute.Type, "text");
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag(HtmlTextWriterTag.Input);
-            writer.RenderEndTag(); // input
+            var tagbuilder = new TagBuilder("input");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Value, Convert.ToString(value));
+            tagbuilder.MergeAttribute(HtmlAtrributes.Type, "text");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            return tagbuilder; 
         }
 
-        private void RenderEnum(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderEnum(FormElement formElement)
         {
             var value = formElement.FieldValue;
+            var tagbuilder = new TagBuilder("select");
             
             var property = formElement.PropertyInfo;
-            var dropDownList = new DropDownList();
-            dropDownList.ID = property.Name;
+
+            tagbuilder.MergeAttribute("id" , property.Name);
 
             foreach (var enumValue in Enum.GetValues(property.PropertyType))
             {
+                var option = new TagBuilder("option");
+                option.MergeAttribute(HtmlAtrributes.Value, enumValue.ToString());
+                option.SetInnerText(enumValue.ToString().SpacePascal());
 
-                var item = new ListItem(enumValue.ToString().SpacePascal(), enumValue.ToString());
+                var selected = value != null && (int) enumValue == (int) Enum.Parse(property.PropertyType, value.ToString());
 
-                item.Selected = value != null &&
-                                (int) enumValue == (int) Enum.Parse(property.PropertyType, value.ToString());
+                if (selected)
+                {
+                    option.MergeAttribute(HtmlAtrributes.Selected, null);
+                }
 
-                dropDownList.Items.Add(item);
+                tagbuilder.InnerHtml += option.ToMvcHtmlString(TagRenderMode.Normal);
             }
 
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            dropDownList.RenderControl(writer);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, property.Name);
+            return tagbuilder;
         }
 
-        private void RenderDropDownList(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderDropDownList(FormElement formElement)
         {
             var value = formElement.FieldValue;
             
             var itemsList = formElement.CollectionInfo.CollectionObject;
-
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, formElement.PropertyInfo.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, formElement.PropertyInfo.Name);
-            writer.RenderBeginTag(HtmlTextWriterTag.Select);
+            var tagbuilder = new TagBuilder("select");
+           
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
             
             if (itemsList != null)
             {
                 foreach (var selectListItem in itemsList)
                 {
-                    writer.AddAttribute(HtmlTextWriterAttribute.Value, selectListItem.Value);
-
+                    var option = new TagBuilder("option");
+                    
+                    option.MergeAttribute(HtmlAtrributes.Value, selectListItem.Value);
+                    option.SetInnerText(selectListItem.Text);
+                    
                     if (value != null && selectListItem.Value.ToUpper() == value.ToString().ToUpper())
                     {
-                        writer.AddAttribute(HtmlTextWriterAttribute.Selected, null);
+                        option.MergeAttribute(HtmlAtrributes.Selected, null);
                     }
-
-                    writer.RenderBeginTag(HtmlTextWriterTag.Option);
-                    writer.Write(selectListItem.Text);
-                    writer.RenderEndTag();
+                    
+                    tagbuilder.InnerHtml += option.ToMvcHtmlString(TagRenderMode.Normal);
                 }
             }
 
-            writer.RenderEndTag();
+            return tagbuilder;
         }
 
-        private void RenderStaticText(NavHtmlTextWritter writer, FormElement formElement)
+        private TagBuilder RenderStaticText(FormElement formElement)
         {
             var value = formElement.FieldValue;
             var property = formElement.PropertyInfo;
-            writer.AddAttribute(HtmlTextWriterAttribute.Name, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, property.Name);
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "form-control-static");
-            writer.RenderBeginTag(HtmlTextWriterTag.P);
-            writer.Write(Convert.ToString(value));
-            writer.RenderEndTag(); // input
-            RenderHidden(writer, formElement);
+            var tagbuilder = new TagBuilder("p");
+           
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, property.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, property.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Class, "form-control-static");
+            tagbuilder.InnerHtml = Convert.ToString(value);
+
+            return tagbuilder;
+
         }
     }
 }

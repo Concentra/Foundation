@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using Foundation.FormBuilder.Blocks;
 using Foundation.FormBuilder.CustomAttribute;
 using Foundation.FormBuilder.ElementGenerators;
+using Foundation.FormBuilder.Validation;
 
 namespace Foundation.FormBuilder.DynamicForm
 {
@@ -58,7 +62,9 @@ namespace Foundation.FormBuilder.DynamicForm
             }
         }
 
-        public void BuildLayout(BootstrapFormType formType, List<FormElement> formElements, NavHtmlTextWritter textWriter)
+
+
+        public void BuildLayout(HtmlHelper<TModel> htmlHelper, BootstrapFormType formType, List<FormElement> formElements, NavHtmlTextWritter textWriter)
         {
             var groupsofElements = formElements.OrderBy(x => x.ControlSpecs.GroupName).GroupBy(x => x.ControlSpecs.GroupName);
             var useLegend = (formElements.Select(x => x.ControlSpecs.GroupName).Distinct().Count() > 1);
@@ -81,15 +87,13 @@ namespace Foundation.FormBuilder.DynamicForm
 
                             using (new ControlContainer(textWriter, formType))
                             {
+                                var validationAttributes = htmlHelper.GetValidationAttributes(formElement.PropertyInfo.Name);
+                            
                                 // ElementType
                                 var elementBlock = ElementGenerator.RenderElement(formElement);
-                                /*Func<object> modelAccessor = () => formElement.PropertyInfo;
 
-                                var metadataProvider = new DataAnnotationsModelMetadataProvider();
-
-                                metadataProvider.GetMetadataForProperty()
+                                elementBlock.MergeAttributes(validationAttributes);
                                 
-                                 */
                                 textWriter.Write(elementBlock);
                             }
                         }

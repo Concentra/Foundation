@@ -62,6 +62,8 @@
     <Compile Include="BaseController.cs" />
     <Compile Include="BootstrapNamedColor.cs" />
     <Compile Include="ControllerRegistrationConvention.cs" />
+    <Compile Include="Extensions\ButtonExtensions.cs" />
+    <Compile Include="Extensions\ButtonGroup.cs" />
     <Compile Include="Extensions\CacheType.cs" />
     <Compile Include="Extensions\CachingExtentions.cs" />
     <Compile Include="Extensions\CssMediaType.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Extensions\PagerExtensions.cs" />
     <Compile Include="Extensions\BasePagingExtensions.cs" />
     <Compile Include="Extensions\PopulatorHelpers.cs" />
+    <Compile Include="Extensions\SlideDirection.cs" />
     <Compile Include="Extensions\TableSorterExtensions.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Filter\FilterUtility.cs" />

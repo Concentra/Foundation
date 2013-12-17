@@ -29,7 +29,8 @@ namespace Kafala.BusinessManagers.Commitment
                    DonationCase = session.Get<Entities.DonationCase>(commitmentValue.DonationCaseId),
                    Donor = session.Get<Entities.Donor>(commitmentValue.DonorId),
                    EndDate = commitmentValue.EndDate,
-                   StartDate = commitmentValue.StartDate
+                   StartDate = commitmentValue.StartDate,
+                   Amount = commitmentValue.Amount
                };
 
            session.Save(commitmentObject);
@@ -46,6 +47,7 @@ namespace Kafala.BusinessManagers.Commitment
                commitmentObject.Donor = session.Get<Entities.Donor>(commitmentValue.DonorId);
                commitmentObject.EndDate = commitmentValue.EndDate;
                commitmentObject.StartDate = commitmentValue.StartDate;
+               commitmentObject.Amount = commitmentValue.Amount;
            }
            
            session.Save(commitmentObject);

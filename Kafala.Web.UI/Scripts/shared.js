@@ -1,7 +1,56 @@
 ﻿/// <reference path="ThirdParty/jquery-vsdoc.js" />
 
-$(function () {
+
+$(".validated").submit(function (event) {
+
+    var isValid = $(this).validate().valid();
+
+    return isValid; //True will allow submission, false will not
+
+});
+
+$(function() {
     $(".datepicker").datepicker();
+
+    var settings = $.data($('.validated')[0], 'validator').settings;
+
+    var oldErrorPlacementFunction = settings.errorPlacement;
+    var oldFail = settings.fail;
+    var oldInvalidHandler = settings.invalidHandler;
+    
+
+    settings.highlight = function (element) {
+        $(element).closest('.form-group').addClass('has-error');
+    };
+
+    settings.unhighlight = function (element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    };
+
+    settings.errorElement = "span";
+
+    settings.errorClass = "help-block";
+
+    settings.errorPlacement = function (error, element) {
+        if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+
+        oldErrorPlacementFunction(error, element);
+        return false;
+    };
+    
+    settings.fail = function (element) {
+        $(element).closest('.form-group').addClass('has-error');
+        oldFail(element);
+    };
+
+    settings.invalidHandler = function(event, validator) {
+        invalidHandler(event, validator);
+    };
+
 });
 
 // Log script errors using ELMAH

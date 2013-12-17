@@ -85,14 +85,15 @@ namespace Kafala.Test
             mock.SetupProperty(x => x.StartDate, DateTime.Now.AddDays(-20));
             mock.SetupProperty(x => x.DonationCaseId, donationCaseId);
             mock.SetupProperty(x => x.EndDate, DateTime.Now.AddDays(+20));
+            mock.SetupProperty(x => x.Amount, Faker.RandomNumber.Next(200,1000));
             return mock;
         }
 
-        public Mock<IPaymentContract> MockPayment(Guid commitmentId, Guid periodId)
+        public Mock<IPaymentContract> MockPayment(Guid commitmentId, Guid periodId, int amount)
         {
             var mock = new Mock<IPaymentContract>();
             mock.SetupProperty(x => x.CommitmentId, commitmentId);
-            mock.SetupProperty(x => x.Amount, 2121);
+            mock.SetupProperty(x => x.Amount, Faker.RandomNumber.Next(0, amount));
             mock.SetupProperty(x => x.Comments, Faker.Lorem.Sentence());
             mock.SetupProperty(x => x.PaymentDate, DateTime.Now.AddDays(3));
             mock.SetupProperty(x => x.PaymentPeriodId, periodId);

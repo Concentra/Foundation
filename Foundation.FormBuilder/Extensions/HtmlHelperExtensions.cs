@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Foundation.FormBuilder
+namespace Foundation.FormBuilder.Extensions
 {
     public static class HtmlHelperExtensions
     {

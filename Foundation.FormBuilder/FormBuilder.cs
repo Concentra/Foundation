@@ -42,7 +42,7 @@ namespace Foundation.FormBuilder
 
         private static IDynamicUiBuilder<TModel> formBuilder;
 
-        private static IDynamicUiBuilder<TModel> GetFormBuilder(HtmlHelper<TModel> helper)
+        private static IDynamicUiBuilder<TModel> GetFormBuilder()
         {
             if (formBuilder == null)
             {
@@ -53,7 +53,7 @@ namespace Foundation.FormBuilder
 
         public MvcHtmlString DynamicForm(BootstrapFormType formType = BootstrapFormType.Horizontal)
         {
-            return RenderUI(GetFormBuilder(helper), formType);
+            return RenderUI(GetFormBuilder(), formType);
         }
 
         #endregion
@@ -61,7 +61,7 @@ namespace Foundation.FormBuilder
 
         public MvcHtmlString RenderUI(IDynamicUiBuilder<TModel> builder, BootstrapFormType formType, bool renderButtons = true)
         {
-            return builder.Build(helper.ViewData.Model, formType, renderButtons);
+            return builder.Build(helper.ViewData.Model, formType, renderButtons, helper);
         }
 
        
