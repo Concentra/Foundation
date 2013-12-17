@@ -21,7 +21,7 @@
         <div class="row">
              @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Vertical, new { @class = "well  well-sm", id = "autoForm" }))
               {
-                    @Html.FormBuilder().DynamicView(Foundation.FormBuilder.DynamicForm.BootstrapFormType.Vertical) 
+                    @Html.DynamicView(Foundation.FormBuilder.DynamicForm.BootstrapFormType.Vertical) 
                             
               }
         </div>

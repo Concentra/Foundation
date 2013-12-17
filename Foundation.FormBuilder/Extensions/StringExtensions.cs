@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Foundation.FormBuilder
+namespace Foundation.FormBuilder.Extensions
 {
     internal static class StringExtensions
     {

@@ -2,6 +2,7 @@ using System;
 using System.Web.UI;
 using Foundation.FormBuilder.CustomAttribute;
 using Foundation.FormBuilder.DynamicForm;
+using Foundation.FormBuilder.Extensions;
 
 namespace Foundation.FormBuilder.Blocks
 {

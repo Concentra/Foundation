@@ -37,6 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.1.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Faker.NET4">
       <HintPath>..\packages\Faker.Net.1.0.3\lib\net40\Faker.NET4.dll</HintPath>
     </Reference>
@@ -74,6 +78,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTextFixture.cs" />
+    <Compile Include="AutoMapperTest.cs" />
     <Compile Include="FilterModel.cs" />
     <Compile Include="Configurations.cs" />
     <Compile Include="SecurityTests.cs" />
