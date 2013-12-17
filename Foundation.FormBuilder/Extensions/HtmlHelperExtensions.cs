@@ -14,7 +14,7 @@ namespace Foundation.FormBuilder.Extensions
         }
 
         public static MvcHtmlString DynamicView<TModel>
-             (this HtmlHelper<TModel> htmlHelper, BootstrapFormType formType = BootstrapFormType.Horizontal, bool renderButtons = true)
+             (this HtmlHelper<TModel> htmlHelper, BootstrapFormType formType = BootstrapFormType.Horizontal, bool renderButtons = false)
         {
             TModel model = htmlHelper.ViewData.Model;
             return new BootStrapViewBuilder<TModel>()

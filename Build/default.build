@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="NantBuildSite" default="Build" xmlns="http://nant.sf.net/nantcontrib.xsd">
+  <property name="source.website.directory" value=""/>
+  <property name="tools.directory" value="../tools"/>
+  <property name="solution.directory" value=".."/>
+  <property name="solution.file" value="${solution.directory}\foundation.sln" />
+  
+  <property name="msbuild.configuration" value="debug"/>
+  <property name="project.name" value="Abdo"/>
+  <property name="project.name" value=""/>
+  <property name="project.version" value=""/>
+  <property name="project.listOfProjects" value="Kafala.Web.UI, Kafala.Console" />
+
+  
+  <target name="compile" >
+    <msbuild project="${solution.file}">
+      <property name="Configuration" value="${msbuild.configuration}" />
+      <property name="TreatWarningsAsErrors" value="true" />
+      <property name="MvcBuildViews" value="true" />
+      <property name="NoWarn" value="618" />
+      <property name="SolutionDir" value="${path::get-full-path(solution.directory)}"/>
+      <property name="ToolsRoot" value="${path::get-full-path(tools.directory)}" />
+    </msbuild>
+
+    <msbuild project="${path::get-full-path(source.website.directory)}\RM.Web.UI.csproj" target="Package">
+      <property name="Configuration" value="${packagetype.configuration}" />
+      <property name="TreatWarningsAsErrors" value="true" />
+      <property name="NoWarn" value="618" />
+      <property name="MvcBuildViews" value="true" />
+      <property name="webprojectoutputdir" value="..\..\..\build\${working.directory}\websites\${temp.website.name}" />
+      <property name="outdir" value="../../../build/${working.directory}/websites/${temp.website.name}/bin/" />
+      <property name="SolutionDir" value="${path::get-full-path(solution.directory)}" />
+      <property name="PackageLocation" value="..\..\..\build\${working.directory}\websites\${packagetype.configuration}\${temp.website.name}.zip" />
+    </msbuild>
+    
+  </target>
+</project>
