@@ -36,9 +36,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Foundation.FormBuilder">
-      <HintPath>..\Kafala.Web.UI\Bin\Foundation.FormBuilder.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
@@ -62,6 +59,7 @@
     <Compile Include="BaseController.cs" />
     <Compile Include="BootstrapNamedColor.cs" />
     <Compile Include="ControllerRegistrationConvention.cs" />
+    <Compile Include="CustomAttribute\FilterControl.cs" />
     <Compile Include="Extensions\ButtonExtensions.cs" />
     <Compile Include="Extensions\ButtonGroup.cs" />
     <Compile Include="Extensions\CacheType.cs" />
@@ -73,6 +71,7 @@
     <Compile Include="Extensions\InMemoryCache.cs" />
     <Compile Include="Extensions\MvcPanel.cs" />
     <Compile Include="Extensions\MvcPanelTab.cs" />
+    <Compile Include="Extensions\NavHtmlTextWritter.cs" />
     <Compile Include="Extensions\PagerExtensions.cs" />
     <Compile Include="Extensions\BasePagingExtensions.cs" />
     <Compile Include="Extensions\PopulatorHelpers.cs" />
