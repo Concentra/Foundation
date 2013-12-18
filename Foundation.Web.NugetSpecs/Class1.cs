@@ -11,6 +11,7 @@ namespace Foundation.Web.NugetSpecs
         public void Register()
         {
             var formBuilder = Foundation.Web.BootstrapNamedColor.Default;
+            formBuilder.Equals(null);
         }
     }
 }

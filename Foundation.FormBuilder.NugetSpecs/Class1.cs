@@ -10,6 +10,7 @@ namespace Foundation.FormBuilder.NugetSpecs
         public void Register()
         {
             var formBuilder = new FormBuilder.DynamicForm.BootstrapFormType();
+            formBuilder.GetHashCode();
         }
     }
 }
