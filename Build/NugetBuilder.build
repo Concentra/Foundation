@@ -5,7 +5,7 @@
   <property name="solution.directory" value=".."/>
   <property name="solution.file" value="${solution.directory}\NugetPublisher.sln" />
   
-  <property name="msbuild.configuration" value="debug"/>
+  <property name="msbuild.configuration" value="release"/>
   <property name="project.name" value="Foundation Nuget Application"/>
   <property name="project.name" value=""/>
   <property name="project.version" value=""/>
