@@ -86,6 +86,15 @@ namespace Foundation.Web.Extensions
             return MvcHtmlString.Create(result.ToString());
         }
 
+        public static MvcHtmlString PageLinks(
+            this HtmlHelper html,
+            PagingInfoViewModel pagingInfoViewModel,
+            int linksToShow = 0)
+        {
+            return html.PageLinks(pagingInfoViewModel, pagingInfoViewModel.ActionFunc, linksToShow);
+        }
+
+
         private static int PagerPounds(int linksToShow, int totalPages, int currentPage, int start, ref int end)
         {
             if (totalPages > linksToShow)
