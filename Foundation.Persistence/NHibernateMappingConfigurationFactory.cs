@@ -18,7 +18,7 @@ namespace Foundation.Persistence
                        .UseOverridesFromAssembly(Assembly.GetAssembly(type))
                        .Conventions.AddAssembly(Assembly.GetAssembly(type))
                        .Where(t => t.Namespace == nameSpace));
-                   m.HbmMappings.AddFromAssembly(Assembly.Load("Kafala.Entities")); // for stored procedures
+                   m.HbmMappings.AddFromAssembly(Assembly.GetAssembly(type)); // for stored procedures
                   
                });
 
