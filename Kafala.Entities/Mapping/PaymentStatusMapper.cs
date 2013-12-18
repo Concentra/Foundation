@@ -1,6 +1,5 @@
 ﻿using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
-using NHibernate.Mapping;
 
 namespace Kafala.Entities.Mapping
 {
