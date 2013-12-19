@@ -27,10 +27,16 @@ namespace Kafala.Web.UI
     {
         public static void ConfigureWebApplication(IFoundationConfigurator foundationConfigurator)
         {
-            ObjectFactory.Configure(BootStrapWeb.ConfigureDependencies());
+            ObjectFactory.Configure(cfg => BootStrapWeb.ConfigureDependencies(cfg , new FoundationConfigurator()));
+            
             RegisterPagingAndSortingModelBinders(foundationConfigurator.ViewModelsAssemblyHookType);
 
+            ObjectFactory.Configure(cfg => cfg.For<ICurrentAuthenticateUser>().Use<CurrentAuthenticateUser>());
+
+            Mapper.Initialize(AutoMapperConfigurations.Configure);
+
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory(ObjectFactory.Container));
+            
             DependencyResolver.SetResolver(new StructureMapDependencyResolver(ObjectFactory.Container));
         }
 
@@ -60,19 +66,14 @@ namespace Kafala.Web.UI
 
             cfg.For<IBusinessManagerRegistery>().Use<BusinessManagerRegistery>();
 
+            cfg.For<IFlashMessenger>(foundationConfigurator.FlashMessenger);
             cfg.For<IAuthenticationService>(foundationConfigurator.AuthenticationService);
             cfg.For<IEmailLogger>(foundationConfigurator.EmailLogger);
             cfg.For<IResourcesLocator>(foundationConfigurator.ResourceLocator);
-            
-            cfg.For<ICurrentAuthenticateUser>().Use<CurrentAuthenticateUser>();
-
             cfg.For<IBusinessManagerInvocationLogger>(foundationConfigurator.BusinessInvocationLogger, true);
-
             cfg.For<ITypeHolder>(foundationConfigurator.EntityTypeHolder);
-
             cfg.For<IConnectionString>().Use(new ConnectionString(foundationConfigurator.ConnectionStringKeyName));
 
-            Mapper.Initialize(AutoMapperConfigurations.Configure);
         }
 
        

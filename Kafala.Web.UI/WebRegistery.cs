@@ -27,8 +27,6 @@ namespace Kafala.Web.UI
             this.For<IResourcesLocator>().Use<ResourcesLocator>();
             */
             
-            this.For<IFlashMessenger>().Use<WebFlashMessenger>();
-            
             this.For<IEmailService>().Use<EmailService>();
             
             this.For<ICacheService>()

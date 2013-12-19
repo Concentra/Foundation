@@ -9,31 +9,47 @@ namespace Kafala.Web.UI
     {
         public Type ViewModelsAssemblyHookType
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get
+            {
+                return typeof (ViewModels.DonationCase.ListDonationCaseViewModel);
+            }
+            set { }
         }
 
         public Type BusinessInvocationLogger 
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get
+            {
+                return typeof (IBusinessManagerInvocationLogger);
+                
+            }
+            set {}
         }
 
         public Type EntityTypeHolder
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get
+            {
+                return typeof (Entities.Donor);
+            }
+            set {}
         }
 
         public Type AuthenticationService
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get
+            {
+                return typeof(Kafala.Query.Security.AuthenticationService);
+            }
+            set {}
         }
 
         public Type EmailLogger
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return typeof(Kafala.Query.Security.AuthenticationService);
+            }
             set { throw new NotImplementedException(); }
         }
 
@@ -50,5 +66,6 @@ namespace Kafala.Web.UI
         }
 
         public Dictionary<string, string> EmailConfigurations { get; set; }
+        public Type FlashMessenger { get; set; }
     }
 }

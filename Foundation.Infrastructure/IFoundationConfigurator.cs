@@ -13,5 +13,6 @@ namespace Foundation.Infrastructure
         string ConnectionStringKeyName { get; set; }
         Type ResourceLocator { get; set; }
         Dictionary<string, string> EmailConfigurations { get; set; }
+        Type FlashMessenger { get; set; }
     }
 }

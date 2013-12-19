@@ -36,10 +36,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Foundation.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Foundation.Web.0.8\lib\net45\Foundation.Web.dll</HintPath>
-    </Reference>
     <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
@@ -120,6 +116,10 @@
     <ProjectReference Include="..\Foundation.FormBuilder\Foundation.FormBuilder.csproj">
       <Project>{c5fa847f-2fb5-403d-ad02-3e9332bf60c7}</Project>
       <Name>Foundation.FormBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
+      <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
+      <Name>Foundation.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kafala.BusinessManagers\Kafala.BusinessManagers.csproj">
       <Project>{a5d4402e-ce60-420e-b14c-4dcc6f8815e7}</Project>
