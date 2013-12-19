@@ -72,7 +72,7 @@ namespace Foundation.Web.Extensions
         public static MvcHtmlString ScriptIncludeThirdParty(this HtmlHelper htmlHelper, string filename)
         {
             // read a subfolder from config, or empty
-            var thirdPartyScriptsFolder = ConfigurationManager.AppSettings["Foundation_WebPageTitlesResource"] ?? string.Empty;
+            var thirdPartyScriptsFolder = ConfigurationManager.AppSettings["Foundation_ThirdPartyScripts"] ?? string.Empty;
             var filepath = "~/Scripts/";
             // filepath += htmlHelper.ViewContext.HttpContext.IsDebuggingEnabled ? "Debug" : "Release" + "/";
             filepath += thirdPartyScriptsFolder + filename;

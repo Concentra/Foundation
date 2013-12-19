@@ -8,45 +8,50 @@ namespace Foundation.Web.Extensions
 {
     public static class TableSorterExtensions
     {
-        public static MvcHtmlString SortableHeader(this HtmlHelper row, IPagingInfo pagingInfo, string id, string title, object htmlAttributes = null)
+        public static MvcHtmlString SortableHeader(this HtmlHelper row, ISortingParameters sortingInfo, string columnId, string title, object htmlAttributes = null)
         {
-                return row.SortableHeader(pagingInfo.Sort, id, title, pagingInfo.ActionFunc, htmlAttributes);
+                return row.SortableHeader(sortingInfo.Sort, sortingInfo.SortDirection, columnId, title, sortingInfo.ActionFunc, htmlAttributes);
         }
 
-        public static MvcHtmlString SortableHeader(this HtmlHelper row, string currentSort, string id, string title, Func<object, string> urlActionDelegate, object htmlAttributes = null)
+        public static MvcHtmlString SortableHeader(this HtmlHelper row, string currentSort, string sortDirection, string columnId, string title, Func<object, string> urlActionDelegate, object htmlAttributes = null)
         {
             var properties = string.Empty;
             IDictionary<string, object> attributes = new RouteValueDictionary(htmlAttributes);
+
+            var newSortDirection = "asc";
             foreach (var attr in attributes)
             {
                 properties += " " + attr.Key + "=\"" + attr.Value.ToString() + "\" ";
             }
+            
             const string sortableHeader = "SortableHeader";
             var cssClass = sortableHeader;
             string sortIcon = "";
-            if (!string.IsNullOrEmpty(currentSort) && currentSort.Substring(0, currentSort.Length - 1) == id)
+            if (!string.IsNullOrEmpty(currentSort) && currentSort == columnId)
             {
-                string sortDirection = currentSort.Substring(currentSort.Length - 1, 1);
                 cssClass += " Sorted";
-                if (sortDirection == "A")
+                if (sortDirection.ToLower().StartsWith("d"))
                 {
-                    id = string.Concat(id, "D");
-                    sortIcon =  GlyphIcons.SortDec;
+                    sortIcon = GlyphIcons.ChevronDown;
+                    newSortDirection = "asc";
                 }
                 else
                 {
-                    id = string.Concat(id, "A");
-                    sortIcon = GlyphIcons.SortAsc;
+                    sortIcon = GlyphIcons.ChevronUp;
+                    newSortDirection = "desc";
                 }
             }
             else
             {
-                id = string.Concat(id, "A");    
+                // default (initial sort) is ascending
+                sortDirection = "asc";
             }
 
             var iconSpan = string.Format("<span class=\"glyphicon glyph{0}\"></span>", sortIcon);
-            var link = BasePagingExtensions.CreatePageLink(urlActionDelegate, new {Sort = id}, title, title);
-            return MvcHtmlString.Create(string.Format("<th class=\"{0}\" id=\"{1}\" {2}>{3} {4} </th>", cssClass, id, properties, link, iconSpan));
+
+            var link = BasePagingExtensions.CreatePageLink(urlActionDelegate, new { Sort = columnId, SortDirection = newSortDirection }, title, title);
+            
+            return MvcHtmlString.Create(string.Format("<th class=\"{0}\" id=\"{1}\" {2}>{3} {4} </th>", cssClass, columnId, properties, link, iconSpan));
         }
     }
 }

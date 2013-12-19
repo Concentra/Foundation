@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Foundation.Infrastructure.Query;
 using Foundation.Web.Paging;
+using Foundation.Web.Sorter;
 using Kafala.Entities;
 using Kafala.Web.ViewModels.Donor;
 using Foundation.Infrastructure;
@@ -13,7 +14,7 @@ using IQuery = Foundation.Infrastructure.Query.IQuery;
 
 namespace Kafala.Query.Donor
 {
-    public class DonorListModelPopulator : IQuery<DonorListParameters, DonorIndexViewModel>
+    public class DonorListModelPopulator : IQuery<PagingAndSortingParameters, DonorIndexViewModel>
     {
         private readonly ISession session;
 
@@ -22,10 +23,12 @@ namespace Kafala.Query.Donor
             this.session = session;
         }
 
-        public DonorIndexViewModel Execute(DonorListParameters parameters)
+        public DonorIndexViewModel Execute(PagingAndSortingParameters parameters)
         {
 
             var donorsQuery = this.session.Query<Entities.Donor>();
+
+            donorsQuery = donorsQuery.ApplyOrder(parameters);
 
             var pagedDonors = donorsQuery.FetchPaged(parameters);
             var model = new DonorIndexViewModel
@@ -38,17 +41,14 @@ namespace Kafala.Query.Donor
                     Telephone = x.Telephone,
                     DonorStatus = x.DonorStatus
                 }).ToList(),
-                PagingInfo = pagedDonors.PagingViewModel
             };
+
+            model.PagingInfo.FillSortingParameters(parameters);
+
+            model.PagingInfo.FillPagingParameters(pagedDonors.PagingInfo);
 
             return model;
         }
     }
 
-    public class DonorListParameters : IPagingParameters
-    {
-        public int PageSize { get; set; }
-        public int PageNumber { get; set; }
-        public string Sort { get; set; }
-    }
 }

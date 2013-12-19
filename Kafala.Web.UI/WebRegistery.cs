@@ -19,13 +19,18 @@ namespace Kafala.Web.UI
         public WebRegistery()
         {
             this.For<IPasswordHelper>().Use<PasswordHelper>();
+          
+            /*
             this.For<IAuthenticationService>().Use<AuthenticationService>();
             this.For<ICurrentAuthenticateUser>().Use<CurrentAuthenticateUser>();
-            this.For<IEmailService>().Use<EmailService>();
             this.For<IEmailLogger>().Use<EmailLogger>();
             this.For<IResourcesLocator>().Use<ResourcesLocator>();
-
+            */
+            
             this.For<IFlashMessenger>().Use<WebFlashMessenger>();
+            
+            this.For<IEmailService>().Use<EmailService>();
+            
             this.For<ICacheService>()
            .HybridHttpOrThreadLocalScoped()
            .Use<InMemoryCache>();

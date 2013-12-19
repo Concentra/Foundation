@@ -67,6 +67,8 @@
     <Compile Include="BL\IBusinessManagerContainer.cs" />
     <Compile Include="BL\IBusinessManagerRegistery.cs" />
     <Compile Include="BL\IBusinessManagerInvocationLogger.cs" />
+    <Compile Include="Extensions\StructureMapExtension.cs" />
+    <Compile Include="IFoundationConfigurator.cs" />
     <Compile Include="Notifications\EmailLogger.cs" />
     <Compile Include="Notifications\EmailService.cs" />
     <Compile Include="Notifications\IEmailLogger.cs" />

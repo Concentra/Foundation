@@ -32,7 +32,7 @@ namespace Kafala.Test
 
         public void CreateDonors()
         {
-            for (var d = 0; d < 2; ++d)
+            for (var d = 0; d < 50; ++d)
             {
                 var donorMoq = MockDonor();
                 var donorId = DonorBusinessManager.Add(donorMoq.Object);

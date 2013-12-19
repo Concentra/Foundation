@@ -101,7 +101,7 @@
     <Compile Include="PaymentPeriod.cs" />
     <Compile Include="PaymentStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DoNotMap\TypeHolder.cs" />
+    <Compile Include="DoNotMap\EntityAssemblyTypeHolder.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

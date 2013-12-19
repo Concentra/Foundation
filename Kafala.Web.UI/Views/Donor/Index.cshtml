@@ -13,15 +13,9 @@
 <table class="table">
     <tr>
         @Html.SortableHeader(Model.PagingInfo, "Name" , "Name")
-        <th>
-            Telephone
-        </th>
-        <th>
-            JoinDate
-        </th>
-        <th>
-            Status
-        </th>
+        @Html.SortableHeader(Model.PagingInfo, "Telephone" , "Telephone")
+        @Html.SortableHeader(Model.PagingInfo, "JoinDate" , "Join Date")
+        @Html.SortableHeader(Model.PagingInfo, "DonorStatus" , "Status")
         <th></th>
     </tr>
 

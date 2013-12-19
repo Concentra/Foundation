@@ -65,10 +65,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Foundation.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Foundation.Infrastructure.0.9\lib\net45\Foundation.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="Foundation.Persistence, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Foundation.Persistence.0.9\lib\net45\Foundation.Persistence.dll</HintPath>
@@ -125,6 +121,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
     <Compile Include="CurrentAuthenticateUser.cs" />
+    <Compile Include="FoundationConfigurator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -283,6 +280,10 @@
     <ProjectReference Include="..\Foundation.FormBuilder\Foundation.FormBuilder.csproj">
       <Project>{c5fa847f-2fb5-403d-ad02-3e9332bf60c7}</Project>
       <Name>Foundation.FormBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">
+      <Project>{0735de5d-9ff2-4913-b894-f3b5d36a6ca5}</Project>
+      <Name>Foundation.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
       <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>

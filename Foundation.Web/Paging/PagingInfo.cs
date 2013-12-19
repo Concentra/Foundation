@@ -2,7 +2,7 @@
 
 namespace Foundation.Web.Paging
 {
-    public class PagingInfo : IPagingInfo
+    public class PagingInfo : IPagingInfo , IPagingParameters
     {
         public int TotalItems { get; set; }
 
@@ -15,6 +15,8 @@ namespace Foundation.Web.Paging
         public int PageSize { get; set; }
 
         public string Sort { get; set; }
+
+        public string SortDirection { get; set; }
 
         public int PageNumber { get; set; }
 

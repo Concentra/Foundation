@@ -1,5 +1,5 @@
 ﻿using System;
-using Foundation.FormBuilder.CustomAttribute;
+using Foundation.Web.CustomAttribute;
 using Foundation.Web.Paging;
 
 namespace Kafala.Web.ViewModels.Reports.Partials

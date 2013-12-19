@@ -3,8 +3,8 @@ using System.Web.Mvc;
 
 namespace Foundation.Web.Paging
 {
-    [Bind(Include = "PageSize,PageNumber,Sort")]
-    public class PagingInfoViewModel : IPagingInfo
+    [Bind(Include = "PageSize,PageNumber,Sort,SortDirection")]
+    public class PagingInfoViewModel : IPagingParameters , ISortingParameters
     {
         
         public int TotalItems { get; set; }
@@ -20,6 +20,8 @@ namespace Foundation.Web.Paging
         public int PageNumber { get; set; }
 
         public string Sort { get; set; }
+
+        public string SortDirection { get; set; }
 
         public Func<object, string> ActionFunc { get; set; }
     }

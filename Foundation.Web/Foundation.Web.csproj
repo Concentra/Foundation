@@ -86,10 +86,13 @@
     <Compile Include="Navigation\MenuBuilder.cs" />
     <Compile Include="Navigation\MenuContainer.cs" />
     <Compile Include="Navigation\MenuItem.cs" />
+    <Compile Include="Paging\INavigationParameters.cs" />
     <Compile Include="Paging\IPagedList.cs" />
     <Compile Include="Paging\IPagingInfo.cs" />
     <Compile Include="Paging\IPagingParameters.cs" />
+    <Compile Include="Paging\ISortingParameters.cs" />
     <Compile Include="Paging\PagedList.cs" />
+    <Compile Include="Paging\PagingExtensions.cs" />
     <Compile Include="Paging\PagingInfo.cs" />
     <Compile Include="Paging\QueryPager.cs" />
     <Compile Include="Paging\RendersPagedView.cs" />

@@ -1,23 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
-using AutoMapper;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.BL;
-using Foundation.Infrastructure.Query;
-using Foundation.Persistence;
-using Foundation.Web;
-using Foundation.Web.ModelBinders;
-using Foundation.Web.Paging;
-using Kafala.BusinessManagers;
-using Kafala.Entities.DoNotMap;
-using Kafala.Query;
-using Kafala.Web.ViewModels.Donor;
-using StructureMap;
 
 namespace Kafala.Web.UI
 {
@@ -51,7 +33,7 @@ namespace Kafala.Web.UI
 
         protected void Application_Start()
         {
-            BootStrapWeb.ConfigureWebApplication();
+            BootStrapWeb.ConfigureWebApplication(new FoundationConfigurator());
             AreaRegistration.RegisterAllAreas();
 
             

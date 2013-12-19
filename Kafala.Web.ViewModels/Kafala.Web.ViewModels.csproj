@@ -36,10 +36,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Foundation.FormBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Foundation.FormBuilder.0.8\lib\net45\Foundation.FormBuilder.dll</HintPath>
-    </Reference>
     <Reference Include="Foundation.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Foundation.Web.0.8\lib\net45\Foundation.Web.dll</HintPath>
@@ -121,6 +117,10 @@
     <Folder Include="Donor\Partial\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foundation.FormBuilder\Foundation.FormBuilder.csproj">
+      <Project>{c5fa847f-2fb5-403d-ad02-3e9332bf60c7}</Project>
+      <Name>Foundation.FormBuilder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kafala.BusinessManagers\Kafala.BusinessManagers.csproj">
       <Project>{a5d4402e-ce60-420e-b14c-4dcc6f8815e7}</Project>
       <Name>Kafala.BusinessManagers</Name>

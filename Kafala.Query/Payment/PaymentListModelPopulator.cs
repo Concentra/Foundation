@@ -68,7 +68,7 @@ namespace Kafala.Query.Payment
         }
     }
 
-    public class PaymentListParameters : PagingParameters
+    public class PaymentListParameters : PagingAndSortingParameters
     {
         private readonly Guid? donorId;
         private readonly Guid? caseId;
