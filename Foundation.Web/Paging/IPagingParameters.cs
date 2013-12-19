@@ -4,5 +4,6 @@
     {
         int PageSize { get; set; }
         int PageNumber { get; set; }
+        string Sort { get; set; }
     }
 }

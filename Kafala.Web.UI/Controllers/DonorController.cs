@@ -4,6 +4,7 @@ using System.Web.Routing;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Query;
 using Foundation.Web;
+using Foundation.Web.Paging;
 using Kafala.BusinessManagers.Donor;
 using Kafala.Query.Donor;
 using Kafala.Web.ViewModels.Donor;
@@ -24,11 +25,11 @@ namespace Kafala.Web.UI.Controllers
             this.queryContainer = queryContainer;
         }
 
-
-        public ActionResult Index()
+        [RendersPagedView]
+        public ActionResult Index(DonorListParameters parameters)
         {
             var container = this.queryContainer.Get<DonorListModelPopulator>();
-            var model = container.Execute(null);
+            var model = container.Execute(parameters);
             return View("Index", model);
         }
 

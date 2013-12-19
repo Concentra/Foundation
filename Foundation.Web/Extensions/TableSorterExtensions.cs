@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Foundation.Web.Paging;
 
 namespace Foundation.Web.Extensions
 {
     public static class TableSorterExtensions
     {
+        public static MvcHtmlString SortableHeader(this HtmlHelper row, IPagingInfo pagingInfo, string id, string title, object htmlAttributes = null)
+        {
+                return row.SortableHeader(pagingInfo.Sort, id, title, pagingInfo.ActionFunc, htmlAttributes);
+        }
+
         public static MvcHtmlString SortableHeader(this HtmlHelper row, string currentSort, string id, string title, Func<object, string> urlActionDelegate, object htmlAttributes = null)
         {
             var properties = string.Empty;

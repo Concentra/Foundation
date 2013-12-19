@@ -13,7 +13,7 @@ namespace Foundation.Web.Paging
             get
             {
                 var configuredPageSize = ConfigurationManager.AppSettings["Foundation_PageSize"];
-                return string.IsNullOrEmpty(configuredPageSize) ? 100 : Convert.ToInt32(configuredPageSize);
+                return string.IsNullOrEmpty(configuredPageSize) ? 10 : Convert.ToInt32(configuredPageSize);
             }
         }
 
