@@ -40,7 +40,7 @@
       <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
-      <HintPath>..\Libs\StructureMap.dll</HintPath>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -58,7 +58,11 @@
   <ItemGroup>
     <Compile Include="BaseController.cs" />
     <Compile Include="BootstrapNamedColor.cs" />
-    <Compile Include="ControllerRegistrationConvention.cs" />
+    <Compile Include="Configurations\ControllerRegistrationConvention.cs" />
+    <Compile Include="Configurations\StructureMapControllerFactory.cs" />
+    <Compile Include="Configurations\StructureMapDependencyResolver.cs" />
+    <Compile Include="Configurations\WebConfigurator.cs" />
+    <Compile Include="Configurations\WebRegistery.cs" />
     <Compile Include="CustomAttribute\FilterControl.cs" />
     <Compile Include="Extensions\ButtonExtensions.cs" />
     <Compile Include="Extensions\ButtonGroup.cs" />
@@ -80,7 +84,6 @@
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Filter\FilterUtility.cs" />
     <Compile Include="GlyphIcons.cs" />
-    <Compile Include="IResourcesLocator.cs" />
     <Compile Include="ModelBinders\PagingInfoModelBinder.cs" />
     <Compile Include="Navigation\MenuList.cs" />
     <Compile Include="Navigation\MenuBuilder.cs" />
@@ -99,17 +102,11 @@
     <Compile Include="Paging\PagedViewModel.cs" />
     <Compile Include="Paging\PagingInfoViewModel.cs" />
     <Compile Include="Paging\PagingParameters.cs" />
-    <Compile Include="Security\IPasswordHelper.cs" />
     <Compile Include="Security\IAuthenticationService.cs" />
     <Compile Include="Security\IUser.cs" />
-    <Compile Include="Security\PasswordHelper.cs" />
-    <Compile Include="Security\PasswordInfo.cs" />
     <Compile Include="Security\SignInResult.cs" />
     <Compile Include="Sorter\Sorter.cs" />
-    <Compile Include="StructureMapControllerFactory.cs" />
-    <Compile Include="StructureMapDependencyResolver.cs" />
     <Compile Include="WebFlashMessenger.cs" />
-    <Compile Include="IFlashMessenger.cs" />
     <Compile Include="IWebRegistery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -117,6 +114,16 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Configuration\Foundation.Configuration.csproj">
+      <Project>{975ed9e8-b905-4aa3-83c3-8d6d193c785c}</Project>
+      <Name>Foundation.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">
+      <Project>{0735DE5D-9FF2-4913-B894-F3B5D36A6CA5}</Project>
+      <Name>Foundation.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

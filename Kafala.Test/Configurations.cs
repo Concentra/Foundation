@@ -1,8 +1,11 @@
 ﻿using Foundation.Infrastructure;
 using Foundation.Infrastructure.BL;
+using Foundation.Infrastructure.Configurations;
 using Foundation.Infrastructure.Notifications;
 using Foundation.Infrastructure.Query;
+using Foundation.Infrastructure.Security;
 using Foundation.Persistence;
+using Foundation.Persistence.Configurations;
 using Foundation.Web;
 using Foundation.Web.Security;
 using Kafala.BusinessManagers;

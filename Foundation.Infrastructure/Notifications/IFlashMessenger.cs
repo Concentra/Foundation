@@ -1,6 +1,4 @@
-﻿using System.Web.Mvc;
-
-namespace Foundation.Web
+namespace Foundation.Infrastructure.Notifications
 {
     public interface IFlashMessenger
     {
@@ -8,9 +6,9 @@ namespace Foundation.Web
 
         void AddMessage(string message, FlashMessageType messageType);
 
-        MvcHtmlString RenderFlashMessages();
+        string RenderFlashMessages();
 
-        MvcHtmlString RenderFlashMessagesForType(FlashMessageType messageType);
+        string RenderFlashMessagesForType(FlashMessageType messageType);
 
         bool HasMessages();
     }

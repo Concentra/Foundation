@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Foundation.Infrastructure.Notifications;
 using Foundation.Web;
 
 namespace Kafala.Console
@@ -15,14 +16,14 @@ namespace Kafala.Console
             return;
         }
 
-        public MvcHtmlString RenderFlashMessages()
+        public string RenderFlashMessages()
         {
-            return MvcHtmlString.Create(string.Empty);
+            return string.Empty;
         }
 
-        public MvcHtmlString RenderFlashMessagesForType(FlashMessageType messageType)
+        public string RenderFlashMessagesForType(FlashMessageType messageType)
         {
-            return MvcHtmlString.Create(string.Empty);
+            return string.Empty;
         }
 
         public bool HasMessages()

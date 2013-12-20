@@ -2,6 +2,7 @@
 using System.Linq;
 using Foundation.Infrastructure.BL;
 using Foundation.Infrastructure.Notifications;
+using Foundation.Infrastructure.Security;
 using Foundation.Persistence;
 using Foundation.Web.Security;
 using NHibernate;

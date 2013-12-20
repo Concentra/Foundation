@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Security;
 using Foundation.Infrastructure.BL;
+using Foundation.Infrastructure.Security;
 using Foundation.Persistence;
 using Foundation.Web.Security;
 using Kafala.BusinessManagers.User;

@@ -1,8 +1,8 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Foundation.Infrastructure.Query;
 using StructureMap.Configuration.DSL;
 
-namespace Foundation.Infrastructure
+namespace Foundation.Infrastructure.Configurations
 {
     public class QueryRegistery : Registry , IQueryRegistery
     {

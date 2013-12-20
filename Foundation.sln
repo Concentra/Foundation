@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.BusinessManagers", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Web.ViewModels", "Kafala.Web.ViewModels\Kafala.Web.ViewModels.csproj", "{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Configuration", "Foundation.Configuration\Foundation.Configuration.csproj", "{975ED9E8-B905-4AA3-83C3-8D6D193C785C}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi
@@ -191,6 +193,16 @@ Global
 		{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}.Release|x86.ActiveCfg = Release|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

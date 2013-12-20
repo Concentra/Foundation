@@ -48,18 +48,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Foundation.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Foundation.Infrastructure.0.9\lib\net45\Foundation.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Foundation.Persistence, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Foundation.Persistence.0.9\lib\net45\Foundation.Persistence.dll</HintPath>
-    </Reference>
-    <Reference Include="Foundation.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Foundation.Web.0.9\lib\net45\Foundation.Web.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -122,6 +110,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">
+      <Project>{0735de5d-9ff2-4913-b894-f3b5d36a6ca5}</Project>
+      <Name>Foundation.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Persistence\Foundation.Persistence.csproj">
+      <Project>{c684e3b8-d828-4ece-b427-afc06f25977f}</Project>
+      <Name>Foundation.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
+      <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
+      <Name>Foundation.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kafala.Entities\Kafala.Entities.csproj">
       <Project>{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}</Project>
       <Name>Kafala.Entities</Name>

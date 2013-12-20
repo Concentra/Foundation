@@ -9,6 +9,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
+using Foundation.Configuration;
 using StructureMap;
 
 namespace Foundation.Web.Extensions
@@ -40,7 +41,7 @@ namespace Foundation.Web.Extensions
 
             if (flashMessenger != null)
             {
-                return flashMessenger.RenderFlashMessages();
+                return new MvcHtmlString(flashMessenger.RenderFlashMessages());
             }
             else
             {
