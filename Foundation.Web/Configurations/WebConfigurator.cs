@@ -20,11 +20,17 @@ namespace Foundation.Web.Configurations
         {
             if (foundationConfigurator.UseWeb)
             {
-                cfg.AddRegistry(new WebRegistery());
+                cfg.AddRegistry(new WebRegistery(foundationConfigurator));
                 cfg.For<IResourcesLocator>().Use(foundationConfigurator.Web);
                 this.RegisterPagingAndSortingModelBinders(foundationConfigurator.Web.ViewModelsAssemblyHookType);
                 ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory(ObjectFactory.Container));
                 DependencyResolver.SetResolver(new StructureMapDependencyResolver(ObjectFactory.Container));
+                
+                if (foundationConfigurator.Web.PagingConfigurations != null)
+                {
+                    Foundation.Web.Configurations.WebConfigurations.PagingConfigurations =
+                        foundationConfigurator.Web.PagingConfigurations;
+                }
             }
 
             if (foundationConfigurator.UseSecurity)

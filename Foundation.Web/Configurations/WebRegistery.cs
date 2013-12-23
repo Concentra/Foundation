@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Web;
+using Foundation.Configuration;
 using Foundation.Web.Extensions;
 using StructureMap.Configuration.DSL;
 
@@ -7,7 +8,7 @@ namespace Foundation.Web.Configurations
 {
     public class WebRegistery : Registry, IWebRegistery
     {
-        public WebRegistery()
+        public WebRegistery(IFoundationConfigurator configurator)
         {
             
             this.For<ICacheService>()
@@ -15,7 +16,7 @@ namespace Foundation.Web.Configurations
            .Use<InMemoryCache>();
             this.Scan(x =>
             {
-                x.Assembly(Assembly.GetCallingAssembly().GetName().Name);
+                x.Assembly(Assembly.GetAssembly(configurator.Web.ControllersAssemblyHookType).GetName().Name);
                 x.With(new ControllerRegistrationConvention());
             });
             this.For<HttpSessionStateBase>().Use(ctx => new HttpSessionStateWrapper(HttpContext.Current.Session));

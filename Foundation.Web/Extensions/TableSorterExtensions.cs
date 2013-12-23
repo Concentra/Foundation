@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Foundation.Configuration;
 using Foundation.Web.Paging;
 
 namespace Foundation.Web.Extensions
@@ -18,33 +19,38 @@ namespace Foundation.Web.Extensions
             var properties = string.Empty;
             IDictionary<string, object> attributes = new RouteValueDictionary(htmlAttributes);
 
-            var newSortDirection = "asc";
+            const string direction = "asc";
+            var newSortDirection = direction;
             foreach (var attr in attributes)
             {
                 properties += " " + attr.Key + "=\"" + attr.Value.ToString() + "\" ";
             }
-            
-            const string sortableHeader = "SortableHeader";
+
+            string sortableHeaderCssClass = Configurations.WebConfigurations.PagingConfigurations.SortableHeaderCssClass;
+            string sortableHeader = sortableHeaderCssClass;
             var cssClass = sortableHeader;
             string sortIcon = "";
             if (!string.IsNullOrEmpty(currentSort) && currentSort == columnId)
             {
-                cssClass += " Sorted";
+                var sorted = Configurations.WebConfigurations.PagingConfigurations.SortedHeaderCssClass;
+                cssClass += string.Format(" {0}", sorted);
                 if (sortDirection.ToLower().StartsWith("d"))
                 {
-                    sortIcon = GlyphIcons.ChevronDown;
-                    newSortDirection = "asc";
+                    string sortedIcondDescending = Configurations.WebConfigurations.PagingConfigurations.SortedIcondDescending;
+                    sortIcon = sortedIcondDescending;
+                    newSortDirection = direction;
                 }
                 else
                 {
-                    sortIcon = GlyphIcons.ChevronUp;
+                    string sortedIcondAscending = Configurations.WebConfigurations.PagingConfigurations.SortedIcondAscending;
+                    sortIcon = sortedIcondAscending;
                     newSortDirection = "desc";
                 }
             }
             else
             {
                 // default (initial sort) is ascending
-                sortDirection = "asc";
+                sortDirection = direction;
             }
 
             var iconSpan = string.Format("<span class=\"glyphicon glyph{0}\"></span>", sortIcon);

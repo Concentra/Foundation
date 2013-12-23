@@ -61,6 +61,7 @@
     <Compile Include="Configurations\ControllerRegistrationConvention.cs" />
     <Compile Include="Configurations\StructureMapControllerFactory.cs" />
     <Compile Include="Configurations\StructureMapDependencyResolver.cs" />
+    <Compile Include="Configurations\WebConfigurations.cs" />
     <Compile Include="Configurations\WebConfigurator.cs" />
     <Compile Include="Configurations\WebRegistery.cs" />
     <Compile Include="CustomAttribute\FilterControl.cs" />

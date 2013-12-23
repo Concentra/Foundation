@@ -1,7 +1,7 @@
 ﻿@model Kafala.Web.ViewModels.Commitment.CreateCommitmentViewModel
 
 <h2>Assign Case To Donor</h2>
-@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
+@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new { @class = "well validated", id = "autoForm" }))
 {
     @Html.DynamicForm();
 }
