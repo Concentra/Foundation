@@ -10,7 +10,7 @@ namespace Foundation.Infrastructure.NugetSpecs
     {
         public void Register()
         {
-            var formBuilder = new Foundation.Infrastructure.BusinessManagerRegistery();
+            //var formBuilder = new Foundation.Infrastructure.BusinessManagerRegistery();
         }
     }
 }

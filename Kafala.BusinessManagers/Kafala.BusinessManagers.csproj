@@ -103,7 +103,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
     <Compile Include="User\IUserContract.cs" />
     <Compile Include="User\UserManager.cs" />
     <Compile Include="Commitment\CommitmentBusinessManager.cs" />
