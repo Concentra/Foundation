@@ -5,5 +5,7 @@ namespace Foundation.Web.Paging
     public interface IPagedList<T> : IList<T>
     {
         PagingInfo PagingInfo { get; }
+
+        PagingInfoViewModel PagingViewModel { get; }
     }
 }

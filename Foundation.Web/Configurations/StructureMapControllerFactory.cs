@@ -4,9 +4,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Foundation.Configuration;
+using Foundation.Infrastructure.Notifications;
 using StructureMap;
 
-namespace Foundation.Web
+namespace Foundation.Web.Configurations
 {
     public class StructureMapControllerFactory : DefaultControllerFactory
     {

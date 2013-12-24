@@ -16,13 +16,13 @@ namespace Foundation.Web.Extensions
 
         public T Get<T>(string cacheId, CacheType type, Func<T> getItemCallback) where T : class, IFlushable
         {
-            var seconds = Int32.Parse(ConfigurationManager.AppSettings["CacheExpirationInSeconds"]);
+            var seconds = Int32.Parse(ConfigurationManager.AppSettings["Foundation_CacheExpirationInSeconds"]);
             return Get<T>(cacheId, type, getItemCallback, seconds);
         }
 
         public T Get<T>(string cacheId, CacheType type, Func<T> getItemCallback, CacheItemPriority priority) where T : class, IFlushable
         {
-            var seconds = Int32.Parse(ConfigurationManager.AppSettings["CacheExpirationInSeconds"]);
+            var seconds = Int32.Parse(ConfigurationManager.AppSettings["Foundation_CacheExpirationInSeconds"]);
             return Get<T>(cacheId, type, getItemCallback, seconds, priority);
         }
 

@@ -1,7 +1,10 @@
 ﻿
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.BL;
+using Foundation.Infrastructure.Configurations;
+using Foundation.Infrastructure.Notifications;
 using Foundation.Persistence;
+using Foundation.Persistence.Configurations;
 using Foundation.Web;
 using Kafala.BusinessManagers;
 using Kafala.BusinessManagers.Donor;
@@ -37,7 +40,7 @@ namespace Kafala.Console
             container.Configure(x => x.For<IBusinessManagerInvocationLogger>().Singleton().Use<SqlProcBusinessManagerInvocationLogger>());
             container.Configure(x => x.For<IBusinessManagerRegistery>().Use<BusinessManagerRegistery>());
             
-            container.Configure(x => x.For<ITypeHolder>().Use<TypeHolder>());
+            container.Configure(x => x.For<ITypeHolder>().Use<EntityAssemblyTypeHolder>());
 
             container.Configure(x => x.For<IConnectionString>().Use(new ConnectionString("KafalaDB")));
             container.Configure(x => x.For<IFlashMessenger>().Use<SwallowFlashMessneger>());

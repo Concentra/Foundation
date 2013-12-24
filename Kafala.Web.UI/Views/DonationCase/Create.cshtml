@@ -1,7 +1,7 @@
 ﻿@model Kafala.Web.ViewModels.DonationCase.CreateDonationCaseViewModel
 
 <h2>Create Donation Case</h2>
-@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
+@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new { @class = "well validated", id = "autoForm" }))
 {
     @Html.DynamicForm()
    

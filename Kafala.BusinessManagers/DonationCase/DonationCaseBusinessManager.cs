@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using Foundation.Infrastructure.BL;
+using Foundation.Infrastructure.Notifications;
 using Foundation.Web;
 using NHibernate;
 using NHibernate.Mapping.ByCode.Impl;

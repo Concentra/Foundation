@@ -8,10 +8,10 @@
     </p>
     <table class="table sorter">
         <tr>
-           @Html.SortableHeader(Model.Search.PagingInfo.Sort, "DonationCaseName" , "Donation Case" , Model.Search.PagingInfo.ActionFunc)
-            @Html.SortableHeader(Model.Search.PagingInfo.Sort, "Name" , "Donor" , Model.Search.PagingInfo.ActionFunc)
-            @Html.SortableHeader(Model.Search.PagingInfo.Sort, "Start Date" , "Start Date" , Model.Search.PagingInfo.ActionFunc)
-            @Html.SortableHeader(Model.Search.PagingInfo.Sort, "End Date" , "End Date" , Model.Search.PagingInfo.ActionFunc)
+           @Html.SortableHeader(Model.Search.PagingInfo.Sort, Model.Search.PagingInfo.SortDirection,  "DonationCaseName" , "Donation Case" , Model.Search.PagingInfo.ActionFunc)
+            @Html.SortableHeader(Model.Search.PagingInfo.Sort, Model.Search.PagingInfo.SortDirection, "Name" , "Donor" , Model.Search.PagingInfo.ActionFunc)
+            @Html.SortableHeader(Model.Search.PagingInfo.Sort, Model.Search.PagingInfo.SortDirection, "Start Date" , "Start Date" , Model.Search.PagingInfo.ActionFunc)
+            @Html.SortableHeader(Model.Search.PagingInfo.Sort, Model.Search.PagingInfo.SortDirection, "End Date" , "End Date" , Model.Search.PagingInfo.ActionFunc)
         </tr>
     
     @foreach (var item in Model.Commitments) {

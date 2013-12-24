@@ -4,6 +4,6 @@ namespace Foundation.Persistence
 {
     public interface INHibernateConfigurationFactory
     {
-        Configuration Create();
+        NHibernate.Cfg.Configuration Create();
     }
 }

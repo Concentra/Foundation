@@ -7,6 +7,8 @@ using System.Resources;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Foundation.Configuration;
+using Foundation.Infrastructure.Notifications;
 
 namespace Foundation.Web
 {
@@ -46,7 +48,7 @@ namespace Foundation.Web
             this.messages[messageType].Enqueue(message);
         }
 
-        public MvcHtmlString RenderFlashMessages()
+        public string RenderFlashMessages()
         {
             var sb = new StringBuilder();
 
@@ -63,10 +65,10 @@ namespace Foundation.Web
                 }
             }
 
-            return new MvcHtmlString(sb.ToString());
+            return sb.ToString();
         }
 
-        public MvcHtmlString RenderFlashMessagesForType(FlashMessageType messageType)
+        public string RenderFlashMessagesForType(FlashMessageType messageType)
         {
                 var messagesToRender = GetMessagesForType(messageType);
 
@@ -75,7 +77,7 @@ namespace Foundation.Web
                     var builder = new TagBuilder("div");
                     builder.AddCssClass("alert alert-" + messageType.ToString().ToLower());
                     builder.InnerHtml = string.Join(".", messagesToRender);
-                    return MvcHtmlString.Create(builder.ToString(TagRenderMode.Normal));
+                    return builder.ToString(TagRenderMode.Normal);
                 }
             
 

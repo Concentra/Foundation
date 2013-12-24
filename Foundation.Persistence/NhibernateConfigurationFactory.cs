@@ -25,7 +25,7 @@ namespace Foundation.Persistence
             this.typeHolder = typeHolder;
         }
         
-        public Configuration Create()
+        public NHibernate.Cfg.Configuration Create()
         {
             // Configure the database properties
             var configruation = Fluently.Configure()

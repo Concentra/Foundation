@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using Foundation.FormBuilder.CustomAttribute;
+using Foundation.Web.CustomAttribute;
 using Foundation.Web.Paging;
 
 namespace Kafala.Web.ViewModels.Commitment.Partials

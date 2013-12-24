@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using StructureMap;
 
-namespace Foundation.Web
+namespace Foundation.Web.Configurations
 {
     public class StructureMapDependencyResolver : IDependencyResolver
     {

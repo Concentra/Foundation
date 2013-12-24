@@ -1,5 +1,6 @@
 ﻿using System;
 using Foundation.Infrastructure.BL;
+using Foundation.Infrastructure.Notifications;
 using Foundation.Web;
 using Kafala.Entities;
 using NHibernate;

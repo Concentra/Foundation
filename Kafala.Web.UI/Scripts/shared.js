@@ -1,7 +1,7 @@
 ﻿/// <reference path="ThirdParty/jquery-vsdoc.js" />
 
 
-$(".validated").submit(function (event) {
+$("form").submit(function (event) {
 
     var isValid = $(this).validate().valid();
 
@@ -10,9 +10,12 @@ $(".validated").submit(function (event) {
 });
 
 $(function() {
-    $(".datepicker").datepicker();
+    $(".datepicker").datepicker(
+        {
+            onSelect: function () { }
+        });
 
-    var settings = $.data($('.validated')[0], 'validator').settings;
+    var settings = $.data($('form')[0], 'validator').settings;
 
     var oldErrorPlacementFunction = settings.errorPlacement;
     var oldFail = settings.fail;
@@ -61,7 +64,7 @@ window.onerror = function (msg, url, lineNo) {
         scriptUrl: url,
         pageUrl: location.href,
         lineNumber: lineNo,
-        stacktrace: printStackTrace().join('\n\n')
+        stacktrace: window.printStackTrace().join('\n\n')
     };
 
     var xhr = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
@@ -77,7 +80,8 @@ window.onerror = function (msg, url, lineNo) {
     }
 
     var message = a.join("&").replace(/%20/g, "+");
-    xhr.send(message);
+    //xhr.send(message);
+    alert(window.printStackTrace().join('\n\n'));
     return false;
 };
 

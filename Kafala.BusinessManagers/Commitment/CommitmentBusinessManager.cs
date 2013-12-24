@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Foundation.Infrastructure.BL;
+using Foundation.Infrastructure.Notifications;
 using Foundation.Web;
 using Kafala.Entities;
 using Foundation.Infrastructure;

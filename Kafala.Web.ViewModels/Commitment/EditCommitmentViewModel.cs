@@ -24,10 +24,10 @@ namespace Kafala.Web.ViewModels.Commitment
 
         public virtual IEnumerable<SelectListItem> Donors { get; set; }
 
-        [EditControl(ElementType = ElementType.DateTime)]
+        [EditControl(ElementType = ElementType.Text)]
         public virtual DateTime? StartDate { get; set; }
 
-        [EditControl(ElementType = ElementType.DateTime)]
+        [EditControl(ElementType = ElementType.Text)]
         public virtual DateTime? EndDate { get; set; }
 
         [EditControl(ElementType = ElementType.FloatingPointNumber)]

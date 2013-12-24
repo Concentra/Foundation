@@ -39,8 +39,20 @@ namespace Foundation.Web.Paging
                 PageNumber = pageIndex,
                 PageSize = pageSize
             };
+
+            this.PagingViewModel = new PagingInfoViewModel()
+            {
+                ShowingFrom = showingFrom,
+                ShowingTo = showingTo,
+                TotalItems = total,
+                TotalPages = totalPages,
+                PageNumber = pageIndex,
+                PageSize = pageSize
+            };
         }
 
         public PagingInfo PagingInfo { get; private set; }
+
+        public PagingInfoViewModel PagingViewModel { get; private set; }
     }
 }

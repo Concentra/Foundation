@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Foundation.Web.Security
+namespace Foundation.Infrastructure.Security
 {
     public class PasswordInfo
     {

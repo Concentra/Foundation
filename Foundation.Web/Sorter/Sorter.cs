@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web.Compilation;
+using Foundation.Web.Paging;
 using NHibernate.Criterion;
 using Expression = System.Linq.Expressions.Expression;
 
@@ -14,12 +15,24 @@ namespace Foundation.Web.Sorter
 {
     public static class Sorter
     {
-        public static IQueryable<T> ApplyOrder<T>(this IQueryable<T> source, string property, string direction = "asc")
+        public static IQueryable<T> ApplyOrder<T>(this IQueryable<T> source, ISortingParameters sortingInfo)
         {
-            return source.ApplyMethod(property, direction.ToUpper().Contains("asc") ? "OrderBy" : "OrderByDescending");
+            return source.ApplyOrder(sortingInfo.Sort, sortingInfo.SortDirection);
+        }
+        
+        public static IQueryable<T> ApplyOrder<T>(this IQueryable<T> source, string columnName, string direction = "asc")
+        {
+            if (string.IsNullOrEmpty(columnName))
+            {
+                return source;
+            }
+            else
+            {
+                return source.ApplyMethod(columnName, direction.ToLower().Contains("asc") ? "OrderBy" : "OrderByDescending");    
+            }
         }
 
-        private static IQueryable<T> ApplyMethod<T>(this IQueryable<T> source, string property, string methodName)
+        internal static IQueryable<T> ApplyMethod<T>(this IQueryable<T> source, string property, string methodName)
         {
             string[] props = property.Split('.');
             Type type = typeof (T);

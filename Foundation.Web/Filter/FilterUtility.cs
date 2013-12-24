@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Foundation.Web.CustomAttribute;
-using Foundation.Web.Extensions;
 using Expression = System.Linq.Expressions.Expression;
 
 namespace Foundation.Web.Filter

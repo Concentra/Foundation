@@ -32,18 +32,18 @@ namespace Foundation.Web.Extensions
             using (var textWriter = new NavHtmlTextWritter(stringWriter))
             {
                 {
-                    textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "pagination");
+                    textWriter.AddAttribute(HtmlTextWriterAttribute.Class, Configurations.WebConfigurations.PagingConfigurations.PaginationCssClass);
                     textWriter.RenderBeginTag(HtmlTextWriterTag.Ul);
                     {
 
                         if (currentPage > 1)
                         {
                             pagingInfoViewModel.PageNumber = 1;
-                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, "First"));
+                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, Configurations.WebConfigurations.PagingConfigurations.FirstPageText));
 
 
                             pagingInfoViewModel.PageNumber = currentPage - 1;
-                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, "Previouse"));
+                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, Configurations.WebConfigurations.PagingConfigurations.PreviousPageText));
                         }
 
                         // create page links
@@ -56,7 +56,7 @@ namespace Foundation.Web.Extensions
                             pagingInfoViewModel.PageNumber = i;
                             if (i == currentPage)
                             {
-                                PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, i.ToString()), "active");
+                                PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, i.ToString()), Configurations.WebConfigurations.PagingConfigurations.ActivePageClass);
                             }
                             else
                             {
@@ -70,10 +70,10 @@ namespace Foundation.Web.Extensions
                         if (currentPage < totalPages)
                         {
                             pagingInfoViewModel.PageNumber = currentPage + 1;
-                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, "Next"));
+                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, Configurations.WebConfigurations.PagingConfigurations.NextPageText));
 
                             pagingInfoViewModel.PageNumber = totalPages;
-                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, "Last"));
+                            PageItem(textWriter, BasePagingExtensions.CreatePageLink(urlActionDelegate, pagingInfoViewModel, Configurations.WebConfigurations.PagingConfigurations.LastPageText));
                         }
 
 
@@ -85,6 +85,15 @@ namespace Foundation.Web.Extensions
 
             return MvcHtmlString.Create(result.ToString());
         }
+
+        public static MvcHtmlString PageLinks(
+            this HtmlHelper html,
+            PagingInfoViewModel pagingInfoViewModel,
+            int linksToShow = 0)
+        {
+            return html.PageLinks(pagingInfoViewModel, pagingInfoViewModel.ActionFunc, linksToShow);
+        }
+
 
         private static int PagerPounds(int linksToShow, int totalPages, int currentPage, int start, ref int end)
         {

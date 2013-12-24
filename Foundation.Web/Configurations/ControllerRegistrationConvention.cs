@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Web.Mvc;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 using StructureMap.Pipeline;
 
-namespace Foundation.Web
+namespace Foundation.Web.Configurations
 {
     public class ControllerRegistrationConvention : IRegistrationConvention
     {

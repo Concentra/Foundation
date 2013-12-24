@@ -1,9 +1,8 @@
-﻿using System;
-using System.Reflection;
+using System;
 using Foundation.Infrastructure.BL;
 using StructureMap.Configuration.DSL;
 
-namespace Foundation.Infrastructure
+namespace Foundation.Infrastructure.Configurations
 {
     public class BusinessManagerRegistery : Registry , IBusinessManagerRegistery
     {

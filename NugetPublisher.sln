@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E0CB5388
 		Build\NugetBuilder.build = Build\NugetBuilder.build
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Configuration", "Foundation.Configuration\Foundation.Configuration.csproj", "{975ED9E8-B905-4AA3-83C3-8D6D193C785C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{66035A1A-F470-4FFB-9EEA-0008AFB0F056}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66035A1A-F470-4FFB-9EEA-0008AFB0F056}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66035A1A-F470-4FFB-9EEA-0008AFB0F056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

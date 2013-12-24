@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.BL;
-using Foundation.Infrastructure.Query;
-using Foundation.Persistence;
+using Foundation.Configuration;
 using Foundation.Web;
-using Foundation.Web.ModelBinders;
-using Foundation.Web.Paging;
-using Kafala.BusinessManagers;
-using Kafala.Entities.DoNotMap;
 using Kafala.Query;
-using Kafala.Web.ViewModels.Donor;
+using Kafala.Query.Security;
+using Kafala.Web.UI.Controllers;
 using StructureMap;
 
 namespace Kafala.Web.UI
@@ -26,7 +15,7 @@ namespace Kafala.Web.UI
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        private readonly BootStrapWeb bootStrapWeb = new BootStrapWeb();
+        private readonly FoundationKickStart foundationKickStart = new FoundationKickStart();
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -51,8 +40,67 @@ namespace Kafala.Web.UI
 
         protected void Application_Start()
         {
-            BootStrapWeb.ConfigureWebApplication();
+            var config = new FoundationConfigurator
+            {
+
+                Business =
+                {
+                    BusinessInvocationLogger =
+                        typeof (Kafala.BusinessManagers.SqlProcBusinessManagerInvocationLogger),
+                    EmailLogger = typeof (Foundation.Infrastructure.Notifications.EmailLogger)
+                },
+
+                Persistence =
+                {
+                    EntityTypeHolder = typeof (Kafala.Entities.DoNotMap.EntityAssemblyTypeHolder),
+                    ConnectionStringKeyName = "Kafaladb"
+                },
+
+                UseBuseinssManagers = true,
+                UseEmailing = true,
+                UsePresistence = true,
+                UseQueryContainer = true,
+                UseSecurity = true,
+                UseWeb = true,
+
+                Web =
+                {
+                    AuthenticationService = typeof (Kafala.Query.Security.AuthenticationService),
+                    DefaultPageTitle = "Kafala Application",
+                    ViewModelsAssemblyHookType = typeof (Kafala.Web.ViewModels.Commitment.CommitmentIndexViewModel),
+                    ControllersAssemblyHookType = typeof (DonorController),
+                    FlashMessagesResourceManager = Resources.KafalaFlashMessages.ResourceManager,
+                    PagingConfigurations = new PagingConfigurations
+                    {
+                        ActivePageClass = "active",
+                        PaginationCssClass = "pagination",
+                        FirstPageText = "First",
+                        LastPageText = "Last",
+                        NextPageText = "Next",
+                        PreviousPageText = "Previous",
+                        SortableHeaderCssClass = "sortableheader",
+                        SortedHeaderCssClass = "Sorted",
+                        SortedIcondAscending = GlyphIcons.ChevronUp,
+                        SortedIcondDescending = GlyphIcons.ChevronDown
+                    }
+                }
+            };
+
+
+            FoundationKickStart.Configure(config);
+            ObjectFactory.Configure(cfg => new Foundation.Persistence.Configurations.PersistenceConfigurator().Configure(cfg, config));
+
+            ObjectFactory.Configure(cfg => new Foundation.Infrastructure.Configurations.InfrastructureConfigurator().Configure(cfg, config));
+
+            ObjectFactory.Configure(cfg => new Foundation.Web.Configurations.WebConfigurator().Configure(cfg, config));
+
+
             AreaRegistration.RegisterAllAreas();
+
+            ObjectFactory.Configure(cfg => cfg.For<ICurrentAuthenticateUser>().Use<CurrentAuthenticateUser>());
+
+
+            Mapper.Initialize(AutoMapperConfigurations.Configure);
 
             
             RegisterGlobalFilters(GlobalFilters.Filters);

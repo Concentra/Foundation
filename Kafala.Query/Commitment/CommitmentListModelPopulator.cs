@@ -65,7 +65,7 @@ namespace Kafala.Query.Commitment
         }
     }
 
-    public class CommitmentsListParameters : PagingParameters
+    public class CommitmentsListParameters : PagingAndSortingParameters
     {
         private readonly Guid? donorId;
         private readonly Guid? caseId;

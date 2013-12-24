@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Entities", "Kafala.Entities\Kafala.Entities.csproj", "{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.BusinessManagers", "Kafala.BusinessManagers\Kafala.BusinessManagers.csproj", "{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Kafala.Database", "Kafala.Database\Kafala.Database.sqlproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Query", "Kafala.Query\Kafala.Query.csproj", "{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3BF3FAD-7E87-4494-B341-F53A0540797E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Web.ViewModels", "Kafala.Web.ViewModels\Kafala.Web.ViewModels.csproj", "{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Web.UI", "Kafala.Web.UI\Kafala.Web.UI.csproj", "{55E08DDD-76F7-4BD2-9661-C9F51AB897A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexSoft.Bootstrap", "VortexSoft.Bootstrap\VortexSoft.Bootstrap.csproj", "{371BABEC-5A00-464D-8EBB-09C32CA4C326}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BB824DE-6E72-482D-BA49-7EBDF4CC5F40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E08DDD-76F7-4BD2-9661-C9F51AB897A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E08DDD-76F7-4BD2-9661-C9F51AB897A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E08DDD-76F7-4BD2-9661-C9F51AB897A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E08DDD-76F7-4BD2-9661-C9F51AB897A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

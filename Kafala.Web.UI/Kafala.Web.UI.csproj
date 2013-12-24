@@ -54,9 +54,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoMapper.3.1.0\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    <Reference Include="DataAnnotationsExtensions">
+      <HintPath>..\packages\DataAnnotationsExtensions.1.1.0.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
@@ -69,10 +68,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -82,14 +77,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
-    </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.2.0.0\lib\NETFramework40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BootStrapWeb.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\DonationCaseController.cs" />
     <Compile Include="Controllers\CommitmentController.cs" />
@@ -108,7 +101,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KafalaFlashMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="WebRegistery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap\bootstrap.css" />
@@ -201,6 +193,7 @@
     <Content Include="Scripts\jquery.validationEngine.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\prettify.js" />
+    <Content Include="Scripts\stacktrace.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -253,20 +246,24 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foundation.Configuration\Foundation.Configuration.csproj">
+      <Project>{975ed9e8-b905-4aa3-83c3-8d6d193c785c}</Project>
+      <Name>Foundation.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foundation.FormBuilder\Foundation.FormBuilder.csproj">
       <Project>{c5fa847f-2fb5-403d-ad02-3e9332bf60c7}</Project>
       <Name>Foundation.FormBuilder</Name>
     </ProjectReference>
     <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">
-      <Project>{0735DE5D-9FF2-4913-B894-F3B5D36A6CA5}</Project>
+      <Project>{0735de5d-9ff2-4913-b894-f3b5d36a6ca5}</Project>
       <Name>Foundation.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Foundation.Persistence\Foundation.Persistence.csproj">
-      <Project>{C684E3B8-D828-4ECE-B427-AFC06F25977F}</Project>
+      <Project>{c684e3b8-d828-4ece-b427-afc06f25977f}</Project>
       <Name>Foundation.Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
-      <Project>{BAA4E4D3-BDF1-45A9-85B2-9BA6E58E2E24}</Project>
+      <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
       <Name>Foundation.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kafala.BusinessManagers\Kafala.BusinessManagers.csproj">

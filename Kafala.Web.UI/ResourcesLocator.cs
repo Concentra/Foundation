@@ -1,4 +1,5 @@
 ﻿using System.Resources;
+using Foundation.Configuration;
 using Foundation.Web;
 
 namespace Kafala.Web.UI
@@ -11,6 +12,8 @@ namespace Kafala.Web.UI
                 return Kafala.Web.UI.Resources.KafalaFlashMessages.ResourceManager;
             }
         }
+
+        public string PasswordReminderEmailTemplate { get; private set; }
 
         public ResourceManager PageTitleResourceManager
         {
@@ -29,11 +32,6 @@ namespace Kafala.Web.UI
         }
 
         public string DefaultPageTitle { get; set; }
-
-        public string PasswordReminderEmailTemplate
-        {
-            get; 
-            private set;
-        }
+        
     }
 }

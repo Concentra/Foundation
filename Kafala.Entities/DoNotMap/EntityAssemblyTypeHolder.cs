@@ -1,11 +1,10 @@
 ﻿using System;
 using Foundation.Persistence;
 
-// ReSharper disable CheckNamespace
 namespace Kafala.Entities.DoNotMap
-// ReSharper restore CheckNamespace
+
 {
-    public class TypeHolder : ITypeHolder
+    public class EntityAssemblyTypeHolder : ITypeHolder
     {
         public Type HookType
         {

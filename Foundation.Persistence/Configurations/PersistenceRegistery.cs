@@ -1,7 +1,7 @@
-﻿using NHibernate;
+using NHibernate;
 using StructureMap.Configuration.DSL;
 
-namespace Foundation.Persistence
+namespace Foundation.Persistence.Configurations
 {
     public class PersistenceRegistery : Registry
     {
