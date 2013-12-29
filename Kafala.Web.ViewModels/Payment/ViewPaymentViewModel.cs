@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using Foundation.FormBuilder.CustomAttribute;
 using Kafala.Web.ViewModels.Payment;
 
@@ -10,30 +11,27 @@ namespace Kafala.Web.ViewModels.Payment
         [EditControl(ElementType = ElementType.Hidden)]
         public virtual Guid Id { get; set; }
 
-        [EditControl(Order = 1, 
-            ElementType = ElementType.Text,
-            Label = "Beneficiary Case Name")]
-        public virtual string CommitmentDonationCaseName { get; set; }
-
         public virtual Guid DonationCaseId { get; set; }
 
-
-        [EditControl(Order = 2,
-            ElementType = ElementType.Text,
-            Label = "Donor Name")]
+        [EditControl(Order = 1, ElementType = ElementType.StaticText, Label = "Donor Name")]
         public virtual string CommitmentDonorName { get; set; }
 
-        [EditControl(ElementType = ElementType.Hidden)]
-        public virtual Guid CommitmentDonorId { get; set; }
+        [EditControl(Order = 2, ElementType = ElementType.StaticText, Label = "Case Name")]
+        public virtual string CommitmentDonationCaseName { get; set; }
 
-        [EditControl(ElementType = ElementType.FloatingPointNumber)]
-        public virtual decimal Amount { get; set; }
+        [EditControl(Order = 3, ElementType = ElementType.StaticText, Label = "Payment Period")]
+        public virtual string PaymentPeriodName { get; set; }
+
+        public virtual IEnumerable<SelectListItem> PaymentPeriods { get; set; }
+        [EditControl(Order = 4, ElementType = ElementType.WholeNumber)]
+        public decimal Amount { get; set; }
+
+        [EditControl(Order = 5, ElementType = ElementType.TextArea, Label = "Comment")]
+        [AllowHtml]
+        public virtual string Comments { get; set; }
 
         [EditControl(ElementType = ElementType.DateTime)]
         public virtual DateTime? PaymentDate { get; set; }
-
-        [EditControl(ElementType = ElementType.Text)]
-        public virtual string PaymentPeriodName { get; set; }
 
     }
 }

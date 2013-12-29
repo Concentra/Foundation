@@ -26,7 +26,7 @@ namespace Kafala.Query
             cfg.CreateMap<IDonationCaseContract, Entities.DonationCase>();
 
 
-            cfg.CreateMap<PagingInfo, PagingInfoViewModel>();
+            cfg.CreateMap<PagingResults, PagingInfoViewModel>();
         }
     }
 }

@@ -13,11 +13,11 @@ namespace Kafala.Web.UI.Controllers
     {
         private readonly IQueryContainer queryContainer;
 
-        private readonly PaymentPeriodBusinessManager businessManager;
+        private readonly IBusinessManagerContainer businessManagerContainer;
 
         public PaymentPeriodController(IBusinessManagerContainer businessManagerContainer, IQueryContainer queryContainer)
         {
-            this.businessManager = businessManagerContainer.Get<PaymentPeriodBusinessManager>();
+            this.businessManagerContainer = businessManagerContainer;
             this.queryContainer = queryContainer;
         }
 
@@ -38,16 +38,25 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Create(CreatePaymentPeriodViewModel model)
         {
-            var id = businessManager.Add(model.Year, model.Month, model.Name);
+            var id = businessManagerContainer.Get<PaymentPeriodBusinessManager>().Add(model.Year, model.Month, model.Name);
             return RedirectToAction("Details", new {id });
         }
 
 
         public ActionResult Details(Guid id)
         {
+            System.Threading.Thread.Sleep(3000);
+         
             var modelPopulator = this.queryContainer.Get<PaymentPeriodViewModelPopulator>();
             var model = modelPopulator.Execute(id);
-            return View("View", model);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("View", model);
+            }
+            else
+            {
+                return View("View", model);    
+            }
         }
 
         public ActionResult Edit(Guid id)
@@ -60,14 +69,15 @@ namespace Kafala.Web.UI.Controllers
         [HttpPost]
         public ActionResult Edit(EditPaymentPeriodViewModel model)
         {
-            var id = businessManager.Update(model.Id, model.Year, model.Month, model.Name);
+            var id = businessManagerContainer.Get<PaymentPeriodBusinessManager>().Update(model.Id, model.Year, model.Month, model.Name);
             return RedirectToAction("Details", new {id });
         }
 
         [HttpPost]
         public ActionResult Delete(Guid id)
         {
-            var result = businessManager.Delete(id);
+            System.Threading.Thread.Sleep(3000);
+            var result = businessManagerContainer.Get<PaymentPeriodBusinessManager>().Delete(id);
             return RedirectToAction("Index");
         }
     }

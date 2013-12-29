@@ -8,10 +8,10 @@
     </p>
     <table class="table sorter">
         <tr>
-           @Html.SortableHeader(Model.Search.PagingInfo.Sort, Model.Search.PagingInfo.SortDirection,  "DonationCaseName" , "Donation Case" , Model.Search.PagingInfo.ActionFunc)
-            @Html.SortableHeader(Model.Search.PagingInfo.Sort, Model.Search.PagingInfo.SortDirection, "Name" , "Donor" , Model.Search.PagingInfo.ActionFunc)
-            @Html.SortableHeader(Model.Search.PagingInfo.Sort, Model.Search.PagingInfo.SortDirection, "Start Date" , "Start Date" , Model.Search.PagingInfo.ActionFunc)
-            @Html.SortableHeader(Model.Search.PagingInfo.Sort, Model.Search.PagingInfo.SortDirection, "End Date" , "End Date" , Model.Search.PagingInfo.ActionFunc)
+           @Html.SortableHeader(Model.Search.PagingInformationViewModel.Sort, Model.Search.PagingInformationViewModel.SortDirection,  "DonationCaseName" , "Donation Case" , Model.Search.PagingInformationViewModel.ActionFunc)
+            @Html.SortableHeader(Model.Search.PagingInformationViewModel.Sort, Model.Search.PagingInformationViewModel.SortDirection, "Name" , "Donor" , Model.Search.PagingInformationViewModel.ActionFunc)
+            @Html.SortableHeader(Model.Search.PagingInformationViewModel.Sort, Model.Search.PagingInformationViewModel.SortDirection, "Start Date" , "Start Date" , Model.Search.PagingInformationViewModel.ActionFunc)
+            @Html.SortableHeader(Model.Search.PagingInformationViewModel.Sort, Model.Search.PagingInformationViewModel.SortDirection, "End Date" , "End Date" , Model.Search.PagingInformationViewModel.ActionFunc)
         </tr>
     
     @foreach (var item in Model.Commitments) {
@@ -37,4 +37,4 @@
     }
     
     </table>
-@Html.PageLinks(Model.Search.PagingInfo, Model.Search.PagingInfo.ActionFunc)
+@Html.PageLinks(Model.Search.PagingInformationViewModel, Model.Search.PagingInformationViewModel.ActionFunc)

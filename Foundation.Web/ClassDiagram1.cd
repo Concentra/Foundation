@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Foundation.Web.BaseController" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAARAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.GlyphIcons" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>Awh3souEheF2UDfoJRhhBBiVIxcMHFTHrCMvCMI+AyM=</HashCode>
+      <FileName>GlyphIcons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.WebFlashMessenger" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAEAAAAQAAAAQAAABAIAAABAAgAAAAAAAA=</HashCode>
+      <FileName>WebFlashMessenger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Configurations.ControllerRegistrationConvention" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\ControllerRegistrationConvention.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Configurations.StructureMapControllerFactory" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAgAAAABAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\StructureMapControllerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Configurations.StructureMapDependencyResolver" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Configurations\StructureMapDependencyResolver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Configurations.WebConfigurations" Collapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\WebConfigurations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Configurations.WebConfigurator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAACAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\WebConfigurator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Configurations.WebRegistery" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\WebRegistery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.CustomAttribute.FilterControl" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgAAAIAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomAttribute\FilterControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.BasePagingExtensions" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Extensions\BasePagingExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.ButtonExtensions" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAACAAQAAAA=</HashCode>
+      <FileName>Extensions\ButtonExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.ButtonGroupExtension" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\ButtonGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.EnumExtensions" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAIAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Extensions\EnumExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.HtmlExtensions" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAAAACCgAAggAAAIQARCAEgAC0ACABCQCQQAIABAAAg=</HashCode>
+      <FileName>Extensions\HtmlExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.InMemoryCache" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAEIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\InMemoryCache.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Extensions.MvcPanel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAEAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\MvcPanel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Extensions.MvcPanelTab" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAACAAAAAAAAAAAACAAAAAQ=</HashCode>
+      <FileName>Extensions\MvcPanelTab.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.NavHtmlTextWritter" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgEAAAAAEAAAAAAAAAAAAAAAAAAABBAAEAAAAA=</HashCode>
+      <FileName>Extensions\NavHtmlTextWritter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.PagerExtensions" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAIAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Extensions\PagerExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.PopulatorHelpers" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Extensions\PopulatorHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.TableSorterExtensions" Collapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\TableSorterExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Extensions.UrlHelperExtensions" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAQ=</HashCode>
+      <FileName>Extensions\UrlHelperExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Filter.FilterUtility" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAABAIAAIAAAAAAAAQAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Filter\FilterUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Filter.FilterElement" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAQAAAAA=</HashCode>
+      <FileName>Filter\FilterUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.ModelBinders.PagingInfoModelBinder" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelBinders\PagingInfoModelBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.ModelBinders.PagingAndSortingModelBinder" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelBinders\PagingInfoModelBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.ModelBinders.PagingModelBinder" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelBinders\PagingInfoModelBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.ModelBinders.SortingModelBinder" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelBinders\PagingInfoModelBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Navigation.MenuBuilder" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAEA=</HashCode>
+      <FileName>Navigation\MenuBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Navigation.MenuContainer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Navigation\MenuContainer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Navigation.MenuItem" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACEAAACACQAAAAgAAAACAQAAAA=</HashCode>
+      <FileName>Navigation\MenuItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Navigation.MenuList" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Navigation\MenuList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Paging.PagedList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAQA=</HashCode>
+      <FileName>Paging\PagedList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Paging.PagedViewModel" Collapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Paging\PagedViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Paging.PagingExtensions" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Paging\PagingExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Paging.PagingResults" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAgAAAAAAAAAAQAAAAQAQAAAAAAAAQEABQEAA=</HashCode>
+      <FileName>Paging\PagingResults.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Paging.PagingInfoViewModel" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="5.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAAAAAAAAAQAAAAQAQAAAAAAAAQEAAQEAA=</HashCode>
+      <FileName>Paging\PagingInfoViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Foundation.Web.Paging.NavigationParameters" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Paging\PagingParameters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Foundation.Web.Paging.PagingParameters" Collapsed="true">
+    <Position X="1" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Paging\PagingParameters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Foundation.Web.Paging.SortingParameters" Collapsed="true">
+    <Position X="2.75" Y="2.5" Width="2.25" />
+    <InheritanceLine Type="Foundation.Web.Paging.NavigationParameters" ManuallyRouted="true">
+      <Path>
+        <Point X="4.125" Y="1.062" />
+        <Point X="4.125" Y="1.413" />
+        <Point X="3.875" Y="1.413" />
+        <Point X="3.875" Y="2.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Paging\PagingParameters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Foundation.Web.Paging.PagingAndSortingParameters" Collapsed="true">
+    <Position X="5" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAAAAAAAAAQAAAAAAQAAAAAAAAQEAAAAAA=</HashCode>
+      <FileName>Paging\PagingParameters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Foundation.Web.Paging.PageListExtensions" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAQAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Paging\QueryPager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Paging.RendersPagedView" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Paging\RendersPagedView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foundation.Web.Sorter.Sorter" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sorter\Sorter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Foundation.Web.IWebRegistery" Collapsed="true">
+    <Position X="18.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IWebRegistery.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.Web.Extensions.ICacheService" Collapsed="true">
+    <Position X="9.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\CachingExtentions.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.Web.Extensions.IFlushable" Collapsed="true">
+    <Position X="11.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\IFlushable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.Web.Paging.INavigationParameters" Collapsed="true">
+    <Position X="1" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Paging\INavigationParameters.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.Web.Paging.IPagedList&lt;T&gt;" Collapsed="true">
+    <Position X="13" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAQA=</HashCode>
+      <FileName>Paging\IPagedList.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.Web.Paging.IPagingResults" Collapsed="true">
+    <Position X="14.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAEAAQEAA=</HashCode>
+      <FileName>Paging\IPagingResults.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.Web.Paging.IPagingParameters" Collapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Paging\IPagingParameters.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.Web.Paging.ISortingParameters" Collapsed="true">
+    <Position X="2.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Paging\ISortingParameters.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.Web.Security.IAuthenticationService" Collapsed="true">
+    <Position X="7.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACCAAAAAAACAAAAAAAQAAAAAAAAAEAEAAIAAAAA=</HashCode>
+      <FileName>Security\IAuthenticationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Foundation.Web.Security.IUser" Collapsed="true">
+    <Position X="16.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAAAAAAAACAAAAAAAAAEAACAQAAAgAAAAA=</HashCode>
+      <FileName>Security\IUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Foundation.Web.BootstrapNamedColor" Collapsed="true">
+    <Position X="7.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAIBAAAgQAAAAAAAAAAECAAAA=</HashCode>
+      <FileName>BootstrapNamedColor.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Foundation.Web.CustomAttribute.Operator" Collapsed="true">
+    <Position X="13" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAgAAAIAAAAAAAAAAAAAAAIAgBACA=</HashCode>
+      <FileName>CustomAttribute\FilterControl.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Foundation.Web.Extensions.CacheType" Collapsed="true">
+    <Position X="9.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\CacheType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Foundation.Web.Extensions.CssMediaType" Collapsed="true">
+    <Position X="11.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAgAAIAAABAAEAAAAAAQAAAAAAIABAAAUAAA=</HashCode>
+      <FileName>Extensions\CssMediaType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Foundation.Web.Extensions.SlideDirection" Collapsed="true">
+    <Position X="16.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Extensions\SlideDirection.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Foundation.Web.Security.SignInResult" Collapsed="true">
+    <Position X="14.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAIAAAAAAEAAAAAABAAAAgAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Security\SignInResult.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

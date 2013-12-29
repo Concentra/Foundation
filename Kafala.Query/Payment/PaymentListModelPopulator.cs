@@ -56,13 +56,15 @@ namespace Kafala.Query.Payment
                 PaymentPeriodName = x.PaymentPeriod.Month + "-" + x.PaymentPeriod.Year
             }).ToList();
 
-            pagedPayments.PagingInfo.Sort = parameters.Sort;
-
+            
             var model = new PaymentIndexViewModel
                             {
                                 Payments = paymentModel,
-                                PagingInfo = Mapper.Map<PagingInfoViewModel>(pagedPayments.PagingInfo)
                             };
+
+            model.PagingInformationViewModel.FillSortingParameters(parameters);
+
+            model.PagingInformationViewModel.FillPagingParameters(pagedPayments.PagedQueryResults);
 
             return model;
         }

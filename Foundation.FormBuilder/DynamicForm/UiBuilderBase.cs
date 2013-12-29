@@ -90,13 +90,18 @@ namespace Foundation.FormBuilder.DynamicForm
 
                             using (new ControlContainer(textWriter, formType))
                             {
-                                var validationAttributes = htmlHelper.GetValidationAttributes(formElement.PropertyInfo.Name);
+                                var propertyExpression = ExpressionHelper.GetExpressionText(formElement.PropertyInfo.Name);
+            
+                                var metadata = ModelMetadata.FromStringExpression(propertyExpression, htmlHelper.ViewData);
+         
+                                var validationAttributes = htmlHelper.GetValidationAttributes(metadata, formElement.PropertyInfo.Name);
                             
+
                                 // ElementType
                                 var elementBlock = ElementGenerator.RenderElement(formElement);
 
                                 elementBlock.MergeAttributes(validationAttributes);
-                                
+                            
                                 textWriter.Write(elementBlock);
                             }
                         }

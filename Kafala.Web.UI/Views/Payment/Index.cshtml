@@ -7,10 +7,10 @@
 </p>
     <table class="table sorter">
         <tr>
-            @Html.SortableHeader(Model.PagingInfo.Sort, Model.PagingInfo.SortDirection, "DonationCaseName", "Donation Case Name", Model.PagingInfo.ActionFunc)
-            @Html.SortableHeader(Model.PagingInfo.Sort, Model.PagingInfo.SortDirection, "DonorName", "Donor Name", Model.PagingInfo.ActionFunc)
-            @Html.SortableHeader(Model.PagingInfo.Sort, Model.PagingInfo.SortDirection, "PaymentDate", "Payment Date", Model.PagingInfo.ActionFunc)
-            @Html.SortableHeader(Model.PagingInfo.Sort, Model.PagingInfo.SortDirection, "PaymentPeriod", "Payment Period", Model.PagingInfo.ActionFunc)
+            @Html.SortableHeader(Model.PagingInformationViewModel.Sort, Model.PagingInformationViewModel.SortDirection, "DonationCaseName", "Donation Case Name", Model.PagingInformationViewModel.ActionFunc)
+            @Html.SortableHeader(Model.PagingInformationViewModel.Sort, Model.PagingInformationViewModel.SortDirection, "DonorName", "Donor Name", Model.PagingInformationViewModel.ActionFunc)
+            @Html.SortableHeader(Model.PagingInformationViewModel.Sort, Model.PagingInformationViewModel.SortDirection, "PaymentDate", "Payment Date", Model.PagingInformationViewModel.ActionFunc)
+            @Html.SortableHeader(Model.PagingInformationViewModel.Sort, Model.PagingInformationViewModel.SortDirection, "PaymentPeriod", "Payment Period", Model.PagingInformationViewModel.ActionFunc)
             <th></th>
         </tr>
     
@@ -38,4 +38,4 @@
         }
     
     </table>
-@Html.PageLinks(Model.PagingInfo, Model.PagingInfo.ActionFunc)
+@Html.PageLinks(Model.PagingInformationViewModel, Model.PagingInformationViewModel.ActionFunc)

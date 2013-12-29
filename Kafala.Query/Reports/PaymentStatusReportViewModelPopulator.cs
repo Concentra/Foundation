@@ -49,7 +49,7 @@ namespace Kafala.Query.Reports
             var expectedAmount = expectedAmountValue.Value == null ? 0 : (decimal)expectedAmountValue.Value;
 
            
-                var pagedCommitments = query.FetchPaged(filter.PagingInfo);
+                var pagedCommitments = query.FetchPaged(filter.PagingInformationViewModel);
 
             var payments = pagedCommitments.Select(x => new OverDuePaymentViewModel()
                 {
@@ -69,7 +69,7 @@ namespace Kafala.Query.Reports
                     ExpectedAmount = expectedAmount,
                     OutStanding = payments,
                     OverDueAmount = expectedAmount - collectedAmount,
-                    PagingInfo = Mapper.Map<PagingInfoViewModel>(pagedCommitments.PagingInfo)
+                    PagingInformationViewModel = Mapper.Map<PagingInfoViewModel>(pagedCommitments.PagedQueryResults)
 
                 };
 
