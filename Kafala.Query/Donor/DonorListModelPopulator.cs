@@ -43,9 +43,9 @@ namespace Kafala.Query.Donor
                 }).ToList(),
             };
 
-            model.PagingInfo.FillSortingParameters(parameters);
+            model.PagingInformationViewModel.FillSortingParameters(parameters);
 
-            model.PagingInfo.FillPagingParameters(pagedDonors.PagingInfo);
+            model.PagingInformationViewModel.FillPagingParameters(pagedDonors.PagedQueryResults);
 
             return model;
         }

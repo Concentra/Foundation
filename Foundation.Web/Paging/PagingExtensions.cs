@@ -15,7 +15,7 @@
             return destination;
         }
 
-        public static IPagingParameters FillPagingParameters(this IPagingParameters destination, IPagingParameters parameters)
+        public static IPagingParameters FillPagingParameters(this IPagingParameters destination, IPagingResults parameters)
         {
             if (destination == null)
             {

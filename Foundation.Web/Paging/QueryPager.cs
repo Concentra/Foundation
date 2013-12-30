@@ -60,7 +60,7 @@ namespace Foundation.Web.Paging
             }
             else
             {
-                return query.FetchPaged(new PagingInfo());
+                return query.FetchPaged(new PagingParameters());
             }
         }
 

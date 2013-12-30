@@ -5,9 +5,11 @@
 <html>
 <head>
      <title>@Html.PageTitle()</title>
-    @Html.CssInclude("~/Content/bootstrap/bootstrap.min.css")
+    @Html.CssInclude("~/Content/bootstrap/bootstrap.css")
     @Html.CssInclude("~/Content/tableSorter.css")
-    @Html.CssInclude("~/Content/themes/base/jquery.ui.all.css")
+    <!--@Html.CssInclude("~/Content/themes/base/jquery.ui.all.css")-->
+    @Html.CssInclude("~/Content/themes/base/jquery-ui-1.10.0.custom.css")
+    @Html.CssInclude("~/Content/loading.css")
     
     @RenderSection("Css", required: false)
     
@@ -38,13 +40,54 @@
                 </div>
             </div>
         </div>
-        <script src="~/Scripts/jquery-2.0.3.js"></script>
+        
+        
+        
+        <!-- Modal-->
+        <div id="confirmModal" style="display: none">
+           
+            <p> <span class="ui-icon ui-icon-alert " style="font-size:48px;"></span> One fine body&hellip;</p>
+        </div>
+        <!-- /.modal -->
+
+      <div class="modal modal-static fade" id="processing-modal" role="dialog" style="display: none">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="http://www.travislayne.com/images/loading.gif" class="icon" />
+                            <h4 id="processing-message">Processing... </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+<div class="modal" id="detailsModel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="detailModelTitle">Modal title</h4>
+      </div>
+      <div class="modal-body" id="detailModelContent">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+         
+       <script src="~/Scripts/jquery-2.0.3.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>
         <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
          <script src="~/Scripts/jquery.validate.js"></script>
         <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
         <script src="~/Scripts/shared.js"></script>
         <script src="~/Scripts/stacktrace.js" ></script>
-        
+        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     </body>
 </html>

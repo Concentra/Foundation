@@ -4,9 +4,9 @@
     {
         public PagedViewModel()
         {
-            PagingInfo = new PagingInfoViewModel();
+            PagingInformationViewModel = new PagingInfoViewModel();
         }
         
-        public PagingInfoViewModel PagingInfo { get; set; }
+        public PagingInfoViewModel PagingInformationViewModel { get; set; }
     }
 }

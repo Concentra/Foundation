@@ -170,7 +170,7 @@ namespace Foundation.FormBuilder.ElementGenerators
             tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
             tagbuilder.MergeAttribute(HtmlAtrributes.Cols, formElement.ControlSpecs.Cols.ToString(CultureInfo.InvariantCulture));
             tagbuilder.MergeAttribute(HtmlAtrributes.Rows, formElement.ControlSpecs.Rows.ToString(CultureInfo.InvariantCulture));
-            tagbuilder.SetInnerText(value.ToString());
+            tagbuilder.SetInnerText(Convert.ToString(value));
             return tagbuilder; 
             
         }

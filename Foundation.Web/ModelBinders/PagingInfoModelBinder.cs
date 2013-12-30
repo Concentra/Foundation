@@ -15,9 +15,9 @@ namespace Foundation.Web.ModelBinders
             var model = base.BindModel(controllerContext, bindingContext);
             var pagedModel = (PagedViewModel) model;
 
-            if (pagedModel.PagingInfo == null)
+            if (pagedModel.PagingInformationViewModel == null)
             {
-                pagedModel.PagingInfo = new PagingInfoViewModel();
+                pagedModel.PagingInformationViewModel = new PagingInfoViewModel();
             }
 
             return model;
