@@ -73,7 +73,24 @@ $("form").submit(function (event) {
     }
 
 
-        function LoadContentIntoArea(url, areaId) {
+        function LoadContentIntoArea(url, areaId, title, dismissButtonText, hideButtonsAndTitle) {
+            if (areaId == null) {
+                areaId = "#detailsModel";
+            }
+            
+            if (dismissButtonText == null) {
+                dismissButtonText = "Dismiss";
+            }
+
+
+            if (title == null) {
+                title = "Details";
+            }
+
+          
+            
+            
+
             ShowLoadingScreen();
             $.ajax(
                 {
@@ -81,13 +98,26 @@ $("form").submit(function (event) {
                 })
                 .success(function(data) {
                     HideLoadingScreen();
-                    $("#detailsModel").modal('show');
+                    
                     $("#detailModelContent").html(data);
+                    $.validator.unobtrusive.parse($("#detailModelContent"));
+                    $("#detailModelTitle").html(title);
+                    $("#detailModelDismissButton").html(dismissButtonText);
 
+                    if (hideButtonsAndTitle === "true" || hideButtonsAndTitle === "True") {
+                        $("#detailsModelHeader").hide();
+                        $("#detailsModelFooter").hide();
+                    }
+                    $("#detailsModel").modal('show');
+
+                    
                 })
                 .complete(function() {
                     HideLoadingScreen();
+                    foundationInitialize();
+
                 });
+
         }
 
 
@@ -112,8 +142,8 @@ $("form").submit(function (event) {
                     }).popover("show");
                 })
                     .complete(function () {
-                    
-                });
+                        foundationInitialize();
+                    });
         }
 
         function hideAllPopovers() {
@@ -126,9 +156,10 @@ $("form").submit(function (event) {
             hideAllPopovers();
         });
 
+        $(function() { foundationInitialize(); });
 
 
-        $(function() {
+       function foundationInitialize() {
             $(".datepicker").datepicker(
                 {
                     onSelect: function () { }
@@ -138,12 +169,15 @@ $("form").submit(function (event) {
                 $(this).valid();
             });
 
-
+           
             $(".showInPopUpOnClick").click(function() {
                 event.preventDefault();
-                var url;
+                var url, title, dismissButton, hideHeaderAndButtons ;
                 url = (this).getAttribute("href");
-                LoadContentIntoArea(url, "detailsModel");
+                title = (this).getAttribute("data-popup-title");
+                dismissButton = (this).getAttribute("data-popup-dismissButtonText");
+                hideHeaderAndButtons = (this).getAttribute("data-popup-hideButtonAndHeader");
+                LoadContentIntoArea(url, "detailsModel" , title, dismissButton, hideHeaderAndButtons);
             });
             
             $(".showInBaloonOnMouseOver").click(function () {
@@ -201,7 +235,7 @@ $("form").submit(function (event) {
                     invalidHandler(event, validator);
                 };
             });
-        });
+        }
 
         // Log script errors using ELMAH
         window.onerror = function (msg, url, lineNo) {

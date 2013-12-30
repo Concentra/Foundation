@@ -71,7 +71,7 @@ namespace Foundation.FormBuilder.DynamicForm
             var elementBlock = new StringWriter();
             var textWriter = new NavHtmlTextWritter(elementBlock);
          
-            using (new ControlGroup(textWriter))
+            using (new ControlGroup(textWriter, null))
             {
                
                 using (new ControlContainer(textWriter))

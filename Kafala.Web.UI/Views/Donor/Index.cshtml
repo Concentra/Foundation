@@ -8,7 +8,10 @@
 <h2>Donors</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "showInPopUpOnClick"
+                                                            , data_popup_dismissButtonText = "Dismiss Me"
+                                                            , data_popup_hideButtonAndHeader = true
+                                                            , data_popup_title = "Donor Creation"})
 </p>
 <table class="table">
     <tr>

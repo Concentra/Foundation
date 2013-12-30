@@ -10,13 +10,18 @@ namespace Foundation.FormBuilder.Blocks
 {
     class ControlGroup : IDisposable
     {
-        private readonly HtmlTextWriter textWriter;
+        private readonly NavHtmlTextWritter textWriter;
 
-        public ControlGroup(HtmlTextWriter htmlTextWriter)
+        public ControlGroup(NavHtmlTextWritter htmlTextWriter, FormElement formElement)
         {
             this.textWriter = htmlTextWriter;
             
             textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "form-group");
+
+            if (formElement != null && formElement.HasErrors)
+            {
+                textWriter.AddAttribute(HtmlTextWriterAttribute.Class, Foundation.Web.Configurations.WebConfigurations.HasErrorsCssClass);
+            }
 
             textWriter.RenderBeginTag(HtmlTextWriterTag.Div); // div (ElementType-Group)
         }

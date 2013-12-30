@@ -2,6 +2,8 @@
 
 
 <h2>Register a new donor</h2>
+
+@Html.ValidationSummaryBootstrap()
 @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well validated" ,id = "autoForm" }))
 {
     @Html.DynamicForm()

@@ -83,6 +83,7 @@
     <Compile Include="Extensions\SlideDirection.cs" />
     <Compile Include="Extensions\TableSorterExtensions.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
+    <Compile Include="Extensions\ValidationSummaryExtensions.cs" />
     <Compile Include="Filter\FilterUtility.cs" />
     <Compile Include="GlyphIcons.cs" />
     <Compile Include="ModelBinders\PagingInfoModelBinder.cs" />

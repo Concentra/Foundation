@@ -8,7 +8,7 @@ namespace Foundation.FormBuilder.DynamicForm
         public PropertyInfo PropertyInfo;
         public EditControl ControlSpecs;
         public CollectionInfo CollectionInfo;
-        public ValidationInfo ValidationInfo;
         public object FieldValue;
+        public bool HasErrors;
     }
 }

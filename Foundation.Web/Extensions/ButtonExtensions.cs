@@ -7,6 +7,7 @@ namespace Foundation.Web.Extensions
 {
     public static class ButtonExtensions
     {
+        
 
         public static MvcHtmlString ActionButton(this HtmlHelper helper, string text, string actionName, string controllerName, object routeValues = null, object htmlAttributes = null, string glyphIcons = null,  BootstrapNamedColor color = BootstrapNamedColor.Default)
         {
