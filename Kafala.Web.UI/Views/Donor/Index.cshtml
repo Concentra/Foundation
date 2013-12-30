@@ -12,10 +12,10 @@
 </p>
 <table class="table">
     <tr>
-        @Html.SortableHeader(Model.PagingInfo, "Name" , "Name")
-        @Html.SortableHeader(Model.PagingInfo, "Telephone" , "Telephone")
-        @Html.SortableHeader(Model.PagingInfo, "JoinDate" , "Join Date")
-        @Html.SortableHeader(Model.PagingInfo, "DonorStatus" , "Status")
+        @Html.SortableHeader(Model.PagingInformationViewModel, "Name" , "Name")
+        @Html.SortableHeader(Model.PagingInformationViewModel, "Telephone" , "Telephone")
+        @Html.SortableHeader(Model.PagingInformationViewModel, "JoinDate" , "Join Date")
+        @Html.SortableHeader(Model.PagingInformationViewModel, "DonorStatus" , "Status")
         <th></th>
     </tr>
 
@@ -44,4 +44,4 @@
  
     
 </table>
- @Html.PageLinks(Model.PagingInfo)
+ @Html.PageLinks(Model.PagingInformationViewModel)

@@ -12,10 +12,8 @@ namespace Foundation.FormBuilder.Validation
 {
     public static class ValidationUtility
     {
-        public static IDictionary<string, object> GetValidationAttributes<TModel>(this HtmlHelper<TModel> html, string memberName)
+        public static IDictionary<string, object> GetValidationAttributes<TModel>(this HtmlHelper<TModel> html, ModelMetadata metadata, string memberName)
         {
-            var propertyExpression = ExpressionHelper.GetExpressionText(memberName);
-            var metadata = ModelMetadata.FromStringExpression(propertyExpression, html.ViewData);
             var attributes = html.GetUnobtrusiveValidationAttributes(memberName, metadata);
             return attributes;
         }

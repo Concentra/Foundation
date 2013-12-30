@@ -6,7 +6,7 @@ using Foundation.Web.Extensions;
 
 namespace Foundation.Web.Paging
 {
-    public class RendersPagedView : ActionFilterAttribute
+    public class RenderPagedView : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -19,9 +19,9 @@ namespace Foundation.Web.Paging
                     {
                         var pagedModel = (PagedViewModel)model;
                         
-                        if (pagedModel.PagingInfo == null)
+                        if (pagedModel.PagingInformationViewModel == null)
                         {
-                           pagedModel.PagingInfo = new PagingInfoViewModel();
+                           pagedModel.PagingInformationViewModel = new PagingInfoViewModel();
                         }
                     }
                 }
@@ -62,9 +62,9 @@ namespace Foundation.Web.Paging
 
                         Func<object, string> actionFunction = x => urlHelper.Action(actionName, controllerName, x, true);
 
-                        if (pagedModel.PagingInfo != null)
+                        if (pagedModel.PagingInformationViewModel != null)
                         {
-                            pagedModel.PagingInfo.ActionFunc = actionFunction;
+                            pagedModel.PagingInformationViewModel.ActionFunc = actionFunction;
                         }
                     }
                 }

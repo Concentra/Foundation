@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Kafala.Entities.Enums;
 
 namespace Kafala.BusinessManagers.DonationCase

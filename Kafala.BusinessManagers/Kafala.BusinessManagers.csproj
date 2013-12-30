@@ -120,6 +120,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foundation.Configuration\Foundation.Configuration.csproj">
+      <Project>{975ED9E8-B905-4AA3-83C3-8D6D193C785C}</Project>
+      <Name>Foundation.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">
       <Project>{0735de5d-9ff2-4913-b894-f3b5d36a6ca5}</Project>
       <Name>Foundation.Infrastructure</Name>

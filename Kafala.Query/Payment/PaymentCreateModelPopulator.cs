@@ -17,7 +17,7 @@ using NHibernate.Util;
 
 namespace Kafala.Query.Payment
 {
-    public class PaymentCreateModelPopulator : IQuery<Guid, CreatePaymentViewModel>
+    public class PaymentCreateModelPopulator : IQuery<Guid?, CreatePaymentViewModel>
     {
         private readonly ISession session;
 
@@ -26,17 +26,18 @@ namespace Kafala.Query.Payment
             this.session = session;
         }
 
-        public CreatePaymentViewModel Execute(Guid id)
+        public CreatePaymentViewModel Execute(Guid? id)
         {
-            var commitment = session.Get<Entities.Commitment>(id);
+            
+            var commitment = (id.HasValue) ? session.Get<Entities.Commitment>(id) : null;
             var model = new CreatePaymentViewModel()
                 {
                     PaymentPeriods = session.CreateDropDownList<Entities.PaymentPeriod>(x => x.Name, y => y.Id),
                     PaymentDate = DateTime.Now,
-                    DonorName = commitment.Donor.Name,
-                    Amount = commitment.Amount,
-                    DonationCaseName = commitment.DonationCase.Name,
-                    CommitmentId = commitment.Id
+                    DonorName = commitment == null ? string.Empty : commitment.Donor.Name,
+                    Amount = commitment == null ?  0 :  commitment.Amount,
+                    DonationCaseName = commitment == null ? string.Empty : commitment.DonationCase.Name,
+                    CommitmentId = commitment == null ? Guid.Empty : commitment.Id
                 };
             return model;
         }

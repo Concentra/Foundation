@@ -22,8 +22,7 @@ namespace Kafala.Query.DonationCase
             var donationCaseStatusPaged = session.Query<Entities.DonationCase>()
                 .FetchPaged(parameters);
 
-            donationCaseStatusPaged.PagingInfo.Sort = parameters.Sort;
-
+            
             
             var model = new ListDonationCaseViewModel
                             {
@@ -35,13 +34,15 @@ namespace Kafala.Query.DonationCase
                                     EndDate = x.EndDate,
                                     StartDate = x.StartDate
                                 }),
-                                PagingInfo = Mapper.Map<PagingInfoViewModel>(donationCaseStatusPaged.PagingInfo)
                             };
+            model.PagingInformationViewModel.FillPagingParameters(donationCaseStatusPaged.PagingViewModel);
+            model.PagingInformationViewModel.FillSortingParameters(parameters);
+            
             return model;
         }
     }
 
-    public class ListDonationCasesParameters : PagingInfo
+    public class ListDonationCasesParameters : PagingAndSortingParameters
     {
         public ListDonationCasesParameters()
         {

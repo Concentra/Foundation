@@ -30,15 +30,7 @@ namespace Foundation.Web.Paging
 
             var showingTo = totalPages == (pageIndex + 1) ? total : (showingFrom - 1) + pageSize;
 
-            this.PagingInfo = new PagingInfo()
-            {
-                ShowingFrom = showingFrom,
-                ShowingTo = showingTo,
-                TotalItems = total,
-                TotalPages = totalPages,
-                PageNumber = pageIndex,
-                PageSize = pageSize
-            };
+            this.PagedQueryResults = new PagingResults(total, totalPages, showingFrom, showingTo, pageSize, pageIndex);
 
             this.PagingViewModel = new PagingInfoViewModel()
             {
@@ -51,7 +43,7 @@ namespace Foundation.Web.Paging
             };
         }
 
-        public PagingInfo PagingInfo { get; private set; }
+        public PagingResults PagedQueryResults { get; private set; }
 
         public PagingInfoViewModel PagingViewModel { get; private set; }
     }

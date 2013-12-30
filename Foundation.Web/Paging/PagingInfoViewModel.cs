@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace Foundation.Web.Paging
 {
     [Bind(Include = "PageSize,PageNumber,Sort,SortDirection")]
-    public class PagingInfoViewModel : IPagingParameters , ISortingParameters
+    public class PagingInfoViewModel : IPagingParameters , ISortingParameters , IPagingResults
     {
         
         public int TotalItems { get; set; }
