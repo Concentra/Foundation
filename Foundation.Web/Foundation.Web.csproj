@@ -99,7 +99,7 @@
     <Compile Include="Paging\PagingExtensions.cs" />
     <Compile Include="Paging\PagingResults.cs" />
     <Compile Include="Paging\QueryPager.cs" />
-    <Compile Include="Paging\RendersPagedView.cs" />
+    <Compile Include="Paging\RenderPagedView.cs" />
     <Compile Include="Paging\PagedViewModel.cs" />
     <Compile Include="Paging\PagingInfoViewModel.cs" />
     <Compile Include="Paging\PagingParameters.cs" />

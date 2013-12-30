@@ -45,7 +45,7 @@ namespace Kafala.Query.Donor
 
             model.PagingInformationViewModel.FillSortingParameters(parameters);
 
-            model.PagingInformationViewModel.FillPagingParameters(pagedDonors.PagedQueryResults);
+            model.PagingInformationViewModel.FillPagingParameters(pagedDonors.PagingViewModel);
 
             return model;
         }

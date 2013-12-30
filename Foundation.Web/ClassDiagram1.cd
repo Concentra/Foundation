@@ -3,7 +3,7 @@
   <Class Name="Foundation.Web.BaseController" Collapsed="true">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAARAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAARAAAAABAAAAAAAAA=</HashCode>
       <FileName>BaseController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -278,7 +278,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Foundation.Web.Paging.NavigationParameters" Collapsed="true">
+  <Class Name="Foundation.Web.Paging.NavigationParameters">
     <Position X="3.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
@@ -287,7 +287,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Foundation.Web.Paging.PagingParameters" Collapsed="true">
-    <Position X="1" Y="3.5" Width="1.5" />
+    <Position X="1" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AACAAgAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>Paging\PagingParameters.cs</FileName>
@@ -295,13 +295,13 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Foundation.Web.Paging.SortingParameters" Collapsed="true">
-    <Position X="2.75" Y="2.5" Width="2.25" />
+    <Position X="3" Y="2.5" Width="2.25" />
     <InheritanceLine Type="Foundation.Web.Paging.NavigationParameters" ManuallyRouted="true">
       <Path>
-        <Point X="4.125" Y="1.062" />
+        <Point X="4.125" Y="1.604" />
         <Point X="4.125" Y="1.413" />
-        <Point X="3.875" Y="1.413" />
-        <Point X="3.875" Y="2.5" />
+        <Point X="4.125" Y="1.413" />
+        <Point X="4.125" Y="2.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -311,7 +311,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Foundation.Web.Paging.PagingAndSortingParameters" Collapsed="true">
-    <Position X="5" Y="3.5" Width="2.5" />
+    <Position X="5" Y="3.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AACAAgAAAAAAAAAAAAAQAAAAAAQAAAAAAAAQEAAAAAA=</HashCode>
       <FileName>Paging\PagingParameters.cs</FileName>
@@ -325,11 +325,11 @@
       <FileName>Paging\QueryPager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Foundation.Web.Paging.RendersPagedView" Collapsed="true">
+  <Class Name="Foundation.Web.Paging.RenderPagedView" Collapsed="true">
     <Position X="11.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
-      <FileName>Paging\RendersPagedView.cs</FileName>
+      <FileName>Paging\RenderPagedView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Foundation.Web.Sorter.Sorter" Collapsed="true">

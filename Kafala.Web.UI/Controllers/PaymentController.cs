@@ -23,7 +23,7 @@ namespace Kafala.Web.UI.Controllers
             this.queryContainer = queryContainer;
         }
 
-        [RendersPagedView]
+        [RenderPagedView]
         public ActionResult Index(PaymentListParameters parameters)
         {
             var container = this.queryContainer.Get<PaymentListModelPopulator>();

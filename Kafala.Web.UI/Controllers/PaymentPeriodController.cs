@@ -49,21 +49,14 @@ namespace Kafala.Web.UI.Controllers
          
             var modelPopulator = this.queryContainer.Get<PaymentPeriodViewModelPopulator>();
             var model = modelPopulator.Execute(id);
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("View", model);
-            }
-            else
-            {
-                return View("View", model);    
-            }
+            return AdaptiveView("View", model);
         }
 
         public ActionResult Edit(Guid id)
         {
             var modelPopulator = this.queryContainer.Get<UpdatePaymentPeriodViewModelPopulator>();
             var model = modelPopulator.Execute(id);
-            return View("Edit", model);
+            return AdaptiveView("Edit", model);
         }
 
         [HttpPost]

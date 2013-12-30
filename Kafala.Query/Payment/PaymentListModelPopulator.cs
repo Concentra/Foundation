@@ -64,7 +64,7 @@ namespace Kafala.Query.Payment
 
             model.PagingInformationViewModel.FillSortingParameters(parameters);
 
-            model.PagingInformationViewModel.FillPagingParameters(pagedPayments.PagedQueryResults);
+            model.PagingInformationViewModel.FillPagingParameters(pagedPayments.PagingViewModel);
 
             return model;
         }

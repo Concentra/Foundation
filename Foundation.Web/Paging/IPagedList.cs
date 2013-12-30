@@ -4,7 +4,7 @@ namespace Foundation.Web.Paging
 {
     public interface IPagedList<T> : IList<T>
     {
-        PagingResults PagedQueryResults { get; }
+        // PagingResults PagedQueryResults { get; }
 
         PagingInfoViewModel PagingViewModel { get; }
     }

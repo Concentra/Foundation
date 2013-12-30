@@ -6,7 +6,7 @@ using Foundation.Web.Extensions;
 
 namespace Foundation.Web.Paging
 {
-    public class RendersPagedView : ActionFilterAttribute
+    public class RenderPagedView : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

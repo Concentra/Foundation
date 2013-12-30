@@ -68,10 +68,10 @@ namespace Kafala.Query.Reports
                     CollectedAmount = collectedAmount,
                     ExpectedAmount = expectedAmount,
                     OutStanding = payments,
-                    OverDueAmount = expectedAmount - collectedAmount,
-                    PagingInformationViewModel = Mapper.Map<PagingInfoViewModel>(pagedCommitments.PagedQueryResults)
-
+                    OverDueAmount = expectedAmount - collectedAmount
                 };
+
+                model.PagingInformationViewModel.FillPagingParameters(pagedCommitments.PagingViewModel);
 
                 return model;
            

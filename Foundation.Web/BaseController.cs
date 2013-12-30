@@ -37,5 +37,17 @@ namespace Foundation.Web
 
             return base.PartialView(viewName, model);
         }
+
+        protected ViewResultBase AdaptiveView(string viewName, object model)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(viewName, model);
+            }
+            else
+            {
+                return View(viewName, model);
+            }
+        }
     }
 }
