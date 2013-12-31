@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.Configuration", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{8E2C6D0E-145F-4C45-AA4E-E6EDFB09595A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceLab", "PerformanceLab\PerformanceLab.csproj", "{2DE12DD6-B4C7-4D98-8742-696F224B8131}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Foundation.vsmdi
@@ -205,6 +207,16 @@ Global
 		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{975ED9E8-B905-4AA3-83C3-8D6D193C785C}.Release|x86.ActiveCfg = Release|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2DE12DD6-B4C7-4D98-8742-696F224B8131}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
