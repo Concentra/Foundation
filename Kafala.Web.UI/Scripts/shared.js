@@ -54,6 +54,24 @@ $("form").submit(function (event) {
 
     };
     
+
+    jQuery.fn.modalMessage = function (messageText, dialogTitle, dismissButtonText) {
+
+        if (dismissButtonText == null) {
+            dismissButtonText = "Dismiss";
+        }
+
+        if (dialogTitle == null) {
+            dialogTitle = "Message";
+        }
+        
+        $("#messageModelContent").html(messageText);
+        $("#messageModelTitle").html(dialogTitle);
+        $("#messageModelDismissButton").html(dismissButtonText);
+        $("#messageModel").modal('show');
+    };
+
+
     function ShowLoadingScreen(loaderElement) {
         if (loaderElement) {
             loaderElement.modal("show");
@@ -96,9 +114,9 @@ $("form").submit(function (event) {
                 {
                     url: url
                 })
-                .success(function(data) {
+                .success(function (data) {
                     HideLoadingScreen();
-                    
+
                     $("#detailModelContent").html(data);
                     $.validator.unobtrusive.parse($("#detailModelContent"));
                     $("#detailModelTitle").html(title);
@@ -110,9 +128,9 @@ $("form").submit(function (event) {
                     }
                     $("#detailsModel").modal('show');
 
-                    
+
                 })
-                .complete(function() {
+                .complete(function () {
                     HideLoadingScreen();
                     foundationInitialize();
 
@@ -156,7 +174,15 @@ $("form").submit(function (event) {
             hideAllPopovers();
         });
 
-        $(function() { foundationInitialize(); });
+        $(function () {
+            foundationInitialize();
+
+            $(document).ajaxError(function(xhr, ajaxOptions, thrownError) {
+                HideLoadingScreen();
+                
+                $(document).modalMessage("An error has occurred while processing your request.", "Error", "Close");
+            });
+        });
 
 
        function foundationInitialize() {
@@ -322,15 +348,4 @@ $("form").submit(function (event) {
             });
         }
 
-        function modalMessage(dialogId) {
-            $.colorbox({ width: "500", inline: true, href: "#" + dialogId, escKey: false, overlayClose: false, title: "Information", fixed: true,
-                onLoad: function () {
-                    $('#cboxClose').remove();
-                }
-            });
-
-            $('#okBtn').live('click', function (e) {
-                $.colorbox.close();
-                callback(false);
-            });
-        }
+        
