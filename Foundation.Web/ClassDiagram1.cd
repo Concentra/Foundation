@@ -48,7 +48,7 @@
   <Class Name="Foundation.Web.Configurations.WebConfigurations" Collapsed="true">
     <Position X="11.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
       <FileName>Configurations\WebConfigurations.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -370,7 +370,7 @@
   <Interface Name="Foundation.Web.Paging.IPagedList&lt;T&gt;" Collapsed="true">
     <Position X="13" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAQA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>Paging\IPagedList.cs</FileName>
     </TypeIdentifier>
   </Interface>

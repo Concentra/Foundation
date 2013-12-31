@@ -38,7 +38,6 @@ namespace Foundation.FormBuilder.DynamicForm
                                                      .Cast<CollectionInfo>()
                                                      .FirstOrDefault(),
                                                 FieldValue = FieldValue(model, p),
-                                                ValidationInfo = null
                                             })
                                     .Where(p => p.ControlSpecs != null)
                                     .ToList();
@@ -84,7 +83,13 @@ namespace Foundation.FormBuilder.DynamicForm
                     // loop over the attributes (ordered)..
                     foreach (var formElement in elementsToRender)
                     {
-                        using (new ControlGroup(textWriter))
+                        ModelState modelState;
+                        if (htmlHelper.ViewData.ModelState.TryGetValue(formElement.PropertyInfo.Name, out modelState) && modelState.Errors.Count > 0)
+                        {
+                            formElement.HasErrors = true;
+                        }
+                        
+                        using (new ControlGroup(textWriter, formElement))
                         {
                             ControlGroup.RenderLabel(formType, formElement, textWriter);
 
@@ -101,7 +106,8 @@ namespace Foundation.FormBuilder.DynamicForm
                                 var elementBlock = ElementGenerator.RenderElement(formElement);
 
                                 elementBlock.MergeAttributes(validationAttributes);
-                            
+
+                               
                                 textWriter.Write(elementBlock);
                             }
                         }

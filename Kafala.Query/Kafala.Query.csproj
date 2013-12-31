@@ -48,9 +48,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Foundation.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Foundation.Infrastructure.0.11\lib\net45\Foundation.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Foundation.Persistence, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Foundation.Persistence.0.9\lib\net45\Foundation.Persistence.dll</HintPath>
+      <HintPath>..\packages\Foundation.Persistence.0.11\lib\net45\Foundation.Persistence.dll</HintPath>
+    </Reference>
+    <Reference Include="Foundation.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Foundation.Web.0.11\lib\net45\Foundation.Web.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
@@ -132,14 +140,6 @@
     <Compile Include="Shared\MenuPopulator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">
-      <Project>{0735de5d-9ff2-4913-b894-f3b5d36a6ca5}</Project>
-      <Name>Foundation.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
-      <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
-      <Name>Foundation.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Kafala.BusinessManagers\Kafala.BusinessManagers.csproj">
       <Project>{a5d4402e-ce60-420e-b14c-4dcc6f8815e7}</Project>
       <Name>Kafala.BusinessManagers</Name>

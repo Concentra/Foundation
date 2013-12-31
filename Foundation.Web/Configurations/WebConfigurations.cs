@@ -21,6 +21,11 @@ namespace Foundation.Web.Configurations
                 SortedIcondAscending = GlyphIcons.ChevronUp,
                 SortedIcondDescending = GlyphIcons.ChevronDown
             };
+
+            HasErrorsCssClass = "has-error";
+
         }
+
+       public static string HasErrorsCssClass { get; set; }
     }
 }

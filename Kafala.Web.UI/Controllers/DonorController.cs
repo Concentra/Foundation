@@ -37,15 +37,23 @@ namespace Kafala.Web.UI.Controllers
         {
             var container = this.queryContainer.Get<DonorCreateModelPopulator>();
             var model = container.Execute(null);
-            return View("Create", model);
+            return AdaptiveView("Create", model);
         }
 
         [HttpPost]
         public ActionResult Create(CreateDonorViewModel model)
         {
-            var manager = businessManagerContainer.Get<DonorBusinessManager>();
-            var donorId = manager.Add(model);
-            return RedirectToAction("Details", new { id = donorId });
+            if (ModelState.IsValid)
+            {
+                var manager = businessManagerContainer.Get<DonorBusinessManager>();
+                var donorId = manager.Add(model);
+                return RedirectToAction("Details", new { id = donorId });
+                
+            }
+            else
+            {
+                return View("Create", model);
+            }
         }
 
       
