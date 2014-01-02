@@ -50,36 +50,11 @@
         </div>
         <!-- /.modal -->
 
-      <div class="modal modal-static fade" id="processing-modal" role="dialog" style="display: none">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="text-center">
-                            <img src="http://www.travislayne.com/images/loading.gif" class="icon" />
-                            <h4 id="processing-message">Processing... </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-<div class="modal" id="detailsModel">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header" id="detailsModelHeader">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="detailModelTitle">Modal title</h4>
-      </div>
-      <div class="modal-body" id="detailModelContent">
-        
-      </div>
-      <div class="modal-footer" id="detailsModelFooter">
-        <button type="button" id="detailModelDismissButton" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        @Html.Partial("_LoadingElement")
 
+        @Html.Partial("_DetailsPopUpTemplate")
+       
+        @Html.Partial("_ModalMessageTemplate")
          
        <script src="~/Scripts/jquery-2.0.3.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>

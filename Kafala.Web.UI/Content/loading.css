@@ -30,3 +30,10 @@
     margin-left: -100px; 
     overflow: visible !important;
 }
+
+.modal-center {
+   position: fixed;
+    top: 50% !important; 
+    left: 50% !important; 
+    overflow: visible !important;
+}
