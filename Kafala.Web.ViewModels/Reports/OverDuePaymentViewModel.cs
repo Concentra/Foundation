@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Foundation.FormBuilder.CustomAttribute;
 
 namespace Kafala.Web.ViewModels.Reports
@@ -8,12 +9,15 @@ namespace Kafala.Web.ViewModels.Reports
         [EditControl(ElementType = ElementType.Hidden)]
         public virtual Guid PeriodId { get; set; }
 
-        [EditControl(Order = 1, ElementType = ElementType.Text, Label = "Beneficiary Case Name")]
+        [Display(Order = 1, Name = "Beneficiary Case Name")]
+        [EditControl(ElementType = ElementType.Text)]
+ 
         public virtual string DonationCaseName { get; set; }
 
         public virtual Guid DonationCaseId { get; set; }
 
-        [EditControl(Order = 2, ElementType = ElementType.Text, Label = "Donor Name")]
+        [Display(Order = 2, Name = "Donor Name")]
+        [EditControl(ElementType = ElementType.Text)]
         public virtual string DonorName { get; set; }
 
         public virtual Guid DonorId { get; set; }

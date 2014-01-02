@@ -4,16 +4,17 @@ namespace Foundation.FormBuilder.CustomAttribute
 ]
     public class EditControl : System.Attribute
     {
-        public string Label;
-        public int Order = int.MaxValue;
         public int Size;
         public int Cols = 60;
         public int Rows = 6;
         public int MaxLength;
         public ElementType ElementType;
         public bool ReadOnly;
-        public string GroupName;
-        public string PromptText;
+        internal string GroupName;
+        internal string Prompt;
+        internal string ShortName;
+        internal int? Order = int.MaxValue;
+        internal string Name;
     }
 
     public enum ElementType

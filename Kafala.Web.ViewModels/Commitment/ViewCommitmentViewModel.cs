@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Foundation.FormBuilder.CustomAttribute;
 using Kafala.Web.ViewModels.Payment;
@@ -11,17 +12,14 @@ namespace Kafala.Web.ViewModels.Commitment
         [EditControl(ElementType = ElementType.Hidden)]
         public virtual Guid Id { get; set; }
 
-        [EditControl(Order = 1, 
-            ElementType = ElementType.Text,
-            Label = "Beneficiary Case Name")]
+        [Display(Order = 1,  Name = "Beneficiary Case Name")]
         public virtual string DonationCaseName { get; set; }
 
         public virtual Guid DonationCaseId { get; set; }
 
 
-        [EditControl(Order = 2,
-            ElementType = ElementType.Text,
-            Label = "Donor Name")]
+        [Display(Order = 2, Name = "Donor Name")]
+        [EditControl(ElementType = ElementType.Text)]
         public virtual string DonorName { get; set; }
 
         [EditControl(ElementType = ElementType.Hidden)]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Foundation.FormBuilder.CustomAttribute;
 using Kafala.Web.ViewModels.Payment;
@@ -13,20 +14,28 @@ namespace Kafala.Web.ViewModels.Payment
 
         public virtual Guid DonationCaseId { get; set; }
 
-        [EditControl(Order = 1, ElementType = ElementType.StaticText, Label = "Donor Name")]
+        [Display(Order = 1, Name = "Donor Name")]
+        [EditControl(ElementType = ElementType.StaticText)]
         public virtual string CommitmentDonorName { get; set; }
 
-        [EditControl(Order = 2, ElementType = ElementType.StaticText, Label = "Case Name")]
+        [Display(Order = 2, Name = "Case Name")]
+        [EditControl(ElementType = ElementType.StaticText)]
         public virtual string CommitmentDonationCaseName { get; set; }
 
-        [EditControl(Order = 3, ElementType = ElementType.StaticText, Label = "Payment Period")]
+        [Display(Order = 3, Name = "Payment Period")]
+        [EditControl(ElementType = ElementType.StaticText)]
+        
         public virtual string PaymentPeriodName { get; set; }
 
         public virtual IEnumerable<SelectListItem> PaymentPeriods { get; set; }
-        [EditControl(Order = 4, ElementType = ElementType.WholeNumber)]
+        [Display(Order = 4)]
+        [EditControl(ElementType = ElementType.WholeNumber)]
+        
         public decimal Amount { get; set; }
 
-        [EditControl(Order = 5, ElementType = ElementType.TextArea, Label = "Comment")]
+        [Display(Order = 5, Name = "Comment")]
+        [EditControl(ElementType = ElementType.TextArea)]
+        
         [AllowHtml]
         public virtual string Comments { get; set; }
 

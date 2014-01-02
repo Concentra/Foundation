@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Web.Mvc;
 using Foundation.FormBuilder.CustomAttribute;
@@ -12,13 +13,15 @@ namespace Kafala.Web.ViewModels.Commitment
         [EditControl(ElementType = ElementType.Hidden)]
         public virtual Guid Id { get; set; }
 
-        [EditControl(Order = 1, ElementType = ElementType.List,Label = "Beneficiary Case Name")]
+        [Display(Order = 1, Name = "Beneficiary Case Name")]
+        [EditControl(ElementType = ElementType.List)]
         [CollectionInfo(ListSourceMember = "DonationCases",SelectPromptLabel = "Please select",SelectPromptValue = "Please select")]
         public virtual Guid DonationCaseId { get; set; }
 
         public virtual IEnumerable<SelectListItem> DonationCases { get; set; }
 
-        [EditControl(Order = 2, ElementType = ElementType.List, Label = "Donor")]
+        [Display(Order = 2, Name = "Donor")]
+        [EditControl(ElementType = ElementType.List)]
         [CollectionInfo(ListSourceMember = "Donors", SelectPromptLabel = "Please select", SelectPromptValue = null)]
         public virtual Guid DonorId { get; set; }
 
