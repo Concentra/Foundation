@@ -4,7 +4,7 @@ using Foundation.FormBuilder.DynamicForm;
 
 namespace Foundation.FormBuilder.Blocks
 {
-    class ControlContainer : IDisposable
+    public class ControlContainer : IDisposable
     {
         private readonly HtmlTextWriter textWriter;
         private readonly BootstrapFormType formType;

@@ -3,7 +3,7 @@ using System.Web.UI;
 
 namespace Foundation.FormBuilder.Blocks
 {
-    class ElementGroup : IDisposable
+    public class ElementGroup : IDisposable
     {
         private readonly HtmlTextWriter textWriter;
 

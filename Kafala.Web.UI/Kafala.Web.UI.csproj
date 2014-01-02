@@ -249,6 +249,7 @@
     <Content Include="Views\Shared\_LoadingElement.cshtml" />
     <Content Include="Views\Shared\_DetailsPopUpTemplate.cshtml" />
     <Content Include="Views\Shared\_ModalMessageTemplate.cshtml" />
+    <Content Include="Views\Donor\Partial\DonorFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

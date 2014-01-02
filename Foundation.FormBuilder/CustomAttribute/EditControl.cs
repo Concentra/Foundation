@@ -4,12 +4,23 @@ namespace Foundation.FormBuilder.CustomAttribute
 ]
     public class EditControl : System.Attribute
     {
+        /// <summary>
+        /// Size for text box.
+        /// </summary>
         public int Size;
+        
+        // Cols attribute of text area. Defaults to 60.
         public int Cols = 60;
+        
+        // Rows attribute for text area. Defaults to 6.
         public int Rows = 6;
+        
+        // maxlength attribute of a text box.
         public int MaxLength;
+        
+        // Element Type to render.
         public ElementType ElementType;
-        public bool ReadOnly;
+        
         internal string GroupName;
         internal string Prompt;
         internal string ShortName;

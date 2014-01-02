@@ -2,7 +2,7 @@
 
 namespace Foundation.Persistence
 {
-    public interface ITypeHolder 
+    public interface IDataModelLocator 
     {
         Type HookType { get;}
 

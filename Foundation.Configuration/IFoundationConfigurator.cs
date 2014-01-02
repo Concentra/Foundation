@@ -1,5 +1,3 @@
-using Foundation.Infrastructure;
-
 namespace Foundation.Configuration
 {
     public interface IFoundationConfigurator 

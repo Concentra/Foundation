@@ -9,7 +9,7 @@ namespace Foundation.Persistence
     {
         private readonly INHibernateMappingConfigurationFactory mappingConfigurationFactory;
         private readonly IConnectionString connectionString;
-        private readonly ITypeHolder typeHolder;
+        private readonly IDataModelLocator dataModelLocator;
 
         public static bool ExportSchema { get; set; }
 
@@ -18,11 +18,11 @@ namespace Foundation.Persistence
         public NHibernateConfigurationFactory(
             INHibernateMappingConfigurationFactory mappingConfigurationFactory,
             IConnectionString connectionString,
-            ITypeHolder typeHolder)
+            IDataModelLocator dataModelLocator)
         {
             this.mappingConfigurationFactory = mappingConfigurationFactory;
             this.connectionString = connectionString;
-            this.typeHolder = typeHolder;
+            this.dataModelLocator = dataModelLocator;
         }
         
         public NHibernate.Cfg.Configuration Create()
@@ -44,7 +44,7 @@ namespace Foundation.Persistence
                         .Create(true, false));    
             }
 
-            this.mappingConfigurationFactory.BuildMapping(configruation, typeHolder.HookType, typeHolder.NameSpace);
+            this.mappingConfigurationFactory.BuildMapping(configruation, dataModelLocator.HookType, dataModelLocator.NameSpace);
 
             return configruation.BuildConfiguration();
         }

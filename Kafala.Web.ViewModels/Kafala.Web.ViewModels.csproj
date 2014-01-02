@@ -90,6 +90,7 @@
     <Compile Include="DonationCase\EditDonationCaseViewModel.cs" />
     <Compile Include="DonationCase\ListDonationCaseViewModel.cs" />
     <Compile Include="DonationCase\ViewDonationCaseViewModel.cs" />
+    <Compile Include="Donor\Partial\DonorFilterViewModel.cs" />
     <Compile Include="PaymentPeriod\ListPaymentPeriodViewModel.cs" />
     <Compile Include="PaymentPeriod\CreatePaymentPeriodViewModel.cs" />
     <Compile Include="PaymentPeriod\EditPaymentPeriodViewModel.cs" />
@@ -109,9 +110,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\PaymentStatusReportViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Donor\Partial\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Foundation.FormBuilder\Foundation.FormBuilder.csproj">
       <Project>{c5fa847f-2fb5-403d-ad02-3e9332bf60c7}</Project>

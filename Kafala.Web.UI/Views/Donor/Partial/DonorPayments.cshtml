@@ -18,9 +18,9 @@
                  <td>@item.PaymentPeriodName</td>
                  <td>@item.PaymentDate</td>
                  <td>
-                     @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                     @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                     @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                     @Html.ActionLink("Edit", "Edit", "Payment", new {id = item.Id}, null) |
+                     @Html.ActionLink("Details", "Details", "Payment", new {id = item.Id}, new { @class = "showInPopUpOnClick"}) |
+                     @Html.ActionLink("Delete", "Delete", "Payment", new {id = item.Id}, null)
                  </td>
              </tr>
          }

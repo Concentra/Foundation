@@ -40,10 +40,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Foundation.Persistence, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Foundation.Persistence.0.8\lib\net45\Foundation.Persistence.dll</HintPath>
-    </Reference>
     <Reference Include="Foundation.Web">
       <HintPath>..\packages\Foundation.Web.0.9\lib\net45\Foundation.Web.dll</HintPath>
     </Reference>
@@ -101,8 +97,14 @@
     <Compile Include="PaymentPeriod.cs" />
     <Compile Include="PaymentStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DoNotMap\EntityAssemblyTypeHolder.cs" />
+    <Compile Include="DoNotMap\EntityAssemblyDataModelLocator.cs" />
     <Compile Include="User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Persistence\Foundation.Persistence.csproj">
+      <Project>{c684e3b8-d828-4ece-b427-afc06f25977f}</Project>
+      <Name>Foundation.Persistence</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

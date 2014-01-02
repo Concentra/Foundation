@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Foundation.Web.Extensions
 {
-    public class BasePagingExtensions
+    internal class BasePagingExtensions
     {
         public static MvcHtmlString CreatePageLink(Func<object, string> pageUrl,
           object pagingInfo,

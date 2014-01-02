@@ -8,11 +8,11 @@ using Foundation.Web.Extensions;
 
 namespace Foundation.FormBuilder.Blocks
 {
-    class ControlGroup : IDisposable
+    public class ControlGroup : IDisposable
     {
         private readonly NavHtmlTextWritter textWriter;
 
-        public ControlGroup(NavHtmlTextWritter htmlTextWriter, FormElement formElement)
+        public ControlGroup(NavHtmlTextWritter htmlTextWriter, FormElement formElement = null)
         {
             this.textWriter = htmlTextWriter;
             

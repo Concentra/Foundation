@@ -8,6 +8,7 @@ using Foundation.Web.Paging;
 using Kafala.BusinessManagers.Donor;
 using Kafala.Query.Donor;
 using Kafala.Web.ViewModels.Donor;
+using Kafala.Web.ViewModels.Donor.Partial;
 
 namespace Kafala.Web.UI.Controllers
 {

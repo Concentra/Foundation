@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Foundation.FormBuilder
 {
-    public static class ModelCache
+    internal static class ModelCache
     {
-        private static readonly Dictionary<Type, List<PropertyInfo>> propertyDictionary = new Dictionary<Type, List<PropertyInfo>>();
+        private static readonly Dictionary<Type, List<PropertyInfo>> PropertyDictionary = new Dictionary<Type, List<PropertyInfo>>();
 
         public static List<PropertyInfo> GetCachedProperties(this Type type , BindingFlags bindingFlags )
         {
             List<PropertyInfo> properties;
-            if (propertyDictionary.TryGetValue(type, out properties) == false)
+            if (PropertyDictionary.TryGetValue(type, out properties) == false)
             {
                 properties = type.GetProperties(bindingFlags).ToList();
-                propertyDictionary.Add(type, properties);
+                PropertyDictionary.Add(type, properties);
             }
 
             return properties;

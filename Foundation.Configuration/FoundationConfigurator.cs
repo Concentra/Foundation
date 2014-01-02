@@ -1,6 +1,4 @@
-﻿using Foundation.Infrastructure;
-
-namespace Foundation.Configuration
+﻿namespace Foundation.Configuration
 {
     public class FoundationConfigurator : IFoundationConfigurator
     {

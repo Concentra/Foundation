@@ -16,7 +16,7 @@ namespace Foundation.Persistence.Configurations
             if (foundationConfigurator.UsePresistence)
             {
                 cfg.AddRegistry(new PersistenceRegistery());
-                cfg.For<ITypeHolder>(foundationConfigurator.Persistence.EntityTypeHolder);
+                cfg.For<IDataModelLocator>(foundationConfigurator.Persistence.EntityTypeHolder);
                 cfg.For<IConnectionString>()
                    .Use(new ConnectionString(foundationConfigurator.Persistence.ConnectionStringKeyName));
             }

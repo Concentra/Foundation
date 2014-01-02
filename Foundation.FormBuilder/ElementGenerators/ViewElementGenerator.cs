@@ -12,7 +12,7 @@ using Foundation.Web;
 
 namespace Foundation.FormBuilder.ElementGenerators
 {
-    public class ViewElementGenerator : IElementGenerator
+    internal class ViewElementGenerator : IElementGenerator
     {
         
         public TagBuilder RenderElement(FormElement formElement)
