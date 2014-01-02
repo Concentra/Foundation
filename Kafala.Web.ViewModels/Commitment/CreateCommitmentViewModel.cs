@@ -10,13 +10,15 @@ namespace Kafala.Web.ViewModels.Commitment
 {
     public class CreateCommitmentViewModel : ICommitmentContract
     {
-        [EditControl(Order = 1, ElementType = ElementType.List,Label = "Beneficiary Case Name")]
+        [Display(Order = 1,Name = "Beneficiary Case Name")]
+        [EditControl(ElementType = ElementType.List)]
         [CollectionInfo(ListSourceMember = "DonationCases",SelectPromptLabel = "Please select",SelectPromptValue = null)]
         public virtual Guid DonationCaseId { get; set; }
 
         public virtual IEnumerable<SelectListItem> DonationCases { get; set; }
 
-        [EditControl(Order = 2,ElementType = ElementType.List,Label = "Donor")]
+        [Display(Order = 2, Name = "Donor")]
+        [EditControl(ElementType = ElementType.List)]
         [CollectionInfo(ListSourceMember = "Donors", SelectPromptLabel = "Please select", SelectPromptValue = null)]
         public virtual Guid DonorId { get; set; }
 

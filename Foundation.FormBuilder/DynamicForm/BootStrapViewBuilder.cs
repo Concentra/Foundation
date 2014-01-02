@@ -21,7 +21,7 @@ namespace Foundation.FormBuilder.DynamicForm
         public BootStrapViewBuilder()
         {
             ElementGenerator = new ViewElementGenerator();
-            Properties = typeof(TModel).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            Properties = typeof(TModel).GetCachedProperties(BindingFlags.Public | BindingFlags.Instance)
                 .ToDictionary(p => p.Name , p => p);
         }
 

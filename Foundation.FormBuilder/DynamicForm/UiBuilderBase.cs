@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -37,10 +38,23 @@ namespace Foundation.FormBuilder.DynamicForm
                                                 CollectionInfo = p.Value.GetCustomAttributes(typeof(CollectionInfo), false)
                                                      .Cast<CollectionInfo>()
                                                      .FirstOrDefault(),
-                                                FieldValue = FieldValue(model, p),
+                                                FieldValue = FieldValue(model, p)
                                             })
                                     .Where(p => p.ControlSpecs != null)
                                     .ToList();
+
+            foreach (var formElement in formElements)
+            {
+                var displayAttribute = formElement.PropertyInfo.GetCustomAttributes(typeof (DisplayAttribute), false).Cast<DisplayAttribute>().FirstOrDefault();
+                if (displayAttribute != null)
+                {
+                    formElement.ControlSpecs.GroupName = displayAttribute.GetGroupName();
+                    formElement.ControlSpecs.Name = displayAttribute.GetName();
+                    formElement.ControlSpecs.Prompt = displayAttribute.GetPrompt();
+                    formElement.ControlSpecs.Order = displayAttribute.GetOrder();
+                    formElement.ControlSpecs.ShortName = displayAttribute.GetShortName();
+                }
+            }
 
             foreach (var collectionItems in formElements.Where(x => x.CollectionInfo != null))
             {

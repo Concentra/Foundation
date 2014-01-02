@@ -15,28 +15,34 @@ namespace Kafala.Web.ViewModels.Donor
         [EditControl(ElementType = ElementType.Hidden)]
         public Guid Id { get; set; }
 
-        [EditControl(GroupName = "Personal Info", Order = 10, ElementType = ElementType.StaticText, Label = "Donor Name", PromptText = "The full donor name")]
+        [EditControl( ElementType = ElementType.StaticText)]
+        [Display(GroupName = "Personal Info", Order = 10, Name = "Donor Name", Prompt = "The full donor name")]
         [Required]
         public string Name { get; set; }
 
-        [EditControl(GroupName = "Contact Info", ElementType = ElementType.Text, Label = "Email", PromptText = "Enter email address")]
+        [EditControl(ElementType = ElementType.Text)]
+        [Display(GroupName = "Contact Info", Name = "Email", Prompt = "Enter email address")]
         [Required]
         public string Email { get; set; }
 
-        [EditControl(GroupName = "Contact Info", ElementType = ElementType.Text, Label = "Telephone", PromptText = "Enter Telephone Number")]
+        [EditControl(ElementType = ElementType.Text)]
+        [Display(GroupName = "Contact Info", Name = "Telephone", Prompt = "Enter Telephone Number")]
         public string Telephone { get; set; }
 
-        [EditControl(GroupName = "Contact Info", ElementType = ElementType.Enum, PromptText = "Enter Telephone Number")]
+        [Display(GroupName = "Contact Info", Prompt = "Enter Telephone Number")]
+        [EditControl(ElementType = ElementType.Enum)]
         public DonorStatus DonorStatus { get; set; }
 
         public Guid ReferralId { get; set; }
 
         public IEnumerable<SelectListItem> ListProperty { get; set; }
 
-        [EditControl(GroupName = "Contact Info", ElementType = ElementType.Text)]
+        [Display(GroupName = "Contact Info")]
+        [EditControl(ElementType = ElementType.Text)]
         public string Mobile { get; set; }
 
-        [EditControl(Label = "Date Joined", ElementType = ElementType.DateTime, Order = 1)]
+        [Display(Name = "Date Joined", Order = 1)]
+        [EditControl( ElementType = ElementType.DateTime)]
         public DateTime? JoinDate { get; set; }
 
         public DonorDashBoard DonorDashBoard  { get; set; }

@@ -37,9 +37,9 @@ namespace Foundation.FormBuilder.Blocks
             // if there is a Name specified in the DisplayAttribute use it , other wise use the property name 
             var displayName = formElement.PropertyInfo.Name.SpacePascal();
 
-            if (!String.IsNullOrEmpty(formElement.ControlSpecs.Label))
+            if (!String.IsNullOrEmpty(formElement.ControlSpecs.Name))
             {
-                displayName = formElement.ControlSpecs.Label;
+                displayName = formElement.ControlSpecs.Name;
             }
 
             // Label

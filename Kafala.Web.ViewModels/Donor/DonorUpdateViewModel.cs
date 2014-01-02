@@ -14,24 +14,30 @@ namespace Kafala.Web.ViewModels.Donor
         [EditControl(ElementType = ElementType.Hidden)]
         public Guid Id { get; set; }
 
-        [EditControl(Order = 1, ElementType = ElementType.Text, Label = "Donor Name", PromptText = "The full donor name")]
+        [EditControl( ElementType = ElementType.Text)]
+        [Display(Order = 1, Name = "Donor Name", Prompt = "The full donor name")]
         [Required]
         public string Name { get; set; }
 
-        [EditControl(GroupName = "Contact Info", Order = 2, ElementType = ElementType.Text, Label = "Email", PromptText = "Enter email address")]
+        [Display(GroupName = "Contact Info", Order = 2, Name = "Email", Prompt = "Enter email address")]
+        [EditControl(ElementType = ElementType.Text)]
         [Required]
         public string Email { get; set; }
 
-        [EditControl(GroupName = "Contact Info", Order = 3, ElementType = ElementType.Text, Label = "Telephone", PromptText = "Enter Telephone Number")]
+        [Display(GroupName = "Contact Info", Order = 3, Name = "Telephone", Prompt = "Enter Telephone Number")]
+        [EditControl(ElementType = ElementType.Text)]
         public string Telephone { get; set; }
 
-        [EditControl(ElementType = ElementType.Enum, PromptText = "Select Status")]
+        [EditControl(ElementType = ElementType.Enum)]
+        [Display(Prompt = "Select Status")]
         public DonorStatus DonorStatus { get; set; }
 
-        [EditControl(GroupName = "Contact Info", ElementType = ElementType.Text)]
+        [Display(GroupName = "Contact Info")]
+        [EditControl(ElementType = ElementType.Text)]
         public string Mobile { get; set; }
 
-        [EditControl(Label = "Date Joined", ElementType = ElementType.DateTime, Order = 1)]
+        [Display(Name = "Date Joined", Order = 1)]
+        [EditControl(ElementType = ElementType.DateTime)]
         public DateTime? JoinDate { get; set; }
 
         public Guid ReferralId { get; set; }
