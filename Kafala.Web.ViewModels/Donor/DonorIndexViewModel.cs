@@ -5,7 +5,7 @@ using Kafala.Web.ViewModels.Donor.Partial;
 
 namespace Kafala.Web.ViewModels.Donor
 {
-    public class DonorIndexViewModel : PagedViewModel
+    public class DonorIndexViewModel 
     {
         public virtual DonorFilterViewModel DonorFilter { get; set; }
         

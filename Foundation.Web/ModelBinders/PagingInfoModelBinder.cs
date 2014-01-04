@@ -8,6 +8,10 @@ using Foundation.Web.Paging;
 
 namespace Foundation.Web.ModelBinders
 {
+    
+    /// <summary>
+    /// initializing the pager.
+    /// </summary>
     public class PagingInfoModelBinder : DefaultModelBinder
     {
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
@@ -36,7 +40,7 @@ namespace Foundation.Web.ModelBinders
                 pagedModel = new PagingAndSortingParameters();
             }
 
-            return model;
+            return pagedModel;
         }
     }
 
@@ -52,7 +56,7 @@ namespace Foundation.Web.ModelBinders
                 pagedModel = new PagingParameters();
             }
 
-            return model;
+            return pagedModel;
         }
     }
 
@@ -68,7 +72,7 @@ namespace Foundation.Web.ModelBinders
                 pagedModel = new SortingParameters();
             }
 
-            return model;
+            return pagedModel;
         }
     }
 }

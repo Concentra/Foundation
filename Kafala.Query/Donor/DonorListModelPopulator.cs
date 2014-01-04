@@ -48,9 +48,9 @@ namespace Kafala.Query.Donor
                 DonorFilter = new DonorFilterViewModel()
             };
 
-            model.PagingInformationViewModel.FillSortingParameters(parameters);
+            model.DonorFilter.FillSortingParameters(parameters);
 
-            model.PagingInformationViewModel.FillPagingParameters(pagedDonors.PagingViewModel);
+            model.DonorFilter.FillPagingParameters(pagedDonors.PagingViewModel);
 
             return model;
         }

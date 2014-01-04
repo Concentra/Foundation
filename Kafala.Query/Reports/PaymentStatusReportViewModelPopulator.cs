@@ -49,7 +49,7 @@ namespace Kafala.Query.Reports
             var expectedAmount = expectedAmountValue.Value == null ? 0 : (decimal)expectedAmountValue.Value;
 
            
-                var pagedCommitments = query.FetchPaged(filter.PagingInformationViewModel);
+                var pagedCommitments = query.FetchPaged(filter);
 
             var payments = pagedCommitments.Select(x => new OverDuePaymentViewModel()
                 {

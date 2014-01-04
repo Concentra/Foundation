@@ -4,7 +4,7 @@ using Foundation.Web.Paging;
 
 namespace Kafala.Web.ViewModels.Reports.Partials
 {
-    public class FilterPaymentStatus :  PagedViewModel
+    public class FilterPaymentStatus :  PagingInfoViewModel
     {
         [FilterControl(DataElement = "Commitment.Donor.Id")]
         public Guid DonorId { get; set; }

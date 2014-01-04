@@ -54,9 +54,17 @@ namespace Foundation.Web.Configurations
 
         private IEnumerable<KeyValuePair<Type, IModelBinder>> GetModels(Type viewModelsAssemblyHook)
         {
-            return Assembly.GetAssembly(viewModelsAssemblyHook).GetTypes()
+            var directlyPageable = Assembly.GetAssembly(viewModelsAssemblyHook).GetTypes()
                            .Where(x => x.IsSubclassOf(typeof(PagedViewModel)))
                            .Select(x => new KeyValuePair<Type, IModelBinder>(x, new PagingInfoModelBinder()));
+
+            var containsPageableMember = Assembly.GetAssembly(viewModelsAssemblyHook).GetTypes()
+                           .Where(x => x.GetProperties().Any(p =>  x.IsSubclassOf(typeof(PagingInfoViewModel))))
+                           .Select(x => new KeyValuePair<Type, IModelBinder>(x, new PagingInfoModelBinder()));
+
+            var all = directlyPageable.Concat(containsPageableMember).Distinct();
+
+            return all;
         }
 
     }

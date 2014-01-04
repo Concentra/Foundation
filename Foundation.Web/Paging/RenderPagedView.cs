@@ -37,19 +37,20 @@ namespace Foundation.Web.Paging
                 object model = filterContext.Controller.ViewData.Model;
                 if (model != null)
                 {
-                    PagedViewModel pagingModel = null;
+                    INavigationParameters pagingModel = null;
 
-                    if(model.GetType().IsSubclassOf(typeof(PagedViewModel)))
+                    if(model.GetType().IsSubclassOf(typeof(INavigationParameters)))
                     {
-                        pagingModel = (PagedViewModel) model;
+                        pagingModel = (INavigationParameters)model;
                     }
                     else
                     {
                         var propertyInfo = model.GetType()
                             .GetProperties()
-                            .FirstOrDefault(x => x.PropertyType.IsSubclassOf(typeof (PagedViewModel)));
+                            .FirstOrDefault(x => x.PropertyType.GetInterfaces().Contains(typeof(INavigationParameters)));
+
                         if (propertyInfo != null)
-                            pagingModel = (PagedViewModel) propertyInfo.GetValue(model);
+                            pagingModel = (INavigationParameters)propertyInfo.GetValue(model);
                     }
 
                     if (pagingModel !=null)
@@ -62,10 +63,7 @@ namespace Foundation.Web.Paging
 
                         Func<object, string> actionFunction = x => urlHelper.Action(actionName, controllerName, x, true);
 
-                        if (pagedModel.PagingInformationViewModel != null)
-                        {
-                            pagedModel.PagingInformationViewModel.ActionFunc = actionFunction;
-                        }
+                        pagedModel.ActionFunc = actionFunction;
                     }
                 }
             }

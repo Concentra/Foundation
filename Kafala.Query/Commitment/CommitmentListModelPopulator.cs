@@ -32,7 +32,7 @@ namespace Kafala.Query.Commitment
             query = query.ApplyFilter(commitmentsListParameters);
 
             var pagedCommitments = query
-                .FetchPaged(commitmentsListParameters.PagingInformationViewModel);
+                .FetchPaged(commitmentsListParameters);
             
 
             var commitmentModels = query.Select(x => new ViewCommitmentViewModel()
@@ -51,7 +51,7 @@ namespace Kafala.Query.Commitment
                 Search = commitmentsListParameters,
             };
 
-            model.Search.PagingInformationViewModel.FillPagingParameters(pagedCommitments.PagingViewModel);
+            model.Search.FillPagingParameters(pagedCommitments.PagingViewModel);
             model.Search.DonationCases =
                 session.Query<Entities.DonationCase>()
                     .Select(x => new SelectListItem {Text = x.Name, Value = x.Id.ToString()})

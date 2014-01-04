@@ -1,10 +1,12 @@
-﻿using Foundation.FormBuilder.CustomAttribute;
+﻿using System.Web.Mvc;
+using Foundation.FormBuilder.CustomAttribute;
 using Foundation.Web.CustomAttribute;
 using Foundation.Web.Paging;
 
 namespace Kafala.Web.ViewModels.Donor.Partial
 {
-    public class DonorFilterViewModel 
+    [Bind(Include = "DonorName,PageSize,PageNumber,Sort,SortDirection")]
+    public class DonorFilterViewModel : PagingInfoViewModel
     {
         [FilterControl(DataElement = "Name", OperatorOption = Operator.Equal)]
         [EditControl(ElementType = ElementType.Text)]
