@@ -37,7 +37,7 @@ namespace Kafala.Test
 
             cfg.For<IFlashMessenger>().Use<SwallowFlashMessneger>();
 
-            cfg.For<IEmailService>().Use<SwllowEmailService>();
+            cfg.For<IEmailMessageSender>().Use<SwllowEmailService>();
 
             cfg.For<IAuthenticationService>().Use<AuthenticationService>();
 
@@ -46,9 +46,9 @@ namespace Kafala.Test
         }
     }
 
-    public class SwllowEmailService : IEmailService
+    public class SwllowEmailService : IEmailMessageSender
     {
-        public void Send(string to, string cc, string @from, string subject, string body)
+        public void Send(string to, string cc, string subject, string body)
         {
             return;
         }
