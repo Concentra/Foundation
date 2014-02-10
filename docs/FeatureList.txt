@@ -1,0 +1,36 @@
+Feature List
+
+Configuration and Boot Strapping:
+	- Web Configuration
+	- Persistence Configuration
+	- Business Tier Configuration
+	- Turning features on/off
+
+Web:
+	- Paging
+	- Sorting
+	- Dynamic Filtering
+	- Authentication
+	- Page Titles
+	- Form Builder
+	- Flash messenger
+	- Validation
+	- Ajax : Show In Popup
+	- Ajax : Confirm ajax actions
+	- Ajax : Show in Popover
+	- BootStrap Button Group
+
+Business layer
+	- Email Logging
+	- Business Manager Container
+	- Invocation Logger
+	- Interceptors
+	- Query Container
+	- Query Loggers
+	- Password Encryption. Random Password Generation
+
+
+Persistence 
+	- Auto Mapping
+	- Scehma Generation
+	- 

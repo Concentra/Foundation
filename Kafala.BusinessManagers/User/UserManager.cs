@@ -52,11 +52,11 @@ namespace Kafala.BusinessManagers.User
 
         public virtual void SendPasswordReminderEmail(string emailAddress)
         {
-            var notificationHelper = new NotificationHelper(emailService);
+            var notificationHelper = this.emailService;
             var user = authenticationService.GetUser(emailAddress);
 
             notificationHelper.SendEmailWithTemplatePath(emailAddress,
-                string.Empty, "concentra@Concentra.co.uk.abdo", 
+                string.Empty,
                 "Password Reminder", "C:/temp/template.txt",
                 new { name = user.UserName, newPassword = passwordHelper.GenerateRandomPassword() });
         }

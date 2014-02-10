@@ -7,7 +7,7 @@ namespace Foundation.Infrastructure.Configurations
     {
         public EmailRegistery()
         {
-            this.For<IEmailService>().Use<EmailService>();
+            this.For<IEmailMessageSender>().Use<EmailMessageSender>();
         }
     }
 }

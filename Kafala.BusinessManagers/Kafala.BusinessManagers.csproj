@@ -54,10 +54,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Foundation.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Foundation.Infrastructure.0.11\lib\net45\Foundation.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="Foundation.Persistence, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Foundation.Persistence.0.11\lib\net45\Foundation.Persistence.dll</HintPath>
@@ -135,6 +131,10 @@
     <ProjectReference Include="..\Foundation.Configuration\Foundation.Configuration.csproj">
       <Project>{975ED9E8-B905-4AA3-83C3-8D6D193C785C}</Project>
       <Name>Foundation.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">
+      <Project>{0735de5d-9ff2-4913-b894-f3b5d36a6ca5}</Project>
+      <Name>Foundation.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kafala.Entities\Kafala.Entities.csproj">
       <Project>{007BEF04-E3B6-422A-9BD6-E9E7B2BA3E4E}</Project>
