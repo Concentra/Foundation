@@ -7,6 +7,7 @@ using Foundation.Persistence;
 using Foundation.Web.Security;
 using NHibernate;
 using NHibernate.Linq;
+using StructureMap;
 
 namespace Kafala.BusinessManagers.User
 {

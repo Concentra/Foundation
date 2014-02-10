@@ -72,7 +72,9 @@ namespace Foundation.Web.Filter
                         break;
                    case Operator.Like:
                         throw new NotImplementedException();
+#pragma warning disable 162
                         break;
+#pragma warning restore 162
                 }
 
 
