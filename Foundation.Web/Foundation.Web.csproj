@@ -65,6 +65,7 @@
     <Compile Include="Configurations\WebConfigurator.cs" />
     <Compile Include="Configurations\WebRegistery.cs" />
     <Compile Include="CustomAttribute\FilterControl.cs" />
+    <Compile Include="CustomAttribute\Operator.cs" />
     <Compile Include="Extensions\ButtonExtensions.cs" />
     <Compile Include="Extensions\ButtonGroup.cs" />
     <Compile Include="Extensions\CacheType.cs" />

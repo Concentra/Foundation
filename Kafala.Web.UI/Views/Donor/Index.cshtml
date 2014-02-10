@@ -7,44 +7,52 @@
 
 <h2>Donors</h2>
 
+
+
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class = "showInPopUpOnClick"
                                                             , data_popup_dismissButtonText = "Dismiss Me"
                                                             , data_popup_hideButtonAndHeader = true
                                                             , data_popup_title = "Donor Creation"})
 </p>
+<div class="panel panel-primary">
+
+    @Html.Partial("Partial/DonorFilter", Model.DonorFilter)
+
 <table class="table">
     <tr>
-        @Html.SortableHeader(Model.PagingInformationViewModel, "Name" , "Name")
-        @Html.SortableHeader(Model.PagingInformationViewModel, "Telephone" , "Telephone")
-        @Html.SortableHeader(Model.PagingInformationViewModel, "JoinDate" , "Join Date")
-        @Html.SortableHeader(Model.PagingInformationViewModel, "DonorStatus" , "Status")
+        @Html.SortableHeader(Model.DonorFilter, "Name" , "Name")
+        @Html.SortableHeader(Model.DonorFilter, "Telephone" , "Telephone")
+        @Html.SortableHeader(Model.DonorFilter, "JoinDate" , "Join Date")
+        @Html.SortableHeader(Model.DonorFilter, "DonorStatus" , "Status")
         <th></th>
     </tr>
 
-@foreach (var item in Model.Donors) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telephone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JoinDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DonorStatus)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.Donors) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonorStatus)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
     
  
     
 </table>
- @Html.PageLinks(Model.PagingInformationViewModel)
+     </div>
+ @Html.PageLinks(Model.DonorFilter)
+   

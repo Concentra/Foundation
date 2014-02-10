@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Foundation.Infrastructure.Notifications
+﻿namespace Foundation.Infrastructure.Notifications
 {
     public interface IEmailService
     {
-        void Send(string to, string cc, string from, string subject, string body);
+        void SendEmail(string to, string cc, string subject, string body);
+        void SendEmailWithTemplateString(string to, string cc, string subject, string templateContents, object templateValues);
+        void SendEmailWithTemplatePath(string to, string cc, string subject, string templatePath, object templateValues);
     }
 }

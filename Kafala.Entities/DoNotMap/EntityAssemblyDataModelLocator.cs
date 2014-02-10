@@ -4,7 +4,7 @@ using Foundation.Persistence;
 namespace Kafala.Entities.DoNotMap
 
 {
-    public class EntityAssemblyTypeHolder : ITypeHolder
+    public class DataModelLocator : IDataModelLocator
     {
         public Type HookType
         {

@@ -1,0 +1,9 @@
+﻿@model Kafala.Web.ViewModels.Donor.Partial.DonorFilterViewModel
+    <div class="panel-heading panel-title">Search for donors</div>
+  
+    <div class="panel-body">
+        @using (var form = Html.Bootstrap().BeginForm("Index", "Donor", FormMethod.Get, new { id = "autoForm"}))
+        {
+            @Html.DynamicForm( renderButtons:false)
+        }
+    </div>

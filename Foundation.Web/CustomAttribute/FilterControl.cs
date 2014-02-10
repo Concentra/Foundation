@@ -5,20 +5,19 @@ namespace Foundation.Web.CustomAttribute
     [System.AttributeUsage(System.AttributeTargets.Property)]
     public class FilterControl : System.Attribute
     {
-        public Type DataType;
+        /// <summary>
+        /// Whether applying the filter should be case sensitive.
+        /// </summary>
         public bool CaseSensitive;
+        
+        /// <summary>
+        /// The operator to apply when filtering
+        /// </summary>
         public Operator OperatorOption;
-        public string DataElement;
-    }
 
-    public enum Operator
-    {
-        Equal,
-        Unequal,
-        LessThan,
-        LessThanOrEqualTo,
-        GreaterThan,
-        GreaterThanOrEqualTo,
-        Like
+        /// <summary>
+        /// The associated data element.
+        /// </summary>
+        public string DataElement;
     }
 }

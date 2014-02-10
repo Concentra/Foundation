@@ -31,7 +31,7 @@ namespace Kafala.Test
 
             cfg.For<IBusinessManagerInvocationLogger>().Singleton().Use<SqlProcBusinessManagerInvocationLogger>();
 
-            cfg.For<ITypeHolder>().Use<EntityAssemblyTypeHolder>();
+            cfg.For<IDataModelLocator>().Use<DataModelLocator>();
 
             cfg.For<IConnectionString>().Use(new ConnectionString("KafalaDBTest"));
 

@@ -189,7 +189,7 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.Foundation.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\shared.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -249,6 +249,7 @@
     <Content Include="Views\Shared\_LoadingElement.cshtml" />
     <Content Include="Views\Shared\_DetailsPopUpTemplate.cshtml" />
     <Content Include="Views\Shared\_ModalMessageTemplate.cshtml" />
+    <Content Include="Views\Donor\Partial\DonorFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

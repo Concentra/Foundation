@@ -56,8 +56,22 @@ namespace Foundation.Web.Filter
                         conditionExpression = Expression.Equal(propertyExpression, valueExpression);
                         break;
                    case Operator.GreaterThan:
+                        conditionExpression = Expression.GreaterThan(propertyExpression, valueExpression);
                         break;
-                   case    Operator.GreaterThanOrEqualTo:
+                   case Operator.GreaterThanOrEqualTo:
+                        conditionExpression = Expression.GreaterThanOrEqual(propertyExpression, valueExpression);
+                        break;
+                   case Operator.LessThan:
+                        conditionExpression = Expression.LessThan(propertyExpression, valueExpression);
+                        break;
+                   case Operator.LessThanOrEqualTo:
+                        conditionExpression = Expression.LessThanOrEqual(propertyExpression, valueExpression);
+                        break;
+                   case Operator.Unequal:
+                        conditionExpression = Expression.NotEqual(propertyExpression, valueExpression);
+                        break;
+                   case Operator.Like:
+                        throw new NotImplementedException();
                         break;
                 }
 

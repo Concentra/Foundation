@@ -52,7 +52,7 @@ namespace Kafala.Web.UI.Controllers
         {
             var modelPopulator = this.queryContainer.Get<PaymentViewModelPopulator>();
             var model = modelPopulator.Execute(id);
-            return View("View", model);
+            return AdaptiveView("View", model);
         }
 
         public ActionResult Edit(Guid id)

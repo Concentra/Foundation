@@ -62,7 +62,7 @@
     <Compile Include="IConnectionString.cs" />
     <Compile Include="ISessionFactoryProvider.cs" />
     <Compile Include="ISessionProvider.cs" />
-    <Compile Include="ITypeHolder.cs" />
+    <Compile Include="IDataModelLocator.cs" />
     <Compile Include="NHibernateMappingConfigurationFactory.cs" />
     <Compile Include="INHibernateConfigurationFactory.cs" />
     <Compile Include="INHibernateMappingConfigurationFactory.cs" />

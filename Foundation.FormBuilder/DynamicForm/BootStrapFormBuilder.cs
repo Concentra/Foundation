@@ -17,7 +17,7 @@ using Foundation.Web.Extensions;
 
 namespace Foundation.FormBuilder.DynamicForm
 {
-    public class BootStrapFormBuilder<TModel> : UiBuilderBase<TModel>, IDynamicUiBuilder<TModel>
+    internal class BootStrapFormBuilder<TModel> : UiBuilderBase<TModel>, IDynamicUiBuilder<TModel>
     {
         public BootStrapFormBuilder()
         {

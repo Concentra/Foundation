@@ -73,8 +73,6 @@
     <Compile Include="Blocks\ControlGroup.cs" />
     <Compile Include="Blocks\FormContainer.cs" />
     <Compile Include="Blocks\ElementGroup.cs" />
-    <Compile Include="CustomAttribute\Contents.cs" />
-    <Compile Include="CustomAttribute\ValidationInfo.cs" />
     <Compile Include="DynamicForm\BootStrapViewBuilder.cs" />
     <Compile Include="DynamicForm\UiBuilderBase.cs" />
     <Compile Include="ElementGenerators\FormElementGenerator.cs" />

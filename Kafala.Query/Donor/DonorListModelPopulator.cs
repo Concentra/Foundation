@@ -5,9 +5,11 @@ using System.Text;
 using Foundation.Infrastructure.Query;
 using Foundation.Web.Paging;
 using Foundation.Web.Sorter;
+using Foundation.Web.Filter;
 using Kafala.Entities;
 using Kafala.Web.ViewModels.Donor;
 using Foundation.Infrastructure;
+using Kafala.Web.ViewModels.Donor.Partial;
 using NHibernate;
 using NHibernate.Linq;
 using IQuery = Foundation.Infrastructure.Query.IQuery;
@@ -30,6 +32,8 @@ namespace Kafala.Query.Donor
 
             donorsQuery = donorsQuery.ApplyOrder(parameters);
 
+            donorsQuery = donorsQuery.ApplyFilter(parameters);
+
             var pagedDonors = donorsQuery.FetchPaged(parameters);
             var model = new DonorIndexViewModel
             {
@@ -41,11 +45,12 @@ namespace Kafala.Query.Donor
                     Telephone = x.Telephone,
                     DonorStatus = x.DonorStatus
                 }).ToList(),
+                DonorFilter = new DonorFilterViewModel()
             };
 
-            model.PagingInformationViewModel.FillSortingParameters(parameters);
+            model.DonorFilter.FillSortingParameters(parameters);
 
-            model.PagingInformationViewModel.FillPagingParameters(pagedDonors.PagingViewModel);
+            model.DonorFilter.FillPagingParameters(pagedDonors.PagingViewModel);
 
             return model;
         }

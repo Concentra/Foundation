@@ -72,11 +72,12 @@
     <Compile Include="Configurations\QueryRegistery.cs" />
     <Compile Include="Configurations\SecurityRegistery.cs" />
     <Compile Include="Notifications\EmailLogger.cs" />
-    <Compile Include="Notifications\EmailService.cs" />
+    <Compile Include="Notifications\EmailMessageSender.cs" />
     <Compile Include="Notifications\IEmailLogger.cs" />
+    <Compile Include="Notifications\IEmailMessageSender.cs" />
     <Compile Include="Notifications\IEmailService.cs" />
     <Compile Include="Notifications\IFlashMessenger.cs" />
-    <Compile Include="Notifications\NotificationHelper.cs" />
+    <Compile Include="Notifications\EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\QueryRegisterationConventrion.cs" />
     <Compile Include="Query\QueryContainer.cs" />
