@@ -225,6 +225,21 @@ namespace Foundation.FormBuilder.ElementGenerators
             tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
             tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
             
+            if (!string.IsNullOrEmpty(formElement.CollectionInfo.SelectPromptLabel))
+            {
+                var option = new TagBuilder("option");
+
+                option.MergeAttribute(HtmlAtrributes.Value, formElement.CollectionInfo.SelectPromptValue);
+                option.SetInnerText(formElement.CollectionInfo.SelectPromptLabel);
+
+                if (value == null || formElement.CollectionInfo.SelectPromptValue.ToUpper() == value.ToString().ToUpper())
+                {
+                    option.MergeAttribute(HtmlAtrributes.Selected, null);
+                }
+
+                tagbuilder.InnerHtml += option.ToMvcHtmlString(TagRenderMode.Normal);
+            }
+
             if (itemsList != null)
             {
                 foreach (var selectListItem in itemsList)
