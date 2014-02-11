@@ -40,9 +40,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Foundation.Web">
-      <HintPath>..\packages\Foundation.Web.0.9\lib\net45\Foundation.Web.dll</HintPath>
-    </Reference>
     <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
@@ -104,6 +101,10 @@
     <ProjectReference Include="..\Foundation.Persistence\Foundation.Persistence.csproj">
       <Project>{c684e3b8-d828-4ece-b427-afc06f25977f}</Project>
       <Name>Foundation.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
+      <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
+      <Name>Foundation.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

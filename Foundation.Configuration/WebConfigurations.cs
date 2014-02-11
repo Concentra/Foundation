@@ -12,6 +12,7 @@ namespace Foundation.Configuration
         
         /// <summary>
         /// a pointer to the assembly hosting your MVC controllers.
+        /// </summary>
         public Type ControllersAssemblyHookType { get; set; }
         
         /// <summary>
