@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Mvc;
 
 namespace Foundation.Web.Paging
 {
@@ -7,6 +8,7 @@ namespace Foundation.Web.Paging
         public Func<object, string> ActionFunc { get; set; }
     }
 
+    [Bind(Exclude = "ActionFunc")]
     public class PagingParameters: NavigationParameters, IPagingParameters
     {
         public int PageSize { get; set; }
@@ -18,6 +20,7 @@ namespace Foundation.Web.Paging
         public int TotalPages { get; set; }
     }
 
+    [Bind(Exclude = "ActionFunc")]
     public class SortingParameters : NavigationParameters, ISortingParameters
     {
         public string Sort { get; set; }
@@ -25,7 +28,8 @@ namespace Foundation.Web.Paging
         public string SortDirection { get; set; }
     }
 
-    public class PagingAndSortingParameters :NavigationParameters, IPagingParameters, ISortingParameters
+    [Bind(Exclude = "ActionFunc")]
+    public class PagingAndSortingParameters : NavigationParameters, IPagingParameters, ISortingParameters
     {
         public string Sort { get; set; }
 

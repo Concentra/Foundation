@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace Foundation.Infrastructure.Notifications
 {
     public interface IFlashMessenger
@@ -15,9 +17,13 @@ namespace Foundation.Infrastructure.Notifications
 
     public enum FlashMessageType
     {
+        [Description("success")]
         Success,
+        [Description("danger")]
         Failure,
+        [Description("warning")]
         Warning,
+        [Description("info")]
         Information
     }
 }

@@ -232,7 +232,10 @@ namespace Foundation.FormBuilder.ElementGenerators
                 option.MergeAttribute(HtmlAtrributes.Value, formElement.CollectionInfo.SelectPromptValue);
                 option.SetInnerText(formElement.CollectionInfo.SelectPromptLabel);
 
-                if (value == null || formElement.CollectionInfo.SelectPromptValue.ToUpper() == value.ToString().ToUpper())
+                if (value == null || 
+                                    ( formElement.CollectionInfo.SelectPromptValue != null 
+                                    && formElement.CollectionInfo.SelectPromptValue.ToUpper() == value.ToString().ToUpper())
+                   )
                 {
                     option.MergeAttribute(HtmlAtrributes.Selected, null);
                 }

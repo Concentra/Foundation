@@ -11,7 +11,12 @@ namespace Foundation.Web.Extensions
     {
         public static MvcHtmlString SortableHeader(this HtmlHelper row, ISortingParameters sortingInfo, string columnId, string title, object htmlAttributes = null)
         {
-                return row.SortableHeader(sortingInfo.Sort, sortingInfo.SortDirection, columnId, title, sortingInfo.ActionFunc, htmlAttributes);
+            if (sortingInfo == null)
+            {
+                sortingInfo = new SortingParameters();
+            }
+
+            return row.SortableHeader(sortingInfo.Sort, sortingInfo.SortDirection, columnId, title, sortingInfo.ActionFunc, htmlAttributes);
         }
 
         public static MvcHtmlString SortableHeader(this HtmlHelper row, string currentSort, string sortDirection, string columnId, string title, Func<object, string> urlActionDelegate, object htmlAttributes = null)

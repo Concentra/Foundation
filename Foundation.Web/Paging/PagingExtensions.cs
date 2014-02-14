@@ -11,7 +11,6 @@
             
             destination.Sort = parameters.Sort;
             destination.SortDirection = parameters.SortDirection;
-
             return destination;
         }
 

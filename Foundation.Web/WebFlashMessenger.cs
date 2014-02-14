@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Foundation.Configuration;
 using Foundation.Infrastructure.Notifications;
+using Foundation.Web.Extensions;
 
 namespace Foundation.Web
 {
@@ -75,7 +76,7 @@ namespace Foundation.Web
                 if (messagesToRender.Any())
                 {
                     var builder = new TagBuilder("div");
-                    builder.AddCssClass("alert alert-" + messageType.ToString().ToLower());
+                    builder.AddCssClass("alert alert-" + EnumExtensions.GetEnumDescription(messageType).ToLower());
                     builder.InnerHtml = string.Join(".", messagesToRender);
                     return builder.ToString(TagRenderMode.Normal);
                 }

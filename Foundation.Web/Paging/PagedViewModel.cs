@@ -4,9 +4,9 @@
     {
         public PagedViewModel()
         {
-            PagingInformationViewModel = new PagingInfoViewModel();
+            PagingAndSortingParameters = new PagingAndSortingParameters();
         }
         
-        public PagingInfoViewModel PagingInformationViewModel { get; set; }
+        public PagingAndSortingParameters PagingAndSortingParameters { get; set; }
     }
 }

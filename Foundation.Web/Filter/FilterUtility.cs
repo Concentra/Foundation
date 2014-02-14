@@ -12,7 +12,7 @@ namespace Foundation.Web.Filter
     {
         public static IQueryable<T> ApplyFilter<T, TModel>(this IQueryable<T> source, TModel model)
         {
-            var filterElements = ExtractElementsToRender(model).Where(f => f.FieldValue != null);
+            var filterElements = ExtractElementsToFilter(model).Where(f => f.FieldValue != null);
                 
             var querytype = typeof(T);
             var arg = Expression.Parameter(querytype, "x");
@@ -102,7 +102,7 @@ namespace Foundation.Web.Filter
         }
 
 
-        public static IEnumerable<FilterElement> ExtractElementsToRender<TModel>(TModel model)
+        public static IEnumerable<FilterElement> ExtractElementsToFilter<TModel>(TModel model)
         {
             Dictionary<string, PropertyInfo> properties = typeof(TModel).GetProperties(BindingFlags.Public | BindingFlags.Instance)
                                                           .ToDictionary(p => p.Name, p => p);

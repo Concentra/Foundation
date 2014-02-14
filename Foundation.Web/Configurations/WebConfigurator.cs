@@ -22,7 +22,9 @@ namespace Foundation.Web.Configurations
             {
                 cfg.AddRegistry(new WebRegistery(foundationConfigurator));
                 cfg.For<IResourcesLocator>().Use(foundationConfigurator.Web);
-                this.RegisterPagingAndSortingModelBinders(foundationConfigurator.Web.ViewModelsAssemblyHookType);
+                
+                // this.RegisterPagingAndSortingModelBinders(foundationConfigurator.Web.ViewModelsAssemblyHookType);
+                
                 ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory(ObjectFactory.Container));
                 DependencyResolver.SetResolver(new StructureMapDependencyResolver(ObjectFactory.Container));
                 
@@ -55,15 +57,16 @@ namespace Foundation.Web.Configurations
         private IEnumerable<KeyValuePair<Type, IModelBinder>> GetModels(Type viewModelsAssemblyHook)
         {
             var directlyPageable = Assembly.GetAssembly(viewModelsAssemblyHook).GetTypes()
-                           .Where(x => x.IsSubclassOf(typeof(PagedViewModel)))
-                           .Select(x => new KeyValuePair<Type, IModelBinder>(x, new PagingInfoModelBinder()));
+                           .Where(x => x.IsSubclassOf(typeof(IPagingParameters)))
+                           .Select(x => new KeyValuePair<Type, IModelBinder>(x, new PagingModelBinder()));
 
             var containsPageableMember = Assembly.GetAssembly(viewModelsAssemblyHook).GetTypes()
-                           .Where(x => x.GetProperties().Any(p =>  x.IsSubclassOf(typeof(PagingInfoViewModel))))
-                           .Select(x => new KeyValuePair<Type, IModelBinder>(x, new PagingInfoModelBinder()));
+                           .Where(x => x.GetProperties().Any(p =>  x.IsSubclassOf(typeof(ISortingParameters))))
+                           .Select(x => new KeyValuePair<Type, IModelBinder>(x, new SortingModelBinder()));
 
-            var all = directlyPageable.Concat(containsPageableMember).Distinct();
+            var all = directlyPageable.Concat(containsPageableMember).Distinct().Where(x => 1 == 2);
 
+            
             return all;
         }
 

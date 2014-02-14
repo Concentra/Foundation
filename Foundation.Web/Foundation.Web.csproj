@@ -87,7 +87,9 @@
     <Compile Include="Extensions\ValidationSummaryExtensions.cs" />
     <Compile Include="Filter\FilterUtility.cs" />
     <Compile Include="GlyphIcons.cs" />
-    <Compile Include="ModelBinders\PagingInfoModelBinder.cs" />
+    <Compile Include="ModelBinders\PagingAndSortingModelBinder.cs" />
+    <Compile Include="ModelBinders\SortingModelBinder.cs" />
+    <Compile Include="ModelBinders\PagingModelBinder.cs" />
     <Compile Include="Navigation\MenuList.cs" />
     <Compile Include="Navigation\MenuBuilder.cs" />
     <Compile Include="Navigation\MenuContainer.cs" />
@@ -125,7 +127,7 @@
       <Name>Foundation.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Foundation.Infrastructure\Foundation.Infrastructure.csproj">
-      <Project>{0735DE5D-9FF2-4913-B894-F3B5D36A6CA5}</Project>
+      <Project>{0735de5d-9ff2-4913-b894-f3b5d36a6ca5}</Project>
       <Name>Foundation.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>

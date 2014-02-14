@@ -8,5 +8,6 @@ namespace Foundation.Configuration
         ResourceManager PageTitleResourceManager { get; }
         ResourceManager HelpResourceManager { get; }
         string DefaultPageTitle { get; set; }
+
     }
 }

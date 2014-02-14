@@ -64,7 +64,7 @@ namespace Foundation.Web.Paging
             }
         }
 
-        public static IPagedList<T> FetchPaged<T>(this IQueryable<T> parentQuery, IQueryable<T> queryWithChildren, int pageIndex, int pageSize)
+        private static IPagedList<T> FetchPaged<T>(this IQueryable<T> parentQuery, IQueryable<T> queryWithChildren, int pageIndex, int pageSize)
         {
             if (pageSize == 0)
             {
@@ -79,7 +79,7 @@ namespace Foundation.Web.Paging
                 x => futureCount);
         }
 
-        public static IPagedList<T> FetchPaged<T>(this IQueryable<T> query, IQueryable<T> queryWithChildren, IQueryable<T> childrenQueryWithGrandchildren, int pageIndex, int pageSize)
+        private static IPagedList<T> FetchPaged<T>(this IQueryable<T> query, IQueryable<T> queryWithChildren, IQueryable<T> childrenQueryWithGrandchildren, int pageIndex, int pageSize)
         {
             if (pageSize == 0)
             {
