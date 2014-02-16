@@ -35,8 +35,8 @@ namespace Kafala.Query.DonationCase
                                     StartDate = x.StartDate
                                 }),
                             };
-            model.PagingInformationViewModel.FillPagingParameters(donationCaseStatusPaged.PagingViewModel);
-            model.PagingInformationViewModel.FillSortingParameters(parameters);
+            model.PagingAndSortingParameters.FillPagingParameters(donationCaseStatusPaged.PagingViewModel);
+            model.PagingAndSortingParameters.FillSortingParameters(parameters);
             
             return model;
         }

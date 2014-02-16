@@ -7,10 +7,10 @@
 </p>
     <table class="table sorter">
         <tr>
-            @Html.SortableHeader(Model.PagingInformationViewModel.Sort, Model.PagingInformationViewModel.SortDirection, "DonationCaseName", "Donation Case Name", Model.PagingInformationViewModel.ActionFunc)
-            @Html.SortableHeader(Model.PagingInformationViewModel.Sort, Model.PagingInformationViewModel.SortDirection, "DonorName", "Donor Name", Model.PagingInformationViewModel.ActionFunc)
-            @Html.SortableHeader(Model.PagingInformationViewModel.Sort, Model.PagingInformationViewModel.SortDirection, "PaymentDate", "Payment Date", Model.PagingInformationViewModel.ActionFunc)
-            @Html.SortableHeader(Model.PagingInformationViewModel.Sort, Model.PagingInformationViewModel.SortDirection, "PaymentPeriod", "Payment Period", Model.PagingInformationViewModel.ActionFunc)
+            @Html.SortableHeader(Model.PagingAndSortingParameters.Sort, Model.PagingAndSortingParameters.SortDirection, "DonationCaseName", "Donation Case Name", Model.PagingAndSortingParameters.ActionFunc)
+            @Html.SortableHeader(Model.PagingAndSortingParameters.Sort, Model.PagingAndSortingParameters.SortDirection, "DonorName", "Donor Name", Model.PagingAndSortingParameters.ActionFunc)
+            @Html.SortableHeader(Model.PagingAndSortingParameters.Sort, Model.PagingAndSortingParameters.SortDirection, "PaymentDate", "Payment Date", Model.PagingAndSortingParameters.ActionFunc)
+            @Html.SortableHeader(Model.PagingAndSortingParameters.Sort, Model.PagingAndSortingParameters.SortDirection, "PaymentPeriod", "Payment Period", Model.PagingAndSortingParameters.ActionFunc)
             <th></th>
         </tr>
     
@@ -38,4 +38,4 @@
         }
     
     </table>
-@Html.PageLinks(Model.PagingInformationViewModel, Model.PagingInformationViewModel.ActionFunc)
+@Html.PageLinks(Model.PagingAndSortingParameters, Model.PagingAndSortingParameters.ActionFunc)

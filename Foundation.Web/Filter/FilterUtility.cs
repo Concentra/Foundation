@@ -46,35 +46,53 @@ namespace Foundation.Web.Filter
                     type = pi.PropertyType;
                 }
 
+                var literalType = type.IsEquivalentTo(typeof (string));
+                
                 var valueExpression = Expression.Constant(filterElement.FieldValue, filterElement.Property.PropertyType);
                 
-                BinaryExpression conditionExpression = Expression.Equal(propertyExpression, valueExpression);
+                Expression inputExpression, variableExpression;
+                if (filterElement.FilterSpecs.CaseSensitive && literalType)
+                {
+                    variableExpression = Expression.Call(propertyExpression,
+                            typeof(String).GetMethod("ToUpper", new Type[] { }));
+                    
+                    inputExpression =  Expression.Call(valueExpression,
+                        typeof(String).GetMethod("ToUpper", new Type[] { }));
+                }
+                else
+                {
+                    variableExpression = propertyExpression;
+                    inputExpression = valueExpression;
+                }
+
+                BinaryExpression conditionExpression = Expression.Equal(variableExpression, valueExpression);
 
                 switch (filterElement.FilterSpecs.OperatorOption)
                 {
                     case Operator.Equal:
-                        conditionExpression = Expression.Equal(propertyExpression, valueExpression);
+                        conditionExpression = Expression.Equal(variableExpression, inputExpression);
                         break;
                    case Operator.GreaterThan:
-                        conditionExpression = Expression.GreaterThan(propertyExpression, valueExpression);
+                        conditionExpression = Expression.GreaterThan(variableExpression, inputExpression);
                         break;
                    case Operator.GreaterThanOrEqualTo:
-                        conditionExpression = Expression.GreaterThanOrEqual(propertyExpression, valueExpression);
+                        conditionExpression = Expression.GreaterThanOrEqual(variableExpression, inputExpression);
                         break;
                    case Operator.LessThan:
-                        conditionExpression = Expression.LessThan(propertyExpression, valueExpression);
+                        conditionExpression = Expression.LessThan(variableExpression, inputExpression);
                         break;
                    case Operator.LessThanOrEqualTo:
-                        conditionExpression = Expression.LessThanOrEqual(propertyExpression, valueExpression);
+                        conditionExpression = Expression.LessThanOrEqual(variableExpression, inputExpression);
                         break;
                    case Operator.Unequal:
-                        conditionExpression = Expression.NotEqual(propertyExpression, valueExpression);
+                        conditionExpression = Expression.NotEqual(variableExpression, inputExpression);
                         break;
                    case Operator.Like:
-                        throw new NotImplementedException();
-#pragma warning disable 162
+                        MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+  
+                       var likeExpression = method.Invoke(variableExpression , new object[]{inputExpression });
+                       conditionExpression = (BinaryExpression) likeExpression;
                         break;
-#pragma warning restore 162
                 }
 
 

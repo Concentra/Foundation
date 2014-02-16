@@ -62,9 +62,9 @@ namespace Kafala.Query.Payment
                                 Payments = paymentModel,
                             };
 
-            model.PagingInformationViewModel.FillSortingParameters(parameters);
+            model.PagingAndSortingParameters.FillSortingParameters(parameters);
 
-            model.PagingInformationViewModel.FillPagingParameters(pagedPayments.PagingViewModel);
+            model.PagingAndSortingParameters.FillPagingParameters(pagedPayments.PagingViewModel);
 
             return model;
         }
