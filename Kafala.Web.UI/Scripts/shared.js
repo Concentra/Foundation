@@ -119,8 +119,8 @@ $("form").submit(function (event) {
 
                     $("#detailModelContent").html(data);
                     $.validator.unobtrusive.parse($("#detailModelContent"));
-                    $("#detailModelTitle").html(title);
-                    $("#detailModelDismissButton").html(dismissButtonText);
+                    $("#detailsModelTitle").html(title);
+                    $("#detailsModelDismissButton").html(dismissButtonText);
 
                     if (hideButtonsAndTitle === "true" || hideButtonsAndTitle === "True") {
                         $("#detailsModelHeader").hide();
