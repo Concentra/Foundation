@@ -52,6 +52,8 @@ namespace Kafala.Query.Donor
 
             model.DonorFilter.FillPagingParameters(pagedDonors.PagingViewModel);
 
+            model.DonorFilter.DonorName = parameters.DonorName;
+
             return model;
         }
     }

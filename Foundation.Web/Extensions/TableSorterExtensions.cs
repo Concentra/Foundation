@@ -9,21 +9,26 @@ namespace Foundation.Web.Extensions
 {
     public static class TableSorterExtensions
     {
-        public static MvcHtmlString SortableHeader(this HtmlHelper row, ISortingParameters sortingInfo, string columnId, string title, object htmlAttributes = null)
+        public static MvcHtmlString SortableHeader(this HtmlHelper row, string currentSort, string currentDirection, string columnId, string title, Func<object, string> actionFunc, object htmlAttributes = null)
         {
-            if (sortingInfo == null)
-            {
-                sortingInfo = new SortingParameters();
-            }
-
-            return row.SortableHeader(sortingInfo.Sort, sortingInfo.SortDirection, columnId, title, sortingInfo.ActionFunc, htmlAttributes);
+            var sortingInfo = new SortingParameters();
+            sortingInfo.ActionFunc = actionFunc;
+            sortingInfo.Sort = currentSort;
+            sortingInfo.SortDirection = currentDirection;
+            return row.SortableHeader(sortingInfo, columnId, title, htmlAttributes);
         }
 
-        public static MvcHtmlString SortableHeader(this HtmlHelper row, string currentSort, string sortDirection, string columnId, string title, Func<object, string> urlActionDelegate, object htmlAttributes = null)
+        public static MvcHtmlString SortableHeader(this HtmlHelper row, object queryObject, string columnId, string title, object htmlAttributes = null)
         {
             var properties = string.Empty;
             IDictionary<string, object> attributes = new RouteValueDictionary(htmlAttributes);
 
+            var sortingInfo = queryObject as ISortingParameters ?? new SortingParameters();
+
+            var currentSort = sortingInfo.Sort;
+            var currentDirection = sortingInfo.SortDirection;
+            var urlActionDelegate = sortingInfo.ActionFunc;
+            
             const string direction = "asc";
             var newSortDirection = direction;
             foreach (var attr in attributes)
@@ -34,12 +39,13 @@ namespace Foundation.Web.Extensions
             string sortableHeaderCssClass = Configurations.WebConfigurations.PagingConfigurations.SortableHeaderCssClass;
             string sortableHeader = sortableHeaderCssClass;
             var cssClass = sortableHeader;
-            string sortIcon = "";
+            var sortIcon = "";
+
             if (!string.IsNullOrEmpty(currentSort) && currentSort == columnId)
             {
                 var sorted = Configurations.WebConfigurations.PagingConfigurations.SortedHeaderCssClass;
                 cssClass += string.Format(" {0}", sorted);
-                if (sortDirection.ToLower().StartsWith("d"))
+                if (currentDirection.ToLower().StartsWith("d"))
                 {
                     string sortedIcondDescending = Configurations.WebConfigurations.PagingConfigurations.SortedIcondDescending;
                     sortIcon = sortedIcondDescending;
@@ -55,13 +61,19 @@ namespace Foundation.Web.Extensions
             else
             {
                 // default (initial sort) is ascending
-                sortDirection = direction;
+                newSortDirection = direction;
             }
 
             var iconSpan = string.Format("<span class=\"glyphicon glyph{0}\"></span>", sortIcon);
 
-            var link = BasePagingExtensions.CreatePageLink(urlActionDelegate, new { Sort = columnId, SortDirection = newSortDirection }, title, title);
-            
+            sortingInfo.Sort = columnId;
+            sortingInfo.SortDirection = newSortDirection;
+
+            var link = BasePagingExtensions.CreatePageLink(urlActionDelegate,queryObject, title, title);
+
+            sortingInfo.Sort = currentSort;
+            sortingInfo.SortDirection = currentDirection;
+
             return MvcHtmlString.Create(string.Format("<th class=\"{0}\" id=\"{1}\" {2}>{3} {4} </th>", cssClass, columnId, properties, link, iconSpan));
         }
     }

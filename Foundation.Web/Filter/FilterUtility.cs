@@ -46,12 +46,12 @@ namespace Foundation.Web.Filter
                     type = pi.PropertyType;
                 }
 
-                var literalType = type.IsEquivalentTo(typeof (string));
+                var isLiteralType = type.IsEquivalentTo(typeof (string));
                 
                 var valueExpression = Expression.Constant(filterElement.FieldValue, filterElement.Property.PropertyType);
                 
                 Expression inputExpression, variableExpression;
-                if (filterElement.FilterSpecs.CaseSensitive && literalType)
+                if (filterElement.FilterSpecs.CaseSensitive && isLiteralType)
                 {
                     variableExpression = Expression.Call(propertyExpression,
                             typeof(String).GetMethod("ToUpper", new Type[] { }));
@@ -89,9 +89,8 @@ namespace Foundation.Web.Filter
                         break;
                    case Operator.Like:
                         MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-  
-                       var likeExpression = method.Invoke(variableExpression , new object[]{inputExpression });
-                       conditionExpression = (BinaryExpression) likeExpression;
+                        var containsMethodCall = Expression.Call(variableExpression, method, inputExpression);
+                        conditionExpression = Expression.Equal(containsMethodCall, Expression.Constant(true));
                         break;
                 }
 
