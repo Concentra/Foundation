@@ -57,6 +57,10 @@
     <Reference Include="DataAnnotationsExtensions">
       <HintPath>..\packages\DataAnnotationsExtensions.1.1.0.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0774796e73ebf640, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernateProfiler.2.0.2233.0\lib\HibernatingRhinos.Profiler.Appender.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -86,8 +90,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="WebActivator">
-      <HintPath>..\packages\WebActivator.1.2.0.0\lib\NETFramework40\WebActivator.dll</HintPath>
+    <Reference Include="WebActivator, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -300,10 +305,6 @@
     <ProjectReference Include="..\Kafala.Web.ViewModels\Kafala.Web.ViewModels.csproj">
       <Project>{a6e405f1-0e83-407b-b07c-edaef5b6111e}</Project>
       <Name>Kafala.Web.ViewModels</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VortexSoft.Bootstrap\VortexSoft.Bootstrap.csproj">
-      <Project>{371babec-5a00-464d-8ebb-09c32ca4c326}</Project>
-      <Name>VortexSoft.Bootstrap</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Foundation.FormBuilder.DynamicForm;
+using Foundation.FormBuilder.Form;
 
 namespace Foundation.FormBuilder.Extensions
 {
@@ -20,6 +21,11 @@ namespace Foundation.FormBuilder.Extensions
             return new BootStrapViewBuilder<TModel>()
                 .Build(model, formType, renderButtons, htmlHelper);
             
+        }
+
+        public static Bootstrap<TModel> Bootstrap<TModel>(this HtmlHelper<TModel> htmlHelper)
+        {
+            return new Bootstrap<TModel>(htmlHelper);
         }
     }
 }

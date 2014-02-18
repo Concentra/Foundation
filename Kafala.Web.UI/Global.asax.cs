@@ -40,6 +40,8 @@ namespace Kafala.Web.UI
 
         protected void Application_Start()
         {
+            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+
             var config = new FoundationConfigurator
             {
 

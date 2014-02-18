@@ -1,7 +1,8 @@
-﻿@model Kafala.Web.ViewModels.Commitment.ViewCommitmentViewModel
+﻿@using Foundation.FormBuilder.DynamicForm
+@model Kafala.Web.ViewModels.Commitment.ViewCommitmentViewModel
 
 <h2>Commitment Details</h2>
-@using (var form = Html.Bootstrap().BeginForm(VortexSoft.Bootstrap.BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
+@using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
 {
     @Html.DynamicView()
 }

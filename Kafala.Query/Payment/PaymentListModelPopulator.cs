@@ -44,7 +44,13 @@ namespace Kafala.Query.Payment
                 paymentList = paymentList.Where(x => x.PaymentPeriod.Id == parameters.PeriodId.Value);
             }
 
-            var pagedPayments = paymentList.FetchPaged(parameters);
+            var pagedPayments = paymentList
+                                    .Fetch(x => x.Commitment)
+                                        .ThenFetch(x => x.DonationCase)
+                                    .Fetch(x => x.Commitment)
+                                        .ThenFetch(x => x.Donor)
+                                    .Fetch(x => x.PaymentPeriod)
+                                    .FetchPaged(parameters);
 
             
             var paymentModel = pagedPayments.Select(x => new ViewPaymentViewModel()
@@ -62,9 +68,9 @@ namespace Kafala.Query.Payment
                                 Payments = paymentModel,
                             };
 
-            model.PagingInformationViewModel.FillSortingParameters(parameters);
+            model.PagingAndSortingParameters.FillSortingParameters(parameters);
 
-            model.PagingInformationViewModel.FillPagingParameters(pagedPayments.PagingViewModel);
+            model.PagingAndSortingParameters.FillPagingParameters(pagedPayments.PagingViewModel);
 
             return model;
         }

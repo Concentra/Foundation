@@ -71,7 +71,7 @@ namespace Kafala.Query.Reports
                     OverDueAmount = expectedAmount - collectedAmount
                 };
 
-                model.PagingInformationViewModel.FillPagingParameters(pagedCommitments.PagingViewModel);
+                model.PagingAndSortingParameters.FillPagingParameters(pagedCommitments.PagingViewModel);
 
                 return model;
            

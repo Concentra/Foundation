@@ -26,14 +26,12 @@ namespace Foundation.FormBuilder.Blocks
 
             textWriter.AddAttribute("action", url ) ;
             var htmlAttributesCollection = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
-            
 
             switch (this.formType)
             {
                 case BootstrapFormType.Horizontal: htmlAttributesCollection.Merge("class", "form-horizontal"); break;
                 case BootstrapFormType.Vertical: htmlAttributesCollection.Merge("class", "form-vertical"); break;
                 case BootstrapFormType.Inline: htmlAttributesCollection.Merge("class", "form-inline"); break;
-                case BootstrapFormType.Search: htmlAttributesCollection.Merge("class", "form-search"); break;
             }
 
             foreach (var htmlAttribute in htmlAttributesCollection)

@@ -4,7 +4,6 @@
     {
         Horizontal = 0,
         Vertical,
-        Inline,
-        Search
+        Inline
     }
 }
