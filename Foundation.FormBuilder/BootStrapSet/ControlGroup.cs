@@ -1,12 +1,10 @@
 using System;
 using System.Web.UI;
-using Foundation.FormBuilder.CustomAttribute;
 using Foundation.FormBuilder.DynamicForm;
 using Foundation.FormBuilder.Extensions;
-using Foundation.Web;
 using Foundation.Web.Extensions;
 
-namespace Foundation.FormBuilder.Blocks
+namespace Foundation.FormBuilder.BootStrapSet
 {
     public class ControlGroup : IDisposable
     {
@@ -35,7 +33,7 @@ namespace Foundation.FormBuilder.Blocks
         public static void RenderLabel(BootstrapFormType formType, FormElement formElement, NavHtmlTextWritter textWriter)
         {
             // if there is a Name specified in the DisplayAttribute use it , other wise use the property name 
-            var displayName = formElement.PropertyInfo.Name.SpacePascal();
+            var displayName = formElement.ControlSpecs.ControlName.SpacePascal();
 
             if (!String.IsNullOrEmpty(formElement.ControlSpecs.Name))
             {
@@ -51,7 +49,7 @@ namespace Foundation.FormBuilder.Blocks
             {
                 textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "control-label");
             }
-            textWriter.AddAttribute(HtmlTextWriterAttribute.For, formElement.PropertyInfo.Name);
+            textWriter.AddAttribute(HtmlTextWriterAttribute.For, formElement.ControlSpecs.ControlName);
             textWriter.RenderBeginTag(HtmlTextWriterTag.Label);
             textWriter.Write(displayName);
             textWriter.RenderEndTag(); // label

@@ -26,6 +26,8 @@ namespace Foundation.FormBuilder.CustomAttribute
         internal string ShortName;
         internal int? Order = int.MaxValue;
         internal string Name;
+        internal string ControlName;
+        internal string ClientId;
     }
 
     public enum ElementType

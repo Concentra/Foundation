@@ -1,14 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.UI;
 using Foundation.FormBuilder.DynamicForm;
 using Foundation.FormBuilder.Extensions;
 
 namespace Foundation.FormBuilder.Blocks
 {
-    public class FormContainer : IDisposable
+    public interface IFormContainer
+    {
+    }
+
+    public class FormContainer : IDisposable, IFormContainer
     {
         private readonly HtmlTextWriter textWriter;
         private readonly BootstrapFormType formType;

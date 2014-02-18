@@ -1,7 +1,7 @@
 using System;
 using System.Web.UI;
 
-namespace Foundation.FormBuilder.Blocks
+namespace Foundation.FormBuilder.BootStrapSet
 {
     public class ElementGroup : IDisposable
     {

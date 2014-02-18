@@ -8,35 +8,36 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using Foundation.FormBuilder.Blocks;
+using Foundation.FormBuilder.BootStrapSet;
 using Foundation.FormBuilder.CustomAttribute;
-using Foundation.FormBuilder.ElementGenerators;
 using Foundation.FormBuilder.Extensions;
 using Foundation.Web;
 using Foundation.Web.Extensions;
 
 namespace Foundation.FormBuilder.DynamicForm
 {
-    internal class BootStrapFormBuilder<TModel> : UiBuilderBase<TModel>, IDynamicUiBuilder<TModel>
+    internal class BootStrapFormBuilder<TModel> : ModelBasedBuilder<TModel>, IDynamicUiBuilder<TModel>
     {
         public BootStrapFormBuilder()
         {
-            ElementGenerator = new FormElementGenerator();
-            Properties = typeof(TModel).GetCachedProperties(BindingFlags.Public | BindingFlags.Instance)
-                .ToDictionary(p => p.Name , p => p);
+            ElementGenerator = new BootStrapFormElementGenerator();
         }
 
-        public MvcHtmlString Build(TModel model, BootstrapFormType formType, bool renderButtons, HtmlHelper<TModel> htmlelper)
+        public MvcHtmlString Build(TModel model, BootstrapFormType formType, bool renderButtons, HtmlHelper<TModel> htmlHelper)
         {
-            
-            var formElements = ExtractElementsToRender(model);
-            
+            var formElements = ExtractElementsToRender(model, htmlHelper);
+
+            return BuildForm(formType, renderButtons, formElements);
+        }
+
+        public MvcHtmlString BuildForm(BootstrapFormType formType, bool renderButtons, List<FormElement> formElements)
+        {
             var sb = new StringBuilder();
             sb.Append(RenderHiddenFields(formElements));
             var stringWriter = new StringWriter(sb);
             using (var textWriter = new NavHtmlTextWritter(stringWriter))
             {
-                BuildLayout(htmlelper, formType, formElements, textWriter);
+                BuildForm(formType, formElements, textWriter);
 
                 if (renderButtons)
                 {

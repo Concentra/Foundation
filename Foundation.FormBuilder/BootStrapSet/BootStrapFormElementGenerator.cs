@@ -1,19 +1,13 @@
 using System;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Web.Mvc;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Foundation.FormBuilder.CustomAttribute;
 using Foundation.FormBuilder.DynamicForm;
 using Foundation.FormBuilder.Extensions;
-using Foundation.Web;
 
-namespace Foundation.FormBuilder.ElementGenerators
+namespace Foundation.FormBuilder.BootStrapSet
 {
-    internal class FormElementGenerator : IElementGenerator
+    internal class BootStrapFormElementGenerator : IElementGenerator
     {
         
         public TagBuilder RenderElement(FormElement formElement)
@@ -83,8 +77,8 @@ namespace Foundation.FormBuilder.ElementGenerators
             }
 
             tagbuilder.MergeAttribute(HtmlAtrributes.Type, "checkbox");
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
             tagbuilder.MergeAttribute(HtmlAtrributes.Value, "true");
 
             return tagbuilder;
@@ -98,8 +92,8 @@ namespace Foundation.FormBuilder.ElementGenerators
             tagbuilder.MergeAttribute(HtmlAtrributes.Type, "text");
             tagbuilder.MergeAttribute(HtmlAtrributes.Class, "datepicker");
             tagbuilder.MergeAttribute(HtmlAtrributes.Cols, "14");
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
 
             return tagbuilder;
         }
@@ -111,8 +105,8 @@ namespace Foundation.FormBuilder.ElementGenerators
             
             tagbuilder.MergeAttribute(HtmlAtrributes.Value, Convert.ToString(value));
             tagbuilder.MergeAttribute(HtmlAtrributes.Type, "text");
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
             return tagbuilder;
         }
 
@@ -127,8 +121,8 @@ namespace Foundation.FormBuilder.ElementGenerators
             {
                 tagbuilder.MergeAttribute(HtmlAtrributes.Maxlength, formElement.ControlSpecs.MaxLength.ToString(CultureInfo.InvariantCulture));
             }
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
             return tagbuilder;
         }
 
@@ -144,8 +138,8 @@ namespace Foundation.FormBuilder.ElementGenerators
                 tagbuilder.MergeAttribute(HtmlAtrributes.Maxlength, formElement.ControlSpecs.MaxLength.ToString(CultureInfo.InvariantCulture));
             }
 
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
             return tagbuilder;
         }
 
@@ -153,8 +147,8 @@ namespace Foundation.FormBuilder.ElementGenerators
         {
             var value = formElement.FieldValue;
             var tagbuilder = new TagBuilder("input");
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
             tagbuilder.MergeAttribute(HtmlAtrributes.Type, "hidden");
             var hiddenValue = (value == null) ? String.Empty : value.ToString();
             tagbuilder.MergeAttribute(HtmlAtrributes.Value, hiddenValue);
@@ -166,8 +160,8 @@ namespace Foundation.FormBuilder.ElementGenerators
             var value = formElement.FieldValue;
             var tagbuilder = new TagBuilder("textarea");
             
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
             tagbuilder.MergeAttribute(HtmlAtrributes.Cols, formElement.ControlSpecs.Cols.ToString(CultureInfo.InvariantCulture));
             tagbuilder.MergeAttribute(HtmlAtrributes.Rows, formElement.ControlSpecs.Rows.ToString(CultureInfo.InvariantCulture));
             tagbuilder.SetInnerText(Convert.ToString(value));
@@ -181,8 +175,8 @@ namespace Foundation.FormBuilder.ElementGenerators
             var tagbuilder = new TagBuilder("input");
             tagbuilder.MergeAttribute(HtmlAtrributes.Value, Convert.ToString(value));
             tagbuilder.MergeAttribute(HtmlAtrributes.Type, "text");
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
             return tagbuilder; 
         }
 
@@ -191,17 +185,14 @@ namespace Foundation.FormBuilder.ElementGenerators
             var value = formElement.FieldValue;
             var tagbuilder = new TagBuilder("select");
             
-            var property = formElement.PropertyInfo;
-
-            tagbuilder.MergeAttribute("id" , property.Name);
-
-            foreach (var enumValue in Enum.GetValues(property.PropertyType))
+            
+            foreach (var enumValue in Enum.GetValues(formElement.MappedDataType))
             {
                 var option = new TagBuilder("option");
                 option.MergeAttribute(HtmlAtrributes.Value, enumValue.ToString());
                 option.SetInnerText(enumValue.ToString().SpacePascal());
 
-                var selected = value != null && (int) enumValue == (int) Enum.Parse(property.PropertyType, value.ToString());
+                var selected = value != null && (int) enumValue == (int) Enum.Parse(formElement.MappedDataType, value.ToString());
 
                 if (selected)
                 {
@@ -211,7 +202,8 @@ namespace Foundation.FormBuilder.ElementGenerators
                 tagbuilder.InnerHtml += option.ToMvcHtmlString(TagRenderMode.Normal);
             }
 
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, property.Name);
+            tagbuilder.MergeAttribute("id", formElement.ControlSpecs.ClientId);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
             return tagbuilder;
         }
 
@@ -222,8 +214,8 @@ namespace Foundation.FormBuilder.ElementGenerators
             var itemsList = formElement.CollectionInfo.CollectionObject;
             var tagbuilder = new TagBuilder("select");
            
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.PropertyInfo.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.PropertyInfo.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
             
             if (!string.IsNullOrEmpty(formElement.CollectionInfo.SelectPromptLabel))
             {
@@ -267,11 +259,10 @@ namespace Foundation.FormBuilder.ElementGenerators
         private TagBuilder RenderStaticText(FormElement formElement)
         {
             var value = formElement.FieldValue;
-            var property = formElement.PropertyInfo;
             var tagbuilder = new TagBuilder("p");
            
-            tagbuilder.MergeAttribute(HtmlAtrributes.Name, property.Name);
-            tagbuilder.MergeAttribute(HtmlAtrributes.Id, property.Name);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
             tagbuilder.MergeAttribute(HtmlAtrributes.Class, "form-control-static");
             tagbuilder.InnerHtml = Convert.ToString(value);
 

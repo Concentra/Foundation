@@ -69,32 +69,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blocks\ControlContainer.cs" />
-    <Compile Include="Blocks\ControlGroup.cs" />
-    <Compile Include="Blocks\FormContainer.cs" />
-    <Compile Include="Blocks\ElementGroup.cs" />
     <Compile Include="DynamicForm\BootStrapViewBuilder.cs" />
-    <Compile Include="DynamicForm\UiBuilderBase.cs" />
-    <Compile Include="ElementGenerators\FormElementGenerator.cs" />
-    <Compile Include="ElementGenerators\IElementGenerator.cs" />
-    <Compile Include="ElementGenerators\ViewElementGenerator.cs" />
+    <Compile Include="DynamicForm\FormBuilderBase.cs" />
+    <Compile Include="DynamicForm\ModelBasedBuilder.cs" />
+    <Compile Include="BootStrapSet\BootStrapFormElementGenerator.cs" />
+    <Compile Include="BootStrapSet\BootStrapViewElementGenerator.cs" />
     <Compile Include="CustomAttribute\CollectionInfo.cs" />
     <Compile Include="CustomAttribute\EditControl.cs" />
     <Compile Include="DynamicForm\BootStrapFormBuilder.cs" />
     <Compile Include="DynamicForm\BootstrapFormType.cs" />
     <Compile Include="DynamicForm\IDynamicUiBuilder.cs" />
+    <Compile Include="BootStrapSet\ControlContainer.cs" />
+    <Compile Include="BootStrapSet\ControlGroup.cs" />
+    <Compile Include="BootStrapSet\ElementGroup.cs" />
+    <Compile Include="Blocks\FormContainer.cs" />
     <Compile Include="Extensions\RouteValueDictionaryExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TagBuilderExtensions.cs" />
     <Compile Include="DynamicForm\FormElement.cs" />
     <Compile Include="Form\Bootstrap.cs" />
-    <Compile Include="Form\HtmlAttributesUtility.cs" />
     <Compile Include="HtmlAttributes.cs" />
-    <Compile Include="HtmlElement.cs" />
+    <Compile Include="IElementGenerator.cs" />
     <Compile Include="ModelCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validation\ValidationAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

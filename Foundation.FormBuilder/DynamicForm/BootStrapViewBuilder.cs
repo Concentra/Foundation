@@ -8,32 +8,29 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using Foundation.FormBuilder.Blocks;
+using Foundation.FormBuilder.BootStrapSet;
 using Foundation.FormBuilder.CustomAttribute;
-using Foundation.FormBuilder.ElementGenerators;
 using Foundation.FormBuilder.Extensions;
 using Foundation.Web.Extensions;
 
 namespace Foundation.FormBuilder.DynamicForm
 {
-    internal class BootStrapViewBuilder<TModel> : UiBuilderBase<TModel>, IDynamicUiBuilder<TModel>
+    internal class BootStrapViewBuilder<TModel> : ModelBasedBuilder<TModel>, IDynamicUiBuilder<TModel>
     {
         public BootStrapViewBuilder()
         {
-            ElementGenerator = new ViewElementGenerator();
-            Properties = typeof(TModel).GetCachedProperties(BindingFlags.Public | BindingFlags.Instance)
-                .ToDictionary(p => p.Name , p => p);
+            ElementGenerator = new BootStrapViewElementGenerator();
         }
 
-        public MvcHtmlString Build(TModel model, BootstrapFormType formType, bool renderButtons, HtmlHelper<TModel> htmlelper)
+        public MvcHtmlString Build(TModel model, BootstrapFormType formType, bool renderButtons, HtmlHelper<TModel> htmlHelper)
         {
-            var formElements = ExtractElementsToRender(model);
+            var formElements = ExtractElementsToRender(model, htmlHelper);
             
             var sb = new StringBuilder();
             var stringWriter = new StringWriter(sb);
             using (var textWriter = new NavHtmlTextWritter(stringWriter))
             {
-                BuildLayout(htmlelper, formType, formElements, textWriter);
+                base.BuildForm(formType, formElements, textWriter);
 
                 if (renderButtons)
                 {
