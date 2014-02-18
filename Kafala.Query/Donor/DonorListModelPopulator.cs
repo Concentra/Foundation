@@ -16,7 +16,7 @@ using IQuery = Foundation.Infrastructure.Query.IQuery;
 
 namespace Kafala.Query.Donor
 {
-    public class DonorListModelPopulator : IQuery<PagingAndSortingParameters, DonorIndexViewModel>
+    public class DonorListModelPopulator : IQuery<DonorFilterViewModel, DonorIndexViewModel>
     {
         private readonly ISession session;
 
@@ -25,7 +25,7 @@ namespace Kafala.Query.Donor
             this.session = session;
         }
 
-        public DonorIndexViewModel Execute(PagingAndSortingParameters parameters)
+        public DonorIndexViewModel Execute(DonorFilterViewModel parameters)
         {
 
             var donorsQuery = this.session.Query<Entities.Donor>();
@@ -51,6 +51,8 @@ namespace Kafala.Query.Donor
             model.DonorFilter.FillSortingParameters(parameters);
 
             model.DonorFilter.FillPagingParameters(pagedDonors.PagingViewModel);
+
+            model.DonorFilter.DonorName = parameters.DonorName;
 
             return model;
         }

@@ -32,7 +32,9 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new {id = item.Id}, new{  @class = "showInPopUpOnClick" }) |
                 @Html.ActionLink("Details", "Details", new {id = item.Id}, new{  @class = "showInBaloonOnMouseOver" }) |
-                @Html.ActionLink("PopUP", "Details", new {id = item.Id}, new{  @class = "showInPopUpOnClick" }) |
+                @Html.ActionLink("PopUP", "Details", new {id = item.Id}, new{  @class = "showInPopUpOnClick" ,
+               data_popup_title = "Test On Title" ,
+               data_popup_dismissButtonText = "Click To Close"}) |
                 @Ajax.ActionLink("Delete" , "Delete", new { id=item.Id } , 
                 new AjaxOptions()
                 {
