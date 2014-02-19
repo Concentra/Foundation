@@ -1,7 +1,6 @@
 using System.Web.Mvc;
-using Foundation.FormBuilder.DynamicForm;
 
-namespace Foundation.FormBuilder
+namespace Foundation.FormBuilder.DynamicForm
 {
     public interface IElementGenerator
     {

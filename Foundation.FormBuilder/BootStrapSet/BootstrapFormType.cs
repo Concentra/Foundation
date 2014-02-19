@@ -1,4 +1,4 @@
-﻿namespace Foundation.FormBuilder.DynamicForm
+namespace Foundation.FormBuilder.BootStrapSet
 {
     public enum BootstrapFormType
     {

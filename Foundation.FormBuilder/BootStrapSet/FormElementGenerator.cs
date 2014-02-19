@@ -7,7 +7,7 @@ using Foundation.FormBuilder.Extensions;
 
 namespace Foundation.FormBuilder.BootStrapSet
 {
-    internal class BootStrapFormElementGenerator : IElementGenerator
+    internal class FormElementGenerator : IElementGenerator
     {
         
         public TagBuilder RenderElement(FormElement formElement)

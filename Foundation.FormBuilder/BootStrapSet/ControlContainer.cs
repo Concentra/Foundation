@@ -4,15 +4,12 @@ using Foundation.FormBuilder.DynamicForm;
 
 namespace Foundation.FormBuilder.BootStrapSet
 {
-    public class ControlContainer : IDisposable
+    public class ControlContainer 
     {
-        private readonly HtmlTextWriter textWriter;
-        private readonly BootstrapFormType formType;
-
-        public ControlContainer(HtmlTextWriter htmlTextWriter, BootstrapFormType formType = BootstrapFormType.Horizontal)
+        
+        public static void Begin(HtmlTextWriter htmlTextWriter, BootstrapFormType formType = BootstrapFormType.Horizontal)
         {
-            this.textWriter = htmlTextWriter;
-            this.formType = formType;
+            var textWriter = htmlTextWriter;
             if (formType == BootstrapFormType.Horizontal)
             {
                 // Controls Div
@@ -24,9 +21,9 @@ namespace Foundation.FormBuilder.BootStrapSet
         }
 
 
-        public void Dispose()
+        public static void End(HtmlTextWriter htmlTextWriter)
         {
-            textWriter.RenderEndTag(); // div (ElementType-Group)
+            htmlTextWriter.WriteEndTag("div"); // div (ElementType-Group)
         }
     }
 }

@@ -69,28 +69,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DynamicForm\BootStrapViewBuilder.cs" />
-    <Compile Include="DynamicForm\FormBuilderBase.cs" />
-    <Compile Include="DynamicForm\ModelBasedBuilder.cs" />
-    <Compile Include="BootStrapSet\BootStrapFormElementGenerator.cs" />
-    <Compile Include="BootStrapSet\BootStrapViewElementGenerator.cs" />
+    <Compile Include="BootStrapSet\BuilderParameters.cs" />
+    <Compile Include="BootStrapSet\BootStrapFormBuilder.cs" />
+    <Compile Include="BootStrapSet\BootstrapFormType.cs" />
+    <Compile Include="BootStrapSet\BootStrapViewBuilder.cs" />
+    <Compile Include="BootStrapSet\HtmlHelperExtensions.cs" />
+    <Compile Include="BootStrapSet\LayoutBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BootStrapSet\HtmlAttributes.cs" />
+    <Compile Include="DynamicForm\FormBuilder.cs" />
+    <Compile Include="DynamicForm\IElementGenerator.cs" />
+    <Compile Include="DynamicForm\IFormBuilderParameters.cs" />
+    <Compile Include="DynamicForm\FormElementsProvider.cs" />
+    <Compile Include="BootStrapSet\FormElementGenerator.cs" />
+    <Compile Include="BootStrapSet\ViewElementGenerator.cs" />
     <Compile Include="CustomAttribute\CollectionInfo.cs" />
     <Compile Include="CustomAttribute\EditControl.cs" />
-    <Compile Include="DynamicForm\BootStrapFormBuilder.cs" />
-    <Compile Include="DynamicForm\BootstrapFormType.cs" />
-    <Compile Include="DynamicForm\IDynamicUiBuilder.cs" />
     <Compile Include="BootStrapSet\ControlContainer.cs" />
-    <Compile Include="BootStrapSet\ControlGroup.cs" />
-    <Compile Include="BootStrapSet\ElementGroup.cs" />
+    <Compile Include="BootStrapSet\ElementContainer.cs" />
+    <Compile Include="BootStrapSet\FieldCollection.cs" />
     <Compile Include="Blocks\FormContainer.cs" />
+    <Compile Include="DynamicForm\ILayoutBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Extensions\RouteValueDictionaryExtensions.cs" />
-    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TagBuilderExtensions.cs" />
     <Compile Include="DynamicForm\FormElement.cs" />
     <Compile Include="Form\Bootstrap.cs" />
-    <Compile Include="HtmlAttributes.cs" />
-    <Compile Include="IElementGenerator.cs" />
     <Compile Include="ModelCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,6 +109,9 @@
       <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
       <Name>Foundation.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MetaData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

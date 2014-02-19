@@ -1,31 +1,20 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 using Foundation.FormBuilder.CustomAttribute;
-using Foundation.FormBuilder.Extensions;
-using Foundation.FormBuilder.Validation;
-using Foundation.Web;
 
 namespace Foundation.FormBuilder.DynamicForm
 {
-    public class ModelBasedBuilder<TModel> : FormBuilderBase
+    public class FormElementsProvider<TModel> 
     {
-        public ModelBasedBuilder()
+        public List<FormElement> ExtractElementsFromModel(TModel model, HtmlHelper<TModel> htmlHelper)
         {
-            Properties = typeof (TModel).GetCachedProperties(BindingFlags.Public | BindingFlags.Instance)
-                                        .ToDictionary(p => p.Name, p => p);
-        }
+            var properties = typeof(TModel).GetCachedProperties(BindingFlags.Public | BindingFlags.Instance)
+                                    .ToDictionary(p => p.Name, p => p);
 
-        protected Dictionary<string, PropertyInfo> Properties;
-
-        protected List<FormElement> ExtractElementsToRender(TModel model, HtmlHelper<TModel> htmlHelper)
-        {
-            var formElements = Properties.Select(p =>
+            var formElements = properties.Select(p =>
                                             new FormElement
                                             {
                                                 PropertyInfo = p.Value,
@@ -83,14 +72,14 @@ namespace Foundation.FormBuilder.DynamicForm
             foreach (var collectionItems in formElements.Where(x => x.CollectionInfo != null))
             {
                 collectionItems.CollectionInfo.CollectionObject =
-                    Properties[collectionItems.CollectionInfo.ListSourceMember]
+                    properties[collectionItems.CollectionInfo.ListSourceMember]
                         .GetValue(model, null) as IEnumerable<SelectListItem>;
             }
 
             return formElements;
         }
 
-        private static object FieldValue(TModel model, KeyValuePair<string, PropertyInfo> p)
+        private object FieldValue(TModel model, KeyValuePair<string, PropertyInfo> p)
         {
             return (model != null) ? p.Value.GetValue(model, null) : null;
         }

@@ -11,5 +11,9 @@ namespace Kafala.Web.ViewModels.Donor.Partial
         [FilterControl(DataElement = "Name", OperatorOption = Operator.Like)]
         [EditControl(ElementType = ElementType.Text)]
         public string DonorName { get; set; }
+
+        [FilterControl(DataElement = "Name", OperatorOption = Operator.Like)]
+        [EditControl(ElementType = ElementType.Text)]
+        public string DynDon { get; set; }
     }
 }

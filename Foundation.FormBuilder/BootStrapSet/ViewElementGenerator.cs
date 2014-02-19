@@ -4,7 +4,7 @@ using Foundation.FormBuilder.DynamicForm;
 
 namespace Foundation.FormBuilder.BootStrapSet
 {
-    internal class BootStrapViewElementGenerator : IElementGenerator
+    internal class ViewElementGenerator : IElementGenerator
     {
         
         public TagBuilder RenderElement(FormElement formElement)

@@ -7,7 +7,7 @@ namespace Foundation.FormBuilder.DynamicForm
 {
     public class FormElement
     {
-        public PropertyInfo PropertyInfo;
+        internal PropertyInfo PropertyInfo;
         public EditControl ControlSpecs;
         public CollectionInfo CollectionInfo;
         public object FieldValue;

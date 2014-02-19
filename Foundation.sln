@@ -39,8 +39,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{1A254B33
 		Build\default.build = Build\default.build
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexSoft.Bootstrap", "VortexSoft.Bootstrap\VortexSoft.Bootstrap.csproj", "{371BABEC-5A00-464D-8EBB-09C32CA4C326}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.BusinessManagers", "Kafala.BusinessManagers\Kafala.BusinessManagers.csproj", "{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafala.Web.ViewModels", "Kafala.Web.ViewModels\Kafala.Web.ViewModels.csproj", "{A6E405F1-0E83-407B-B07C-EDAEF5B6111E}"
@@ -165,16 +163,6 @@ Global
 		{F367B7B7-E954-476F-88F1-462371F90036}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F367B7B7-E954-476F-88F1-462371F90036}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F367B7B7-E954-476F-88F1-462371F90036}.Release|x86.ActiveCfg = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Any CPU.Build.0 = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{371BABEC-5A00-464D-8EBB-09C32CA4C326}.Release|x86.ActiveCfg = Release|Any CPU
 		{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5D4402E-CE60-420E-B14C-4DCC6F8815E7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
