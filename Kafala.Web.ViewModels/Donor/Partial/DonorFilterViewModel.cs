@@ -5,7 +5,6 @@ using Foundation.Web.Paging;
 
 namespace Kafala.Web.ViewModels.Donor.Partial
 {
-    [Bind(Include = "DonorName,PageSize,PageNumber,Sort,SortDirection")]
     public class DonorFilterViewModel : PagingInfoViewModel
     {
         [FilterControl(DataElement = "Name", OperatorOption = Operator.Like)]

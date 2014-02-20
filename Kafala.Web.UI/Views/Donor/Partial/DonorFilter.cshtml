@@ -6,7 +6,9 @@
         @using (var form = Html.Bootstrap().BeginForm("Index", "Donor", FormMethod.Get, new { id = "autoForm"}))
         {
             @Html.DynamicForm( )
-            @Html.DynamicFormElement(x => x.DonorName)
+
+            @Html.ActionButton("Search" , "Index" , "Donor" , BootstrapNamedColor.Primary, glyphIcons: GlyphIcons.Search)
+            
         }
         
         
