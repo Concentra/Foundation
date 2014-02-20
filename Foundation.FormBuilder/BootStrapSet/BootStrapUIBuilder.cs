@@ -7,15 +7,23 @@ using Foundation.Web.Extensions;
 
 namespace Foundation.FormBuilder.BootStrapSet
 {
-    internal class BootStrapViewBuilder
+    internal class BootStrapUIBuilder
     {
         private readonly IElementGenerator elementGenerator;
         private readonly ILayoutBuilder layoutBuilder;
         private readonly DynamicForm.FormBuilder formBuilder;
 
-        public BootStrapViewBuilder()
+        public BootStrapUIBuilder(Mode viewMode)
         {
-            this.elementGenerator = new ViewElementGenerator();
+            if (viewMode == Mode.View)
+            {
+                this.elementGenerator = new ViewElementGenerator();
+            }
+            else
+            {
+                this.elementGenerator = new FormElementGenerator();
+            }
+            
             this.layoutBuilder = new LayoutBuilder();
             this.formBuilder = new DynamicForm.FormBuilder(elementGenerator, layoutBuilder);
         }
@@ -29,5 +37,21 @@ namespace Foundation.FormBuilder.BootStrapSet
 
             return new MvcHtmlString(sb.ToString());
         }
+
+        public MvcHtmlString BuildElement(BootstrapFormType formType, FormElement formElement)
+        {
+            var sb = new StringBuilder();
+            var formBuilderParameters = new BuilderParameters(formType);
+
+            sb.Append(this.formBuilder.RenderElement(formElement, formBuilderParameters));
+
+            return new MvcHtmlString(sb.ToString());
+        }
+    }
+
+    internal enum Mode
+    {
+        Edit,
+        View
     }
 }

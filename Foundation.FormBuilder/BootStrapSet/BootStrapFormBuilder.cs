@@ -22,12 +22,11 @@ namespace Foundation.FormBuilder.BootStrapSet
 
         public MvcHtmlString BuildForm(BootstrapFormType formType, List<FormElement> formElements)
         {
-            var sb = new StringBuilder();
             var formBuilderParameters = new BuilderParameters(formType);
 
-            sb.Append(this.formBuilder.BuildForm(formElements, formBuilderParameters));
+            var formMarkUp = this.formBuilder.BuildForm(formElements, formBuilderParameters);
 
-            return new MvcHtmlString(sb.ToString());
+            return new MvcHtmlString(formMarkUp);
         }
 
     }

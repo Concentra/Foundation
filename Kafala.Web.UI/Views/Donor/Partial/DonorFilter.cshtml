@@ -5,6 +5,9 @@
     <div class="panel-body">
         @using (var form = Html.Bootstrap().BeginForm("Index", "Donor", FormMethod.Get, new { id = "autoForm"}))
         {
-            @Html.DynamicForm( renderButtons:false)
+            @Html.DynamicForm( )
+            @Html.DynamicFormElement(x => x.DonorName)
         }
+        
+        
     </div>

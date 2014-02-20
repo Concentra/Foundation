@@ -70,9 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BootStrapSet\BuilderParameters.cs" />
-    <Compile Include="BootStrapSet\BootStrapFormBuilder.cs" />
     <Compile Include="BootStrapSet\BootstrapFormType.cs" />
-    <Compile Include="BootStrapSet\BootStrapViewBuilder.cs" />
+    <Compile Include="BootStrapSet\BootStrapUIBuilder.cs" />
     <Compile Include="BootStrapSet\HtmlHelperExtensions.cs" />
     <Compile Include="BootStrapSet\LayoutBuilder.cs">
       <SubType>Code</SubType>
