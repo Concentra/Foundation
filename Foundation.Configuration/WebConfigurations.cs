@@ -6,11 +6,6 @@ namespace Foundation.Configuration
     public class WebConfigurations : IResourcesLocator
     {
         /// <summary>
-        /// a pointer to the assembly where the view models exists. All types in this assembly will be considered as view models.
-        /// </summary>
-        public Type ViewModelsAssemblyHookType { get; set; }
-        
-        /// <summary>
         /// a pointer to the assembly hosting your MVC controllers.
         /// </summary>
         public Type ControllersAssemblyHookType { get; set; }

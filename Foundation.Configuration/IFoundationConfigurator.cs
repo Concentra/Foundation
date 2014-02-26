@@ -5,11 +5,14 @@ namespace Foundation.Configuration
         WebConfigurations  Web { get; set; }
         BusinessConfigurations Business { get; set; }
         PersistenceConfigurations Persistence { get; set; }
+        MongoConfigurations Mongo { get; set; }
         bool UsePresistence { get; set; }
         bool UseQueryContainer { get; set; }
         bool UseBuseinssManagers { get; set; }
         bool UseWeb { get; set; }
         bool UseSecurity { get; set; }
         bool UseEmailing { get; set; }
+
+        bool UseMongo { get; set; }
     }
 }

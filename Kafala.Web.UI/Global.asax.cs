@@ -69,7 +69,6 @@ namespace Kafala.Web.UI
                 {
                     AuthenticationService = typeof (Kafala.Query.Security.AuthenticationService),
                     DefaultPageTitle = "Kafala Application",
-                    ViewModelsAssemblyHookType = typeof (Kafala.Web.ViewModels.Commitment.CommitmentIndexViewModel),
                     ControllersAssemblyHookType = typeof (DonorController),
                     FlashMessagesResourceManager = Resources.KafalaFlashMessages.ResourceManager,
                     PagingConfigurations = new PagingConfigurations

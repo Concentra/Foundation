@@ -32,6 +32,7 @@ namespace Foundation.Infrastructure.Configurations
                 cfg.For<IEmailLogger>(foundationConfigurator.Business.EmailLogger);
             }
 
+            cfg.For<IFlashMessenger>(foundationConfigurator.Web.FlashMessenger);
             cfg.AddRegistry(new SecurityRegistery());
         }
 

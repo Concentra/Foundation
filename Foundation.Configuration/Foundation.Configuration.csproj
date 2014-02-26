@@ -50,6 +50,7 @@
     <Compile Include="FoundationConfigurator.cs" />
     <Compile Include="IFoundationConfigurator.cs" />
     <Compile Include="IResourcesLocator.cs" />
+    <Compile Include="MongoConfigurations.cs" />
     <Compile Include="PagingConfigurations.cs" />
     <Compile Include="PersistenceConfigurations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
