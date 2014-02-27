@@ -9,7 +9,6 @@ using Kafala.BusinessManagers;
 using Kafala.BusinessManagers.Commitment;
 using Kafala.BusinessManagers.DonationCase;
 using Kafala.BusinessManagers.Donor;
-using Kafala.Entities.DoNotMap;
 using Kafala.Entities.Enums;
 using Moq;
 using NHibernate;

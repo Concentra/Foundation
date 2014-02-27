@@ -7,7 +7,7 @@ namespace Foundation.Configuration
         /// <summary>
         /// a type of an element which implements  IDataModelLocator. This type describes where the Data Model exists and the name space that should be mapped by Nhibernate.
         /// </summary>
-        public Type EntityTypeHolder { get; set; }
+        public Type PocoPointer { get; set; }
 
         /// <summary>
         /// Name of the Connection string key.

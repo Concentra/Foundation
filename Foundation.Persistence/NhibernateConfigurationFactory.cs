@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using Foundation.Configuration;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
@@ -9,7 +10,7 @@ namespace Foundation.Persistence
     {
         private readonly INHibernateMappingConfigurationFactory mappingConfigurationFactory;
         private readonly IConnectionString connectionString;
-        private readonly IDataModelLocator dataModelLocator;
+        private readonly IFoundationConfigurator foundationConfigurator;
 
         public static bool ExportSchema { get; set; }
 
@@ -18,11 +19,11 @@ namespace Foundation.Persistence
         public NHibernateConfigurationFactory(
             INHibernateMappingConfigurationFactory mappingConfigurationFactory,
             IConnectionString connectionString,
-            IDataModelLocator dataModelLocator)
+            IFoundationConfigurator foundationConfigurator)
         {
             this.mappingConfigurationFactory = mappingConfigurationFactory;
             this.connectionString = connectionString;
-            this.dataModelLocator = dataModelLocator;
+            this.foundationConfigurator = foundationConfigurator;
         }
         
         public NHibernate.Cfg.Configuration Create()
@@ -44,7 +45,9 @@ namespace Foundation.Persistence
                         .Create(true, false));    
             }
 
-            this.mappingConfigurationFactory.BuildMapping(configruation, dataModelLocator.HookType, dataModelLocator.NameSpace);
+            this.mappingConfigurationFactory.BuildMapping(configruation,
+                foundationConfigurator.Persistence.PocoPointer,
+                foundationConfigurator.Persistence.PocoPointer.Namespace);
 
             return configruation.BuildConfiguration();
         }

@@ -11,12 +11,12 @@ namespace Foundation.Configuration
         
         public static void Configure(IFoundationConfigurator foundationConfigurator)
         {
-            ObjectFactory.Configure(cfg => ConfigureDependencies(cfg , new FoundationConfigurator()));
+            ObjectFactory.Configure(cfg => ConfigureDependencies(cfg, foundationConfigurator));
         }
 
         private static void ConfigureDependencies(ConfigurationExpression cfg, IFoundationConfigurator foundationConfigurator)
         {
-            
+            cfg.For<IFoundationConfigurator>().Use(foundationConfigurator);
         }
        
     }

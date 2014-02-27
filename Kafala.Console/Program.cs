@@ -8,7 +8,6 @@ using Foundation.Persistence.Configurations;
 using Foundation.Web;
 using Kafala.BusinessManagers;
 using Kafala.BusinessManagers.Donor;
-using Kafala.Entities.DoNotMap;
 using NHibernate;
 using StructureMap;
 
@@ -40,8 +39,7 @@ namespace Kafala.Console
             container.Configure(x => x.For<IBusinessManagerInvocationLogger>().Singleton().Use<SqlProcBusinessManagerInvocationLogger>());
             container.Configure(x => x.For<IBusinessManagerRegistery>().Use<BusinessManagerRegistery>());
             
-            container.Configure(x => x.For<IDataModelLocator>().Use<Kafala.Entities.DoNotMap.DataModelLocator>());
-
+            
             container.Configure(x => x.For<IConnectionString>().Use(new ConnectionString("KafalaDB")));
             container.Configure(x => x.For<IFlashMessenger>().Use<SwallowFlashMessneger>());
             return container;

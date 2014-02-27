@@ -9,7 +9,6 @@ using Foundation.Persistence.Configurations;
 using Foundation.Web;
 using Foundation.Web.Security;
 using Kafala.BusinessManagers;
-using Kafala.Entities.DoNotMap;
 using Kafala.Query.Security;
 using StructureMap;
 
@@ -30,8 +29,6 @@ namespace Kafala.Test
             cfg.For<IBusinessManagerRegistery>().Use<BusinessManagerRegistery>();
 
             cfg.For<IBusinessManagerInvocationLogger>().Singleton().Use<SqlProcBusinessManagerInvocationLogger>();
-
-            cfg.For<IDataModelLocator>().Use<DataModelLocator>();
 
             cfg.For<IConnectionString>().Use(new ConnectionString("KafalaDBTest"));
 

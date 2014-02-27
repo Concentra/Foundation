@@ -54,7 +54,7 @@ namespace Kafala.Web.UI
 
                 Persistence =
                 {
-                    EntityTypeHolder = typeof (Kafala.Entities.DoNotMap.DataModelLocator),
+                    PocoPointer = typeof (Kafala.Entities.Donor),
                     ConnectionStringKeyName = "Kafaladb"
                 },
 
