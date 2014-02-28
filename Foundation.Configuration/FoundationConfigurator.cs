@@ -13,8 +13,8 @@
             this.Web = new WebConfigurations();
 
             this.UseBuseinssManagers = true;
-            this.UseEmailing = true;
-            this.UsePresistence = true;
+            this.UseEmailing = false;
+            this.UsePresistence = false;
             this.UseQueryContainer = true;
             this.UseSecurity = true;
             this.UseWeb = true;

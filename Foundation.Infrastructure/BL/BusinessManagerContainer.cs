@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Castle.DynamicProxy;
+using Foundation.Configuration;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 
@@ -11,12 +12,14 @@ namespace Foundation.Infrastructure.BL
     public class BusinessManagerContainer : IBusinessManagerContainer
     {
         private IContainer container;
+        private readonly IFoundationConfigurator foundationConfigurator;
 
-        public BusinessManagerContainer(IContainer container )
+        public BusinessManagerContainer(IContainer container, IFoundationConfigurator foundationConfigurator )
         {
             this.container = container;
+            this.foundationConfigurator = foundationConfigurator;
         }
-        
+
         public void Dispose()
         {
             this.Dispose(true);
@@ -38,8 +41,14 @@ namespace Foundation.Infrastructure.BL
             }
 
             var interceptors = container.GetAllInstances<BusinessManagerInterceptor<T>>().Select(mi => (IInterceptor)mi).ToList();
-            var transactionInterceptor =container.GetInstance<TransactionInterceptor<T>>() as IInterceptor;
-            interceptors.Add(transactionInterceptor);
+            
+            if (foundationConfigurator.UsePresistence)
+            {
+                var transactionInterceptor = container.GetInstance<TransactionInterceptor<T>>() as IInterceptor;
+                interceptors.Add(transactionInterceptor);
+
+            }
+            
             var objectToReturn = proxyGenerator.CreateClassProxy(typeof(T), constructorArguments.ToArray(), interceptors.ToArray());
             return (T)objectToReturn;
         }
