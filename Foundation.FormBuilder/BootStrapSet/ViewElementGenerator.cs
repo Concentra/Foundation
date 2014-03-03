@@ -1,5 +1,6 @@
 using System;
 using System.Web.Mvc;
+using Foundation.FormBuilder.CustomAttribute;
 using Foundation.FormBuilder.DynamicForm;
 
 namespace Foundation.FormBuilder.BootStrapSet
@@ -11,7 +12,14 @@ namespace Foundation.FormBuilder.BootStrapSet
         {
             TagBuilder elementTagBuilder = null;
 
-            elementTagBuilder = this.RenderStaticText(formElement);
+            if (formElement.ControlSpecs.ElementType != ElementType.Hidden)
+            {
+                elementTagBuilder = this.RenderStaticText(formElement);
+            }
+            else
+            {
+                elementTagBuilder = this.RenderHidden(formElement);
+            }
 
             return elementTagBuilder;
         }
@@ -30,5 +38,18 @@ namespace Foundation.FormBuilder.BootStrapSet
             return tagbuilder;
 
         }
+
+        private TagBuilder RenderHidden(FormElement formElement)
+        {
+            var value = formElement.FieldValue;
+            var tagbuilder = new TagBuilder("input");
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Type, "hidden");
+            var hiddenValue = (value == null) ? String.Empty : value.ToString();
+            tagbuilder.MergeAttribute(HtmlAtrributes.Value, hiddenValue);
+            return tagbuilder;
+        }
+
     }
 }
