@@ -4,6 +4,5 @@ namespace Foundation.Web.Security
     {
         string EmailAddress { get;  }
         string UserName { get;}
-        bool PasswordExpired { get; set; }
     }
 }

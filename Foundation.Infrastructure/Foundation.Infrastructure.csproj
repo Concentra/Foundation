@@ -86,6 +86,7 @@
     <Compile Include="Query\IQueryRegistery.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\IQueryContainer.cs" />
+    <Compile Include="Security\EncryptionService.cs" />
     <Compile Include="Security\IPasswordHelper.cs" />
     <Compile Include="Security\PasswordHelper.cs" />
     <Compile Include="Security\PasswordInfo.cs" />

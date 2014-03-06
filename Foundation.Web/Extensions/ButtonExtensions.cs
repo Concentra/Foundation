@@ -135,7 +135,7 @@ namespace Foundation.Web.Extensions
 
             if (!string.IsNullOrWhiteSpace(icon))
             {
-                tagBuilder.InnerHtml += Image(htmlHelper, icon) + "&nbsp;";
+               // tagBuilder.InnerHtml += Image(htmlHelper, icon) + "&nbsp;";
             }
 
             tagBuilder.InnerHtml += text;

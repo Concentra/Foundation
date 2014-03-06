@@ -35,14 +35,14 @@ namespace Foundation.Web.Navigation
             {
                 textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "divider");
             }
-
-            textWriter.RenderBeginTag(HtmlTextWriterTag.Li);
-           
+            
             if (menuItem.Active)
             {
                 textWriter.AddAttribute(HtmlTextWriterAttribute.Class, "active");
             }
 
+            textWriter.RenderBeginTag(HtmlTextWriterTag.Li);
+           
             if (menuItem.Children != null && menuItem.Children.Any())
             {
                 RenderLeafElement(menuItem, textWriter, true); 

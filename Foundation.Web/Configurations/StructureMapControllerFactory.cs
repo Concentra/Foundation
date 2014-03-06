@@ -12,7 +12,7 @@ namespace Foundation.Web.Configurations
 {
     public class StructureMapControllerFactory : DefaultControllerFactory
     {
-        private static readonly object NestedContainerKey = new object();
+        public static readonly object NestedContainerKey = new object();
         private readonly IContainer container;
 
         public StructureMapControllerFactory(IContainer container)
