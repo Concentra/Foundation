@@ -39,7 +39,7 @@ namespace Kafala.Query.Donor
                 Payments = queryContainer.Get<PaymentListModelPopulator>()
                 .Execute(new PaymentListParameters(donorId)).Payments,
                 OutStanding = queryContainer.Get<PaymentStatusReportViewModelPopulator>()
-                .Execute(new FilterPaymentStatus(){ DonorId = donorId , PointInTime = DateTime.Now}).OutStanding
+                .Execute(new FilterPaymentStatus(){ DonorId = donorId , PointInTime = DateTime.Now}).OutStandingPayments
             };
 
             return model;

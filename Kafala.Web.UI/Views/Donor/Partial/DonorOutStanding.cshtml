@@ -1,4 +1,5 @@
-﻿@model Kafala.Web.ViewModels.Donor.DonorDashBoard
+﻿@using FluentNHibernate.Automapping.Steps
+@model Kafala.Web.ViewModels.Donor.DonorDashBoard
 
 <h4>Over Dure Payments</h4>
 
@@ -19,7 +20,15 @@
              <tr>
                  <td>@item.DonationCaseName</td>
                  <td>@item.PaymentPeriod</td>
-                 <td>@item.DueDate</td>
+                 <td>@if (item.DueDate != null)
+                     {
+                         @item.DueDate.Value.ToShortDateString()
+                     }
+                     else
+                     {
+                         @Html.Raw("N/A")
+                     }
+                 </td>
                  <td>@item.PaymentPeriod</td>
                  <td>@item.CommittedAmount</td>
                  <td>@item.PaidAmount</td>

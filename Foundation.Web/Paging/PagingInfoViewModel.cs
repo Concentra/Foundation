@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace Foundation.Web.Paging
 {
-    [Bind(Include = "PageSize,PageNumber,Sort,SortDirection")]
+    [Bind(Exclude = "ActionFunc")]
     public class PagingInfoViewModel : IPagingParameters , ISortingParameters , IPagingResults
     {
         

@@ -1,7 +1,7 @@
 ﻿/// <reference path="ThirdParty/jquery-vsdoc.js" />
 
 
-$("form").submit(function (event) {
+$("form .validated").submit(function (event) {
 
     var isValid = $(this).validate().valid();
 

@@ -103,6 +103,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="CurrentAuthenticateUser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -120,6 +121,61 @@
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\Loading.gif" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\adventure.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\alternate.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\autumn.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\black-n-blue.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\brown-sugar.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\chartfx5.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\chartfx6.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\chartfx7.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\classic.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\colorful.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\darkpastels.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\earth-tones.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\high-contrast.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\lilacs-in-mist.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\lite.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\mesa.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\mocha.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\modern-business.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\oceanica.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\pastels.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\pocket.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\professional.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\rainy-day.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\sand-n-sky.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\simple.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\sky.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\slate.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\snowy-pine.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\Vivid.css" />
+    <Content Include="Content\JChartFX\jChartFX Palettes\windows.css" />
+    <Content Include="Content\JChartFX\jchartfx.css" />
+    <Content Include="Content\JChartFX\jQueryUI\black-tie.css" />
+    <Content Include="Content\JChartFX\jQueryUI\blitzer.css" />
+    <Content Include="Content\JChartFX\jQueryUI\cupertino.css" />
+    <Content Include="Content\JChartFX\jQueryUI\dark-hive.css" />
+    <Content Include="Content\JChartFX\jQueryUI\dot-luv.css" />
+    <Content Include="Content\JChartFX\jQueryUI\eggplant.css" />
+    <Content Include="Content\JChartFX\jQueryUI\excite-bike.css" />
+    <Content Include="Content\JChartFX\jQueryUI\flick.css" />
+    <Content Include="Content\JChartFX\jQueryUI\hot-sneaks.css" />
+    <Content Include="Content\JChartFX\jQueryUI\humanity.css" />
+    <Content Include="Content\JChartFX\jQueryUI\le-frog.css" />
+    <Content Include="Content\JChartFX\jQueryUI\mint-choc.css" />
+    <Content Include="Content\JChartFX\jQueryUI\overcast.css" />
+    <Content Include="Content\JChartFX\jQueryUI\pepper-grinder.css" />
+    <Content Include="Content\JChartFX\jQueryUI\redmond.css" />
+    <Content Include="Content\JChartFX\jQueryUI\smoothness.css" />
+    <Content Include="Content\JChartFX\jQueryUI\south-street.css" />
+    <Content Include="Content\JChartFX\jQueryUI\start.css" />
+    <Content Include="Content\JChartFX\jQueryUI\sunny.css" />
+    <Content Include="Content\JChartFX\jQueryUI\swanky-purse.css" />
+    <Content Include="Content\JChartFX\jQueryUI\trontastic.css" />
+    <Content Include="Content\JChartFX\jQueryUI\ui-darkness.css" />
+    <Content Include="Content\JChartFX\jQueryUI\ui-lightness.css" />
+    <Content Include="Content\JChartFX\jQueryUI\vader.css" />
     <Content Include="Content\loading.css" />
     <Content Include="Content\SignIn.css" />
     <Content Include="Content\tableSorter.css" />
@@ -197,6 +253,38 @@
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\Debug\Reports\Charting.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.advanced.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.animation.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.annotation.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.bullet.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.coreBasic.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.coreVector.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.coreVector3d.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.data.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.density.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.equalizer.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.funnel.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.handdrawn.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.heatmap.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.highlow.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.highlowclose.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.maps.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.overlaybubble.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.pareto.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.pyramid.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.radar.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.rose.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.surface.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.system.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.treemap.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.ui.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.vector.js" />
+    <Content Include="Scripts\JChartFX\jchartfx.vectorTemplates.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -205,8 +293,6 @@
     <Content Include="Scripts\jquery.Foundation.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\shared.js" />
-    <Content Include="Scripts\jquery-2.0.3.js" />
-    <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\jquery-ui.unobtrusive-1.0.1.js" />
@@ -263,6 +349,8 @@
     <Content Include="Views\Shared\_DetailsPopUpTemplate.cshtml" />
     <Content Include="Views\Shared\_ModalMessageTemplate.cshtml" />
     <Content Include="Views\Donor\Partial\DonorFilter.cshtml" />
+    <Content Include="Views\Reports\OverDure.cshtml" />
+    <Content Include="Views\Reports\Partial\OverDueFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -328,6 +416,7 @@
     <Content Include="Views\Shared\_LogIn_Layout.cshtml" />
     <Content Include="Views\Donor\Create.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

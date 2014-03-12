@@ -56,7 +56,7 @@
        
         @Html.Partial("_ModalMessageTemplate")
          
-       <script src="~/Scripts/jquery-2.0.3.js"></script>
+       <script src="~/Scripts/jquery-2.1.0.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>
         <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
          <script src="~/Scripts/jquery.validate.js"></script>
@@ -64,5 +64,6 @@
         <script src="~/Scripts/shared.js"></script>
         <script src="~/Scripts/stacktrace.js" ></script>
         <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+         @RenderSection("script", required: false)
     </body>
 </html>

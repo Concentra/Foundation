@@ -18,7 +18,7 @@
 <div class="panel panel-primary">
 
     @Html.Partial("Partial/DonorFilter", Model.DonorFilter)
-
+     </div>
 <table class="table">
     <tr>
         @Html.SortableHeader(Model.DonorFilter, "Name" , "Name")
@@ -53,6 +53,6 @@
  
     
 </table>
-     </div>
+    
  @Html.PageLinks(Model.DonorFilter)
    

@@ -29,6 +29,14 @@ namespace Kafala.Query.Shared
                     },
                     new MenuItem() {Active = false, Text = "Alerts", URL = "Alerts"},
                     new MenuItem() {
+                        Active = false, Text = "Reports" ,
+                        Children = new List<MenuItem>
+                        {
+                            new MenuItem() {Active = false, Text = "Over Due Payments", URL = "Reports/OverDue"},
+                            new MenuItem() {Active = false, Text = "Collection Summary", URL = "Reports/Collection"},
+                        }
+                    },
+                    new MenuItem() {
                         Active = false, Text = "Settings" ,
                         Children = new List<MenuItem>
                         {

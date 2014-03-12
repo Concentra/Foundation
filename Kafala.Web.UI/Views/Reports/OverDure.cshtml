@@ -1,0 +1,80 @@
+﻿@model Kafala.Web.ViewModels.Reports.PaymentStatusReportViewModel
+
+@section Css 
+{
+    <link rel="stylesheet" type="text/css" href="~/Content/JChartFX/jchartfx.css" />
+}
+
+@section script
+{
+    <!--script type="text/javascript" src="~/Scripts/jChartFX/jchartfx.system.js"></!--script>
+        <script type="text/javascript" src="~/Scripts/JChartFX/jchartfx.coreVector.js"></script-->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="~/Scripts/Debug/Reports/Charting.js"></script>
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5">
+            <div id="container" style="width:100%;height:250px;display:inline-block"></div>
+              
+        </div>
+        <div class="col-lg-7">
+            <div class="panel panel-primary">
+                @Html.Partial("Partial/OverDueFilter", Model.FilterPaymentStatus)
+            </div>
+          
+        </div>
+    </div>
+</div>
+    
+    
+    <h5> <label>Expected Amount EGP</label> @Model.ExpectedAmount.ToString("N2") -  <label>Collected Amount EGP</label> @Model.CollectedAmount.ToString("N2") - <label>Over Dure Amount EGP</label> @Model.OverDueAmount.ToString("N2")</h5>
+            
+<table class="table">
+    <tr>
+        @Html.SortableHeader(Model.FilterPaymentStatus, "DonationCaseName" , "Donation Case")
+        @Html.SortableHeader(Model.FilterPaymentStatus, "DonorName" , "Donor")
+        @Html.SortableHeader(Model.FilterPaymentStatus, "PaymentPeriod" , "Payment Period")
+        @Html.SortableHeader(Model.FilterPaymentStatus, "DueDate" , "Due Date")
+        @Html.SortableHeader(Model.FilterPaymentStatus, "CommittedAmount" , "Committed <br/> Amount")
+        @Html.SortableHeader(Model.FilterPaymentStatus, "PaidAmount" , "Paid <br/> Amount")
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OutStandingPayments) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonationCaseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentPeriod)
+            </td>
+            <td>
+                @item.DueDate.Value.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommittedAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaidAmount)
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                @Html.ActionLink("Pay", "Create", "Payment" , new {id = item.CommitmentId} , null) 
+                @Html.ActionLink("Alert", "Alert", "Alert", new { id=item.DonationCaseId }) |
+            </td>
+        </tr>
+    }
+    
+ 
+    
+</table>
+    
+ @Html.PageLinks(Model.FilterPaymentStatus, linksToShow: 10)
