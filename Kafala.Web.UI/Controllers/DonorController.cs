@@ -27,6 +27,7 @@ namespace Kafala.Web.UI.Controllers
         }
 
         [RenderPagedView]
+        [HttpGet]
         public ActionResult Index(DonorFilterViewModel parameters)
         {
             var container = this.queryContainer.Get<DonorListModelPopulator>();

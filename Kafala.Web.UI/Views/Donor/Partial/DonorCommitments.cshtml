@@ -15,8 +15,22 @@
          {
              <tr>
                  <td>@item.DonationCaseName</td>
-                 <td>@item.StartDate</td>
-                 <td>@item.EndDate</td>
+                 <td>@if (@item.StartDate != null)
+                     {
+                         @item.StartDate.Value.ToShortDateString()
+                     }
+                     else
+                     {
+                         @Html.Raw("N/A")
+                     }</td>
+                 <td>@if (@item.EndDate != null)
+                     {
+                         @item.EndDate.Value.ToShortDateString()
+                     }
+                     else
+                     {
+                         @Html.Raw("N/A")
+                     }</td>
                  <td>
                      @Html.ActionLink("Edit", "Edit", "Commitment", new {id = item.Id} , null) |
                      @Html.ActionLink("Details", "Details", "Commitment", new {id = item.Id}, null) |

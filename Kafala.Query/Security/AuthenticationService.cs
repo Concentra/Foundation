@@ -54,7 +54,7 @@ namespace Kafala.Query.Security
 
         public SignInResult SignIn(string userName, string password, bool rememberMe = false)
         {
-            var user = this.GetUser(userName);
+            var user = (User)this.GetUser(userName);
 
             if (user == null)
             {

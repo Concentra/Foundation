@@ -16,6 +16,8 @@ namespace Kafala.Web.ViewModels.Reports
 
         public virtual Guid DonationCaseId { get; set; }
 
+        public virtual Guid CommitmentId { get; set; }
+
         [Display(Order = 2, Name = "Donor Name")]
         [EditControl(ElementType = ElementType.Text)]
         public virtual string DonorName { get; set; }

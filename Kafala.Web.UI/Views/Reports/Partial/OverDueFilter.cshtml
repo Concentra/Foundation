@@ -1,0 +1,18 @@
+﻿@using Foundation.FormBuilder.BootStrapSet
+@model Kafala.Web.ViewModels.Reports.Partials.FilterPaymentStatus
+    <div class="panel-heading panel-title">Filter</div>
+  
+<div class="panel-body">
+    @using (var form = Html.Bootstrap().BeginForm("OverDue", "Reports", FormMethod.Get, new { id = "autoForm"}))
+    {
+        @Html.DynamicForm( )
+
+        <div class="pull-right">
+            @Html.SubmitButton("Search")
+        </div>
+    }
+        
+        
+</div>
+
+
