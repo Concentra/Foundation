@@ -31,7 +31,7 @@ namespace Foundation.Persistence
             // Configure the database properties
             var configruation = Fluently.Configure()
                 .Database(
-                    MsSqlConfiguration.MsSql2008
+                    MsSqlConfiguration.MsSql2012
                         .ConnectionString(c => c.FromConnectionStringWithKey(this.connectionString.Name))
                 );
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Foundation.Configuration;
 using Foundation.Infrastructure.Notifications;
+using Foundation.Infrastructure.Query;
 using StructureMap;
 
 namespace Foundation.Web.Configurations
@@ -70,6 +71,8 @@ namespace Foundation.Web.Configurations
                         tempData["FlashMessenger"] = flashMessenger;
                         return flashMessenger;
                     });
+
+                
             });
 
             var controller = nestedContainer.TryGetInstance<IController>(controllerName);

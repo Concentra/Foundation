@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Foundation.FormBuilder.CustomAttribute;
 using Foundation.FormBuilder.DynamicForm;
 using Foundation.FormBuilder.Extensions;
+using Foundation.Web.Extensions;
 
 namespace Foundation.FormBuilder.BootStrapSet
 {
@@ -190,9 +191,10 @@ namespace Foundation.FormBuilder.BootStrapSet
             {
                 var option = new TagBuilder("option");
                 option.MergeAttribute(HtmlAtrributes.Value, enumValue.ToString());
-                option.SetInnerText(enumValue.ToString().SpacePascal());
-
-                var selected = value != null && (int) enumValue == (int) Enum.Parse(formElement.MappedDataType, value.ToString());
+                
+                var enumValueText = EnumExtensions.GetEnumDescription((Enum) enumValue);
+                option.SetInnerText(enumValueText);
+                var selected = value != null && (int)enumValue == (int)Enum.Parse(formElement.MappedDataType, value.ToString());
 
                 if (selected)
                 {

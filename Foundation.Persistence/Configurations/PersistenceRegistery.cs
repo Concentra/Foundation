@@ -20,7 +20,7 @@ namespace Foundation.Persistence.Configurations
                          {
                              var session = c.GetInstance<ISessionFactoryProvider>().Get().OpenSession();
                              session.FlushMode = FlushMode.Commit;
-
+                             session.CacheMode = CacheMode.Ignore;
                              return new SessionProvider(session);
                          });
 

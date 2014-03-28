@@ -23,6 +23,7 @@ namespace Foundation.Infrastructure.BL
                     invocation.Proceed();
                     this.session.Transaction.Commit();
                 }
+                
                 LogEndOfInvocation(invocationId, invocation);
                 tx.Complete();
             }

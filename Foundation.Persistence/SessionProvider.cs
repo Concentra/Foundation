@@ -12,6 +12,7 @@ namespace Foundation.Persistence
         public SessionProvider(ISession session)
         {
             this.session = session;
+            session.CacheMode = CacheMode.Ignore;
             this.transaction = this.session.BeginTransaction(IsolationLevel.ReadCommitted);
         }
 
