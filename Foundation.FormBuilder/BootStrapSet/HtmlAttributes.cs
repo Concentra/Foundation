@@ -12,5 +12,7 @@ namespace Foundation.FormBuilder.BootStrapSet
         public const string Selected = "selected";
         public const string Cols = "cols";
         public const string Maxlength = "maxlength";
+        public const string Multiple = "multiple";
+        public const string Size = "size";
     }
 }

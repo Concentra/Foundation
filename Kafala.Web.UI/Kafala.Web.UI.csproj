@@ -411,7 +411,9 @@
     <Content Include="Configuration\appSettings.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configuration\connectionStrings.config" />
+    <Content Include="Configuration\connectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configuration\smtp.config" />
   </ItemGroup>
   <ItemGroup>

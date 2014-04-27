@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Web.Mvc;
 using Foundation.FormBuilder.CustomAttribute;
@@ -51,6 +52,7 @@ namespace Foundation.FormBuilder.BootStrapSet
                     elementTagBuilder = this.RenderDropDownList(formElement);
                     break;
                 case ElementType.ListBox:
+                    elementTagBuilder = this.RenderListBox(formElement);
                     break;
                 case ElementType.StaticText:
                     elementTagBuilder = this.RenderStaticText(formElement);
@@ -132,6 +134,12 @@ namespace Foundation.FormBuilder.BootStrapSet
             var value = formElement.FieldValue;
             var tagbuilder = new TagBuilder("input");
             tagbuilder.MergeAttribute("value", Convert.ToString(value));
+
+            if (formElement.ControlSpecs.Size != 0)
+            {
+                tagbuilder.MergeAttribute("size", formElement.ControlSpecs.Size.ToString());
+            }
+
             tagbuilder.MergeAttribute(HtmlAtrributes.Type, "text");
             
             if (formElement.ControlSpecs.MaxLength != 0)
@@ -251,6 +259,57 @@ namespace Foundation.FormBuilder.BootStrapSet
                         option.MergeAttribute(HtmlAtrributes.Selected, null);
                     }
                     
+                    tagbuilder.InnerHtml += option.ToMvcHtmlString(TagRenderMode.Normal);
+                }
+            }
+
+            return tagbuilder;
+        }
+
+        private TagBuilder RenderListBox(FormElement formElement)
+        {
+            var value = formElement.FieldValue as IList<string>;
+
+            var itemsList = formElement.CollectionInfo.CollectionObject;
+            var tagbuilder = new TagBuilder("select");
+
+            tagbuilder.MergeAttribute(HtmlAtrributes.Name, formElement.ControlSpecs.ControlName);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Id, formElement.ControlSpecs.ClientId);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Multiple, null);
+            tagbuilder.MergeAttribute(HtmlAtrributes.Size, formElement.ControlSpecs.Size.ToString());
+
+            if (!string.IsNullOrEmpty(formElement.CollectionInfo.SelectPromptLabel))
+            {
+                var option = new TagBuilder("option");
+
+                option.MergeAttribute(HtmlAtrributes.Value, formElement.CollectionInfo.SelectPromptValue);
+                option.SetInnerText(formElement.CollectionInfo.SelectPromptLabel);
+
+                if (value == null ||
+                                    (formElement.CollectionInfo.SelectPromptValue != null
+                                    && formElement.CollectionInfo.SelectPromptValue.ToUpper() == value.ToString().ToUpper())
+                   )
+                {
+                    option.MergeAttribute(HtmlAtrributes.Selected, null);
+                }
+
+                tagbuilder.InnerHtml += option.ToMvcHtmlString(TagRenderMode.Normal);
+            }
+
+            if (itemsList != null)
+            {
+                foreach (var selectListItem in itemsList)
+                {
+                    var option = new TagBuilder("option");
+
+                    option.MergeAttribute(HtmlAtrributes.Value, selectListItem.Value);
+                    option.SetInnerText(selectListItem.Text);
+
+                    if (value != null &&  value.Contains(selectListItem.Value.ToUpper()))
+                    {
+                        option.MergeAttribute(HtmlAtrributes.Selected, null);
+                    }
+
                     tagbuilder.InnerHtml += option.ToMvcHtmlString(TagRenderMode.Normal);
                 }
             }
