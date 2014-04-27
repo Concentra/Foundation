@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Foundation.Persistence;
 using Foundation.Web.Security;
 
 namespace Kafala.Entities

@@ -97,17 +97,13 @@
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Foundation.Persistence\Foundation.Persistence.csproj">
-      <Project>{c684e3b8-d828-4ece-b427-afc06f25977f}</Project>
-      <Name>Foundation.Persistence</Name>
-    </ProjectReference>
+    <Folder Include="DoNotMap\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Foundation.Web\Foundation.Web.csproj">
       <Project>{baa4e4d3-bdf1-45a9-85b2-9ba6e58e2e24}</Project>
       <Name>Foundation.Web</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DoNotMap\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

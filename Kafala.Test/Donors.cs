@@ -31,17 +31,17 @@ namespace Kafala.Test
 
         public void CreateDonors()
         {
-            for (var d = 0; d < 50; ++d)
+            for (var d = 0; d < 2; ++d)
             {
                 var donorMoq = MockDonor();
                 var donorId = DonorBusinessManager.Add(donorMoq.Object);
-                for (var dc = 0; dc < 2; dc++)
+                for (var dc = 0; dc < 1; dc++)
                 {
                     var donationCaseMock = MockDonationCase();
                     var donationCaseId = DonationCaseBusinessManager.Add(donationCaseMock.Object);
                     var commitmentMock = MockCommitment(donorId, donationCaseId);
                     var commitmentId = CommitmentBusinessManager.Add(commitmentMock.Object);
-                    for (var payment = 0; payment < 2; payment++)
+                    for (var payment = 0; payment < 3; payment++)
                     {
                         var paymentMock = MockPayment(commitmentId, PaymentPeriodList[payment].Id, (int) commitmentMock.Object.Amount);
                         PaymentBusinessManager.Register(paymentMock.Object);

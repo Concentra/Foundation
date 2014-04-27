@@ -1,4 +1,4 @@
-﻿namespace Foundation.Web.Extensions
+﻿namespace Foundation.Web.Caching
 {
     public interface IFlushable
     {

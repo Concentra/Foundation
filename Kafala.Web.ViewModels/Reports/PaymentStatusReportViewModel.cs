@@ -13,9 +13,9 @@ namespace Kafala.Web.ViewModels.Reports
         public FilterPaymentStatus FilterPaymentStatus { get; set; }
         public decimal ExpectedAmount { get; set; }
 
-        public decimal CollectedAmount { get; set; }
+        public int CollectedAmount { get; set; }
 
-        public decimal OverDueAmount { get; set; }
+        public int OverDueAmount { get; set; }
         
         public IEnumerable<OverDuePaymentViewModel> OutStandingPayments { get; set; }
 

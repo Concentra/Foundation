@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Web.Caching;
+using Foundation.Web.Extensions;
 
-namespace Foundation.Web.Extensions
+namespace Foundation.Web.Caching
 {
     /// <summary>
     /// Caching service managed the system cache.

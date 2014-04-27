@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Foundation.FormBuilder.CustomAttribute;
+using Foundation.FormBuilder.DynamicForm;
 using Foundation.Web.CustomAttribute;
 using Foundation.Web.Paging;
 
@@ -16,8 +18,15 @@ namespace Kafala.Web.ViewModels.Commitment.Partials
         [FilterControl(DataElement = "Donor.Id")]
         public virtual Guid DonorId { get; set; }
 
-        public virtual IEnumerable<SelectListItem> Donors { get; set; }
+        [FilterControl(DataElement = "Donor.Name", OperatorOption = Operator.Like)]
+        [EditControl(ElementType = ElementType.Text)]
+        public virtual string DonorName { get; set; }
 
+        [FilterControl(DataElement = "DonationCase.Name", OperatorOption = Operator.Like)]
+        [EditControl(ElementType = ElementType.Text)]
+        public virtual string CaseName { get; set; }
+
+        
         [FilterControl(DataElement = "StartDate")]
         public virtual DateTime? StartDate { get; set; }
 

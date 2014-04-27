@@ -35,13 +35,7 @@ namespace Foundation.Web.Configurations
                 }
             }
 
-            //if (foundationConfigurator.UseSecurity)
-            //{
-            //    cfg.For<IAuthenticationService>()
-            //       .HybridHttpOrThreadLocalScoped()
-            //       .Use((IAuthenticationService)ObjectFactory.GetInstance(foundationConfigurator.Web.AuthenticationService));
-                
-            //}
+            
         }
         
         private void RegisterPagingAndSortingModelBinders(Type viewModelsAssemblyHook)

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Foundation.Configuration;
+using Foundation.Web.Extensions;
 using Foundation.Web.Paging;
 
-namespace Foundation.Web.Extensions
+namespace Foundation.Web.Sorter
 {
     public static class TableSorterExtensions
     {

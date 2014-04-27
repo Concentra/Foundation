@@ -10,6 +10,7 @@ using Kafala.Query.Payment;
 using Kafala.Query.Reports;
 using Kafala.Web.ViewModels.Commitment.Partials;
 using Kafala.Web.ViewModels.Donor;
+using Kafala.Web.ViewModels.Payment.Partial;
 using Kafala.Web.ViewModels.Reports.Partials;
 using NHibernate;
 using NHibernate.Linq;
@@ -37,7 +38,7 @@ namespace Kafala.Query.Donor
                 Commitments = queryContainer.Get<CommitmentListModelPopulator>()
                 .Execute(new FilterCommitmentViewModel() { DonorId = donorId }).Commitments,
                 Payments = queryContainer.Get<PaymentListModelPopulator>()
-                .Execute(new PaymentListParameters(donorId)).Payments,
+                .Execute(new PaymentFilterViewModel() {DonorId = donorId}).Payments,
                 OutStanding = queryContainer.Get<PaymentStatusReportViewModelPopulator>()
                 .Execute(new FilterPaymentStatus(){ DonorId = donorId , PointInTime = DateTime.Now}).OutStandingPayments
             };

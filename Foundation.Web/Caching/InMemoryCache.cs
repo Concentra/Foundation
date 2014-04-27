@@ -2,14 +2,15 @@
 using System.Configuration;
 using System.Web;
 using System.Web.Caching;
+using Foundation.Web.Extensions;
 
-namespace Foundation.Web.Extensions
+namespace Foundation.Web.Caching
 {
     public class InMemoryCache : ICacheService
     {
         public T Get<T>(string cacheId, CacheType type) where T : class, IFlushable
         {
-            T item = HttpRuntime.Cache.Get(this.JoinKey(cacheId, type)) as T;
+            var item = HttpRuntime.Cache.Get(this.JoinKey(cacheId, type)) as T;
 
             return item;
         }

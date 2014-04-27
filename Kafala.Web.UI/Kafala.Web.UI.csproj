@@ -255,6 +255,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\Debug\Reports\Charting.js" />
+    <Content Include="Scripts\Debug\Reports\jquery.xml2json.js" />
     <Content Include="Scripts\JChartFX\jchartfx.advanced.js" />
     <Content Include="Scripts\JChartFX\jchartfx.animation.js" />
     <Content Include="Scripts\JChartFX\jchartfx.annotation.js" />
@@ -344,13 +345,15 @@
     <Content Include="Views\DonationCase\View.cshtml" />
     <Content Include="Views\DonationCase\Index.cshtml" />
     <Content Include="Views\DonationCase\Partial\Commitments.cshtml" />
-    <Content Include="Views\Commitment\Partial\Payment.cshtml" />
+    <Content Include="Views\Commitment\Partial\CommetmentFilter.cshtml" />
     <Content Include="Views\Shared\_LoadingElement.cshtml" />
     <Content Include="Views\Shared\_DetailsPopUpTemplate.cshtml" />
     <Content Include="Views\Shared\_ModalMessageTemplate.cshtml" />
     <Content Include="Views\Donor\Partial\DonorFilter.cshtml" />
     <Content Include="Views\Reports\OverDure.cshtml" />
     <Content Include="Views\Reports\Partial\OverDueFilter.cshtml" />
+    <Content Include="Views\Shared\_FormButtons.cshtml" />
+    <Content Include="Views\Payment\Partial\PaymentFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

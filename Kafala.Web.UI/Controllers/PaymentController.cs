@@ -8,6 +8,7 @@ using Foundation.Web.Paging;
 using Kafala.BusinessManagers.Payment;
 using Kafala.Query.Payment;
 using Kafala.Web.ViewModels.Payment;
+using Kafala.Web.ViewModels.Payment.Partial;
 
 namespace Kafala.Web.UI.Controllers
 {
@@ -24,7 +25,7 @@ namespace Kafala.Web.UI.Controllers
         }
 
         [RenderPagedView]
-        public ActionResult Index(PaymentListParameters parameters)
+        public ActionResult Index(PaymentFilterViewModel parameters)
         {
             var container = this.queryContainer.Get<PaymentListModelPopulator>();
             var model = container.Execute(parameters);

@@ -1,11 +1,17 @@
 ﻿@using Foundation.Web.Extensions
+@using Foundation.Web.Paging
+@using Foundation.Web.Sorter
 @model Kafala.Web.ViewModels.Commitment.CommitmentIndexViewModel
 
 <h2>List Commitments</h2>
+<div class="panel panel-primary">
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    @Html.Partial("Partial/CommetmentFilter", Model.Search)
+     </div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
     <table class="table sorter">
         <tr>
            @Html.SortableHeader(Model.Search.Sort, Model.Search.SortDirection,  "DonationCaseName" , "Donation Case" , Model.Search.ActionFunc)

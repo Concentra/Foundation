@@ -1,4 +1,6 @@
-﻿@model Kafala.Web.ViewModels.Reports.PaymentStatusReportViewModel
+﻿@using Foundation.Web.Paging
+@using Foundation.Web.Sorter
+@model Kafala.Web.ViewModels.Reports.PaymentStatusReportViewModel
 
 @section Css 
 {
@@ -7,9 +9,8 @@
 
 @section script
 {
-    <!--script type="text/javascript" src="~/Scripts/jChartFX/jchartfx.system.js"></!--script>
-        <script type="text/javascript" src="~/Scripts/JChartFX/jchartfx.coreVector.js"></script-->
     <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="~/Scripts/Debug/Reports/jquery.xml2json.js" type="text/javascript" language="javascript"></script>
     <script type="text/javascript" src="~/Scripts/Debug/Reports/Charting.js"></script>
 
 }
@@ -17,8 +18,22 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-5">
-            <div id="container" style="width:100%;height:250px;display:inline-block"></div>
-              
+              <div id="chartContainer"  data-name="mainCHart">
+                  <div data-name="credits" data-enabled="false" ></div>
+                  <div data-name="title" data-text="Collection Status" ></div>
+                  <div data-name="legend" data-align="right" data-verticalAlign="middle" ></div>
+                  <div data-name="chart" data-type="pie" ></div>
+                  <div data-name ="series" data-enableMouseTracking="true">
+                      <span>
+                          <div data-name ="data">
+                                    <span data-name="Collected" data-color="green" data-numeric-y="@Model.CollectedAmount"  ></span>
+                                    <span data-name="Over Due" data-color="red" data-numeric-y="@Model.OverDueAmount"  ></span>
+                                </div>
+                      </span>   
+                  </div>
+                    <div data-name="pie" data-allowPointSelect="true"  ></div>
+            </div>
+          
         </div>
         <div class="col-lg-7">
             <div class="panel panel-primary">

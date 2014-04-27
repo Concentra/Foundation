@@ -3,9 +3,9 @@ using System.IO;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.UI;
-using Foundation.Web.Paging;
+using Foundation.Web.Extensions;
 
-namespace Foundation.Web.Extensions
+namespace Foundation.Web.Paging
 {
     public static class PagerExtensions
     {

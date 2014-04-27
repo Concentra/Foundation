@@ -4,5 +4,6 @@
 <h2>Assign Case To Donor</h2>
 @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new { @class = "well validated", id = "autoForm" }))
 {
-    @Html.DynamicForm();
+    @Html.DynamicForm()
+        @Html.Partial("_FormButtons")
 }

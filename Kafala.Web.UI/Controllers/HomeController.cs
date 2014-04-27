@@ -10,7 +10,9 @@ using Foundation.Web;
 using Foundation.Web.Security;
 using Kafala.BusinessManagers;
 using Kafala.BusinessManagers.User;
+using Kafala.Query.Security;
 using Kafala.Web.ViewModels.Home;
+using StructureMap;
 
 namespace Kafala.Web.UI.Controllers
 {
@@ -23,12 +25,11 @@ namespace Kafala.Web.UI.Controllers
         private readonly IAuthenticationService authenticationService;
         
         public HomeController(IBusinessManagerContainer businessManagerContainer,
-            IQueryContainer queryContainer, 
-            IAuthenticationService authenticationService)
+            IQueryContainer queryContainer)
         {
             this.businessManagerContainer = businessManagerContainer;
             this.queryContainer = queryContainer;
-            this.authenticationService = authenticationService;
+            this.authenticationService = ObjectFactory.GetInstance<AuthenticationService>();
         }
 
         public ActionResult LogOn()

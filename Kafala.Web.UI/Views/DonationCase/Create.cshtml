@@ -5,6 +5,6 @@
 @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new { @class = "well validated", id = "autoForm" }))
 {
     @Html.DynamicForm()
-   
+       @Html.Partial("_FormButtons")
 }
 

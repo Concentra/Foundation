@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="row">
-             @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Vertical, new { @class = "well  well-sm", id = "autoForm" }))
+             @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Vertical, new { @class = "well", id = "autoForm" }))
               {
                   @Html.DynamicView(BootstrapFormType.Vertical)
               }

@@ -7,8 +7,12 @@ using AutoMapper;
 using Foundation.Infrastructure.Query;
 using Foundation.Persistence;
 using Foundation.Web;
+using Foundation.Web.Extensions;
+using Foundation.Web.Filter;
 using Foundation.Web.Paging;
+using Foundation.Web.Sorter;
 using Kafala.Web.ViewModels.Payment;
+using Kafala.Web.ViewModels.Payment.Partial;
 using NHibernate;
 using NHibernate.Linq;
 
@@ -16,7 +20,7 @@ namespace Kafala.Query.Payment
 {
 
 
-    public class PaymentListModelPopulator : IQuery<PaymentListParameters, PaymentIndexViewModel>
+    public class PaymentListModelPopulator : IQuery<PaymentFilterViewModel, PaymentIndexViewModel>
     {
         private readonly ISession session;
 
@@ -25,24 +29,9 @@ namespace Kafala.Query.Payment
             this.session = session;
         }
 
-        public PaymentIndexViewModel Execute(PaymentListParameters parameters)
+        public PaymentIndexViewModel Execute(PaymentFilterViewModel parameters)
         {
-            var paymentList = this.session.Query<Entities.Payment>();
-
-            if (parameters.DonorId.HasValue)
-            {
-                paymentList = paymentList.Where(x => x.Commitment.Donor.Id == parameters.DonorId.Value);
-            }
-
-            if (parameters.CaseId.HasValue)
-            {
-                paymentList = paymentList.Where(x => x.Commitment.Id == parameters.CaseId.Value);
-            }
-
-            if (parameters.PeriodId.HasValue)
-            {
-                paymentList = paymentList.Where(x => x.PaymentPeriod.Id == parameters.PeriodId.Value);
-            }
+            var paymentList = this.session.Query<Entities.Payment>().ApplyFilter(parameters).ApplyOrder(parameters);
 
             var pagedPayments = paymentList
                                     .Fetch(x => x.Commitment)
@@ -66,48 +55,19 @@ namespace Kafala.Query.Payment
             var model = new PaymentIndexViewModel
                             {
                                 Payments = paymentModel,
+                                PaymentFilter = parameters
                             };
 
-            model.PagingAndSortingParameters.FillSortingParameters(parameters);
+            model.PaymentFilter.PaymentPeriods = session.Query<Entities.PaymentPeriod>()
+                .CreateDropDownList(x => x.Name, y => y.Id);
 
-            model.PagingAndSortingParameters.FillPagingParameters(pagedPayments.PagingViewModel);
+            model.PaymentFilter.FillSortingParameters(parameters);
+
+            model.PaymentFilter.FillPagingParameters(pagedPayments.PagingViewModel);
+
+            
 
             return model;
-        }
-    }
-
-    public class PaymentListParameters : PagingAndSortingParameters
-    {
-        private readonly Guid? donorId;
-        private readonly Guid? caseId;
-        private readonly Guid? periodId;
-        
-        public PaymentListParameters()
-        {}
-        
-        public PaymentListParameters(Guid? donorId = null, Guid? caseId = null, Guid? periodId = null, int pageNumber = 1, int pageSize = 10, string sort = "")
-        {
-            this.donorId = donorId;
-            this.caseId = caseId;
-            this.periodId = periodId;
-            this.PageNumber = pageNumber;
-            this.PageSize = pageSize;
-            this.Sort = sort;
-        }
-
-        public Guid? DonorId
-        {
-            get { return donorId; }
-        }
-
-        public Guid? CaseId
-        {
-            get { return caseId; }
-        }
-
-        public Guid? PeriodId
-        {
-            get { return periodId; }
         }
     }
 }

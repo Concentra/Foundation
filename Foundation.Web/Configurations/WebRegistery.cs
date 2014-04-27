@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Web;
 using Foundation.Configuration;
+using Foundation.Web.Caching;
 using Foundation.Web.Extensions;
 using StructureMap.Configuration.DSL;
 

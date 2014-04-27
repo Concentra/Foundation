@@ -18,6 +18,7 @@ namespace Kafala.Query.Shared
                 {
                     new MenuItem() {Active = false, Text = "Donors", URL = "Donor"},
                     new MenuItem() {Active = false, Text = "Donation Cases", URL = "DonationCase"},
+                    new MenuItem() {Active = false, Text = "Commitments", URL = "Commitment"},
                     new MenuItem()
                     {
                         Active = false, Text = "Payments",

@@ -11,10 +11,6 @@ namespace Foundation.FormBuilder.BootStrapSet
 {
     class LayoutBuilder : ILayoutBuilder
     {
-        private FieldCollection fieldCollection;
-        private ElementContainer elmentContainer;
-        private ControlContainer controlContainer;
-
         public string BeginFieldCollection(string groupName, bool useLegend, IFormBuilderParameters formBuilderParameters)
         {
             var sb = new StringBuilder();

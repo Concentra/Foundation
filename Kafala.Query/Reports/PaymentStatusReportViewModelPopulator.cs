@@ -40,9 +40,12 @@ namespace Kafala.Query.Reports
             if (filter.PointInTime.HasValue)
             {
                 query = query
-                     .Where(x => x.PaymentPeriod.Month == filter.PointInTime.Value.Month
-                                         && x.PaymentPeriod.Year == filter.PointInTime.Value.Year);
+                    .Where(x => x.PaymentPeriod.Month == filter.PointInTime.Value.Month
+                                && x.PaymentPeriod.Year == filter.PointInTime.Value.Year);
             }
+
+            query =
+                query.Where(x => x.PaymentPeriod.Year == DateTime.Now.Year && x.PaymentPeriod.Month <= DateTime.Now.Month);
 
             var collectedAmountValue = query.Where(x => x.Payment != null)
                 .ToFutureValue<PaymentStatus,decimal?>(x => x.Sum(p => (decimal?) p.PaidAmount));
@@ -73,10 +76,10 @@ namespace Kafala.Query.Reports
 
                 var model = new PaymentStatusReportViewModel()
                 {
-                    CollectedAmount = collectedAmount,
+                    CollectedAmount = (int) collectedAmount,
                     ExpectedAmount = expectedAmount,
                     OutStandingPayments = payments,
-                    OverDueAmount = expectedAmount - collectedAmount,
+                    OverDueAmount = (int) (expectedAmount - collectedAmount),
                     FilterPaymentStatus = new FilterPaymentStatus()
                     {
                        DonorList = session.Query<Entities.Donor>().CreateDropDownList(x => x.Name, y => y.Id),

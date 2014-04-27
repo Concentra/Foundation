@@ -15,7 +15,7 @@ namespace Kafala.Web.ViewModels.Reports.Partials
         [EditControl(ElementType = ElementType.List)]
         [CollectionInfo(ListSourceMember = "DonorList", SelectPromptValue = null, SelectPromptLabel = "All")]
         [Display(Name = "Donor")]
-        public Guid DonorId { get; set; }
+        public Guid? DonorId { get; set; }
 
         public IEnumerable<SelectListItem> DonorList { get; set; }
 
@@ -23,7 +23,7 @@ namespace Kafala.Web.ViewModels.Reports.Partials
         [CollectionInfo(ListSourceMember = "PeriodList", SelectPromptValue = null, SelectPromptLabel = "All")]
         [FilterControl(DataElement = "PaymentPeriod.Id")]
         [Display(Name = "Period")]
-        public Guid PaymentPeriodId { get; set; }
+        public Guid? PaymentPeriodId { get; set; }
 
         public IEnumerable<SelectListItem> PeriodList { get; set; }
         

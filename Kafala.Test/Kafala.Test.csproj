@@ -95,6 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foundation.Configuration\Foundation.Configuration.csproj">
+      <Project>{975ed9e8-b905-4aa3-83c3-8d6d193c785c}</Project>
+      <Name>Foundation.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foundation.FormBuilder\Foundation.FormBuilder.csproj">
       <Project>{c5fa847f-2fb5-403d-ad02-3e9332bf60c7}</Project>
       <Name>Foundation.FormBuilder</Name>

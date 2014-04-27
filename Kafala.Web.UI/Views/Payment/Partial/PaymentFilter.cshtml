@@ -1,0 +1,17 @@
+﻿@using Foundation.FormBuilder.BootStrapSet
+@model Kafala.Web.ViewModels.Payment.Partial.PaymentFilterViewModel
+    <div class="panel-heading panel-title">Search for Payments</div>
+  
+<div class="panel-body">
+    @using (var form = Html.Bootstrap().BeginForm("Index", "Payment", FormMethod.Get, new { id = "autoForm"}))
+    {
+        @Html.DynamicForm( )
+
+        <div class="pull-right">
+            @Html.SubmitButton("Search")
+        </div>
+    }
+    
+</div>
+
+

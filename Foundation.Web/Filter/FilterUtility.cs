@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Foundation.Web.CustomAttribute;
+using NHibernate.Linq;
 using Expression = System.Linq.Expressions.Expression;
 
 namespace Foundation.Web.Filter
@@ -61,8 +62,18 @@ namespace Foundation.Web.Filter
                 }
                 else
                 {
-                    variableExpression = propertyExpression;
+
+                    // special case to handle nullable values
+                    if (valueExpression.Type.IsNullable())
+                    {
+                        valueExpression = Expression.Constant(valueExpression.Value, filterElement.Property.PropertyType.NullableOf());
+                    }
+                    
+
                     inputExpression = valueExpression;
+                    variableExpression = propertyExpression;
+                
+                   
                 }
 
                 BinaryExpression conditionExpression = Expression.Equal(variableExpression, valueExpression);

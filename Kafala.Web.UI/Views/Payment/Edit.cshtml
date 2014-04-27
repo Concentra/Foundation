@@ -4,5 +4,6 @@
 <h2>Update Payment Details</h2>
 @using (var form = Html.Bootstrap().BeginForm(BootstrapFormType.Horizontal, new {@class= "well" ,id = "autoForm" }))
 {
-    @Html.DynamicForm();
+    @Html.DynamicForm()
+        @Html.Partial("_FormButtons")
 }

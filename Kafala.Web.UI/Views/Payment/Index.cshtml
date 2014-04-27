@@ -1,16 +1,23 @@
 ﻿@using System.Web.UI.HtmlControls
 @using Foundation.Web.Extensions
+@using Foundation.Web.Paging
+@using Foundation.Web.Sorter
 @model Kafala.Web.ViewModels.Payment.PaymentIndexViewModel
+
+<div class="panel panel-primary">
+
+    @Html.Partial("Partial/PaymentFilter", Model.PaymentFilter)
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
     <table class="table sorter">
         <tr>
-            @Html.SortableHeader(Model.PagingAndSortingParameters.Sort, Model.PagingAndSortingParameters.SortDirection, "DonationCaseName", "Donation Case Name", Model.PagingAndSortingParameters.ActionFunc)
-            @Html.SortableHeader(Model.PagingAndSortingParameters.Sort, Model.PagingAndSortingParameters.SortDirection, "DonorName", "Donor Name", Model.PagingAndSortingParameters.ActionFunc)
-            @Html.SortableHeader(Model.PagingAndSortingParameters.Sort, Model.PagingAndSortingParameters.SortDirection, "PaymentDate", "Payment Date", Model.PagingAndSortingParameters.ActionFunc)
-            @Html.SortableHeader(Model.PagingAndSortingParameters.Sort, Model.PagingAndSortingParameters.SortDirection, "PaymentPeriod", "Payment Period", Model.PagingAndSortingParameters.ActionFunc)
+            @Html.SortableHeader(Model.PaymentFilter.Sort, Model.PaymentFilter.SortDirection, "DonationCaseName", "Donation Case Name", Model.PaymentFilter.ActionFunc)
+            @Html.SortableHeader(Model.PaymentFilter.Sort, Model.PaymentFilter.SortDirection, "DonorName", "Donor Name", Model.PaymentFilter.ActionFunc)
+            @Html.SortableHeader(Model.PaymentFilter.Sort, Model.PaymentFilter.SortDirection, "PaymentDate", "Payment Date", Model.PaymentFilter.ActionFunc)
+            @Html.SortableHeader(Model.PaymentFilter.Sort, Model.PaymentFilter.SortDirection, "PaymentPeriod", "Payment Period", Model.PaymentFilter.ActionFunc)
             <th></th>
         </tr>
     
@@ -38,4 +45,4 @@
         }
     
     </table>
-@Html.PageLinks(Model.PagingAndSortingParameters, Model.PagingAndSortingParameters.ActionFunc)
+@Html.PageLinks(Model.PaymentFilter, Model.PaymentFilter.ActionFunc)

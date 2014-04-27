@@ -12,6 +12,33 @@
             
             @if (Model.Payments != null)
             {
-                @Html.Partial("Partial/Payment", Model, new ViewDataDictionary())
+                <table class="table table-condensed">
+                    <tr>
+                        <th>For the Period</th>
+                        <th>Collected On</th>
+                        <th>Amount</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.Payments)
+                    {
+                        <tr>
+                            <td>@item.PaymentPeriodName</td>
+                            <td>@if (@item.PaymentDate != null)
+                                {
+                                    @item.PaymentDate.Value.ToShortDateString()
+                                }
+                                else
+                                {
+                                    @Html.Raw("N/A")
+                                }</td>
+                            <td>@item.Amount</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Payment", new {id = item.Id}, null) |
+                                @Html.ActionLink("Details", "Details", "Payment", new {id = item.Id}, new {@class = "showInPopUpOnClick"}) |
+                                @Html.ActionLink("Delete", "Delete", "Payment", new {id = item.Id}, null)
+                            </td>
+                        </tr>
+                    }
+                </table>
             }
         </div>

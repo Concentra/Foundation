@@ -96,6 +96,7 @@
     <Compile Include="PaymentPeriod\EditPaymentPeriodViewModel.cs" />
     <Compile Include="PaymentPeriod\ViewPaymentPeriodViewModel.cs" />
     <Compile Include="Donor\DonorDashBoard.cs" />
+    <Compile Include="Payment\Partial\PaymentFilterViewModel.cs" />
     <Compile Include="Payment\PaymentIndexViewModel.cs" />
     <Compile Include="Reports\Partials\FilterPaymentStatus.cs" />
     <Compile Include="Reports\OverDuePaymentViewModel.cs" />

@@ -1,0 +1,16 @@
+﻿@using Foundation.FormBuilder.BootStrapSet
+@model Kafala.Web.ViewModels.Commitment.Partials.FilterCommitmentViewModel
+    <div class="panel-heading panel-title">Search for Commitments</div>
+  
+<div class="panel-body">
+    @using (var form = Html.Bootstrap().BeginForm("Index", "Commitment", FormMethod.Get, new { id = "autoForm" }))
+    {
+        @Html.DynamicForm( )
+
+        <div class="pull-right">
+            @Html.SubmitButton("Search")
+        </div>
+    }
+        
+        
+</div>

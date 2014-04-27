@@ -43,7 +43,7 @@ namespace Kafala.Test
         [TestFixtureSetUp]
         public void InitializatFixture()
         {
-            ObjectFactory.Configure(Configurations.ConfigureDependencies);
+            Configurations.BootStrap();
             bmc = ObjectFactory.GetInstance<BusinessManagerContainer>();
             Session = ObjectFactory.GetInstance<ISession>();
             CommitmentBusinessManager = bmc.Get<CommitmentBusinessManager>();
@@ -51,7 +51,7 @@ namespace Kafala.Test
             DonationCaseBusinessManager = bmc.Get<DonationCaseBusinessManager>();
             PaymentBusinessManager = bmc.Get<PaymentBusinessManager>();
             PaymentPeriodBusinessManager = bmc.Get<PaymentPeriodBusinessManager>();
-            FillPaymentPeriods(2013); PaymentPeriodList = Session.Query<Entities.PaymentPeriod>().ToArray();
+            FillPaymentPeriods(2014); PaymentPeriodList = Session.Query<Entities.PaymentPeriod>().ToArray();
         }
 
         public Mock<IDonorContract> MockDonor()
@@ -93,7 +93,7 @@ namespace Kafala.Test
         {
             var mock = new Mock<IPaymentContract>();
             mock.SetupProperty(x => x.CommitmentId, commitmentId);
-            mock.SetupProperty(x => x.Amount, Faker.RandomNumber.Next(0, amount));
+            mock.SetupProperty(x => x.Amount, amount);
             mock.SetupProperty(x => x.Comments, Faker.Lorem.Sentence());
             mock.SetupProperty(x => x.PaymentDate, DateTime.Now.AddDays(3));
             mock.SetupProperty(x => x.PaymentPeriodId, periodId);
